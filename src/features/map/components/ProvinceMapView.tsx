@@ -1,4 +1,5 @@
 import { getProvinceCities } from "../../../entities/region/model/regionIndex";
+import { useI18n } from "../../../shared/i18n/I18nProvider";
 import { SurfaceCard } from "../../../shared/ui/SurfaceCard";
 import { AdminGeoMap } from "./AdminGeoMap";
 
@@ -17,16 +18,17 @@ export function ProvinceMapView({
   onBack,
   onCityClick,
 }: ProvinceMapViewProps) {
+  const { t } = useI18n();
   const cities = getProvinceCities(provinceId);
 
   return (
     <SurfaceCard
-      eyebrow="Map"
-      title="Province Detail"
-      description="Select a city-level administrative region to update your travel record. The active region receives a stronger focus state."
+      eyebrow={t("map.section")}
+      title={t("map.provinceTitle")}
+      description={t("map.provinceDescription")}
       aside={
         <button className="glass-button" onClick={onBack}>
-          Back to China
+          {t("map.backToChina")}
         </button>
       }
       className="fade-in-up overflow-hidden"
@@ -39,8 +41,8 @@ export function ProvinceMapView({
           onRegionClick={onCityClick}
           emptyMessage={
             cities.length > 0
-              ? "City-level geometry is unavailable for this province."
-              : "This province does not currently expose city-level geometry in the dataset."
+              ? t("map.emptyProvince")
+              : t("map.emptyProvinceWithMetadata")
           }
         />
       </div>

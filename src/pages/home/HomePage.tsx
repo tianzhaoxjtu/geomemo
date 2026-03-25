@@ -1,14 +1,17 @@
+import { useEffect } from "react";
 import { BreadcrumbNav } from "../../features/map/components/BreadcrumbNav";
 import { ChinaMapView } from "../../features/map/components/ChinaMapView";
 import { Legend } from "../../features/map/components/Legend";
 import { ProvinceMapView } from "../../features/map/components/ProvinceMapView";
 import { StatsPanel } from "../../features/stats/components/StatsPanel";
 import { DataTransferCard } from "../../features/visit/components/DataTransferCard";
+import { LanguageSwitcher } from "../../features/visit/components/LanguageSwitcher";
 import { RegionInfoPanel } from "../../features/visit/components/RegionInfoPanel";
 import { VisitActionCard } from "../../features/visit/components/VisitActionCard";
 import { VisitedSummaryCard } from "../../features/visit/components/VisitedSummaryCard";
 import { useGeoMemoViewModel } from "../../features/visit/hooks/useGeoMemoViewModel";
 import { useVisitDataTransfer } from "../../features/visit/hooks/useVisitDataTransfer";
+import { useI18n } from "../../shared/i18n/I18nProvider";
 
 export function HomePage() {
   const {
@@ -30,8 +33,13 @@ export function HomePage() {
   } = useGeoMemoViewModel();
   const { downloadExport, importFile, importError, lastImportedAt, clearImportError } =
     useVisitDataTransfer();
+  const { t } = useI18n();
   const { level, activeProvinceId, activeCityId } = navigation;
   const { visitedCityIds } = visits;
+
+  useEffect(() => {
+    document.title = `${t("app.name")} · ${t("app.title")}`;
+  }, [t]);
 
   return (
     <main className="mx-auto min-h-screen max-w-[1440px] px-4 py-6 sm:px-6 lg:px-8">
@@ -40,35 +48,35 @@ export function HomePage() {
         <div className="relative flex flex-col gap-8 xl:flex-row xl:items-end xl:justify-between">
           <div className="max-w-3xl">
             <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-slate-400">
-              GeoMemo
+              {t("app.name")}
             </p>
             <h1 className="mt-3 max-w-4xl text-4xl font-semibold tracking-[-0.04em] text-slate-950 sm:text-5xl">
-              Track the places you have visited in China
+              {t("app.title")}
             </h1>
             <p className="mt-4 max-w-2xl text-base leading-7 text-slate-600">
-              A functional MVP with province drill-down, city-level visit tracking, live statistics,
-              and local persistence.
+              {t("app.subtitle")}
             </p>
           </div>
           <div className="grid gap-3 sm:grid-cols-3">
             <MetricPill
-              label="Cities visited"
+              label={t("header.metricCitiesVisited")}
               value={`${countryStats.visitedCities}`}
-              sublabel={`of ${countryStats.totalCities}`}
+              sublabel={t("header.metricOfTotal", { total: countryStats.totalCities })}
             />
             <MetricPill
-              label="Coverage"
+              label={t("header.metricCoverage")}
               value={`${countryStats.cityVisitPercentage}%`}
-              sublabel="city completion"
+              sublabel={t("header.metricCityCompletion")}
             />
             <MetricPill
-              label="Completed provinces"
+              label={t("header.metricProvinceCompleted")}
               value={`${countryStats.visitedProvinces}`}
-              sublabel={`of ${countryStats.totalProvinces}`}
+              sublabel={t("header.metricOfTotal", { total: countryStats.totalProvinces })}
             />
           </div>
         </div>
-        <div className="relative mt-6 flex flex-wrap gap-3">
+        <div className="relative mt-6 flex flex-wrap items-center gap-3">
+          <LanguageSwitcher />
           <button
             className="glass-button"
             onClick={() => {
@@ -78,13 +86,13 @@ export function HomePage() {
               }
             }}
           >
-            Clear selection
+            {t("header.clearSelection")}
           </button>
           <button
             className="primary-button"
             onClick={resetAllVisits}
           >
-            Reset visits
+            {t("header.resetVisits")}
           </button>
         </div>
       </header>
@@ -124,8 +132,8 @@ export function HomePage() {
         </div>
 
         <aside className="space-y-4 xl:sticky xl:top-6 xl:self-start">
-          <StatsPanel title="National statistics" stats={countryStats} />
-          {provinceStats ? <StatsPanel title={`${activeProvinceName} statistics`} stats={provinceStats} /> : null}
+          <StatsPanel title={t("stats.nationalTitle")} stats={countryStats} />
+          {provinceStats ? <StatsPanel title={t("stats.provinceTitle", { name: activeProvinceName ?? "" })} stats={provinceStats} /> : null}
           <DataTransferCard
             importError={importError}
             lastImportedAt={lastImportedAt}

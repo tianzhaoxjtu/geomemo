@@ -1,4 +1,6 @@
 import { getProvinceCities, getProvinceById } from "../../../entities/region/model/regionIndex";
+import { localizeRegionName } from "../../../entities/region/model/regionNames";
+import { useI18n } from "../../../shared/i18n/I18nProvider";
 import { SurfaceCard } from "../../../shared/ui/SurfaceCard";
 
 interface RegionInfoPanelProps {
@@ -16,12 +18,17 @@ export function RegionInfoPanel({
   visitedCityIds,
   onSelectCity,
 }: RegionInfoPanelProps) {
+  const { locale, t } = useI18n();
+
   if (!activeProvinceId) {
     return (
-      <SurfaceCard eyebrow="Context" title="National View" description="Browse the country map and dive into each province to inspect city progress.">
+      <SurfaceCard
+        eyebrow={t("visit.context")}
+        title={t("visit.nationalTitle")}
+        description={t("visit.nationalDescription")}
+      >
         <p className="text-sm leading-6 text-slate-600">
-          Start from the country-level administrative boundary map, then click any province to open
-          its city-level view. Names and codes now come from the vendored GeoJSON dataset.
+          {t("visit.nationalBody")}
         </p>
       </SurfaceCard>
     );
@@ -36,17 +43,19 @@ export function RegionInfoPanel({
 
   return (
     <SurfaceCard
-      eyebrow="Context"
-      title={province.name}
+      eyebrow={t("visit.context")}
+      title={localizeRegionName(province, locale) ?? province.fullname}
       description={
         level === "city" && activeCity
-          ? `Selected city: ${activeCity.fullname}`
-          : "Choose a city region from the map or select from the list below."
+          ? t("visit.selectedCity", {
+              name: localizeRegionName(activeCity, locale) ?? activeCity.fullname,
+            })
+          : t("visit.chooseCity")
       }
     >
       <div className="mb-4 flex items-center gap-2">
         <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-600">
-          {cityList.length} cities in view
+          {t("visit.citiesInView", { count: cityList.length })}
         </span>
       </div>
       <div className="mt-4 space-y-2">
@@ -64,7 +73,7 @@ export function RegionInfoPanel({
               }`}
               onClick={() => onSelectCity(city.id)}
             >
-              <span className="font-medium">{city.fullname}</span>
+              <span className="font-medium">{localizeRegionName(city, locale) ?? city.fullname}</span>
               <span
                 className={`rounded-full px-2.5 py-1 text-xs font-medium ${
                   isActive
@@ -74,7 +83,7 @@ export function RegionInfoPanel({
                       : "bg-slate-200 text-slate-500"
                 }`}
               >
-                {visited ? "Visited" : "Unvisited"}
+                {visited ? t("visit.statusVisited") : t("visit.statusUnvisited")}
               </span>
             </button>
           );

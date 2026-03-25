@@ -1,4 +1,4 @@
-import { regionIndex } from "../../../entities/region/model/regionIndex";
+import { useI18n } from "../../../shared/i18n/I18nProvider";
 import { SurfaceCard } from "../../../shared/ui/SurfaceCard";
 import { getProvinceVisualState } from "../../stats/model/statsSelectors";
 import { AdminGeoMap } from "./AdminGeoMap";
@@ -14,12 +14,14 @@ export function ChinaMapView({
   visitedCityIds,
   onProvinceClick,
 }: ChinaMapViewProps) {
+  const { t } = useI18n();
+
   return (
     <SurfaceCard
-      eyebrow="Map"
-      title="China Overview"
-      description="A stylized national map with province-level completion states. Hover to inspect, click to dive deeper."
-      aside={<span className="rounded-full bg-slate-950 px-3 py-1.5 text-xs font-medium text-white">Prototype map</span>}
+      eyebrow={t("map.section")}
+      title={t("map.countryTitle")}
+      description={t("map.countryDescription")}
+      aside={<span className="rounded-full bg-slate-950 px-3 py-1.5 text-xs font-medium text-white">{t("map.badge")}</span>}
       className="fade-in-up overflow-hidden"
     >
       <div className="rounded-[28px] bg-[radial-gradient(circle_at_top,_rgba(37,99,235,0.10),_transparent_42%),linear-gradient(180deg,_#fcfdff,_#f5f8fc)] p-3">
@@ -28,7 +30,7 @@ export function ChinaMapView({
           activeCode={activeProvinceId}
           getVisualState={(regionCode) => getProvinceVisualState(regionCode, visitedCityIds)}
           onRegionClick={onProvinceClick}
-          emptyMessage="Country-level geometry is unavailable."
+          emptyMessage={t("map.emptyCountry")}
         />
       </div>
     </SurfaceCard>

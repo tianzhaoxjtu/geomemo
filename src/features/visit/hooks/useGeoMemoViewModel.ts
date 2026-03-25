@@ -1,9 +1,12 @@
 import { useMemo } from "react";
 import { getCityById, getProvinceById } from "../../../entities/region/model/regionIndex";
+import { getLocalizedCityName, getLocalizedProvinceName } from "../../../entities/region/model/regionNames";
 import { getCountryStats, getProvinceStats } from "../../stats/model/statsSelectors";
 import { useGeoMemoStore } from "../../../shared/store/geoMemoStore";
+import { useI18n } from "../../../shared/i18n/I18nProvider";
 
 export function useGeoMemoViewModel() {
+  const { locale } = useI18n();
   const navigation = useGeoMemoStore((store) => store.navigation);
   const visits = useGeoMemoStore((store) => store.visits);
   const enterCountry = useGeoMemoStore((store) => store.enterCountry);
@@ -32,8 +35,8 @@ export function useGeoMemoViewModel() {
       resetAllVisits,
       activeProvince,
       activeCity,
-      activeProvinceName: activeProvince?.fullname ?? null,
-      activeCityName: activeCity?.fullname ?? null,
+      activeProvinceName: getLocalizedProvinceName(navigation.activeProvinceId, locale),
+      activeCityName: getLocalizedCityName(navigation.activeCityId, locale),
       countryStats: getCountryStats(visits.visitedCityIds),
       provinceStats: activeProvince ? getProvinceStats(activeProvince.id, visits.visitedCityIds) : null,
       cityVisited: activeCity ? Boolean(visits.visitedCityIds[activeCity.id]) : false,
@@ -49,5 +52,6 @@ export function useGeoMemoViewModel() {
     markProvinceVisited,
     clearProvinceVisited,
     resetAllVisits,
+    locale,
   ]);
 }

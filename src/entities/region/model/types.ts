@@ -7,6 +7,7 @@ export interface City {
   code: string;
   name: string;
   fullname: string;
+  englishName: string;
   provinceId: string;
 }
 
@@ -14,6 +15,7 @@ export interface Province {
   id: string;
   name: string;
   fullname: string;
+  englishName: string;
   code: string;
   filename: string;
   cityIds: string[];

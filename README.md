@@ -11,6 +11,7 @@ GeoMemo is a React + TypeScript + Vite + Tailwind CSS app for tracking places vi
 - Live statistics for counts and percentages
 - `localStorage` persistence via Zustand
 - JSON import and export for visited data
+- Bilingual UI with Simplified Chinese default and English switching
 
 ## Tech Stack
 
@@ -43,6 +44,7 @@ src/
 - The store is structured into `navigation`, `visits`, and `ui` domains.
 - `useGeoMemoViewModel` keeps page components thin by combining store state with derived selectors.
 - Import and export are isolated behind `visitTransfer` utilities so the same contract can later support an API.
+- Translation resources are separated in `src/shared/i18n/resources`, and the selected language is persisted in `localStorage`.
 
 ## Run Locally
 

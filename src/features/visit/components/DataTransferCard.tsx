@@ -1,4 +1,5 @@
 import { useRef } from "react";
+import { useI18n } from "../../../shared/i18n/I18nProvider";
 import { SurfaceCard } from "../../../shared/ui/SurfaceCard";
 
 interface DataTransferCardProps {
@@ -17,20 +18,21 @@ export function DataTransferCard({
   onDismissError,
 }: DataTransferCardProps) {
   const inputRef = useRef<HTMLInputElement | null>(null);
+  const { locale, t } = useI18n();
 
   return (
     <SurfaceCard
-      eyebrow="Data"
-      title="Import or export visits"
-      description="Move your visit collection between browsers now, and this contract can later back an API or sync service."
+      eyebrow={t("data.section")}
+      title={t("data.title")}
+      description={t("data.description")}
     >
       <div className="space-y-3">
         <div className="grid grid-cols-2 gap-3">
           <button className="glass-button rounded-[22px]" onClick={onExport}>
-            Export JSON
+            {t("data.export")}
           </button>
           <button className="glass-button rounded-[22px]" onClick={() => inputRef.current?.click()}>
-            Import JSON
+            {t("data.import")}
           </button>
         </div>
         <input
@@ -48,14 +50,18 @@ export function DataTransferCard({
           }}
         />
         {lastImportedAt ? (
-          <p className="text-sm text-slate-500">Last import: {new Date(lastImportedAt).toLocaleString()}</p>
+          <p className="text-sm text-slate-500">
+            {t("data.lastImport", {
+              time: new Date(lastImportedAt).toLocaleString(locale === "en" ? "en-US" : "zh-CN"),
+            })}
+          </p>
         ) : null}
         {importError ? (
           <div className="rounded-[22px] border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-700">
             <div className="flex items-start justify-between gap-3">
-              <span>{importError}</span>
+              <span>{t(importError)}</span>
               <button className="font-medium text-rose-900" onClick={onDismissError}>
-                Dismiss
+                {t("data.dismiss")}
               </button>
             </div>
           </div>

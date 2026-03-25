@@ -1,4 +1,6 @@
 import { regionIndex } from "../../../entities/region/model/regionIndex";
+import { localizeRegionName } from "../../../entities/region/model/regionNames";
+import { useI18n } from "../../../shared/i18n/I18nProvider";
 import { SurfaceCard } from "../../../shared/ui/SurfaceCard";
 
 interface VisitedSummaryCardProps {
@@ -6,25 +8,28 @@ interface VisitedSummaryCardProps {
 }
 
 export function VisitedSummaryCard({ visitedCityIds }: VisitedSummaryCardProps) {
+  const { locale, t } = useI18n();
   const visitedCities = Object.keys(visitedCityIds)
     .map((cityId) => regionIndex.citiesById[cityId])
     .filter(Boolean);
   const visitedProvinceNames = Array.from(
     new Set(
-      visitedCities.map((city) => regionIndex.provincesById[city.provinceId]?.fullname).filter(Boolean),
+      visitedCities
+        .map((city) => localizeRegionName(regionIndex.provincesById[city.provinceId] ?? null, locale))
+        .filter(Boolean),
     ),
   ) as string[];
 
   return (
     <SurfaceCard
-      eyebrow="Travel summary"
-      title="Visited places"
-      description="A quick snapshot of the places already recorded in this collection."
+      eyebrow={t("visit.summary")}
+      title={t("visit.summaryTitle")}
+      description={t("visit.summaryDescription")}
     >
       <div className="space-y-4">
         <div>
           <p className="mb-2 text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">
-            Provinces
+            {t("visit.summaryProvinces")}
           </p>
           <div className="flex flex-wrap gap-2">
             {visitedProvinceNames.length > 0 ? (
@@ -38,13 +43,13 @@ export function VisitedSummaryCard({ visitedCityIds }: VisitedSummaryCardProps) 
               ))
             ) : (
               <span className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1.5 text-xs text-slate-500">
-                No provinces completed yet
+                {t("visit.summaryNoProvince")}
               </span>
             )}
           </div>
         </div>
         <div>
-          <p className="mb-2 text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">Recent cities</p>
+          <p className="mb-2 text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">{t("visit.summaryCities")}</p>
           <div className="flex flex-wrap gap-2">
             {visitedCities.length > 0 ? (
               visitedCities.slice(0, 8).map((city) => (
@@ -52,12 +57,12 @@ export function VisitedSummaryCard({ visitedCityIds }: VisitedSummaryCardProps) 
                   key={city.id}
                   className="rounded-full border border-slate-200 bg-white px-3 py-1.5 text-xs font-medium text-slate-700 shadow-sm"
                 >
-                  {city.fullname}
+                  {localizeRegionName(city, locale)}
                 </span>
               ))
             ) : (
               <span className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1.5 text-xs text-slate-500">
-                Your city list will appear here
+                {t("visit.summaryNoCity")}
               </span>
             )}
           </div>

@@ -162,8 +162,7 @@ export const useGeoMemoStore = create<GeoMemoStore>()(
           set((state) => ({
             ui: {
               ...state.ui,
-              importError:
-                error instanceof Error ? error.message : "Unable to import visit data.",
+              importError: error instanceof Error ? error.message : "error.import.generic",
             },
           }));
         }

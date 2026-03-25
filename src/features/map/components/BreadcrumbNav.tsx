@@ -1,3 +1,5 @@
+import { useI18n } from "../../../shared/i18n/I18nProvider";
+
 interface BreadcrumbNavProps {
   level: "country" | "province" | "city";
   provinceName: string | null;
@@ -13,10 +15,12 @@ export function BreadcrumbNav({
   onCountryClick,
   onProvinceClick,
 }: BreadcrumbNavProps) {
+  const { t } = useI18n();
+
   return (
     <nav className="flex flex-wrap items-center gap-2 text-sm text-slate-600">
       <button className="glass-button px-3 py-1.5" onClick={onCountryClick}>
-        China
+        {t("nav.china")}
       </button>
       {provinceName ? (
         <>

@@ -1,3 +1,4 @@
+import { useI18n } from "../../../shared/i18n/I18nProvider";
 import { SurfaceCard } from "../../../shared/ui/SurfaceCard";
 
 interface VisitActionCardProps {
@@ -17,11 +18,13 @@ export function VisitActionCard({
   onMarkProvince,
   onClearProvince,
 }: VisitActionCardProps) {
+  const { t } = useI18n();
+
   return (
     <SurfaceCard
-      eyebrow="Actions"
-      title="Update your travel record"
-      description="Mark a selected city, or apply the visited state to the whole active province."
+      eyebrow={t("visit.actions")}
+      title={t("visit.actionsTitle")}
+      description={t("visit.actionsDescription")}
     >
       <div className="mt-4 space-y-3">
         <button
@@ -29,7 +32,9 @@ export function VisitActionCard({
           onClick={onToggleCity}
           disabled={!cityName}
         >
-          {cityName ? `${isCityVisited ? "Mark unvisited" : "Mark visited"}: ${cityName}` : "Select a city"}
+          {cityName
+            ? t(isCityVisited ? "visit.markUnvisited" : "visit.markVisited", { name: cityName })
+            : t("visit.selectCityPrompt")}
         </button>
         <div className="grid grid-cols-2 gap-3">
           <button
@@ -37,14 +42,14 @@ export function VisitActionCard({
             onClick={onMarkProvince}
             disabled={!hasProvince}
           >
-            Visit province
+            {t("visit.markProvinceVisited")}
           </button>
           <button
             className="rounded-[22px] border border-white/70 bg-gradient-to-b from-white to-slate-50 px-4 py-3 text-sm font-medium text-slate-700 shadow-sm hover:-translate-y-0.5 hover:bg-white disabled:cursor-not-allowed disabled:text-slate-300"
             onClick={onClearProvince}
             disabled={!hasProvince}
           >
-            Clear province
+            {t("visit.clearProvince")}
           </button>
         </div>
       </div>

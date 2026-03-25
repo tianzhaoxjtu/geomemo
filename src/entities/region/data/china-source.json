@@ -2,5 +2,5 @@
   "provider": "GeoJSON.CN",
   "dataset": "China administrative divisions",
   "api": "https://geojson.cn/api/china/",
-  "fetchedAt": "2026-03-25T08:51:14.936Z"
+  "fetchedAt": "2026-03-25T09:04:57.394Z"
 }

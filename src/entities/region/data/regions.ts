@@ -6,6 +6,7 @@ type RegionDataFile = {
     code: string;
     name: string;
     fullname: string;
+    pinyin: string;
     filename: string;
   }>;
   citiesByProvince: Record<
@@ -14,6 +15,7 @@ type RegionDataFile = {
       code: string;
       name: string;
       fullname: string;
+      pinyin: string;
       filename: string;
       level: number;
       center: [number, number] | null;
@@ -28,6 +30,7 @@ export const provinces: Province[] = typedRegionData.provinces.map((province) =>
   code: province.code,
   name: province.name,
   fullname: province.fullname,
+  englishName: province.pinyin,
   filename: province.filename,
   cityIds: (typedRegionData.citiesByProvince[province.code] ?? []).map((city) => city.code),
 }));
@@ -39,6 +42,7 @@ export const cities: City[] = Object.entries(typedRegionData.citiesByProvince).f
       code: city.code,
       name: city.name,
       fullname: city.fullname,
+      englishName: city.pinyin,
       provinceId,
     })),
 );

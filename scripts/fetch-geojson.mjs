@@ -44,6 +44,7 @@ async function main() {
     code: String(feature.properties?.code),
     name: String(feature.properties?.name ?? ""),
     fullname: String(feature.properties?.fullname ?? feature.properties?.name ?? ""),
+    pinyin: String(feature.properties?.pinyin ?? ""),
     filename: String(feature.properties?.filename ?? ""),
   }));
   const citiesByProvince = {};
@@ -66,6 +67,7 @@ async function main() {
       code: String(feature.properties?.code),
       name: String(feature.properties?.name ?? ""),
       fullname: String(feature.properties?.fullname ?? feature.properties?.name ?? ""),
+      pinyin: String(feature.properties?.pinyin ?? ""),
       filename: String(feature.properties?.filename ?? ""),
       level: Number(feature.properties?.level ?? 0),
       center: Array.isArray(feature.properties?.center) ? feature.properties.center : null,

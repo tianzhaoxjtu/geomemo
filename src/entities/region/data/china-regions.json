@@ -4,210 +4,245 @@
       "code": "110000",
       "name": "北京",
       "fullname": "北京市",
+      "pinyin": "beijing",
       "filename": "110000"
     },
     {
       "code": "120000",
       "name": "天津",
       "fullname": "天津市",
+      "pinyin": "tianjin",
       "filename": "120000"
     },
     {
       "code": "130000",
       "name": "河北",
       "fullname": "河北省",
+      "pinyin": "hebei",
       "filename": "130000"
     },
     {
       "code": "140000",
       "name": "山西",
       "fullname": "山西省",
+      "pinyin": "shanxi",
       "filename": "140000"
     },
     {
       "code": "150000",
       "name": "内蒙古",
       "fullname": "内蒙古自治区",
+      "pinyin": "neimenggu",
       "filename": "150000"
     },
     {
       "code": "210000",
       "name": "辽宁",
       "fullname": "辽宁省",
+      "pinyin": "liaoning",
       "filename": "210000"
     },
     {
       "code": "220000",
       "name": "吉林",
       "fullname": "吉林省",
+      "pinyin": "jilin",
       "filename": "220000"
     },
     {
       "code": "230000",
       "name": "黑龙江",
       "fullname": "黑龙江省",
+      "pinyin": "heilongjiang",
       "filename": "230000"
     },
     {
       "code": "310000",
       "name": "上海",
       "fullname": "上海市",
+      "pinyin": "shanghai",
       "filename": "310000"
     },
     {
       "code": "320000",
       "name": "江苏",
       "fullname": "江苏省",
+      "pinyin": "jiangsu",
       "filename": "320000"
     },
     {
       "code": "330000",
       "name": "浙江",
       "fullname": "浙江省",
+      "pinyin": "zhejiang",
       "filename": "330000"
     },
     {
       "code": "340000",
       "name": "安徽",
       "fullname": "安徽省",
+      "pinyin": "anhui",
       "filename": "340000"
     },
     {
       "code": "350000",
       "name": "福建",
       "fullname": "福建省",
+      "pinyin": "fujian",
       "filename": "350000"
     },
     {
       "code": "360000",
       "name": "江西",
       "fullname": "江西省",
+      "pinyin": "jiangxi",
       "filename": "360000"
     },
     {
       "code": "370000",
       "name": "山东",
       "fullname": "山东省",
+      "pinyin": "shandong",
       "filename": "370000"
     },
     {
       "code": "410000",
       "name": "河南",
       "fullname": "河南省",
+      "pinyin": "henan",
       "filename": "410000"
     },
     {
       "code": "420000",
       "name": "湖北",
       "fullname": "湖北省",
+      "pinyin": "hubei",
       "filename": "420000"
     },
     {
       "code": "430000",
       "name": "湖南",
       "fullname": "湖南省",
+      "pinyin": "hunan",
       "filename": "430000"
     },
     {
       "code": "440000",
       "name": "广东",
       "fullname": "广东省",
+      "pinyin": "guangdong",
       "filename": "440000"
     },
     {
       "code": "450000",
       "name": "广西",
       "fullname": "广西壮族自治区",
+      "pinyin": "guangxi",
       "filename": "450000"
     },
     {
       "code": "460000",
       "name": "海南",
       "fullname": "海南省",
+      "pinyin": "hainan",
       "filename": "460000"
     },
     {
       "code": "500000",
       "name": "重庆",
       "fullname": "重庆市",
+      "pinyin": "chongqing",
       "filename": "500000"
     },
     {
       "code": "510000",
       "name": "四川",
       "fullname": "四川省",
+      "pinyin": "sichuan",
       "filename": "510000"
     },
     {
       "code": "520000",
       "name": "贵州",
       "fullname": "贵州省",
+      "pinyin": "guizhou",
       "filename": "520000"
     },
     {
       "code": "530000",
       "name": "云南",
       "fullname": "云南省",
+      "pinyin": "yunnan",
       "filename": "530000"
     },
     {
       "code": "540000",
       "name": "西藏",
       "fullname": "西藏自治区",
+      "pinyin": "xizang",
       "filename": "540000"
     },
     {
       "code": "610000",
       "name": "陕西",
       "fullname": "陕西省",
+      "pinyin": "shanxi",
       "filename": "610000"
     },
     {
       "code": "620000",
       "name": "甘肃",
       "fullname": "甘肃省",
+      "pinyin": "gansu",
       "filename": "620000"
     },
     {
       "code": "630000",
       "name": "青海",
       "fullname": "青海省",
+      "pinyin": "qinghai",
       "filename": "630000"
     },
     {
       "code": "640000",
       "name": "宁夏",
       "fullname": "宁夏回族自治区",
+      "pinyin": "ningxia",
       "filename": "640000"
     },
     {
       "code": "650000",
       "name": "新疆",
       "fullname": "新疆维吾尔自治区",
+      "pinyin": "xinjiang",
       "filename": "650000"
     },
     {
       "code": "710000",
       "name": "台湾",
       "fullname": "台湾省",
+      "pinyin": "taiwan",
       "filename": "710000"
     },
     {
       "code": "810000",
       "name": "香港",
       "fullname": "香港特别行政区",
+      "pinyin": "xianggang",
       "filename": "810000"
     },
     {
       "code": "820000",
       "name": "澳门",
       "fullname": "澳门特别行政区",
+      "pinyin": "aomen",
       "filename": "820000"
     },
     {
       "code": "undefined",
       "name": "十段线",
       "fullname": "中国南海十段线",
+      "pinyin": "",
       "filename": ""
     }
   ],
@@ -217,6 +252,7 @@
         "code": "110101",
         "name": "东城",
         "fullname": "东城区",
+        "pinyin": "dongcheng",
         "filename": "",
         "level": 3,
         "center": [
@@ -228,6 +264,7 @@
         "code": "110102",
         "name": "西城",
         "fullname": "西城区",
+        "pinyin": "xicheng",
         "filename": "",
         "level": 3,
         "center": [
@@ -239,6 +276,7 @@
         "code": "110105",
         "name": "朝阳",
         "fullname": "朝阳区",
+        "pinyin": "chaoyang",
         "filename": "",
         "level": 3,
         "center": [
@@ -250,6 +288,7 @@
         "code": "110106",
         "name": "丰台",
         "fullname": "丰台区",
+        "pinyin": "fengtai",
         "filename": "",
         "level": 3,
         "center": [
@@ -261,6 +300,7 @@
         "code": "110107",
         "name": "石景山",
         "fullname": "石景山区",
+        "pinyin": "shijingshan",
         "filename": "",
         "level": 3,
         "center": [
@@ -272,6 +312,7 @@
         "code": "110108",
         "name": "海淀",
         "fullname": "海淀区",
+        "pinyin": "haidian",
         "filename": "",
         "level": 3,
         "center": [
@@ -283,6 +324,7 @@
         "code": "110109",
         "name": "门头沟",
         "fullname": "门头沟区",
+        "pinyin": "mentougou",
         "filename": "",
         "level": 3,
         "center": [
@@ -294,6 +336,7 @@
         "code": "110111",
         "name": "房山",
         "fullname": "房山区",
+        "pinyin": "fangshan",
         "filename": "",
         "level": 3,
         "center": [
@@ -305,6 +348,7 @@
         "code": "110112",
         "name": "通州",
         "fullname": "通州区",
+        "pinyin": "tongzhou",
         "filename": "",
         "level": 3,
         "center": [
@@ -316,6 +360,7 @@
         "code": "110113",
         "name": "顺义",
         "fullname": "顺义区",
+        "pinyin": "shunyi",
         "filename": "",
         "level": 3,
         "center": [
@@ -327,6 +372,7 @@
         "code": "110114",
         "name": "昌平",
         "fullname": "昌平区",
+        "pinyin": "changping",
         "filename": "",
         "level": 3,
         "center": [
@@ -338,6 +384,7 @@
         "code": "110115",
         "name": "大兴",
         "fullname": "大兴区",
+        "pinyin": "daxing",
         "filename": "",
         "level": 3,
         "center": [
@@ -349,6 +396,7 @@
         "code": "110116",
         "name": "怀柔",
         "fullname": "怀柔区",
+        "pinyin": "huairou",
         "filename": "",
         "level": 3,
         "center": [
@@ -360,6 +408,7 @@
         "code": "110117",
         "name": "平谷",
         "fullname": "平谷区",
+        "pinyin": "pinggu",
         "filename": "",
         "level": 3,
         "center": [
@@ -371,6 +420,7 @@
         "code": "110118",
         "name": "密云",
         "fullname": "密云区",
+        "pinyin": "miyun",
         "filename": "",
         "level": 3,
         "center": [
@@ -382,6 +432,7 @@
         "code": "110119",
         "name": "延庆",
         "fullname": "延庆区",
+        "pinyin": "yanqing",
         "filename": "",
         "level": 3,
         "center": [
@@ -395,6 +446,7 @@
         "code": "120101",
         "name": "和平",
         "fullname": "和平区",
+        "pinyin": "heping",
         "filename": "",
         "level": 3,
         "center": [
@@ -406,6 +458,7 @@
         "code": "120102",
         "name": "河东",
         "fullname": "河东区",
+        "pinyin": "hedong",
         "filename": "",
         "level": 3,
         "center": [
@@ -417,6 +470,7 @@
         "code": "120103",
         "name": "河西",
         "fullname": "河西区",
+        "pinyin": "hexi",
         "filename": "",
         "level": 3,
         "center": [
@@ -428,6 +482,7 @@
         "code": "120104",
         "name": "南开",
         "fullname": "南开区",
+        "pinyin": "nankai",
         "filename": "",
         "level": 3,
         "center": [
@@ -439,6 +494,7 @@
         "code": "120105",
         "name": "河北",
         "fullname": "河北区",
+        "pinyin": "hebei",
         "filename": "",
         "level": 3,
         "center": [
@@ -450,6 +506,7 @@
         "code": "120106",
         "name": "红桥",
         "fullname": "红桥区",
+        "pinyin": "hongqiao",
         "filename": "",
         "level": 3,
         "center": [
@@ -461,6 +518,7 @@
         "code": "120110",
         "name": "东丽",
         "fullname": "东丽区",
+        "pinyin": "dongli",
         "filename": "",
         "level": 3,
         "center": [
@@ -472,6 +530,7 @@
         "code": "120111",
         "name": "西青",
         "fullname": "西青区",
+        "pinyin": "xiqing",
         "filename": "",
         "level": 3,
         "center": [
@@ -483,6 +542,7 @@
         "code": "120112",
         "name": "津南",
         "fullname": "津南区",
+        "pinyin": "jinnan",
         "filename": "",
         "level": 3,
         "center": [
@@ -494,6 +554,7 @@
         "code": "120113",
         "name": "北辰",
         "fullname": "北辰区",
+        "pinyin": "beichen",
         "filename": "",
         "level": 3,
         "center": [
@@ -505,6 +566,7 @@
         "code": "120114",
         "name": "武清",
         "fullname": "武清区",
+        "pinyin": "wuqing",
         "filename": "",
         "level": 3,
         "center": [
@@ -516,6 +578,7 @@
         "code": "120115",
         "name": "宝坻",
         "fullname": "宝坻区",
+        "pinyin": "baodi",
         "filename": "",
         "level": 3,
         "center": [
@@ -527,6 +590,7 @@
         "code": "120116",
         "name": "滨海",
         "fullname": "滨海新区",
+        "pinyin": "binhai",
         "filename": "",
         "level": 3,
         "center": [
@@ -538,6 +602,7 @@
         "code": "120117",
         "name": "宁河",
         "fullname": "宁河区",
+        "pinyin": "ninghe",
         "filename": "",
         "level": 3,
         "center": [
@@ -549,6 +614,7 @@
         "code": "120118",
         "name": "静海",
         "fullname": "静海区",
+        "pinyin": "jinghai",
         "filename": "",
         "level": 3,
         "center": [
@@ -560,6 +626,7 @@
         "code": "120119",
         "name": "蓟州",
         "fullname": "蓟州区",
+        "pinyin": "jizhou",
         "filename": "",
         "level": 3,
         "center": [
@@ -573,6 +640,7 @@
         "code": "130100",
         "name": "石家庄",
         "fullname": "石家庄市",
+        "pinyin": "shijiazhuang",
         "filename": "130000/130100",
         "level": 2,
         "center": [
@@ -584,6 +652,7 @@
         "code": "130200",
         "name": "唐山",
         "fullname": "唐山市",
+        "pinyin": "tangshan",
         "filename": "130000/130200",
         "level": 2,
         "center": [
@@ -595,6 +664,7 @@
         "code": "130300",
         "name": "秦皇岛",
         "fullname": "秦皇岛市",
+        "pinyin": "qinhuangdao",
         "filename": "130000/130300",
         "level": 2,
         "center": [
@@ -606,6 +676,7 @@
         "code": "130400",
         "name": "邯郸",
         "fullname": "邯郸市",
+        "pinyin": "handan",
         "filename": "130000/130400",
         "level": 2,
         "center": [
@@ -617,6 +688,7 @@
         "code": "130500",
         "name": "邢台",
         "fullname": "邢台市",
+        "pinyin": "xingtai",
         "filename": "130000/130500",
         "level": 2,
         "center": [
@@ -628,6 +700,7 @@
         "code": "130600",
         "name": "保定",
         "fullname": "保定市",
+        "pinyin": "baoding",
         "filename": "130000/130600",
         "level": 2,
         "center": [
@@ -639,6 +712,7 @@
         "code": "130700",
         "name": "张家口",
         "fullname": "张家口市",
+        "pinyin": "zhangjiakou",
         "filename": "130000/130700",
         "level": 2,
         "center": [
@@ -650,6 +724,7 @@
         "code": "130800",
         "name": "承德",
         "fullname": "承德市",
+        "pinyin": "chengde",
         "filename": "130000/130800",
         "level": 2,
         "center": [
@@ -661,6 +736,7 @@
         "code": "130900",
         "name": "沧州",
         "fullname": "沧州市",
+        "pinyin": "cangzhou",
         "filename": "130000/130900",
         "level": 2,
         "center": [
@@ -672,6 +748,7 @@
         "code": "131000",
         "name": "廊坊",
         "fullname": "廊坊市",
+        "pinyin": "langfang",
         "filename": "130000/131000",
         "level": 2,
         "center": [
@@ -683,6 +760,7 @@
         "code": "131100",
         "name": "衡水",
         "fullname": "衡水市",
+        "pinyin": "hengshui",
         "filename": "130000/131100",
         "level": 2,
         "center": [
@@ -694,6 +772,7 @@
         "code": "133100",
         "name": "雄安",
         "fullname": "雄安新区",
+        "pinyin": "xiongan",
         "filename": "130000/133100",
         "level": 2,
         "center": [
@@ -707,6 +786,7 @@
         "code": "140100",
         "name": "太原",
         "fullname": "太原市",
+        "pinyin": "taiyuan",
         "filename": "140000/140100",
         "level": 2,
         "center": [
@@ -718,6 +798,7 @@
         "code": "140200",
         "name": "大同",
         "fullname": "大同市",
+        "pinyin": "datong",
         "filename": "140000/140200",
         "level": 2,
         "center": [
@@ -729,6 +810,7 @@
         "code": "140300",
         "name": "阳泉",
         "fullname": "阳泉市",
+        "pinyin": "yangquan",
         "filename": "140000/140300",
         "level": 2,
         "center": [
@@ -740,6 +822,7 @@
         "code": "140400",
         "name": "长治",
         "fullname": "长治市",
+        "pinyin": "changzhi",
         "filename": "140000/140400",
         "level": 2,
         "center": [
@@ -751,6 +834,7 @@
         "code": "140500",
         "name": "晋城",
         "fullname": "晋城市",
+        "pinyin": "jincheng",
         "filename": "140000/140500",
         "level": 2,
         "center": [
@@ -762,6 +846,7 @@
         "code": "140600",
         "name": "朔州",
         "fullname": "朔州市",
+        "pinyin": "shuozhou",
         "filename": "140000/140600",
         "level": 2,
         "center": [
@@ -773,6 +858,7 @@
         "code": "140700",
         "name": "晋中",
         "fullname": "晋中市",
+        "pinyin": "jinzhong",
         "filename": "140000/140700",
         "level": 2,
         "center": [
@@ -784,6 +870,7 @@
         "code": "140800",
         "name": "运城",
         "fullname": "运城市",
+        "pinyin": "yuncheng",
         "filename": "140000/140800",
         "level": 2,
         "center": [
@@ -795,6 +882,7 @@
         "code": "140900",
         "name": "忻州",
         "fullname": "忻州市",
+        "pinyin": "xinzhou",
         "filename": "140000/140900",
         "level": 2,
         "center": [
@@ -806,6 +894,7 @@
         "code": "141000",
         "name": "临汾",
         "fullname": "临汾市",
+        "pinyin": "linfen",
         "filename": "140000/141000",
         "level": 2,
         "center": [
@@ -817,6 +906,7 @@
         "code": "141100",
         "name": "吕梁",
         "fullname": "吕梁市",
+        "pinyin": "lvliang",
         "filename": "140000/141100",
         "level": 2,
         "center": [
@@ -830,6 +920,7 @@
         "code": "150100",
         "name": "呼和浩特",
         "fullname": "呼和浩特市",
+        "pinyin": "huhehaote",
         "filename": "150000/150100",
         "level": 2,
         "center": [
@@ -841,6 +932,7 @@
         "code": "150200",
         "name": "包头",
         "fullname": "包头市",
+        "pinyin": "baotou",
         "filename": "150000/150200",
         "level": 2,
         "center": [
@@ -852,6 +944,7 @@
         "code": "150300",
         "name": "乌海",
         "fullname": "乌海市",
+        "pinyin": "wuhai",
         "filename": "150000/150300",
         "level": 2,
         "center": [
@@ -863,6 +956,7 @@
         "code": "150400",
         "name": "赤峰",
         "fullname": "赤峰市",
+        "pinyin": "chifeng",
         "filename": "150000/150400",
         "level": 2,
         "center": [
@@ -874,6 +968,7 @@
         "code": "150500",
         "name": "通辽",
         "fullname": "通辽市",
+        "pinyin": "tongliao",
         "filename": "150000/150500",
         "level": 2,
         "center": [
@@ -885,6 +980,7 @@
         "code": "150600",
         "name": "鄂尔多斯",
         "fullname": "鄂尔多斯市",
+        "pinyin": "eerduosi",
         "filename": "150000/150600",
         "level": 2,
         "center": [
@@ -896,6 +992,7 @@
         "code": "150700",
         "name": "呼伦贝尔",
         "fullname": "呼伦贝尔市",
+        "pinyin": "hulunbeier",
         "filename": "150000/150700",
         "level": 2,
         "center": [
@@ -907,6 +1004,7 @@
         "code": "150800",
         "name": "巴彦淖尔",
         "fullname": "巴彦淖尔市",
+        "pinyin": "bayannaoer",
         "filename": "150000/150800",
         "level": 2,
         "center": [
@@ -918,6 +1016,7 @@
         "code": "150900",
         "name": "乌兰察布",
         "fullname": "乌兰察布市",
+        "pinyin": "wulanchabu",
         "filename": "150000/150900",
         "level": 2,
         "center": [
@@ -929,6 +1028,7 @@
         "code": "152200",
         "name": "兴安",
         "fullname": "兴安盟",
+        "pinyin": "xingan",
         "filename": "150000/152200",
         "level": 2,
         "center": [
@@ -940,6 +1040,7 @@
         "code": "152500",
         "name": "锡林郭勒",
         "fullname": "锡林郭勒盟",
+        "pinyin": "xilinguole",
         "filename": "150000/152500",
         "level": 2,
         "center": [
@@ -951,6 +1052,7 @@
         "code": "152900",
         "name": "阿拉善",
         "fullname": "阿拉善盟",
+        "pinyin": "alashan",
         "filename": "150000/152900",
         "level": 2,
         "center": [
@@ -964,6 +1066,7 @@
         "code": "210100",
         "name": "沈阳",
         "fullname": "沈阳市",
+        "pinyin": "shenyang",
         "filename": "210000/210100",
         "level": 2,
         "center": [
@@ -975,6 +1078,7 @@
         "code": "210200",
         "name": "大连",
         "fullname": "大连市",
+        "pinyin": "dalian",
         "filename": "210000/210200",
         "level": 2,
         "center": [
@@ -986,6 +1090,7 @@
         "code": "210300",
         "name": "鞍山",
         "fullname": "鞍山市",
+        "pinyin": "anshan",
         "filename": "210000/210300",
         "level": 2,
         "center": [
@@ -997,6 +1102,7 @@
         "code": "210400",
         "name": "抚顺",
         "fullname": "抚顺市",
+        "pinyin": "fushun",
         "filename": "210000/210400",
         "level": 2,
         "center": [
@@ -1008,6 +1114,7 @@
         "code": "210500",
         "name": "本溪",
         "fullname": "本溪市",
+        "pinyin": "benxi",
         "filename": "210000/210500",
         "level": 2,
         "center": [
@@ -1019,6 +1126,7 @@
         "code": "210600",
         "name": "丹东",
         "fullname": "丹东市",
+        "pinyin": "dandong",
         "filename": "210000/210600",
         "level": 2,
         "center": [
@@ -1030,6 +1138,7 @@
         "code": "210700",
         "name": "锦州",
         "fullname": "锦州市",
+        "pinyin": "jinzhou",
         "filename": "210000/210700",
         "level": 2,
         "center": [
@@ -1041,6 +1150,7 @@
         "code": "210800",
         "name": "营口",
         "fullname": "营口市",
+        "pinyin": "yingkou",
         "filename": "210000/210800",
         "level": 2,
         "center": [
@@ -1052,6 +1162,7 @@
         "code": "210900",
         "name": "阜新",
         "fullname": "阜新市",
+        "pinyin": "fuxin",
         "filename": "210000/210900",
         "level": 2,
         "center": [
@@ -1063,6 +1174,7 @@
         "code": "211000",
         "name": "辽阳",
         "fullname": "辽阳市",
+        "pinyin": "liaoyang",
         "filename": "210000/211000",
         "level": 2,
         "center": [
@@ -1074,6 +1186,7 @@
         "code": "211100",
         "name": "盘锦",
         "fullname": "盘锦市",
+        "pinyin": "panjin",
         "filename": "210000/211100",
         "level": 2,
         "center": [
@@ -1085,6 +1198,7 @@
         "code": "211200",
         "name": "铁岭",
         "fullname": "铁岭市",
+        "pinyin": "tieling",
         "filename": "210000/211200",
         "level": 2,
         "center": [
@@ -1096,6 +1210,7 @@
         "code": "211300",
         "name": "朝阳",
         "fullname": "朝阳市",
+        "pinyin": "chaoyang",
         "filename": "210000/211300",
         "level": 2,
         "center": [
@@ -1107,6 +1222,7 @@
         "code": "211400",
         "name": "葫芦岛",
         "fullname": "葫芦岛市",
+        "pinyin": "huludao",
         "filename": "210000/211400",
         "level": 2,
         "center": [
@@ -1120,6 +1236,7 @@
         "code": "220100",
         "name": "长春",
         "fullname": "长春市",
+        "pinyin": "changchun",
         "filename": "220000/220100",
         "level": 2,
         "center": [
@@ -1131,6 +1248,7 @@
         "code": "220200",
         "name": "吉林",
         "fullname": "吉林市",
+        "pinyin": "jilin",
         "filename": "220000/220200",
         "level": 2,
         "center": [
@@ -1142,6 +1260,7 @@
         "code": "220300",
         "name": "四平",
         "fullname": "四平市",
+        "pinyin": "siping",
         "filename": "220000/220300",
         "level": 2,
         "center": [
@@ -1153,6 +1272,7 @@
         "code": "220400",
         "name": "辽源",
         "fullname": "辽源市",
+        "pinyin": "liaoyuan",
         "filename": "220000/220400",
         "level": 2,
         "center": [
@@ -1164,6 +1284,7 @@
         "code": "220500",
         "name": "通化",
         "fullname": "通化市",
+        "pinyin": "tonghua",
         "filename": "220000/220500",
         "level": 2,
         "center": [
@@ -1175,6 +1296,7 @@
         "code": "220600",
         "name": "白山",
         "fullname": "白山市",
+        "pinyin": "baishan",
         "filename": "220000/220600",
         "level": 2,
         "center": [
@@ -1186,6 +1308,7 @@
         "code": "220700",
         "name": "松原",
         "fullname": "松原市",
+        "pinyin": "songyuan",
         "filename": "220000/220700",
         "level": 2,
         "center": [
@@ -1197,6 +1320,7 @@
         "code": "220800",
         "name": "白城",
         "fullname": "白城市",
+        "pinyin": "baicheng",
         "filename": "220000/220800",
         "level": 2,
         "center": [
@@ -1208,6 +1332,7 @@
         "code": "222400",
         "name": "延边",
         "fullname": "延边朝鲜族自治州",
+        "pinyin": "yanbian",
         "filename": "220000/222400",
         "level": 2,
         "center": [
@@ -1221,6 +1346,7 @@
         "code": "230100",
         "name": "哈尔滨",
         "fullname": "哈尔滨市",
+        "pinyin": "haerbin",
         "filename": "230000/230100",
         "level": 2,
         "center": [
@@ -1232,6 +1358,7 @@
         "code": "230200",
         "name": "齐齐哈尔",
         "fullname": "齐齐哈尔市",
+        "pinyin": "qiqihaer",
         "filename": "230000/230200",
         "level": 2,
         "center": [
@@ -1243,6 +1370,7 @@
         "code": "230300",
         "name": "鸡西",
         "fullname": "鸡西市",
+        "pinyin": "jixi",
         "filename": "230000/230300",
         "level": 2,
         "center": [
@@ -1254,6 +1382,7 @@
         "code": "230400",
         "name": "鹤岗",
         "fullname": "鹤岗市",
+        "pinyin": "hegang",
         "filename": "230000/230400",
         "level": 2,
         "center": [
@@ -1265,6 +1394,7 @@
         "code": "230500",
         "name": "双鸭山",
         "fullname": "双鸭山市",
+        "pinyin": "shuangyashan",
         "filename": "230000/230500",
         "level": 2,
         "center": [
@@ -1276,6 +1406,7 @@
         "code": "230600",
         "name": "大庆",
         "fullname": "大庆市",
+        "pinyin": "daqing",
         "filename": "230000/230600",
         "level": 2,
         "center": [
@@ -1287,6 +1418,7 @@
         "code": "230700",
         "name": "伊春",
         "fullname": "伊春市",
+        "pinyin": "yichun",
         "filename": "230000/230700",
         "level": 2,
         "center": [
@@ -1298,6 +1430,7 @@
         "code": "230800",
         "name": "佳木斯",
         "fullname": "佳木斯市",
+        "pinyin": "jiamusi",
         "filename": "230000/230800",
         "level": 2,
         "center": [
@@ -1309,6 +1442,7 @@
         "code": "230900",
         "name": "七台河",
         "fullname": "七台河市",
+        "pinyin": "qitaihe",
         "filename": "230000/230900",
         "level": 2,
         "center": [
@@ -1320,6 +1454,7 @@
         "code": "231000",
         "name": "牡丹江",
         "fullname": "牡丹江市",
+        "pinyin": "mudanjiang",
         "filename": "230000/231000",
         "level": 2,
         "center": [
@@ -1331,6 +1466,7 @@
         "code": "231100",
         "name": "黑河",
         "fullname": "黑河市",
+        "pinyin": "heihe",
         "filename": "230000/231100",
         "level": 2,
         "center": [
@@ -1342,6 +1478,7 @@
         "code": "231200",
         "name": "绥化",
         "fullname": "绥化市",
+        "pinyin": "suihua",
         "filename": "230000/231200",
         "level": 2,
         "center": [
@@ -1353,6 +1490,7 @@
         "code": "232700",
         "name": "大兴安岭",
         "fullname": "大兴安岭地区",
+        "pinyin": "daxinganling",
         "filename": "230000/232700",
         "level": 2,
         "center": [
@@ -1366,6 +1504,7 @@
         "code": "310101",
         "name": "黄浦",
         "fullname": "黄浦区",
+        "pinyin": "huangpu",
         "filename": "",
         "level": 3,
         "center": [
@@ -1377,6 +1516,7 @@
         "code": "310104",
         "name": "徐汇",
         "fullname": "徐汇区",
+        "pinyin": "xuhui",
         "filename": "",
         "level": 3,
         "center": [
@@ -1388,6 +1528,7 @@
         "code": "310105",
         "name": "长宁",
         "fullname": "长宁区",
+        "pinyin": "changning",
         "filename": "",
         "level": 3,
         "center": [
@@ -1399,6 +1540,7 @@
         "code": "310106",
         "name": "静安",
         "fullname": "静安区",
+        "pinyin": "jingan",
         "filename": "",
         "level": 3,
         "center": [
@@ -1410,6 +1552,7 @@
         "code": "310107",
         "name": "普陀",
         "fullname": "普陀区",
+        "pinyin": "putuo",
         "filename": "",
         "level": 3,
         "center": [
@@ -1421,6 +1564,7 @@
         "code": "310109",
         "name": "虹口",
         "fullname": "虹口区",
+        "pinyin": "hongkou",
         "filename": "",
         "level": 3,
         "center": [
@@ -1432,6 +1576,7 @@
         "code": "310110",
         "name": "杨浦",
         "fullname": "杨浦区",
+        "pinyin": "yangpu",
         "filename": "",
         "level": 3,
         "center": [
@@ -1443,6 +1588,7 @@
         "code": "310112",
         "name": "闵行",
         "fullname": "闵行区",
+        "pinyin": "minhang",
         "filename": "",
         "level": 3,
         "center": [
@@ -1454,6 +1600,7 @@
         "code": "310113",
         "name": "宝山",
         "fullname": "宝山区",
+        "pinyin": "baoshan",
         "filename": "",
         "level": 3,
         "center": [
@@ -1465,6 +1612,7 @@
         "code": "310114",
         "name": "嘉定",
         "fullname": "嘉定区",
+        "pinyin": "jiading",
         "filename": "",
         "level": 3,
         "center": [
@@ -1476,6 +1624,7 @@
         "code": "310115",
         "name": "浦东",
         "fullname": "浦东新区",
+        "pinyin": "pudong",
         "filename": "",
         "level": 3,
         "center": [
@@ -1487,6 +1636,7 @@
         "code": "310116",
         "name": "金山",
         "fullname": "金山区",
+        "pinyin": "jinshan",
         "filename": "",
         "level": 3,
         "center": [
@@ -1498,6 +1648,7 @@
         "code": "310117",
         "name": "松江",
         "fullname": "松江区",
+        "pinyin": "songjiang",
         "filename": "",
         "level": 3,
         "center": [
@@ -1509,6 +1660,7 @@
         "code": "310118",
         "name": "青浦",
         "fullname": "青浦区",
+        "pinyin": "qingpu",
         "filename": "",
         "level": 3,
         "center": [
@@ -1520,6 +1672,7 @@
         "code": "310120",
         "name": "奉贤",
         "fullname": "奉贤区",
+        "pinyin": "fengxian",
         "filename": "",
         "level": 3,
         "center": [
@@ -1531,6 +1684,7 @@
         "code": "310151",
         "name": "崇明",
         "fullname": "崇明区",
+        "pinyin": "chongming",
         "filename": "",
         "level": 3,
         "center": [
@@ -1544,6 +1698,7 @@
         "code": "320100",
         "name": "南京",
         "fullname": "南京市",
+        "pinyin": "nanjing",
         "filename": "320000/320100",
         "level": 2,
         "center": [
@@ -1555,6 +1710,7 @@
         "code": "320200",
         "name": "无锡",
         "fullname": "无锡市",
+        "pinyin": "wuxi",
         "filename": "320000/320200",
         "level": 2,
         "center": [
@@ -1566,6 +1722,7 @@
         "code": "320300",
         "name": "徐州",
         "fullname": "徐州市",
+        "pinyin": "xuzhou",
         "filename": "320000/320300",
         "level": 2,
         "center": [
@@ -1577,6 +1734,7 @@
         "code": "320400",
         "name": "常州",
         "fullname": "常州市",
+        "pinyin": "changzhou",
         "filename": "320000/320400",
         "level": 2,
         "center": [
@@ -1588,6 +1746,7 @@
         "code": "320500",
         "name": "苏州",
         "fullname": "苏州市",
+        "pinyin": "suzhou",
         "filename": "320000/320500",
         "level": 2,
         "center": [
@@ -1599,6 +1758,7 @@
         "code": "320600",
         "name": "南通",
         "fullname": "南通市",
+        "pinyin": "nantong",
         "filename": "320000/320600",
         "level": 2,
         "center": [
@@ -1610,6 +1770,7 @@
         "code": "320700",
         "name": "连云港",
         "fullname": "连云港市",
+        "pinyin": "lianyungang",
         "filename": "320000/320700",
         "level": 2,
         "center": [
@@ -1621,6 +1782,7 @@
         "code": "320800",
         "name": "淮安",
         "fullname": "淮安市",
+        "pinyin": "huaian",
         "filename": "320000/320800",
         "level": 2,
         "center": [
@@ -1632,6 +1794,7 @@
         "code": "320900",
         "name": "盐城",
         "fullname": "盐城市",
+        "pinyin": "yancheng",
         "filename": "320000/320900",
         "level": 2,
         "center": [
@@ -1643,6 +1806,7 @@
         "code": "321000",
         "name": "扬州",
         "fullname": "扬州市",
+        "pinyin": "yangzhou",
         "filename": "320000/321000",
         "level": 2,
         "center": [
@@ -1654,6 +1818,7 @@
         "code": "321100",
         "name": "镇江",
         "fullname": "镇江市",
+        "pinyin": "zhenjiang",
         "filename": "320000/321100",
         "level": 2,
         "center": [
@@ -1665,6 +1830,7 @@
         "code": "321200",
         "name": "泰州",
         "fullname": "泰州市",
+        "pinyin": "taizhou",
         "filename": "320000/321200",
         "level": 2,
         "center": [
@@ -1676,6 +1842,7 @@
         "code": "321300",
         "name": "宿迁",
         "fullname": "宿迁市",
+        "pinyin": "suqian",
         "filename": "320000/321300",
         "level": 2,
         "center": [
@@ -1689,6 +1856,7 @@
         "code": "330100",
         "name": "杭州",
         "fullname": "杭州市",
+        "pinyin": "hangzhou",
         "filename": "330000/330100",
         "level": 2,
         "center": [
@@ -1700,6 +1868,7 @@
         "code": "330200",
         "name": "宁波",
         "fullname": "宁波市",
+        "pinyin": "ningbo",
         "filename": "330000/330200",
         "level": 2,
         "center": [
@@ -1711,6 +1880,7 @@
         "code": "330300",
         "name": "温州",
         "fullname": "温州市",
+        "pinyin": "wenzhou",
         "filename": "330000/330300",
         "level": 2,
         "center": [
@@ -1722,6 +1892,7 @@
         "code": "330400",
         "name": "嘉兴",
         "fullname": "嘉兴市",
+        "pinyin": "jiaxing",
         "filename": "330000/330400",
         "level": 2,
         "center": [
@@ -1733,6 +1904,7 @@
         "code": "330500",
         "name": "湖州",
         "fullname": "湖州市",
+        "pinyin": "huzhou",
         "filename": "330000/330500",
         "level": 2,
         "center": [
@@ -1744,6 +1916,7 @@
         "code": "330600",
         "name": "绍兴",
         "fullname": "绍兴市",
+        "pinyin": "shaoxing",
         "filename": "330000/330600",
         "level": 2,
         "center": [
@@ -1755,6 +1928,7 @@
         "code": "330700",
         "name": "金华",
         "fullname": "金华市",
+        "pinyin": "jinhua",
         "filename": "330000/330700",
         "level": 2,
         "center": [
@@ -1766,6 +1940,7 @@
         "code": "330800",
         "name": "衢州",
         "fullname": "衢州市",
+        "pinyin": "quzhou",
         "filename": "330000/330800",
         "level": 2,
         "center": [
@@ -1777,6 +1952,7 @@
         "code": "330900",
         "name": "舟山",
         "fullname": "舟山市",
+        "pinyin": "zhoushan",
         "filename": "330000/330900",
         "level": 2,
         "center": [
@@ -1788,6 +1964,7 @@
         "code": "331000",
         "name": "台州",
         "fullname": "台州市",
+        "pinyin": "taizhou",
         "filename": "330000/331000",
         "level": 2,
         "center": [
@@ -1799,6 +1976,7 @@
         "code": "331100",
         "name": "丽水",
         "fullname": "丽水市",
+        "pinyin": "lishui",
         "filename": "330000/331100",
         "level": 2,
         "center": [
@@ -1812,6 +1990,7 @@
         "code": "340100",
         "name": "合肥",
         "fullname": "合肥市",
+        "pinyin": "hefei",
         "filename": "340000/340100",
         "level": 2,
         "center": [
@@ -1823,6 +2002,7 @@
         "code": "340200",
         "name": "芜湖",
         "fullname": "芜湖市",
+        "pinyin": "wuhu",
         "filename": "340000/340200",
         "level": 2,
         "center": [
@@ -1834,6 +2014,7 @@
         "code": "340300",
         "name": "蚌埠",
         "fullname": "蚌埠市",
+        "pinyin": "bengbu",
         "filename": "340000/340300",
         "level": 2,
         "center": [
@@ -1845,6 +2026,7 @@
         "code": "340400",
         "name": "淮南",
         "fullname": "淮南市",
+        "pinyin": "huainan",
         "filename": "340000/340400",
         "level": 2,
         "center": [
@@ -1856,6 +2038,7 @@
         "code": "340500",
         "name": "马鞍山",
         "fullname": "马鞍山市",
+        "pinyin": "maanshan",
         "filename": "340000/340500",
         "level": 2,
         "center": [
@@ -1867,6 +2050,7 @@
         "code": "340600",
         "name": "淮北",
         "fullname": "淮北市",
+        "pinyin": "huaibei",
         "filename": "340000/340600",
         "level": 2,
         "center": [
@@ -1878,6 +2062,7 @@
         "code": "340700",
         "name": "铜陵",
         "fullname": "铜陵市",
+        "pinyin": "tongling",
         "filename": "340000/340700",
         "level": 2,
         "center": [
@@ -1889,6 +2074,7 @@
         "code": "340800",
         "name": "安庆",
         "fullname": "安庆市",
+        "pinyin": "anqing",
         "filename": "340000/340800",
         "level": 2,
         "center": [
@@ -1900,6 +2086,7 @@
         "code": "341000",
         "name": "黄山",
         "fullname": "黄山市",
+        "pinyin": "huangshan",
         "filename": "340000/341000",
         "level": 2,
         "center": [
@@ -1911,6 +2098,7 @@
         "code": "341100",
         "name": "滁州",
         "fullname": "滁州市",
+        "pinyin": "chuzhou",
         "filename": "340000/341100",
         "level": 2,
         "center": [
@@ -1922,6 +2110,7 @@
         "code": "341200",
         "name": "阜阳",
         "fullname": "阜阳市",
+        "pinyin": "fuyang",
         "filename": "340000/341200",
         "level": 2,
         "center": [
@@ -1933,6 +2122,7 @@
         "code": "341300",
         "name": "宿州",
         "fullname": "宿州市",
+        "pinyin": "suzhou",
         "filename": "340000/341300",
         "level": 2,
         "center": [
@@ -1944,6 +2134,7 @@
         "code": "341500",
         "name": "六安",
         "fullname": "六安市",
+        "pinyin": "liuan",
         "filename": "340000/341500",
         "level": 2,
         "center": [
@@ -1955,6 +2146,7 @@
         "code": "341600",
         "name": "亳州",
         "fullname": "亳州市",
+        "pinyin": "bozhou",
         "filename": "340000/341600",
         "level": 2,
         "center": [
@@ -1966,6 +2158,7 @@
         "code": "341700",
         "name": "池州",
         "fullname": "池州市",
+        "pinyin": "chizhou",
         "filename": "340000/341700",
         "level": 2,
         "center": [
@@ -1977,6 +2170,7 @@
         "code": "341800",
         "name": "宣城",
         "fullname": "宣城市",
+        "pinyin": "xuancheng",
         "filename": "340000/341800",
         "level": 2,
         "center": [
@@ -1990,6 +2184,7 @@
         "code": "350100",
         "name": "福州",
         "fullname": "福州市",
+        "pinyin": "fuzhou",
         "filename": "350000/350100",
         "level": 2,
         "center": [
@@ -2001,6 +2196,7 @@
         "code": "350200",
         "name": "厦门",
         "fullname": "厦门市",
+        "pinyin": "xiamen",
         "filename": "350000/350200",
         "level": 2,
         "center": [
@@ -2012,6 +2208,7 @@
         "code": "350300",
         "name": "莆田",
         "fullname": "莆田市",
+        "pinyin": "putian",
         "filename": "350000/350300",
         "level": 2,
         "center": [
@@ -2023,6 +2220,7 @@
         "code": "350400",
         "name": "三明",
         "fullname": "三明市",
+        "pinyin": "sanming",
         "filename": "350000/350400",
         "level": 2,
         "center": [
@@ -2034,6 +2232,7 @@
         "code": "350500",
         "name": "泉州",
         "fullname": "泉州市",
+        "pinyin": "quanzhou",
         "filename": "350000/350500",
         "level": 2,
         "center": [
@@ -2045,6 +2244,7 @@
         "code": "350600",
         "name": "漳州",
         "fullname": "漳州市",
+        "pinyin": "zhangzhou",
         "filename": "350000/350600",
         "level": 2,
         "center": [
@@ -2056,6 +2256,7 @@
         "code": "350700",
         "name": "南平",
         "fullname": "南平市",
+        "pinyin": "nanping",
         "filename": "350000/350700",
         "level": 2,
         "center": [
@@ -2067,6 +2268,7 @@
         "code": "350800",
         "name": "龙岩",
         "fullname": "龙岩市",
+        "pinyin": "longyan",
         "filename": "350000/350800",
         "level": 2,
         "center": [
@@ -2078,6 +2280,7 @@
         "code": "350900",
         "name": "宁德",
         "fullname": "宁德市",
+        "pinyin": "ningde",
         "filename": "350000/350900",
         "level": 2,
         "center": [
@@ -2091,6 +2294,7 @@
         "code": "360100",
         "name": "南昌",
         "fullname": "南昌市",
+        "pinyin": "nanchang",
         "filename": "360000/360100",
         "level": 2,
         "center": [
@@ -2102,6 +2306,7 @@
         "code": "360200",
         "name": "景德镇",
         "fullname": "景德镇市",
+        "pinyin": "jingdezhen",
         "filename": "360000/360200",
         "level": 2,
         "center": [
@@ -2113,6 +2318,7 @@
         "code": "360300",
         "name": "萍乡",
         "fullname": "萍乡市",
+        "pinyin": "pingxiang",
         "filename": "360000/360300",
         "level": 2,
         "center": [
@@ -2124,6 +2330,7 @@
         "code": "360400",
         "name": "九江",
         "fullname": "九江市",
+        "pinyin": "jiujiang",
         "filename": "360000/360400",
         "level": 2,
         "center": [
@@ -2135,6 +2342,7 @@
         "code": "360500",
         "name": "新余",
         "fullname": "新余市",
+        "pinyin": "xinyu",
         "filename": "360000/360500",
         "level": 2,
         "center": [
@@ -2146,6 +2354,7 @@
         "code": "360600",
         "name": "鹰潭",
         "fullname": "鹰潭市",
+        "pinyin": "yingtan",
         "filename": "360000/360600",
         "level": 2,
         "center": [
@@ -2157,6 +2366,7 @@
         "code": "360700",
         "name": "赣州",
         "fullname": "赣州市",
+        "pinyin": "ganzhou",
         "filename": "360000/360700",
         "level": 2,
         "center": [
@@ -2168,6 +2378,7 @@
         "code": "360800",
         "name": "吉安",
         "fullname": "吉安市",
+        "pinyin": "jian",
         "filename": "360000/360800",
         "level": 2,
         "center": [
@@ -2179,6 +2390,7 @@
         "code": "360900",
         "name": "宜春",
         "fullname": "宜春市",
+        "pinyin": "yichun",
         "filename": "360000/360900",
         "level": 2,
         "center": [
@@ -2190,6 +2402,7 @@
         "code": "361000",
         "name": "抚州",
         "fullname": "抚州市",
+        "pinyin": "fuzhou",
         "filename": "360000/361000",
         "level": 2,
         "center": [
@@ -2201,6 +2414,7 @@
         "code": "361100",
         "name": "上饶",
         "fullname": "上饶市",
+        "pinyin": "shangrao",
         "filename": "360000/361100",
         "level": 2,
         "center": [
@@ -2214,6 +2428,7 @@
         "code": "370100",
         "name": "济南",
         "fullname": "济南市",
+        "pinyin": "jinan",
         "filename": "370000/370100",
         "level": 2,
         "center": [
@@ -2225,6 +2440,7 @@
         "code": "370200",
         "name": "青岛",
         "fullname": "青岛市",
+        "pinyin": "qingdao",
         "filename": "370000/370200",
         "level": 2,
         "center": [
@@ -2236,6 +2452,7 @@
         "code": "370300",
         "name": "淄博",
         "fullname": "淄博市",
+        "pinyin": "zibo",
         "filename": "370000/370300",
         "level": 2,
         "center": [
@@ -2247,6 +2464,7 @@
         "code": "370400",
         "name": "枣庄",
         "fullname": "枣庄市",
+        "pinyin": "zaozhuang",
         "filename": "370000/370400",
         "level": 2,
         "center": [
@@ -2258,6 +2476,7 @@
         "code": "370500",
         "name": "东营",
         "fullname": "东营市",
+        "pinyin": "dongying",
         "filename": "370000/370500",
         "level": 2,
         "center": [
@@ -2269,6 +2488,7 @@
         "code": "370600",
         "name": "烟台",
         "fullname": "烟台市",
+        "pinyin": "yantai",
         "filename": "370000/370600",
         "level": 2,
         "center": [
@@ -2280,6 +2500,7 @@
         "code": "370700",
         "name": "潍坊",
         "fullname": "潍坊市",
+        "pinyin": "weifang",
         "filename": "370000/370700",
         "level": 2,
         "center": [
@@ -2291,6 +2512,7 @@
         "code": "370800",
         "name": "济宁",
         "fullname": "济宁市",
+        "pinyin": "jining",
         "filename": "370000/370800",
         "level": 2,
         "center": [
@@ -2302,6 +2524,7 @@
         "code": "370900",
         "name": "泰安",
         "fullname": "泰安市",
+        "pinyin": "taian",
         "filename": "370000/370900",
         "level": 2,
         "center": [
@@ -2313,6 +2536,7 @@
         "code": "371000",
         "name": "威海",
         "fullname": "威海市",
+        "pinyin": "weihai",
         "filename": "370000/371000",
         "level": 2,
         "center": [
@@ -2324,6 +2548,7 @@
         "code": "371100",
         "name": "日照",
         "fullname": "日照市",
+        "pinyin": "rizhao",
         "filename": "370000/371100",
         "level": 2,
         "center": [
@@ -2335,6 +2560,7 @@
         "code": "371300",
         "name": "临沂",
         "fullname": "临沂市",
+        "pinyin": "linyi",
         "filename": "370000/371300",
         "level": 2,
         "center": [
@@ -2346,6 +2572,7 @@
         "code": "371400",
         "name": "德州",
         "fullname": "德州市",
+        "pinyin": "dezhou",
         "filename": "370000/371400",
         "level": 2,
         "center": [
@@ -2357,6 +2584,7 @@
         "code": "371500",
         "name": "聊城",
         "fullname": "聊城市",
+        "pinyin": "liaocheng",
         "filename": "370000/371500",
         "level": 2,
         "center": [
@@ -2368,6 +2596,7 @@
         "code": "371600",
         "name": "滨州",
         "fullname": "滨州市",
+        "pinyin": "binzhou",
         "filename": "370000/371600",
         "level": 2,
         "center": [
@@ -2379,6 +2608,7 @@
         "code": "371700",
         "name": "菏泽",
         "fullname": "菏泽市",
+        "pinyin": "heze",
         "filename": "370000/371700",
         "level": 2,
         "center": [
@@ -2392,6 +2622,7 @@
         "code": "410100",
         "name": "郑州",
         "fullname": "郑州市",
+        "pinyin": "zhengzhou",
         "filename": "410000/410100",
         "level": 2,
         "center": [
@@ -2403,6 +2634,7 @@
         "code": "410200",
         "name": "开封",
         "fullname": "开封市",
+        "pinyin": "kaifeng",
         "filename": "410000/410200",
         "level": 2,
         "center": [
@@ -2414,6 +2646,7 @@
         "code": "410300",
         "name": "洛阳",
         "fullname": "洛阳市",
+        "pinyin": "luoyang",
         "filename": "410000/410300",
         "level": 2,
         "center": [
@@ -2425,6 +2658,7 @@
         "code": "410400",
         "name": "平顶山",
         "fullname": "平顶山市",
+        "pinyin": "pingdingshan",
         "filename": "410000/410400",
         "level": 2,
         "center": [
@@ -2436,6 +2670,7 @@
         "code": "410500",
         "name": "安阳",
         "fullname": "安阳市",
+        "pinyin": "anyang",
         "filename": "410000/410500",
         "level": 2,
         "center": [
@@ -2447,6 +2682,7 @@
         "code": "410600",
         "name": "鹤壁",
         "fullname": "鹤壁市",
+        "pinyin": "hebi",
         "filename": "410000/410600",
         "level": 2,
         "center": [
@@ -2458,6 +2694,7 @@
         "code": "410700",
         "name": "新乡",
         "fullname": "新乡市",
+        "pinyin": "xinxiang",
         "filename": "410000/410700",
         "level": 2,
         "center": [
@@ -2469,6 +2706,7 @@
         "code": "410800",
         "name": "焦作",
         "fullname": "焦作市",
+        "pinyin": "jiaozuo",
         "filename": "410000/410800",
         "level": 2,
         "center": [
@@ -2480,6 +2718,7 @@
         "code": "410900",
         "name": "濮阳",
         "fullname": "濮阳市",
+        "pinyin": "puyang",
         "filename": "410000/410900",
         "level": 2,
         "center": [
@@ -2491,6 +2730,7 @@
         "code": "411000",
         "name": "许昌",
         "fullname": "许昌市",
+        "pinyin": "xuchang",
         "filename": "410000/411000",
         "level": 2,
         "center": [
@@ -2502,6 +2742,7 @@
         "code": "411100",
         "name": "漯河",
         "fullname": "漯河市",
+        "pinyin": "luohe",
         "filename": "410000/411100",
         "level": 2,
         "center": [
@@ -2513,6 +2754,7 @@
         "code": "411200",
         "name": "三门峡",
         "fullname": "三门峡市",
+        "pinyin": "sanmenxia",
         "filename": "410000/411200",
         "level": 2,
         "center": [
@@ -2524,6 +2766,7 @@
         "code": "411300",
         "name": "南阳",
         "fullname": "南阳市",
+        "pinyin": "nanyang",
         "filename": "410000/411300",
         "level": 2,
         "center": [
@@ -2535,6 +2778,7 @@
         "code": "411400",
         "name": "商丘",
         "fullname": "商丘市",
+        "pinyin": "shangqiu",
         "filename": "410000/411400",
         "level": 2,
         "center": [
@@ -2546,6 +2790,7 @@
         "code": "411500",
         "name": "信阳",
         "fullname": "信阳市",
+        "pinyin": "xinyang",
         "filename": "410000/411500",
         "level": 2,
         "center": [
@@ -2557,6 +2802,7 @@
         "code": "411600",
         "name": "周口",
         "fullname": "周口市",
+        "pinyin": "zhoukou",
         "filename": "410000/411600",
         "level": 2,
         "center": [
@@ -2568,6 +2814,7 @@
         "code": "411700",
         "name": "驻马店",
         "fullname": "驻马店市",
+        "pinyin": "zhumadian",
         "filename": "410000/411700",
         "level": 2,
         "center": [
@@ -2579,6 +2826,7 @@
         "code": "419001",
         "name": "济源",
         "fullname": "济源市",
+        "pinyin": "jiyuan",
         "filename": "",
         "level": 2,
         "center": [
@@ -2592,6 +2840,7 @@
         "code": "420100",
         "name": "武汉",
         "fullname": "武汉市",
+        "pinyin": "wuhan",
         "filename": "420000/420100",
         "level": 2,
         "center": [
@@ -2603,6 +2852,7 @@
         "code": "420200",
         "name": "黄石",
         "fullname": "黄石市",
+        "pinyin": "huangshi",
         "filename": "420000/420200",
         "level": 2,
         "center": [
@@ -2614,6 +2864,7 @@
         "code": "420300",
         "name": "十堰",
         "fullname": "十堰市",
+        "pinyin": "shiyan",
         "filename": "420000/420300",
         "level": 2,
         "center": [
@@ -2625,6 +2876,7 @@
         "code": "420500",
         "name": "宜昌",
         "fullname": "宜昌市",
+        "pinyin": "yichang",
         "filename": "420000/420500",
         "level": 2,
         "center": [
@@ -2636,6 +2888,7 @@
         "code": "420600",
         "name": "襄阳",
         "fullname": "襄阳市",
+        "pinyin": "xiangyang",
         "filename": "420000/420600",
         "level": 2,
         "center": [
@@ -2647,6 +2900,7 @@
         "code": "420700",
         "name": "鄂州",
         "fullname": "鄂州市",
+        "pinyin": "ezhou",
         "filename": "420000/420700",
         "level": 2,
         "center": [
@@ -2658,6 +2912,7 @@
         "code": "420800",
         "name": "荆门",
         "fullname": "荆门市",
+        "pinyin": "jingmen",
         "filename": "420000/420800",
         "level": 2,
         "center": [
@@ -2669,6 +2924,7 @@
         "code": "420900",
         "name": "孝感",
         "fullname": "孝感市",
+        "pinyin": "xiaogan",
         "filename": "420000/420900",
         "level": 2,
         "center": [
@@ -2680,6 +2936,7 @@
         "code": "421000",
         "name": "荆州",
         "fullname": "荆州市",
+        "pinyin": "jingzhou",
         "filename": "420000/421000",
         "level": 2,
         "center": [
@@ -2691,6 +2948,7 @@
         "code": "421100",
         "name": "黄冈",
         "fullname": "黄冈市",
+        "pinyin": "huanggang",
         "filename": "420000/421100",
         "level": 2,
         "center": [
@@ -2702,6 +2960,7 @@
         "code": "421200",
         "name": "咸宁",
         "fullname": "咸宁市",
+        "pinyin": "xianning",
         "filename": "420000/421200",
         "level": 2,
         "center": [
@@ -2713,6 +2972,7 @@
         "code": "421300",
         "name": "随州",
         "fullname": "随州市",
+        "pinyin": "suizhou",
         "filename": "420000/421300",
         "level": 2,
         "center": [
@@ -2724,6 +2984,7 @@
         "code": "422800",
         "name": "恩施",
         "fullname": "恩施土家族苗族自治州",
+        "pinyin": "enshi",
         "filename": "420000/422800",
         "level": 2,
         "center": [
@@ -2735,6 +2996,7 @@
         "code": "429004",
         "name": "仙桃",
         "fullname": "仙桃市",
+        "pinyin": "xiantao",
         "filename": "",
         "level": 2,
         "center": [
@@ -2746,6 +3008,7 @@
         "code": "429005",
         "name": "潜江",
         "fullname": "潜江市",
+        "pinyin": "qianjiang",
         "filename": "",
         "level": 2,
         "center": [
@@ -2757,6 +3020,7 @@
         "code": "429006",
         "name": "天门",
         "fullname": "天门市",
+        "pinyin": "tianmen",
         "filename": "",
         "level": 2,
         "center": [
@@ -2768,6 +3032,7 @@
         "code": "429021",
         "name": "神农架",
         "fullname": "神农架林区",
+        "pinyin": "shennongjia",
         "filename": "",
         "level": 2,
         "center": [
@@ -2781,6 +3046,7 @@
         "code": "430100",
         "name": "长沙",
         "fullname": "长沙市",
+        "pinyin": "changsha",
         "filename": "430000/430100",
         "level": 2,
         "center": [
@@ -2792,6 +3058,7 @@
         "code": "430200",
         "name": "株洲",
         "fullname": "株洲市",
+        "pinyin": "zhuzhou",
         "filename": "430000/430200",
         "level": 2,
         "center": [
@@ -2803,6 +3070,7 @@
         "code": "430300",
         "name": "湘潭",
         "fullname": "湘潭市",
+        "pinyin": "xiangtan",
         "filename": "430000/430300",
         "level": 2,
         "center": [
@@ -2814,6 +3082,7 @@
         "code": "430400",
         "name": "衡阳",
         "fullname": "衡阳市",
+        "pinyin": "hengyang",
         "filename": "430000/430400",
         "level": 2,
         "center": [
@@ -2825,6 +3094,7 @@
         "code": "430500",
         "name": "邵阳",
         "fullname": "邵阳市",
+        "pinyin": "shaoyang",
         "filename": "430000/430500",
         "level": 2,
         "center": [
@@ -2836,6 +3106,7 @@
         "code": "430600",
         "name": "岳阳",
         "fullname": "岳阳市",
+        "pinyin": "yueyang",
         "filename": "430000/430600",
         "level": 2,
         "center": [
@@ -2847,6 +3118,7 @@
         "code": "430700",
         "name": "常德",
         "fullname": "常德市",
+        "pinyin": "changde",
         "filename": "430000/430700",
         "level": 2,
         "center": [
@@ -2858,6 +3130,7 @@
         "code": "430800",
         "name": "张家界",
         "fullname": "张家界市",
+        "pinyin": "zhangjiajie",
         "filename": "430000/430800",
         "level": 2,
         "center": [
@@ -2869,6 +3142,7 @@
         "code": "430900",
         "name": "益阳",
         "fullname": "益阳市",
+        "pinyin": "yiyang",
         "filename": "430000/430900",
         "level": 2,
         "center": [
@@ -2880,6 +3154,7 @@
         "code": "431000",
         "name": "郴州",
         "fullname": "郴州市",
+        "pinyin": "chenzhou",
         "filename": "430000/431000",
         "level": 2,
         "center": [
@@ -2891,6 +3166,7 @@
         "code": "431100",
         "name": "永州",
         "fullname": "永州市",
+        "pinyin": "yongzhou",
         "filename": "430000/431100",
         "level": 2,
         "center": [
@@ -2902,6 +3178,7 @@
         "code": "431200",
         "name": "怀化",
         "fullname": "怀化市",
+        "pinyin": "huaihua",
         "filename": "430000/431200",
         "level": 2,
         "center": [
@@ -2913,6 +3190,7 @@
         "code": "431300",
         "name": "娄底",
         "fullname": "娄底市",
+        "pinyin": "loudi",
         "filename": "430000/431300",
         "level": 2,
         "center": [
@@ -2924,6 +3202,7 @@
         "code": "433100",
         "name": "湘西",
         "fullname": "湘西土家族苗族自治州",
+        "pinyin": "xiangxi",
         "filename": "430000/433100",
         "level": 2,
         "center": [
@@ -2937,6 +3216,7 @@
         "code": "440100",
         "name": "广州",
         "fullname": "广州市",
+        "pinyin": "guangzhou",
         "filename": "440000/440100",
         "level": 2,
         "center": [
@@ -2948,6 +3228,7 @@
         "code": "440200",
         "name": "韶关",
         "fullname": "韶关市",
+        "pinyin": "shaoguan",
         "filename": "440000/440200",
         "level": 2,
         "center": [
@@ -2959,6 +3240,7 @@
         "code": "440300",
         "name": "深圳",
         "fullname": "深圳市",
+        "pinyin": "shenzhen",
         "filename": "440000/440300",
         "level": 2,
         "center": [
@@ -2970,6 +3252,7 @@
         "code": "440400",
         "name": "珠海",
         "fullname": "珠海市",
+        "pinyin": "zhuhai",
         "filename": "440000/440400",
         "level": 2,
         "center": [
@@ -2981,6 +3264,7 @@
         "code": "440500",
         "name": "汕头",
         "fullname": "汕头市",
+        "pinyin": "shantou",
         "filename": "440000/440500",
         "level": 2,
         "center": [
@@ -2992,6 +3276,7 @@
         "code": "440600",
         "name": "佛山",
         "fullname": "佛山市",
+        "pinyin": "foshan",
         "filename": "440000/440600",
         "level": 2,
         "center": [
@@ -3003,6 +3288,7 @@
         "code": "440700",
         "name": "江门",
         "fullname": "江门市",
+        "pinyin": "jiangmen",
         "filename": "440000/440700",
         "level": 2,
         "center": [
@@ -3014,6 +3300,7 @@
         "code": "440800",
         "name": "湛江",
         "fullname": "湛江市",
+        "pinyin": "zhanjiang",
         "filename": "440000/440800",
         "level": 2,
         "center": [
@@ -3025,6 +3312,7 @@
         "code": "440900",
         "name": "茂名",
         "fullname": "茂名市",
+        "pinyin": "maoming",
         "filename": "440000/440900",
         "level": 2,
         "center": [
@@ -3036,6 +3324,7 @@
         "code": "441200",
         "name": "肇庆",
         "fullname": "肇庆市",
+        "pinyin": "zhaoqing",
         "filename": "440000/441200",
         "level": 2,
         "center": [
@@ -3047,6 +3336,7 @@
         "code": "441300",
         "name": "惠州",
         "fullname": "惠州市",
+        "pinyin": "huizhou",
         "filename": "440000/441300",
         "level": 2,
         "center": [
@@ -3058,6 +3348,7 @@
         "code": "441400",
         "name": "梅州",
         "fullname": "梅州市",
+        "pinyin": "meizhou",
         "filename": "440000/441400",
         "level": 2,
         "center": [
@@ -3069,6 +3360,7 @@
         "code": "441500",
         "name": "汕尾",
         "fullname": "汕尾市",
+        "pinyin": "shanwei",
         "filename": "440000/441500",
         "level": 2,
         "center": [
@@ -3080,6 +3372,7 @@
         "code": "441600",
         "name": "河源",
         "fullname": "河源市",
+        "pinyin": "heyuan",
         "filename": "440000/441600",
         "level": 2,
         "center": [
@@ -3091,6 +3384,7 @@
         "code": "441700",
         "name": "阳江",
         "fullname": "阳江市",
+        "pinyin": "yangjiang",
         "filename": "440000/441700",
         "level": 2,
         "center": [
@@ -3102,6 +3396,7 @@
         "code": "441800",
         "name": "清远",
         "fullname": "清远市",
+        "pinyin": "qingyuan",
         "filename": "440000/441800",
         "level": 2,
         "center": [
@@ -3113,6 +3408,7 @@
         "code": "441900",
         "name": "东莞",
         "fullname": "东莞市",
+        "pinyin": "dongguan",
         "filename": "",
         "level": 2,
         "center": [
@@ -3124,6 +3420,7 @@
         "code": "442000",
         "name": "中山",
         "fullname": "中山市",
+        "pinyin": "zhongshan",
         "filename": "",
         "level": 2,
         "center": [
@@ -3135,6 +3432,7 @@
         "code": "445100",
         "name": "潮州",
         "fullname": "潮州市",
+        "pinyin": "chaozhou",
         "filename": "440000/445100",
         "level": 2,
         "center": [
@@ -3146,6 +3444,7 @@
         "code": "445200",
         "name": "揭阳",
         "fullname": "揭阳市",
+        "pinyin": "jieyang",
         "filename": "440000/445200",
         "level": 2,
         "center": [
@@ -3157,6 +3456,7 @@
         "code": "445300",
         "name": "云浮",
         "fullname": "云浮市",
+        "pinyin": "yunfu",
         "filename": "440000/445300",
         "level": 2,
         "center": [
@@ -3170,6 +3470,7 @@
         "code": "450100",
         "name": "南宁",
         "fullname": "南宁市",
+        "pinyin": "nanning",
         "filename": "450000/450100",
         "level": 2,
         "center": [
@@ -3181,6 +3482,7 @@
         "code": "450200",
         "name": "柳州",
         "fullname": "柳州市",
+        "pinyin": "liuzhou",
         "filename": "450000/450200",
         "level": 2,
         "center": [
@@ -3192,6 +3494,7 @@
         "code": "450300",
         "name": "桂林",
         "fullname": "桂林市",
+        "pinyin": "guilin",
         "filename": "450000/450300",
         "level": 2,
         "center": [
@@ -3203,6 +3506,7 @@
         "code": "450400",
         "name": "梧州",
         "fullname": "梧州市",
+        "pinyin": "wuzhou",
         "filename": "450000/450400",
         "level": 2,
         "center": [
@@ -3214,6 +3518,7 @@
         "code": "450500",
         "name": "北海",
         "fullname": "北海市",
+        "pinyin": "beihai",
         "filename": "450000/450500",
         "level": 2,
         "center": [
@@ -3225,6 +3530,7 @@
         "code": "450600",
         "name": "防城港",
         "fullname": "防城港市",
+        "pinyin": "fangchenggang",
         "filename": "450000/450600",
         "level": 2,
         "center": [
@@ -3236,6 +3542,7 @@
         "code": "450700",
         "name": "钦州",
         "fullname": "钦州市",
+        "pinyin": "qinzhou",
         "filename": "450000/450700",
         "level": 2,
         "center": [
@@ -3247,6 +3554,7 @@
         "code": "450800",
         "name": "贵港",
         "fullname": "贵港市",
+        "pinyin": "guigang",
         "filename": "450000/450800",
         "level": 2,
         "center": [
@@ -3258,6 +3566,7 @@
         "code": "450900",
         "name": "玉林",
         "fullname": "玉林市",
+        "pinyin": "yulin",
         "filename": "450000/450900",
         "level": 2,
         "center": [
@@ -3269,6 +3578,7 @@
         "code": "451000",
         "name": "百色",
         "fullname": "百色市",
+        "pinyin": "baise",
         "filename": "450000/451000",
         "level": 2,
         "center": [
@@ -3280,6 +3590,7 @@
         "code": "451100",
         "name": "贺州",
         "fullname": "贺州市",
+        "pinyin": "hezhou",
         "filename": "450000/451100",
         "level": 2,
         "center": [
@@ -3291,6 +3602,7 @@
         "code": "451200",
         "name": "河池",
         "fullname": "河池市",
+        "pinyin": "hechi",
         "filename": "450000/451200",
         "level": 2,
         "center": [
@@ -3302,6 +3614,7 @@
         "code": "451300",
         "name": "来宾",
         "fullname": "来宾市",
+        "pinyin": "laibin",
         "filename": "450000/451300",
         "level": 2,
         "center": [
@@ -3313,6 +3626,7 @@
         "code": "451400",
         "name": "崇左",
         "fullname": "崇左市",
+        "pinyin": "chongzuo",
         "filename": "450000/451400",
         "level": 2,
         "center": [
@@ -3326,6 +3640,7 @@
         "code": "460100",
         "name": "海口",
         "fullname": "海口市",
+        "pinyin": "haikou",
         "filename": "460000/460100",
         "level": 2,
         "center": [
@@ -3337,6 +3652,7 @@
         "code": "460200",
         "name": "三亚",
         "fullname": "三亚市",
+        "pinyin": "sanya",
         "filename": "460000/460200",
         "level": 2,
         "center": [
@@ -3348,6 +3664,7 @@
         "code": "460300",
         "name": "三沙",
         "fullname": "三沙市",
+        "pinyin": "sansha",
         "filename": "460000/460300",
         "level": 2,
         "center": [
@@ -3359,6 +3676,7 @@
         "code": "460400",
         "name": "儋州",
         "fullname": "儋州市",
+        "pinyin": "danzhou",
         "filename": "",
         "level": 2,
         "center": [
@@ -3370,6 +3688,7 @@
         "code": "469001",
         "name": "五指山",
         "fullname": "五指山市",
+        "pinyin": "wuzhishan",
         "filename": "",
         "level": 2,
         "center": [
@@ -3381,6 +3700,7 @@
         "code": "469002",
         "name": "琼海",
         "fullname": "琼海市",
+        "pinyin": "qionghai",
         "filename": "",
         "level": 2,
         "center": [
@@ -3392,6 +3712,7 @@
         "code": "469005",
         "name": "文昌",
         "fullname": "文昌市",
+        "pinyin": "wenchang",
         "filename": "",
         "level": 2,
         "center": [
@@ -3403,6 +3724,7 @@
         "code": "469006",
         "name": "万宁",
         "fullname": "万宁市",
+        "pinyin": "wanning",
         "filename": "",
         "level": 2,
         "center": [
@@ -3414,6 +3736,7 @@
         "code": "469007",
         "name": "东方",
         "fullname": "东方市",
+        "pinyin": "dongfang",
         "filename": "",
         "level": 2,
         "center": [
@@ -3425,6 +3748,7 @@
         "code": "469021",
         "name": "定安",
         "fullname": "定安县",
+        "pinyin": "dingan",
         "filename": "",
         "level": 2,
         "center": [
@@ -3436,6 +3760,7 @@
         "code": "469022",
         "name": "屯昌",
         "fullname": "屯昌县",
+        "pinyin": "tunchang",
         "filename": "",
         "level": 2,
         "center": [
@@ -3447,6 +3772,7 @@
         "code": "469023",
         "name": "澄迈",
         "fullname": "澄迈县",
+        "pinyin": "chengmai",
         "filename": "",
         "level": 2,
         "center": [
@@ -3458,6 +3784,7 @@
         "code": "469024",
         "name": "临高",
         "fullname": "临高县",
+        "pinyin": "lingao",
         "filename": "",
         "level": 2,
         "center": [
@@ -3469,6 +3796,7 @@
         "code": "469025",
         "name": "白沙",
         "fullname": "白沙黎族自治县",
+        "pinyin": "baisha",
         "filename": "",
         "level": 2,
         "center": [
@@ -3480,6 +3808,7 @@
         "code": "469026",
         "name": "昌江",
         "fullname": "昌江黎族自治县",
+        "pinyin": "changjiang",
         "filename": "",
         "level": 2,
         "center": [
@@ -3491,6 +3820,7 @@
         "code": "469027",
         "name": "乐东",
         "fullname": "乐东黎族自治县",
+        "pinyin": "ledong",
         "filename": "",
         "level": 2,
         "center": [
@@ -3502,6 +3832,7 @@
         "code": "469028",
         "name": "陵水",
         "fullname": "陵水黎族自治县",
+        "pinyin": "lingshui",
         "filename": "",
         "level": 2,
         "center": [
@@ -3513,6 +3844,7 @@
         "code": "469029",
         "name": "保亭",
         "fullname": "保亭黎族苗族自治县",
+        "pinyin": "baoting",
         "filename": "",
         "level": 2,
         "center": [
@@ -3524,6 +3856,7 @@
         "code": "469030",
         "name": "琼中",
         "fullname": "琼中黎族苗族自治县",
+        "pinyin": "qiongzhong",
         "filename": "",
         "level": 2,
         "center": [
@@ -3537,6 +3870,7 @@
         "code": "500101",
         "name": "万州",
         "fullname": "万州区",
+        "pinyin": "wanzhou",
         "filename": "",
         "level": 3,
         "center": [
@@ -3548,6 +3882,7 @@
         "code": "500102",
         "name": "涪陵",
         "fullname": "涪陵区",
+        "pinyin": "fuling",
         "filename": "",
         "level": 3,
         "center": [
@@ -3559,6 +3894,7 @@
         "code": "500103",
         "name": "渝中",
         "fullname": "渝中区",
+        "pinyin": "yuzhong",
         "filename": "",
         "level": 3,
         "center": [
@@ -3570,6 +3906,7 @@
         "code": "500104",
         "name": "大渡口",
         "fullname": "大渡口区",
+        "pinyin": "dadukou",
         "filename": "",
         "level": 3,
         "center": [
@@ -3581,6 +3918,7 @@
         "code": "500106",
         "name": "沙坪坝",
         "fullname": "沙坪坝区",
+        "pinyin": "shapingba",
         "filename": "",
         "level": 3,
         "center": [
@@ -3592,6 +3930,7 @@
         "code": "500107",
         "name": "九龙坡",
         "fullname": "九龙坡区",
+        "pinyin": "jiulongpo",
         "filename": "",
         "level": 3,
         "center": [
@@ -3603,6 +3942,7 @@
         "code": "500108",
         "name": "南岸",
         "fullname": "南岸区",
+        "pinyin": "nanan",
         "filename": "",
         "level": 3,
         "center": [
@@ -3614,6 +3954,7 @@
         "code": "500109",
         "name": "北碚",
         "fullname": "北碚区",
+        "pinyin": "beibei",
         "filename": "",
         "level": 3,
         "center": [
@@ -3625,6 +3966,7 @@
         "code": "500110",
         "name": "綦江",
         "fullname": "綦江区",
+        "pinyin": "qijiang",
         "filename": "",
         "level": 3,
         "center": [
@@ -3636,6 +3978,7 @@
         "code": "500111",
         "name": "大足",
         "fullname": "大足区",
+        "pinyin": "dazu",
         "filename": "",
         "level": 3,
         "center": [
@@ -3647,6 +3990,7 @@
         "code": "500113",
         "name": "巴南",
         "fullname": "巴南区",
+        "pinyin": "banan",
         "filename": "",
         "level": 3,
         "center": [
@@ -3658,6 +4002,7 @@
         "code": "500114",
         "name": "黔江",
         "fullname": "黔江区",
+        "pinyin": "qianjiang",
         "filename": "",
         "level": 3,
         "center": [
@@ -3669,6 +4014,7 @@
         "code": "500115",
         "name": "长寿",
         "fullname": "长寿区",
+        "pinyin": "changshou",
         "filename": "",
         "level": 3,
         "center": [
@@ -3680,6 +4026,7 @@
         "code": "500116",
         "name": "江津",
         "fullname": "江津区",
+        "pinyin": "jiangjin",
         "filename": "",
         "level": 3,
         "center": [
@@ -3691,6 +4038,7 @@
         "code": "500117",
         "name": "合川",
         "fullname": "合川区",
+        "pinyin": "hechuan",
         "filename": "",
         "level": 3,
         "center": [
@@ -3702,6 +4050,7 @@
         "code": "500118",
         "name": "永川",
         "fullname": "永川区",
+        "pinyin": "yongchuan",
         "filename": "",
         "level": 3,
         "center": [
@@ -3713,6 +4062,7 @@
         "code": "500119",
         "name": "南川",
         "fullname": "南川区",
+        "pinyin": "nanchuan",
         "filename": "",
         "level": 3,
         "center": [
@@ -3724,6 +4074,7 @@
         "code": "500120",
         "name": "璧山",
         "fullname": "璧山区",
+        "pinyin": "bishan",
         "filename": "",
         "level": 3,
         "center": [
@@ -3735,6 +4086,7 @@
         "code": "500151",
         "name": "铜梁",
         "fullname": "铜梁区",
+        "pinyin": "tongliang",
         "filename": "",
         "level": 3,
         "center": [
@@ -3746,6 +4098,7 @@
         "code": "500152",
         "name": "潼南",
         "fullname": "潼南区",
+        "pinyin": "tongnan",
         "filename": "",
         "level": 3,
         "center": [
@@ -3757,6 +4110,7 @@
         "code": "500153",
         "name": "荣昌",
         "fullname": "荣昌区",
+        "pinyin": "rongchang",
         "filename": "",
         "level": 3,
         "center": [
@@ -3768,6 +4122,7 @@
         "code": "500154",
         "name": "开州",
         "fullname": "开州区",
+        "pinyin": "kaizhou",
         "filename": "",
         "level": 3,
         "center": [
@@ -3779,6 +4134,7 @@
         "code": "500155",
         "name": "梁平",
         "fullname": "梁平区",
+        "pinyin": "liangping",
         "filename": "",
         "level": 3,
         "center": [
@@ -3790,6 +4146,7 @@
         "code": "500156",
         "name": "武隆",
         "fullname": "武隆区",
+        "pinyin": "wulong",
         "filename": "",
         "level": 3,
         "center": [
@@ -3801,6 +4158,7 @@
         "code": "500157",
         "name": "两江",
         "fullname": "两江新区",
+        "pinyin": "liangjiang",
         "filename": "",
         "level": 3,
         "center": [
@@ -3812,6 +4170,7 @@
         "code": "500229",
         "name": "城口",
         "fullname": "城口县",
+        "pinyin": "chengkou",
         "filename": "",
         "level": 3,
         "center": [
@@ -3823,6 +4182,7 @@
         "code": "500230",
         "name": "丰都",
         "fullname": "丰都县",
+        "pinyin": "fengdu",
         "filename": "",
         "level": 3,
         "center": [
@@ -3834,6 +4194,7 @@
         "code": "500231",
         "name": "垫江",
         "fullname": "垫江县",
+        "pinyin": "dianjiang",
         "filename": "",
         "level": 3,
         "center": [
@@ -3845,6 +4206,7 @@
         "code": "500233",
         "name": "忠县",
         "fullname": "忠县",
+        "pinyin": "zhongxian",
         "filename": "",
         "level": 3,
         "center": [
@@ -3856,6 +4218,7 @@
         "code": "500235",
         "name": "云阳",
         "fullname": "云阳县",
+        "pinyin": "yunyang",
         "filename": "",
         "level": 3,
         "center": [
@@ -3867,6 +4230,7 @@
         "code": "500236",
         "name": "奉节",
         "fullname": "奉节县",
+        "pinyin": "fengjie",
         "filename": "",
         "level": 3,
         "center": [
@@ -3878,6 +4242,7 @@
         "code": "500237",
         "name": "巫山",
         "fullname": "巫山县",
+        "pinyin": "wushan",
         "filename": "",
         "level": 3,
         "center": [
@@ -3889,6 +4254,7 @@
         "code": "500238",
         "name": "巫溪",
         "fullname": "巫溪县",
+        "pinyin": "wuxi",
         "filename": "",
         "level": 3,
         "center": [
@@ -3900,6 +4266,7 @@
         "code": "500240",
         "name": "石柱",
         "fullname": "石柱土家族自治县",
+        "pinyin": "shizhu",
         "filename": "",
         "level": 3,
         "center": [
@@ -3911,6 +4278,7 @@
         "code": "500241",
         "name": "秀山",
         "fullname": "秀山土家族苗族自治县",
+        "pinyin": "xiushan",
         "filename": "",
         "level": 3,
         "center": [
@@ -3922,6 +4290,7 @@
         "code": "500242",
         "name": "酉阳",
         "fullname": "酉阳土家族苗族自治县",
+        "pinyin": "youyang",
         "filename": "",
         "level": 3,
         "center": [
@@ -3933,6 +4302,7 @@
         "code": "500243",
         "name": "彭水",
         "fullname": "彭水苗族土家族自治县",
+        "pinyin": "pengshui",
         "filename": "",
         "level": 3,
         "center": [
@@ -3946,6 +4316,7 @@
         "code": "510100",
         "name": "成都",
         "fullname": "成都市",
+        "pinyin": "chengdu",
         "filename": "510000/510100",
         "level": 2,
         "center": [
@@ -3957,6 +4328,7 @@
         "code": "510300",
         "name": "自贡",
         "fullname": "自贡市",
+        "pinyin": "zigong",
         "filename": "510000/510300",
         "level": 2,
         "center": [
@@ -3968,6 +4340,7 @@
         "code": "510400",
         "name": "攀枝花",
         "fullname": "攀枝花市",
+        "pinyin": "panzhihua",
         "filename": "510000/510400",
         "level": 2,
         "center": [
@@ -3979,6 +4352,7 @@
         "code": "510500",
         "name": "泸州",
         "fullname": "泸州市",
+        "pinyin": "luzhou",
         "filename": "510000/510500",
         "level": 2,
         "center": [
@@ -3990,6 +4364,7 @@
         "code": "510600",
         "name": "德阳",
         "fullname": "德阳市",
+        "pinyin": "deyang",
         "filename": "510000/510600",
         "level": 2,
         "center": [
@@ -4001,6 +4376,7 @@
         "code": "510700",
         "name": "绵阳",
         "fullname": "绵阳市",
+        "pinyin": "mianyang",
         "filename": "510000/510700",
         "level": 2,
         "center": [
@@ -4012,6 +4388,7 @@
         "code": "510800",
         "name": "广元",
         "fullname": "广元市",
+        "pinyin": "guangyuan",
         "filename": "510000/510800",
         "level": 2,
         "center": [
@@ -4023,6 +4400,7 @@
         "code": "510900",
         "name": "遂宁",
         "fullname": "遂宁市",
+        "pinyin": "suining",
         "filename": "510000/510900",
         "level": 2,
         "center": [
@@ -4034,6 +4412,7 @@
         "code": "511000",
         "name": "内江",
         "fullname": "内江市",
+        "pinyin": "neijiang",
         "filename": "510000/511000",
         "level": 2,
         "center": [
@@ -4045,6 +4424,7 @@
         "code": "511100",
         "name": "乐山",
         "fullname": "乐山市",
+        "pinyin": "leshan",
         "filename": "510000/511100",
         "level": 2,
         "center": [
@@ -4056,6 +4436,7 @@
         "code": "511300",
         "name": "南充",
         "fullname": "南充市",
+        "pinyin": "nanchong",
         "filename": "510000/511300",
         "level": 2,
         "center": [
@@ -4067,6 +4448,7 @@
         "code": "511400",
         "name": "眉山",
         "fullname": "眉山市",
+        "pinyin": "meishan",
         "filename": "510000/511400",
         "level": 2,
         "center": [
@@ -4078,6 +4460,7 @@
         "code": "511500",
         "name": "宜宾",
         "fullname": "宜宾市",
+        "pinyin": "yibin",
         "filename": "510000/511500",
         "level": 2,
         "center": [
@@ -4089,6 +4472,7 @@
         "code": "511600",
         "name": "广安",
         "fullname": "广安市",
+        "pinyin": "guangan",
         "filename": "510000/511600",
         "level": 2,
         "center": [
@@ -4100,6 +4484,7 @@
         "code": "511700",
         "name": "达州",
         "fullname": "达州市",
+        "pinyin": "dazhou",
         "filename": "510000/511700",
         "level": 2,
         "center": [
@@ -4111,6 +4496,7 @@
         "code": "511800",
         "name": "雅安",
         "fullname": "雅安市",
+        "pinyin": "yaan",
         "filename": "510000/511800",
         "level": 2,
         "center": [
@@ -4122,6 +4508,7 @@
         "code": "511900",
         "name": "巴中",
         "fullname": "巴中市",
+        "pinyin": "bazhong",
         "filename": "510000/511900",
         "level": 2,
         "center": [
@@ -4133,6 +4520,7 @@
         "code": "512000",
         "name": "资阳",
         "fullname": "资阳市",
+        "pinyin": "ziyang",
         "filename": "510000/512000",
         "level": 2,
         "center": [
@@ -4144,6 +4532,7 @@
         "code": "513200",
         "name": "阿坝",
         "fullname": "阿坝藏族羌族自治州",
+        "pinyin": "aba",
         "filename": "510000/513200",
         "level": 2,
         "center": [
@@ -4155,6 +4544,7 @@
         "code": "513300",
         "name": "甘孜",
         "fullname": "甘孜藏族自治州",
+        "pinyin": "ganzi",
         "filename": "510000/513300",
         "level": 2,
         "center": [
@@ -4166,6 +4556,7 @@
         "code": "513400",
         "name": "凉山",
         "fullname": "凉山彝族自治州",
+        "pinyin": "liangshan",
         "filename": "510000/513400",
         "level": 2,
         "center": [
@@ -4179,6 +4570,7 @@
         "code": "520100",
         "name": "贵阳",
         "fullname": "贵阳市",
+        "pinyin": "guiyang",
         "filename": "520000/520100",
         "level": 2,
         "center": [
@@ -4190,6 +4582,7 @@
         "code": "520200",
         "name": "六盘水",
         "fullname": "六盘水市",
+        "pinyin": "liupanshui",
         "filename": "520000/520200",
         "level": 2,
         "center": [
@@ -4201,6 +4594,7 @@
         "code": "520300",
         "name": "遵义",
         "fullname": "遵义市",
+        "pinyin": "zunyi",
         "filename": "520000/520300",
         "level": 2,
         "center": [
@@ -4212,6 +4606,7 @@
         "code": "520400",
         "name": "安顺",
         "fullname": "安顺市",
+        "pinyin": "anshun",
         "filename": "520000/520400",
         "level": 2,
         "center": [
@@ -4223,6 +4618,7 @@
         "code": "520500",
         "name": "毕节",
         "fullname": "毕节市",
+        "pinyin": "bijie",
         "filename": "520000/520500",
         "level": 2,
         "center": [
@@ -4234,6 +4630,7 @@
         "code": "520600",
         "name": "铜仁",
         "fullname": "铜仁市",
+        "pinyin": "tongren",
         "filename": "520000/520600",
         "level": 2,
         "center": [
@@ -4245,6 +4642,7 @@
         "code": "522300",
         "name": "黔西南",
         "fullname": "黔西南布依族苗族自治州",
+        "pinyin": "qianxinan",
         "filename": "520000/522300",
         "level": 2,
         "center": [
@@ -4256,6 +4654,7 @@
         "code": "522600",
         "name": "黔东南",
         "fullname": "黔东南苗族侗族自治州",
+        "pinyin": "qiandongnan",
         "filename": "520000/522600",
         "level": 2,
         "center": [
@@ -4267,6 +4666,7 @@
         "code": "522700",
         "name": "黔南",
         "fullname": "黔南布依族苗族自治州",
+        "pinyin": "qiannan",
         "filename": "520000/522700",
         "level": 2,
         "center": [
@@ -4280,6 +4680,7 @@
         "code": "530100",
         "name": "昆明",
         "fullname": "昆明市",
+        "pinyin": "kunming",
         "filename": "530000/530100",
         "level": 2,
         "center": [
@@ -4291,6 +4692,7 @@
         "code": "530300",
         "name": "曲靖",
         "fullname": "曲靖市",
+        "pinyin": "qujing",
         "filename": "530000/530300",
         "level": 2,
         "center": [
@@ -4302,6 +4704,7 @@
         "code": "530400",
         "name": "玉溪",
         "fullname": "玉溪市",
+        "pinyin": "yuxi",
         "filename": "530000/530400",
         "level": 2,
         "center": [
@@ -4313,6 +4716,7 @@
         "code": "530500",
         "name": "保山",
         "fullname": "保山市",
+        "pinyin": "baoshan",
         "filename": "530000/530500",
         "level": 2,
         "center": [
@@ -4324,6 +4728,7 @@
         "code": "530600",
         "name": "昭通",
         "fullname": "昭通市",
+        "pinyin": "zhaotong",
         "filename": "530000/530600",
         "level": 2,
         "center": [
@@ -4335,6 +4740,7 @@
         "code": "530700",
         "name": "丽江",
         "fullname": "丽江市",
+        "pinyin": "lijiang",
         "filename": "530000/530700",
         "level": 2,
         "center": [
@@ -4346,6 +4752,7 @@
         "code": "530800",
         "name": "普洱",
         "fullname": "普洱市",
+        "pinyin": "puer",
         "filename": "530000/530800",
         "level": 2,
         "center": [
@@ -4357,6 +4764,7 @@
         "code": "530900",
         "name": "临沧",
         "fullname": "临沧市",
+        "pinyin": "lincang",
         "filename": "530000/530900",
         "level": 2,
         "center": [
@@ -4368,6 +4776,7 @@
         "code": "532300",
         "name": "楚雄",
         "fullname": "楚雄彝族自治州",
+        "pinyin": "chuxiong",
         "filename": "530000/532300",
         "level": 2,
         "center": [
@@ -4379,6 +4788,7 @@
         "code": "532500",
         "name": "红河",
         "fullname": "红河哈尼族彝族自治州",
+        "pinyin": "honghe",
         "filename": "530000/532500",
         "level": 2,
         "center": [
@@ -4390,6 +4800,7 @@
         "code": "532600",
         "name": "文山",
         "fullname": "文山壮族苗族自治州",
+        "pinyin": "wenshan",
         "filename": "530000/532600",
         "level": 2,
         "center": [
@@ -4401,6 +4812,7 @@
         "code": "532800",
         "name": "西双版纳",
         "fullname": "西双版纳傣族自治州",
+        "pinyin": "xishuangbanna",
         "filename": "530000/532800",
         "level": 2,
         "center": [
@@ -4412,6 +4824,7 @@
         "code": "532900",
         "name": "大理",
         "fullname": "大理白族自治州",
+        "pinyin": "dali",
         "filename": "530000/532900",
         "level": 2,
         "center": [
@@ -4423,6 +4836,7 @@
         "code": "533100",
         "name": "德宏",
         "fullname": "德宏傣族景颇族自治州",
+        "pinyin": "dehong",
         "filename": "530000/533100",
         "level": 2,
         "center": [
@@ -4434,6 +4848,7 @@
         "code": "533300",
         "name": "怒江",
         "fullname": "怒江傈僳族自治州",
+        "pinyin": "nujiang",
         "filename": "530000/533300",
         "level": 2,
         "center": [
@@ -4445,6 +4860,7 @@
         "code": "533400",
         "name": "迪庆",
         "fullname": "迪庆藏族自治州",
+        "pinyin": "diqing",
         "filename": "530000/533400",
         "level": 2,
         "center": [
@@ -4458,6 +4874,7 @@
         "code": "540100",
         "name": "拉萨",
         "fullname": "拉萨市",
+        "pinyin": "lasa",
         "filename": "540000/540100",
         "level": 2,
         "center": [
@@ -4469,6 +4886,7 @@
         "code": "540200",
         "name": "日喀则",
         "fullname": "日喀则市",
+        "pinyin": "rikaze",
         "filename": "540000/540200",
         "level": 2,
         "center": [
@@ -4480,6 +4898,7 @@
         "code": "540300",
         "name": "昌都",
         "fullname": "昌都市",
+        "pinyin": "changdu",
         "filename": "540000/540300",
         "level": 2,
         "center": [
@@ -4491,6 +4910,7 @@
         "code": "540400",
         "name": "林芝",
         "fullname": "林芝市",
+        "pinyin": "linzhi",
         "filename": "540000/540400",
         "level": 2,
         "center": [
@@ -4502,6 +4922,7 @@
         "code": "540500",
         "name": "山南",
         "fullname": "山南市",
+        "pinyin": "shannan",
         "filename": "540000/540500",
         "level": 2,
         "center": [
@@ -4513,6 +4934,7 @@
         "code": "540600",
         "name": "那曲",
         "fullname": "那曲市",
+        "pinyin": "naqu",
         "filename": "540000/540600",
         "level": 2,
         "center": [
@@ -4524,6 +4946,7 @@
         "code": "542500",
         "name": "阿里",
         "fullname": "阿里地区",
+        "pinyin": "ali",
         "filename": "540000/542500",
         "level": 2,
         "center": [
@@ -4537,6 +4960,7 @@
         "code": "610100",
         "name": "西安",
         "fullname": "西安市",
+        "pinyin": "xian",
         "filename": "610000/610100",
         "level": 2,
         "center": [
@@ -4548,6 +4972,7 @@
         "code": "610200",
         "name": "铜川",
         "fullname": "铜川市",
+        "pinyin": "tongchuan",
         "filename": "610000/610200",
         "level": 2,
         "center": [
@@ -4559,6 +4984,7 @@
         "code": "610300",
         "name": "宝鸡",
         "fullname": "宝鸡市",
+        "pinyin": "baoji",
         "filename": "610000/610300",
         "level": 2,
         "center": [
@@ -4570,6 +4996,7 @@
         "code": "610400",
         "name": "咸阳",
         "fullname": "咸阳市",
+        "pinyin": "xianyang",
         "filename": "610000/610400",
         "level": 2,
         "center": [
@@ -4581,6 +5008,7 @@
         "code": "610500",
         "name": "渭南",
         "fullname": "渭南市",
+        "pinyin": "weinan",
         "filename": "610000/610500",
         "level": 2,
         "center": [
@@ -4592,6 +5020,7 @@
         "code": "610600",
         "name": "延安",
         "fullname": "延安市",
+        "pinyin": "yanan",
         "filename": "610000/610600",
         "level": 2,
         "center": [
@@ -4603,6 +5032,7 @@
         "code": "610700",
         "name": "汉中",
         "fullname": "汉中市",
+        "pinyin": "hanzhong",
         "filename": "610000/610700",
         "level": 2,
         "center": [
@@ -4614,6 +5044,7 @@
         "code": "610800",
         "name": "榆林",
         "fullname": "榆林市",
+        "pinyin": "yulin",
         "filename": "610000/610800",
         "level": 2,
         "center": [
@@ -4625,6 +5056,7 @@
         "code": "610900",
         "name": "安康",
         "fullname": "安康市",
+        "pinyin": "ankang",
         "filename": "610000/610900",
         "level": 2,
         "center": [
@@ -4636,6 +5068,7 @@
         "code": "611000",
         "name": "商洛",
         "fullname": "商洛市",
+        "pinyin": "shangluo",
         "filename": "610000/611000",
         "level": 2,
         "center": [
@@ -4649,6 +5082,7 @@
         "code": "620100",
         "name": "兰州",
         "fullname": "兰州市",
+        "pinyin": "lanzhou",
         "filename": "620000/620100",
         "level": 2,
         "center": [
@@ -4660,6 +5094,7 @@
         "code": "620200",
         "name": "嘉峪关",
         "fullname": "嘉峪关市",
+        "pinyin": "jiayuguan",
         "filename": "",
         "level": 2,
         "center": [
@@ -4671,6 +5106,7 @@
         "code": "620300",
         "name": "金昌",
         "fullname": "金昌市",
+        "pinyin": "jinchang",
         "filename": "620000/620300",
         "level": 2,
         "center": [
@@ -4682,6 +5118,7 @@
         "code": "620400",
         "name": "白银",
         "fullname": "白银市",
+        "pinyin": "baiyin",
         "filename": "620000/620400",
         "level": 2,
         "center": [
@@ -4693,6 +5130,7 @@
         "code": "620500",
         "name": "天水",
         "fullname": "天水市",
+        "pinyin": "tianshui",
         "filename": "620000/620500",
         "level": 2,
         "center": [
@@ -4704,6 +5142,7 @@
         "code": "620600",
         "name": "武威",
         "fullname": "武威市",
+        "pinyin": "wuwei",
         "filename": "620000/620600",
         "level": 2,
         "center": [
@@ -4715,6 +5154,7 @@
         "code": "620700",
         "name": "张掖",
         "fullname": "张掖市",
+        "pinyin": "zhangye",
         "filename": "620000/620700",
         "level": 2,
         "center": [
@@ -4726,6 +5166,7 @@
         "code": "620800",
         "name": "平凉",
         "fullname": "平凉市",
+        "pinyin": "pingliang",
         "filename": "620000/620800",
         "level": 2,
         "center": [
@@ -4737,6 +5178,7 @@
         "code": "620900",
         "name": "酒泉",
         "fullname": "酒泉市",
+        "pinyin": "jiuquan",
         "filename": "620000/620900",
         "level": 2,
         "center": [
@@ -4748,6 +5190,7 @@
         "code": "621000",
         "name": "庆阳",
         "fullname": "庆阳市",
+        "pinyin": "qingyang",
         "filename": "620000/621000",
         "level": 2,
         "center": [
@@ -4759,6 +5202,7 @@
         "code": "621100",
         "name": "定西",
         "fullname": "定西市",
+        "pinyin": "dingxi",
         "filename": "620000/621100",
         "level": 2,
         "center": [
@@ -4770,6 +5214,7 @@
         "code": "621200",
         "name": "陇南",
         "fullname": "陇南市",
+        "pinyin": "longnan",
         "filename": "620000/621200",
         "level": 2,
         "center": [
@@ -4781,6 +5226,7 @@
         "code": "622900",
         "name": "临夏",
         "fullname": "临夏回族自治州",
+        "pinyin": "linxia",
         "filename": "620000/622900",
         "level": 2,
         "center": [
@@ -4792,6 +5238,7 @@
         "code": "623000",
         "name": "甘南",
         "fullname": "甘南藏族自治州",
+        "pinyin": "gannan",
         "filename": "620000/623000",
         "level": 2,
         "center": [
@@ -4805,6 +5252,7 @@
         "code": "630100",
         "name": "西宁",
         "fullname": "西宁市",
+        "pinyin": "xining",
         "filename": "630000/630100",
         "level": 2,
         "center": [
@@ -4816,6 +5264,7 @@
         "code": "630200",
         "name": "海东",
         "fullname": "海东市",
+        "pinyin": "haidong",
         "filename": "630000/630200",
         "level": 2,
         "center": [
@@ -4827,6 +5276,7 @@
         "code": "632200",
         "name": "海北",
         "fullname": "海北藏族自治州",
+        "pinyin": "haibei",
         "filename": "630000/632200",
         "level": 2,
         "center": [
@@ -4838,6 +5288,7 @@
         "code": "632300",
         "name": "黄南",
         "fullname": "黄南藏族自治州",
+        "pinyin": "huangnan",
         "filename": "630000/632300",
         "level": 2,
         "center": [
@@ -4849,6 +5300,7 @@
         "code": "632500",
         "name": "海南",
         "fullname": "海南藏族自治州",
+        "pinyin": "hainan",
         "filename": "630000/632500",
         "level": 2,
         "center": [
@@ -4860,6 +5312,7 @@
         "code": "632600",
         "name": "果洛",
         "fullname": "果洛藏族自治州",
+        "pinyin": "guoluo",
         "filename": "630000/632600",
         "level": 2,
         "center": [
@@ -4871,6 +5324,7 @@
         "code": "632700",
         "name": "玉树",
         "fullname": "玉树藏族自治州",
+        "pinyin": "yushu",
         "filename": "630000/632700",
         "level": 2,
         "center": [
@@ -4882,6 +5336,7 @@
         "code": "632800",
         "name": "海西",
         "fullname": "海西蒙古族藏族自治州",
+        "pinyin": "haixi",
         "filename": "630000/632800",
         "level": 2,
         "center": [
@@ -4895,6 +5350,7 @@
         "code": "640100",
         "name": "银川",
         "fullname": "银川市",
+        "pinyin": "yinchuan",
         "filename": "640000/640100",
         "level": 2,
         "center": [
@@ -4906,6 +5362,7 @@
         "code": "640200",
         "name": "石嘴山",
         "fullname": "石嘴山市",
+        "pinyin": "shizuishan",
         "filename": "640000/640200",
         "level": 2,
         "center": [
@@ -4917,6 +5374,7 @@
         "code": "640300",
         "name": "吴忠",
         "fullname": "吴忠市",
+        "pinyin": "wuzhong",
         "filename": "640000/640300",
         "level": 2,
         "center": [
@@ -4928,6 +5386,7 @@
         "code": "640400",
         "name": "固原",
         "fullname": "固原市",
+        "pinyin": "guyuan",
         "filename": "640000/640400",
         "level": 2,
         "center": [
@@ -4939,6 +5398,7 @@
         "code": "640500",
         "name": "中卫",
         "fullname": "中卫市",
+        "pinyin": "zhongwei",
         "filename": "640000/640500",
         "level": 2,
         "center": [
@@ -4952,6 +5412,7 @@
         "code": "650100",
         "name": "乌鲁木齐",
         "fullname": "乌鲁木齐市",
+        "pinyin": "wulumuqi",
         "filename": "650000/650100",
         "level": 2,
         "center": [
@@ -4963,6 +5424,7 @@
         "code": "650200",
         "name": "克拉玛依",
         "fullname": "克拉玛依市",
+        "pinyin": "kelamayi",
         "filename": "650000/650200",
         "level": 2,
         "center": [
@@ -4974,6 +5436,7 @@
         "code": "650400",
         "name": "吐鲁番",
         "fullname": "吐鲁番市",
+        "pinyin": "tulufan",
         "filename": "650000/650400",
         "level": 2,
         "center": [
@@ -4985,6 +5448,7 @@
         "code": "650500",
         "name": "哈密",
         "fullname": "哈密市",
+        "pinyin": "hami",
         "filename": "650000/650500",
         "level": 2,
         "center": [
@@ -4996,6 +5460,7 @@
         "code": "652300",
         "name": "昌吉",
         "fullname": "昌吉回族自治州",
+        "pinyin": "changji",
         "filename": "650000/652300",
         "level": 2,
         "center": [
@@ -5007,6 +5472,7 @@
         "code": "652700",
         "name": "博州",
         "fullname": "博尔塔拉蒙古自治州",
+        "pinyin": "bozhou",
         "filename": "650000/652700",
         "level": 2,
         "center": [
@@ -5018,6 +5484,7 @@
         "code": "652800",
         "name": "巴州",
         "fullname": "巴音郭楞蒙古自治州",
+        "pinyin": "bazhou",
         "filename": "650000/652800",
         "level": 2,
         "center": [
@@ -5029,6 +5496,7 @@
         "code": "652900",
         "name": "阿克苏",
         "fullname": "阿克苏地区",
+        "pinyin": "akesu",
         "filename": "650000/652900",
         "level": 2,
         "center": [
@@ -5040,6 +5508,7 @@
         "code": "653000",
         "name": "克州",
         "fullname": "克孜勒苏柯尔克孜自治州",
+        "pinyin": "kezhou",
         "filename": "650000/653000",
         "level": 2,
         "center": [
@@ -5051,6 +5520,7 @@
         "code": "653100",
         "name": "喀什",
         "fullname": "喀什地区",
+        "pinyin": "kashi",
         "filename": "650000/653100",
         "level": 2,
         "center": [
@@ -5062,6 +5532,7 @@
         "code": "653200",
         "name": "和田",
         "fullname": "和田地区",
+        "pinyin": "hetian",
         "filename": "650000/653200",
         "level": 2,
         "center": [
@@ -5073,6 +5544,7 @@
         "code": "654000",
         "name": "伊犁",
         "fullname": "伊犁哈萨克自治州",
+        "pinyin": "yili",
         "filename": "650000/654000",
         "level": 2,
         "center": [
@@ -5084,6 +5556,7 @@
         "code": "654200",
         "name": "塔城",
         "fullname": "塔城地区",
+        "pinyin": "tacheng",
         "filename": "650000/654200",
         "level": 2,
         "center": [
@@ -5095,6 +5568,7 @@
         "code": "654300",
         "name": "阿勒泰",
         "fullname": "阿勒泰地区",
+        "pinyin": "aletai",
         "filename": "650000/654300",
         "level": 2,
         "center": [
@@ -5106,6 +5580,7 @@
         "code": "659001",
         "name": "石河子",
         "fullname": "石河子市",
+        "pinyin": "shihezi",
         "filename": "",
         "level": 2,
         "center": [
@@ -5117,6 +5592,7 @@
         "code": "659002",
         "name": "阿拉尔",
         "fullname": "阿拉尔市",
+        "pinyin": "alaer",
         "filename": "",
         "level": 2,
         "center": [
@@ -5128,6 +5604,7 @@
         "code": "659003",
         "name": "图木舒克",
         "fullname": "图木舒克市",
+        "pinyin": "tumushuke",
         "filename": "",
         "level": 2,
         "center": [
@@ -5139,6 +5616,7 @@
         "code": "659004",
         "name": "五家渠",
         "fullname": "五家渠市",
+        "pinyin": "wujiaqu",
         "filename": "",
         "level": 2,
         "center": [
@@ -5150,6 +5628,7 @@
         "code": "659005",
         "name": "北屯",
         "fullname": "北屯市",
+        "pinyin": "beitun",
         "filename": "",
         "level": 2,
         "center": [
@@ -5161,6 +5640,7 @@
         "code": "659006",
         "name": "铁门关",
         "fullname": "铁门关市",
+        "pinyin": "tiemenguan",
         "filename": "",
         "level": 2,
         "center": [
@@ -5172,6 +5652,7 @@
         "code": "659007",
         "name": "双河",
         "fullname": "双河市",
+        "pinyin": "shuanghe",
         "filename": "",
         "level": 2,
         "center": [
@@ -5183,6 +5664,7 @@
         "code": "659008",
         "name": "可克达拉",
         "fullname": "可克达拉市",
+        "pinyin": "kekedala",
         "filename": "",
         "level": 2,
         "center": [
@@ -5194,6 +5676,7 @@
         "code": "659009",
         "name": "昆玉",
         "fullname": "昆玉市",
+        "pinyin": "kunyu",
         "filename": "",
         "level": 2,
         "center": [
@@ -5205,6 +5688,7 @@
         "code": "659010",
         "name": "胡杨河",
         "fullname": "胡杨河市",
+        "pinyin": "huyanghe",
         "filename": "",
         "level": 2,
         "center": [
@@ -5216,6 +5700,7 @@
         "code": "659011",
         "name": "新星",
         "fullname": "新星市",
+        "pinyin": "xinxing",
         "filename": "",
         "level": 2,
         "center": [
@@ -5227,6 +5712,7 @@
         "code": "659012",
         "name": "白杨",
         "fullname": "白杨市",
+        "pinyin": "baiyang",
         "filename": "",
         "level": 2,
         "center": [
@@ -5240,6 +5726,7 @@
         "code": "711000",
         "name": "台北",
         "fullname": "台北市",
+        "pinyin": "taibei",
         "filename": "710000/711000",
         "level": 2,
         "center": [
@@ -5251,6 +5738,7 @@
         "code": "711100",
         "name": "台中",
         "fullname": "台中市",
+        "pinyin": "taizhong",
         "filename": "710000/711100",
         "level": 2,
         "center": [
@@ -5262,6 +5750,7 @@
         "code": "711200",
         "name": "基隆",
         "fullname": "基隆市",
+        "pinyin": "jilong",
         "filename": "710000/711200",
         "level": 2,
         "center": [
@@ -5273,6 +5762,7 @@
         "code": "711300",
         "name": "台南",
         "fullname": "台南市",
+        "pinyin": "tainan",
         "filename": "710000/711300",
         "level": 2,
         "center": [
@@ -5284,6 +5774,7 @@
         "code": "711400",
         "name": "高雄",
         "fullname": "高雄市",
+        "pinyin": "gaoxiong",
         "filename": "710000/711400",
         "level": 2,
         "center": [
@@ -5295,6 +5786,7 @@
         "code": "711500",
         "name": "新北",
         "fullname": "新北市",
+        "pinyin": "xinbei",
         "filename": "710000/711500",
         "level": 2,
         "center": [
@@ -5306,6 +5798,7 @@
         "code": "711600",
         "name": "宜兰",
         "fullname": "宜兰县",
+        "pinyin": "yilan",
         "filename": "710000/711600",
         "level": 2,
         "center": [
@@ -5317,6 +5810,7 @@
         "code": "711700",
         "name": "桃园",
         "fullname": "桃园市",
+        "pinyin": "taoyuan",
         "filename": "710000/711700",
         "level": 2,
         "center": [
@@ -5328,6 +5822,7 @@
         "code": "711800",
         "name": "嘉义",
         "fullname": "嘉义市",
+        "pinyin": "jiayi",
         "filename": "710000/711800",
         "level": 2,
         "center": [
@@ -5339,6 +5834,7 @@
         "code": "711900",
         "name": "新竹",
         "fullname": "新竹县",
+        "pinyin": "xinzhu",
         "filename": "710000/711900",
         "level": 2,
         "center": [
@@ -5350,6 +5846,7 @@
         "code": "712000",
         "name": "苗栗",
         "fullname": "苗栗县",
+        "pinyin": "miaoli",
         "filename": "710000/712000",
         "level": 2,
         "center": [
@@ -5361,6 +5858,7 @@
         "code": "712200",
         "name": "南投",
         "fullname": "南投县",
+        "pinyin": "nantou",
         "filename": "710000/712200",
         "level": 2,
         "center": [
@@ -5372,6 +5870,7 @@
         "code": "712300",
         "name": "彰化",
         "fullname": "彰化县",
+        "pinyin": "zhanghua",
         "filename": "710000/712300",
         "level": 2,
         "center": [
@@ -5383,6 +5882,7 @@
         "code": "712400",
         "name": "新竹",
         "fullname": "新竹市",
+        "pinyin": "xinzhu",
         "filename": "710000/712400",
         "level": 2,
         "center": [
@@ -5394,6 +5894,7 @@
         "code": "712500",
         "name": "云林",
         "fullname": "云林县",
+        "pinyin": "yunlin",
         "filename": "710000/712500",
         "level": 2,
         "center": [
@@ -5405,6 +5906,7 @@
         "code": "712600",
         "name": "嘉义",
         "fullname": "嘉义县",
+        "pinyin": "jiayi",
         "filename": "710000/712600",
         "level": 2,
         "center": [
@@ -5416,6 +5918,7 @@
         "code": "712900",
         "name": "屏东",
         "fullname": "屏东县",
+        "pinyin": "pingdong",
         "filename": "710000/712900",
         "level": 2,
         "center": [
@@ -5427,6 +5930,7 @@
         "code": "713000",
         "name": "花莲",
         "fullname": "花莲县",
+        "pinyin": "hualian",
         "filename": "710000/713000",
         "level": 2,
         "center": [
@@ -5438,6 +5942,7 @@
         "code": "713100",
         "name": "台东",
         "fullname": "台东县",
+        "pinyin": "taidong",
         "filename": "710000/713100",
         "level": 2,
         "center": [
@@ -5449,6 +5954,7 @@
         "code": "713200",
         "name": "澎湖",
         "fullname": "澎湖县",
+        "pinyin": "penghu",
         "filename": "710000/713200",
         "level": 2,
         "center": [
@@ -5462,6 +5968,7 @@
         "code": "811100",
         "name": "中西区",
         "fullname": "中西区",
+        "pinyin": "zhongxiqu",
         "filename": "",
         "level": 3,
         "center": [
@@ -5473,6 +5980,7 @@
         "code": "811200",
         "name": "湾仔区",
         "fullname": "湾仔区",
+        "pinyin": "wanziqu",
         "filename": "",
         "level": 3,
         "center": [
@@ -5484,6 +5992,7 @@
         "code": "811300",
         "name": "东区",
         "fullname": "东区",
+        "pinyin": "dongqu",
         "filename": "",
         "level": 3,
         "center": [
@@ -5495,6 +6004,7 @@
         "code": "811400",
         "name": "南区",
         "fullname": "南区",
+        "pinyin": "nanqu",
         "filename": "",
         "level": 3,
         "center": [
@@ -5506,6 +6016,7 @@
         "code": "812100",
         "name": "油尖旺区",
         "fullname": "油尖旺区",
+        "pinyin": "youjianwangqu",
         "filename": "",
         "level": 3,
         "center": [
@@ -5517,6 +6028,7 @@
         "code": "812200",
         "name": "深水埗区",
         "fullname": "深水埗区",
+        "pinyin": "shenshuibuqu",
         "filename": "",
         "level": 3,
         "center": [
@@ -5528,6 +6040,7 @@
         "code": "812300",
         "name": "九龙",
         "fullname": "九龙城区",
+        "pinyin": "jiulong",
         "filename": "",
         "level": 3,
         "center": [
@@ -5539,6 +6052,7 @@
         "code": "812400",
         "name": "黄大仙区",
         "fullname": "黄大仙区",
+        "pinyin": "huangdaxianqu",
         "filename": "",
         "level": 3,
         "center": [
@@ -5550,6 +6064,7 @@
         "code": "812500",
         "name": "观塘区",
         "fullname": "观塘区",
+        "pinyin": "guantangqu",
         "filename": "",
         "level": 3,
         "center": [
@@ -5561,6 +6076,7 @@
         "code": "813100",
         "name": "葵青区",
         "fullname": "葵青区",
+        "pinyin": "kuiqingqu",
         "filename": "",
         "level": 3,
         "center": [
@@ -5572,6 +6088,7 @@
         "code": "813200",
         "name": "荃湾区",
         "fullname": "荃湾区",
+        "pinyin": "quanwanqu",
         "filename": "",
         "level": 3,
         "center": [
@@ -5583,6 +6100,7 @@
         "code": "813300",
         "name": "屯门区",
         "fullname": "屯门区",
+        "pinyin": "tunmenqu",
         "filename": "",
         "level": 3,
         "center": [
@@ -5594,6 +6112,7 @@
         "code": "813400",
         "name": "元朗区",
         "fullname": "元朗区",
+        "pinyin": "yuanlangqu",
         "filename": "",
         "level": 3,
         "center": [
@@ -5605,6 +6124,7 @@
         "code": "813500",
         "name": "北区",
         "fullname": "北区",
+        "pinyin": "beiqu",
         "filename": "",
         "level": 3,
         "center": [
@@ -5616,6 +6136,7 @@
         "code": "813600",
         "name": "大埔区",
         "fullname": "大埔区",
+        "pinyin": "dapuqu",
         "filename": "",
         "level": 3,
         "center": [
@@ -5627,6 +6148,7 @@
         "code": "813700",
         "name": "沙田区",
         "fullname": "沙田区",
+        "pinyin": "shatianqu",
         "filename": "",
         "level": 3,
         "center": [
@@ -5638,6 +6160,7 @@
         "code": "813800",
         "name": "西贡区",
         "fullname": "西贡区",
+        "pinyin": "xigongqu",
         "filename": "",
         "level": 3,
         "center": [
@@ -5649,6 +6172,7 @@
         "code": "813900",
         "name": "离岛区",
         "fullname": "离岛区",
+        "pinyin": "lidaoqu",
         "filename": "",
         "level": 3,
         "center": [
@@ -5662,6 +6186,7 @@
         "code": "820100",
         "name": "澳门半岛",
         "fullname": "澳门半岛",
+        "pinyin": "aomenbandao",
         "filename": "",
         "level": 3,
         "center": [
@@ -5673,6 +6198,7 @@
         "code": "820200",
         "name": "氹仔岛",
         "fullname": "氹仔岛",
+        "pinyin": "dangzidao",
         "filename": "",
         "level": 3,
         "center": [
@@ -5684,6 +6210,7 @@
         "code": "820300",
         "name": "路环岛",
         "fullname": "路环岛",
+        "pinyin": "luhuandao",
         "filename": "",
         "level": 3,
         "center": [

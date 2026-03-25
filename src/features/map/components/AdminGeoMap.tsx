@@ -4,6 +4,7 @@ import { MapChart } from "echarts/charts";
 import { TooltipComponent } from "echarts/components";
 import { CanvasRenderer } from "echarts/renderers";
 import type { EChartsOption } from "echarts";
+import { useI18n } from "../../../shared/i18n/I18nProvider";
 import type { VisitVisualState } from "../../../entities/region/model/types";
 import { getRegionFill, getRegionHoverFill, getRegionStroke } from "../lib/mapTheme";
 
@@ -14,6 +15,7 @@ type GeoJsonFeature = {
     code?: string;
     name?: string;
     fullname?: string;
+    pinyin?: string;
   };
 };
 
@@ -36,6 +38,7 @@ export function AdminGeoMap({
   onRegionClick,
   emptyMessage,
 }: AdminGeoMapProps) {
+  const { locale, t } = useI18n();
   const containerRef = useRef<HTMLDivElement | null>(null);
   const chartRef = useRef<echarts.EChartsType | null>(null);
   const [geoJson, setGeoJson] = useState<GeoJsonCollection | null>(null);
@@ -50,7 +53,7 @@ export function AdminGeoMap({
     fetch(`/geojson/china/${mapCode}.json`)
       .then(async (response) => {
         if (!response.ok) {
-          throw new Error(`Map dataset ${mapCode} could not be loaded.`);
+          throw new Error(t("map.loadError"));
         }
 
         return response.json();
@@ -62,14 +65,21 @@ export function AdminGeoMap({
       })
       .catch((loadError: unknown) => {
         if (!cancelled) {
-          setError(loadError instanceof Error ? loadError.message : "Unable to load map data.");
+          setError(loadError instanceof Error ? loadError.message : t("map.loadError"));
         }
       });
 
     return () => {
       cancelled = true;
     };
-  }, [mapCode]);
+  }, [mapCode, t]);
+
+  const toEnglishName = (value: string) =>
+    value
+      .split(/[\s-]+/)
+      .filter(Boolean)
+      .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+      .join(" ");
 
   const featureLookup = useMemo(() => {
     const lookup = new Map<string, string>();
@@ -99,7 +109,8 @@ export function AdminGeoMap({
       animationDurationUpdate: 300,
       tooltip: {
         trigger: "item",
-        formatter: (params: any) => params?.data?.fullName ?? params?.name ?? "",
+        formatter: (params: any) =>
+          params?.data?.displayName ?? params?.data?.fullName ?? params?.name ?? "",
       },
       series: [
         {
@@ -115,7 +126,7 @@ export function AdminGeoMap({
             show: true,
             color: "#f8fafc",
             fontSize: mapCode === "100000" ? 10 : 11,
-            formatter: "{b}",
+            formatter: (params: any) => params?.data?.displayName ?? params?.name ?? "",
           },
           emphasis: {
             label: {
@@ -132,14 +143,17 @@ export function AdminGeoMap({
             const code = String(feature.properties?.code ?? "");
             const name = String(feature.properties?.name ?? "");
             const fullName = String(feature.properties?.fullname ?? name);
+            const pinyin = String(feature.properties?.pinyin ?? "");
             const visualState = getVisualState(code);
             const isActive = activeCode === code;
+            const displayName = locale === "zh-CN" ? fullName : toEnglishName(pinyin || name);
 
             return {
               name,
               value: 1,
               regionCode: code,
               fullName,
+              displayName,
               itemStyle: {
                 areaColor: getRegionFill(visualState, isActive),
                 borderColor: getRegionStroke(isActive),
@@ -155,7 +169,7 @@ export function AdminGeoMap({
         },
       ],
     } as EChartsOption;
-  }, [activeCode, geoJson, getVisualState, mapCode]);
+  }, [activeCode, geoJson, getVisualState, locale, mapCode]);
 
   useEffect(() => {
     if (!containerRef.current || !option) {
@@ -197,7 +211,7 @@ export function AdminGeoMap({
   if (!geoJson) {
     return (
       <div className="flex h-[460px] items-center justify-center rounded-[28px] border border-dashed border-slate-200 bg-slate-50 px-6 text-center text-sm text-slate-500">
-        Loading map data...
+        {t("map.loading")}
       </div>
     );
   }

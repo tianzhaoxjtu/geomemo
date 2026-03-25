@@ -55,11 +55,11 @@ export function parseVisitImport(raw: string): VisitsState {
   try {
     parsed = JSON.parse(raw);
   } catch {
-    throw new Error("The selected file is not valid JSON.");
+    throw new Error("error.import.invalidJson");
   }
 
   if (!parsed || typeof parsed !== "object") {
-    throw new Error("The import file is missing the expected data shape.");
+    throw new Error("error.import.missingShape");
   }
 
   const visits =
@@ -68,7 +68,7 @@ export function parseVisitImport(raw: string): VisitsState {
       : parsed;
 
   if (!visits || typeof visits !== "object") {
-    throw new Error("The import file does not include visit data.");
+    throw new Error("error.import.missingVisits");
   }
 
   return {
