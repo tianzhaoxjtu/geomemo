@@ -13,3 +13,13 @@ export function getRegionFill(visualState: VisitVisualState, isActive = false) {
 export function getRegionStroke(isActive = false) {
   return isActive ? "#f8fafc" : "#ffffff";
 }
+
+export function getRegionHoverFill(visualState: VisitVisualState) {
+  const colorMap: Record<VisitVisualState, string> = {
+    visited: "#1d4ed8",
+    partial: "#d97706",
+    unvisited: "#94a3b8",
+  };
+
+  return colorMap[visualState];
+}

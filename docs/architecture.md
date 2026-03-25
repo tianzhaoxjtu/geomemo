@@ -11,7 +11,7 @@ The current stack is:
 - Tailwind CSS
 - Zustand with persisted storage
 
-The map currently uses stylized SVG mock geography instead of real GeoJSON. That keeps the interaction loop fast to build while preserving a clean path to real map assets later.
+The map currently uses vendored China GeoJSON files rendered with ECharts. Those files are stored locally in the repo, so the runtime does not depend on any external map API.
 
 ## Architecture Goals
 
@@ -59,7 +59,7 @@ src/
 Owns static reference data:
 
 - province and city metadata
-- SVG shape/tile geometry
+- vendored province and city boundary metadata
 - indexed lookup helpers such as `getProvinceById` and `getCityById`
 
 This layer should be replaceable later with API or GeoJSON-backed data sources.

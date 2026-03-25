@@ -5,7 +5,7 @@ GeoMemo is a React + TypeScript + Vite + Tailwind CSS app for tracking places vi
 ## Features
 
 - Stylized China overview map with province-level interaction
-- Province drill-down into city-level tiles
+- Province drill-down into city-level administrative regions
 - Mark city or whole province as visited or unvisited
 - Visual differentiation for visited, partially visited, and unvisited regions
 - Live statistics for counts and percentages
@@ -62,6 +62,7 @@ npm run preview
 
 ## Notes
 
-- The current map is a practical MVP using mock SVG geography for provinces and city tiles.
-- The data model and store are structured so real China GeoJSON or backend-driven region data can replace the mock map later without a major rewrite.
+- The current map uses vendored China GeoJSON files stored under `public/geojson/china`.
+- The dataset snapshot is fetched from GeoJSON.CN and versioned locally through `scripts/fetch-geojson.mjs`.
+- The data model and store are structured so future backend-driven region data can replace the local snapshot without a major rewrite.
 - More architecture details live in [`docs/architecture.md`](./docs/architecture.md) and [`docs/mvp-spec.md`](./docs/mvp-spec.md).

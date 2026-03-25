@@ -4,28 +4,18 @@ export type VisitVisualState = "unvisited" | "partial" | "visited";
 
 export interface City {
   id: string;
-  code?: string;
+  code: string;
   name: string;
+  fullname: string;
   provinceId: string;
-  tile: {
-    x: number;
-    y: number;
-    width: number;
-    height: number;
-  };
-}
-
-export interface ProvinceShape {
-  path: string;
-  labelX: number;
-  labelY: number;
 }
 
 export interface Province {
   id: string;
   name: string;
+  fullname: string;
   code: string;
-  shape: ProvinceShape;
+  filename: string;
   cityIds: string[];
 }
 

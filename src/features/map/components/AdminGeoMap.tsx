@@ -1,0 +1,214 @@
+import { useEffect, useMemo, useRef, useState } from "react";
+import * as echarts from "echarts/core";
+import { MapChart } from "echarts/charts";
+import { TooltipComponent } from "echarts/components";
+import { CanvasRenderer } from "echarts/renderers";
+import type { EChartsOption } from "echarts";
+import type { VisitVisualState } from "../../../entities/region/model/types";
+import { getRegionFill, getRegionHoverFill, getRegionStroke } from "../lib/mapTheme";
+
+echarts.use([MapChart, TooltipComponent, CanvasRenderer]);
+
+type GeoJsonFeature = {
+  properties?: {
+    code?: string;
+    name?: string;
+    fullname?: string;
+  };
+};
+
+type GeoJsonCollection = {
+  features?: GeoJsonFeature[];
+};
+
+interface AdminGeoMapProps {
+  mapCode: string;
+  activeCode: string | null;
+  getVisualState: (regionCode: string) => VisitVisualState;
+  onRegionClick: (regionCode: string) => void;
+  emptyMessage: string;
+}
+
+export function AdminGeoMap({
+  mapCode,
+  activeCode,
+  getVisualState,
+  onRegionClick,
+  emptyMessage,
+}: AdminGeoMapProps) {
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const chartRef = useRef<echarts.EChartsType | null>(null);
+  const [geoJson, setGeoJson] = useState<GeoJsonCollection | null>(null);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    let cancelled = false;
+
+    setGeoJson(null);
+    setError(null);
+
+    fetch(`/geojson/china/${mapCode}.json`)
+      .then(async (response) => {
+        if (!response.ok) {
+          throw new Error(`Map dataset ${mapCode} could not be loaded.`);
+        }
+
+        return response.json();
+      })
+      .then((data: GeoJsonCollection) => {
+        if (!cancelled) {
+          setGeoJson(data);
+        }
+      })
+      .catch((loadError: unknown) => {
+        if (!cancelled) {
+          setError(loadError instanceof Error ? loadError.message : "Unable to load map data.");
+        }
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [mapCode]);
+
+  const featureLookup = useMemo(() => {
+    const lookup = new Map<string, string>();
+
+    for (const feature of geoJson?.features ?? []) {
+      const code = String(feature.properties?.code ?? "");
+      const name = String(feature.properties?.name ?? "");
+
+      if (code && name) {
+        lookup.set(name, code);
+      }
+    }
+
+    return lookup;
+  }, [geoJson]);
+
+  const option = useMemo<EChartsOption | null>(() => {
+    if (!geoJson) {
+      return null;
+    }
+
+    const mapName = `geomemo-${mapCode}`;
+    echarts.registerMap(mapName, geoJson as never);
+
+    return {
+      animationDuration: 350,
+      animationDurationUpdate: 300,
+      tooltip: {
+        trigger: "item",
+        formatter: (params: any) => params?.data?.fullName ?? params?.name ?? "",
+      },
+      series: [
+        {
+          type: "map",
+          map: mapName,
+          roam: true,
+          zoom: 1.05,
+          scaleLimit: {
+            min: 1,
+            max: 8,
+          },
+          label: {
+            show: true,
+            color: "#f8fafc",
+            fontSize: mapCode === "100000" ? 10 : 11,
+            formatter: "{b}",
+          },
+          emphasis: {
+            label: {
+              color: "#ffffff",
+              fontWeight: "bold",
+            },
+          },
+          itemStyle: {
+            borderColor: "#ffffff",
+            borderWidth: 1,
+            areaColor: "#cbd5e1",
+          },
+          data: (geoJson.features ?? []).map((feature) => {
+            const code = String(feature.properties?.code ?? "");
+            const name = String(feature.properties?.name ?? "");
+            const fullName = String(feature.properties?.fullname ?? name);
+            const visualState = getVisualState(code);
+            const isActive = activeCode === code;
+
+            return {
+              name,
+              value: 1,
+              regionCode: code,
+              fullName,
+              itemStyle: {
+                areaColor: getRegionFill(visualState, isActive),
+                borderColor: getRegionStroke(isActive),
+                borderWidth: isActive ? 2 : 1,
+              },
+              emphasis: {
+                itemStyle: {
+                  areaColor: getRegionHoverFill(visualState),
+                },
+              },
+            };
+          }),
+        },
+      ],
+    } as EChartsOption;
+  }, [activeCode, geoJson, getVisualState, mapCode]);
+
+  useEffect(() => {
+    if (!containerRef.current || !option) {
+      return;
+    }
+
+    const chart = echarts.init(containerRef.current);
+    chartRef.current = chart;
+    chart.setOption(option);
+
+    const clickHandler = (params: any) => {
+      const code = params?.data?.regionCode ?? (params?.name ? featureLookup.get(params.name) : null);
+
+      if (code) {
+        onRegionClick(code);
+      }
+    };
+
+    chart.on("click", clickHandler);
+    const resizeHandler = () => chart.resize();
+    window.addEventListener("resize", resizeHandler);
+
+    return () => {
+      window.removeEventListener("resize", resizeHandler);
+      chart.off("click", clickHandler);
+      chart.dispose();
+      chartRef.current = null;
+    };
+  }, [featureLookup, onRegionClick, option]);
+
+  if (error) {
+    return (
+      <div className="flex h-[460px] items-center justify-center rounded-[28px] border border-dashed border-slate-200 bg-slate-50 px-6 text-center text-sm text-slate-500">
+        {error}
+      </div>
+    );
+  }
+
+  if (!geoJson) {
+    return (
+      <div className="flex h-[460px] items-center justify-center rounded-[28px] border border-dashed border-slate-200 bg-slate-50 px-6 text-center text-sm text-slate-500">
+        Loading map data...
+      </div>
+    );
+  }
+
+  if ((geoJson.features ?? []).length === 0) {
+    return (
+      <div className="flex h-[460px] items-center justify-center rounded-[28px] border border-dashed border-slate-200 bg-slate-50 px-6 text-center text-sm text-slate-500">
+        {emptyMessage}
+      </div>
+    );
+  }
+
+  return <div ref={containerRef} className="h-[460px] w-full" />;
+}

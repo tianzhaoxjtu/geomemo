@@ -20,8 +20,8 @@ export function RegionInfoPanel({
     return (
       <SurfaceCard eyebrow="Context" title="National View" description="Browse the country map and dive into each province to inspect city progress.">
         <p className="text-sm leading-6 text-slate-600">
-          Start from the stylized China map, then click any province to open its city-level view.
-          This MVP uses mock geometry, while the visit logic and persistence are production-shaped.
+          Start from the country-level administrative boundary map, then click any province to open
+          its city-level view. Names and codes now come from the vendored GeoJSON dataset.
         </p>
       </SurfaceCard>
     );
@@ -40,8 +40,8 @@ export function RegionInfoPanel({
       title={province.name}
       description={
         level === "city" && activeCity
-          ? `Selected city: ${activeCity.name}`
-          : "Choose a city tile or select from the list below."
+          ? `Selected city: ${activeCity.fullname}`
+          : "Choose a city region from the map or select from the list below."
       }
     >
       <div className="mb-4 flex items-center gap-2">
@@ -64,7 +64,7 @@ export function RegionInfoPanel({
               }`}
               onClick={() => onSelectCity(city.id)}
             >
-              <span className="font-medium">{city.name}</span>
+              <span className="font-medium">{city.fullname}</span>
               <span
                 className={`rounded-full px-2.5 py-1 text-xs font-medium ${
                   isActive

@@ -10,7 +10,9 @@ export function VisitedSummaryCard({ visitedCityIds }: VisitedSummaryCardProps) 
     .map((cityId) => regionIndex.citiesById[cityId])
     .filter(Boolean);
   const visitedProvinceNames = Array.from(
-    new Set(visitedCities.map((city) => regionIndex.provincesById[city.provinceId]?.name).filter(Boolean)),
+    new Set(
+      visitedCities.map((city) => regionIndex.provincesById[city.provinceId]?.fullname).filter(Boolean),
+    ),
   ) as string[];
 
   return (
@@ -50,7 +52,7 @@ export function VisitedSummaryCard({ visitedCityIds }: VisitedSummaryCardProps) 
                   key={city.id}
                   className="rounded-full border border-slate-200 bg-white px-3 py-1.5 text-xs font-medium text-slate-700 shadow-sm"
                 >
-                  {city.name}
+                  {city.fullname}
                 </span>
               ))
             ) : (
