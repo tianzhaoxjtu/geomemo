@@ -32,6 +32,19 @@ export function getProvinceVisitedCount(provinceId: string, visitedCities: Visit
   return getProvinceCities(provinceId).filter((city) => isCityVisited(city.id, visitedCities)).length;
 }
 
+export function getProvinceCoverageRatio(
+  provinceId: string,
+  visitedCities: VisitedCityMap | undefined | null,
+) {
+  const provinceCities = getProvinceCities(provinceId);
+
+  if (provinceCities.length === 0) {
+    return 0;
+  }
+
+  return getProvinceVisitedCount(provinceId, visitedCities) / provinceCities.length;
+}
+
 // Province-level metrics use "any visited second-level unit" as the coverage rule.
 // This keeps province counts and percentages derived from the same lower-level source of truth.
 export function isProvinceVisited(provinceId: string, visitedCities: VisitedCityMap | undefined | null) {

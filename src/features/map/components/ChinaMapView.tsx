@@ -2,7 +2,11 @@ import { useMemo, type ReactNode } from "react";
 import type { VisitedCityMap } from "../../../entities/visit/model/types";
 import { useI18n } from "../../../shared/i18n/I18nProvider";
 import { SurfaceCard } from "../../../shared/ui/SurfaceCard";
-import { getProvinceExperienceLevel, getProvinceVisualState } from "../../stats/model/statsSelectors";
+import {
+  getProvinceCoverageRatio,
+  getProvinceExperienceLevel,
+  getProvinceVisualState,
+} from "../../stats/model/statsSelectors";
 import { AdminGeoMap } from "./AdminGeoMap";
 
 interface ChinaMapViewProps {
@@ -45,6 +49,7 @@ export function ChinaMapView({
           initialView={initialView}
           getVisualState={(regionCode) => getProvinceVisualState(regionCode, visitedCities)}
           getExperienceLevel={(regionCode) => getProvinceExperienceLevel(regionCode, visitedCities)}
+          getCoverageRatio={(regionCode) => getProvinceCoverageRatio(regionCode, visitedCities)}
           onRegionClick={onProvinceClick}
           emptyMessage={t("map.emptyCountry")}
         />

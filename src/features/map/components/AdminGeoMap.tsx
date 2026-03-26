@@ -33,6 +33,7 @@ interface AdminGeoMapProps {
   };
   getVisualState: (regionCode: string) => VisitVisualState;
   getExperienceLevel: (regionCode: string) => ExperienceLevel | null;
+  getCoverageRatio?: (regionCode: string) => number;
   onRegionClick: (regionCode: string) => void;
   emptyMessage: string;
 }
@@ -44,6 +45,7 @@ export function AdminGeoMap({
   initialView,
   getVisualState,
   getExperienceLevel,
+  getCoverageRatio,
   onRegionClick,
   emptyMessage,
 }: AdminGeoMapProps) {
@@ -144,6 +146,7 @@ export function AdminGeoMap({
       const pinyin = String(feature.properties?.pinyin ?? "");
       const visualState = getVisualState(code);
       const experienceLevel = getExperienceLevel(code);
+      const coverageRatio = getCoverageRatio ? getCoverageRatio(code) : undefined;
       const isActive = isRegionActive ? isRegionActive(code) : activeCode === code;
       const displayName = locale === "zh-CN" ? fullName : toEnglishName(pinyin || name);
 
@@ -154,13 +157,13 @@ export function AdminGeoMap({
         fullName,
         displayName,
         itemStyle: {
-          areaColor: getRegionFill(visualState, experienceLevel, isActive),
+          areaColor: getRegionFill(visualState, experienceLevel, coverageRatio, isActive),
           borderColor: getRegionStroke(isActive),
           borderWidth: isActive ? 2 : 1,
         },
         emphasis: {
           itemStyle: {
-            areaColor: getRegionHoverFill(visualState, experienceLevel),
+            areaColor: getRegionHoverFill(visualState, experienceLevel, coverageRatio),
           },
         },
       };
@@ -212,7 +215,7 @@ export function AdminGeoMap({
         },
       ],
     } as EChartsOption;
-  }, [activeCode, geoJson, getExperienceLevel, getVisualState, initialCenterX, initialCenterY, initialView?.zoom, isRegionActive, locale, mapCode]);
+  }, [activeCode, geoJson, getCoverageRatio, getExperienceLevel, getVisualState, initialCenterX, initialCenterY, initialView?.zoom, isRegionActive, locale, mapCode]);
 
   useEffect(() => {
     if (!containerRef.current || !geoJson) {

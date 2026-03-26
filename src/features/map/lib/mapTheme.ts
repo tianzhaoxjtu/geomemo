@@ -40,27 +40,28 @@ function getExperiencePalette(experienceLevel: ExperienceLevel | null) {
 export function getRegionFill(
   visualState: VisitVisualState,
   experienceLevel: ExperienceLevel | null,
+  coverageRatio = visualState === "visited" ? 1 : visualState === "partial" ? 0.5 : 0,
   isActive = false,
 ) {
   const palette = getExperiencePalette(experienceLevel);
-  const colorMap: Record<VisitVisualState, { default: string; active: string }> = {
-    visited: {
-      default: palette.visited,
-      active: palette.activeVisited,
-    },
-    partial: {
-      default: palette.partial,
-      active: palette.activePartial,
-    },
-    unvisited: {
-      default: "#d9e1e8",
-      active: "#bec9d3",
-    },
-  };
+  const baseUnvisited = "#d9e1e8";
 
-  const target = colorMap[visualState];
+  if (visualState === "unvisited") {
+    return isActive ? "#bec9d3" : baseUnvisited;
+  }
 
-  return isActive ? target.active : target.default;
+  const normalizedCoverage = Math.max(0, Math.min(coverageRatio, 1));
+  const easedCoverage = Math.pow(normalizedCoverage, 0.78);
+  const minBlend = visualState === "visited" ? 0.82 : 0.92;
+  const maxBlend = visualState === "visited" ? 0.12 : 0.36;
+  const blend = minBlend - (minBlend - maxBlend) * easedCoverage;
+  const defaultColor = mixHex(baseUnvisited, palette.visited, blend);
+
+  if (!isActive) {
+    return defaultColor;
+  }
+
+  return mixHex(defaultColor, palette.activeVisited, 0.34);
 }
 
 export function getRegionStroke(isActive = false) {
@@ -70,13 +71,53 @@ export function getRegionStroke(isActive = false) {
 export function getRegionHoverFill(
   visualState: VisitVisualState,
   experienceLevel: ExperienceLevel | null,
+  coverageRatio = visualState === "visited" ? 1 : visualState === "partial" ? 0.5 : 0,
 ) {
   const palette = getExperiencePalette(experienceLevel);
-  const colorMap: Record<VisitVisualState, string> = {
-    visited: palette.hover,
-    partial: palette.hover,
-    unvisited: "#c3ced8",
+
+  if (visualState === "unvisited") {
+    return "#c3ced8";
+  }
+
+  const normalizedCoverage = Math.max(0, Math.min(coverageRatio, 1));
+  const easedCoverage = Math.pow(normalizedCoverage, 0.78);
+  const blend = 0.72 - 0.44 * easedCoverage;
+
+  return mixHex(palette.hover, palette.visited, blend);
+}
+
+function mixHex(fromHex: string, toHex: string, ratio: number) {
+  const safeRatio = Math.max(0, Math.min(ratio, 1));
+  const from = hexToRgb(fromHex);
+  const to = hexToRgb(toHex);
+
+  const mixed = {
+    r: Math.round(from.r + (to.r - from.r) * safeRatio),
+    g: Math.round(from.g + (to.g - from.g) * safeRatio),
+    b: Math.round(from.b + (to.b - from.b) * safeRatio),
   };
 
-  return colorMap[visualState];
+  return rgbToHex(mixed.r, mixed.g, mixed.b);
+}
+
+function hexToRgb(hex: string) {
+  const normalized = hex.replace("#", "");
+  const value = normalized.length === 3
+    ? normalized
+        .split("")
+        .map((part) => part + part)
+        .join("")
+    : normalized;
+
+  return {
+    r: Number.parseInt(value.slice(0, 2), 16),
+    g: Number.parseInt(value.slice(2, 4), 16),
+    b: Number.parseInt(value.slice(4, 6), 16),
+  };
+}
+
+function rgbToHex(r: number, g: number, b: number) {
+  return `#${[r, g, b]
+    .map((channel) => channel.toString(16).padStart(2, "0"))
+    .join("")}`;
 }
