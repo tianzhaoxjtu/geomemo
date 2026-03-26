@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { getProvinceCities } from "../../../entities/region/model/regionIndex";
+import { getProvinceById, getProvinceCities } from "../../../entities/region/model/regionIndex";
 import type { VisitedCityMap } from "../../../entities/visit/model/types";
 import { useI18n } from "../../../shared/i18n/I18nProvider";
 import { SurfaceCard } from "../../../shared/ui/SurfaceCard";
@@ -23,13 +23,38 @@ export function ProvinceMapView({
   overlay,
 }: ProvinceMapViewProps) {
   const { t } = useI18n();
+  const province = getProvinceById(provinceId);
   const cities = getProvinceCities(provinceId);
+  const canonicalSingleCityId =
+    province?.mapDrillDownMode === "single-city" ? cities[0]?.id ?? null : null;
+  const isGeometryUnavailable = province?.mapDrillDownMode === "unavailable";
+
+  // Municipalities render district geometry, but the logical dataset intentionally
+  // treats them as one city-equivalent prefecture record under the 293-city standard.
+  const resolveLogicalCityId = (regionCode: string) => canonicalSingleCityId ?? regionCode;
+  const getCityVisualState = (regionCode: string) =>
+    visitedCities[resolveLogicalCityId(regionCode)] ? "visited" : "unvisited";
+  const getCityExperienceLevel = (regionCode: string) =>
+    visitedCities[resolveLogicalCityId(regionCode)]?.experienceLevel ?? null;
+  const handleRegionClick = (regionCode: string) => {
+    const logicalCityId = resolveLogicalCityId(regionCode);
+
+    if (logicalCityId) {
+      onCityClick(logicalCityId);
+    }
+  };
 
   return (
     <SurfaceCard
       eyebrow={t("map.section")}
       title={t("map.provinceTitle")}
-      description={t("map.provinceDescription")}
+      description={
+        isGeometryUnavailable
+          ? t("map.provinceDescriptionUnavailable")
+          : canonicalSingleCityId
+            ? t("map.provinceDescriptionSingleCity")
+            : t("map.provinceDescription")
+      }
       aside={
         <button className="glass-button" onClick={onBack}>
           {t("map.backToChina")}
@@ -42,11 +67,12 @@ export function ProvinceMapView({
         <AdminGeoMap
           mapCode={provinceId}
           activeCode={activeCityId}
-          getVisualState={(regionCode) => (visitedCities[regionCode] ? "visited" : "unvisited")}
-          getExperienceLevel={(regionCode) => visitedCities[regionCode]?.experienceLevel ?? null}
-          onRegionClick={onCityClick}
+          isRegionActive={(regionCode) => resolveLogicalCityId(regionCode) === activeCityId}
+          getVisualState={getCityVisualState}
+          getExperienceLevel={getCityExperienceLevel}
+          onRegionClick={handleRegionClick}
           emptyMessage={
-            cities.length > 0
+            cities.length > 0 && !isGeometryUnavailable
               ? t("map.emptyProvince")
               : t("map.emptyProvinceWithMetadata")
           }

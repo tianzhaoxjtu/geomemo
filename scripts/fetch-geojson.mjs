@@ -6,7 +6,6 @@ const META_URL = "https://geojson.cn/api/china/_meta.json";
 const GEO_DIR = path.join(ROOT, "public/geojson/china");
 const META_FILE = path.join(ROOT, "src/entities/region/data/china-meta.json");
 const SOURCE_FILE = path.join(ROOT, "src/entities/region/data/china-source.json");
-const REGION_INDEX_FILE = path.join(ROOT, "src/entities/region/data/china-regions.json");
 
 async function fetchJson(url) {
   const response = await fetch(url, {
@@ -40,15 +39,6 @@ async function main() {
   const countryGeo = await fetchJson(`https://geojson.cn/api/china/${root.filename}.json`);
   await writeFile(path.join(GEO_DIR, `${toCode(root.filename)}.json`), `${JSON.stringify(countryGeo)}\n`, "utf8");
 
-  const provinces = countryGeo.features.map((feature) => ({
-    code: String(feature.properties?.code),
-    name: String(feature.properties?.name ?? ""),
-    fullname: String(feature.properties?.fullname ?? feature.properties?.name ?? ""),
-    pinyin: String(feature.properties?.pinyin ?? ""),
-    filename: String(feature.properties?.filename ?? ""),
-  }));
-  const citiesByProvince = {};
-
   for (const province of root.children) {
     if (!province.filename) {
       continue;
@@ -62,16 +52,6 @@ async function main() {
       `${JSON.stringify(provinceGeo)}\n`,
       "utf8",
     );
-
-    citiesByProvince[provinceCode] = provinceGeo.features.map((feature) => ({
-      code: String(feature.properties?.code),
-      name: String(feature.properties?.name ?? ""),
-      fullname: String(feature.properties?.fullname ?? feature.properties?.name ?? ""),
-      pinyin: String(feature.properties?.pinyin ?? ""),
-      filename: String(feature.properties?.filename ?? ""),
-      level: Number(feature.properties?.level ?? 0),
-      center: Array.isArray(feature.properties?.center) ? feature.properties.center : null,
-    }));
   }
 
   const sourceInfo = {
@@ -82,11 +62,6 @@ async function main() {
   };
 
   await writeFile(SOURCE_FILE, `${JSON.stringify(sourceInfo, null, 2)}\n`, "utf8");
-  await writeFile(
-    REGION_INDEX_FILE,
-    `${JSON.stringify({ provinces, citiesByProvince }, null, 2)}\n`,
-    "utf8",
-  );
   console.log(`Saved China GeoJSON snapshot to ${GEO_DIR}`);
 }
 

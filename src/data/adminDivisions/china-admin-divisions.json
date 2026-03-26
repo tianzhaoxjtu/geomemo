@@ -1,0 +1,3695 @@
+{
+  "standard": {
+    "provinceLevelUnitCount": 34,
+    "prefectureLevelUnitCount": 334,
+    "excludesRootChinaNodeFromProvinceMetrics": true,
+    "notes": [
+      "The province layer contains 34 province-level administrative units.",
+      "The second-level layer contains all province-mapped prefecture-level units from the vendored administrative snapshot, plus one municipality-equivalent unit for each direct-controlled municipality.",
+      "The second-level layer includes prefecture-level cities, autonomous prefectures, leagues, and prefectures; it is not limited to prefecture-level cities.",
+      "Taiwan, Hong Kong, and Macau remain in the province layer. The current logical second-level standard does not expose prefecture-level travel units for them.",
+      "County-level cities, districts, counties, and the national/root China view are excluded from statistics."
+    ]
+  },
+  "provinces": [
+    {
+      "id": "110000",
+      "code": "110000",
+      "zhName": "北京市",
+      "enName": "Beijing",
+      "type": "municipality",
+      "mapDrillDownMode": "single-city",
+      "prefectureUnitIds": [
+        "110000"
+      ]
+    },
+    {
+      "id": "120000",
+      "code": "120000",
+      "zhName": "天津市",
+      "enName": "Tianjin",
+      "type": "municipality",
+      "mapDrillDownMode": "single-city",
+      "prefectureUnitIds": [
+        "120000"
+      ]
+    },
+    {
+      "id": "130000",
+      "code": "130000",
+      "zhName": "河北省",
+      "enName": "Hebei",
+      "type": "province",
+      "mapDrillDownMode": "prefecture",
+      "prefectureUnitIds": [
+        "130100",
+        "130200",
+        "130300",
+        "130400",
+        "130500",
+        "130600",
+        "130700",
+        "130800",
+        "130900",
+        "131000",
+        "131100"
+      ]
+    },
+    {
+      "id": "140000",
+      "code": "140000",
+      "zhName": "山西省",
+      "enName": "Shanxi",
+      "type": "province",
+      "mapDrillDownMode": "prefecture",
+      "prefectureUnitIds": [
+        "140100",
+        "140200",
+        "140300",
+        "140400",
+        "140500",
+        "140600",
+        "140700",
+        "140800",
+        "140900",
+        "141000",
+        "141100"
+      ]
+    },
+    {
+      "id": "150000",
+      "code": "150000",
+      "zhName": "内蒙古自治区",
+      "enName": "Neimenggu",
+      "type": "autonomous-region",
+      "mapDrillDownMode": "prefecture",
+      "prefectureUnitIds": [
+        "150100",
+        "150200",
+        "150300",
+        "150400",
+        "150500",
+        "150600",
+        "150700",
+        "150800",
+        "150900",
+        "152200",
+        "152500",
+        "152900"
+      ]
+    },
+    {
+      "id": "210000",
+      "code": "210000",
+      "zhName": "辽宁省",
+      "enName": "Liaoning",
+      "type": "province",
+      "mapDrillDownMode": "prefecture",
+      "prefectureUnitIds": [
+        "210100",
+        "210200",
+        "210300",
+        "210400",
+        "210500",
+        "210600",
+        "210700",
+        "210800",
+        "210900",
+        "211000",
+        "211100",
+        "211200",
+        "211300",
+        "211400"
+      ]
+    },
+    {
+      "id": "220000",
+      "code": "220000",
+      "zhName": "吉林省",
+      "enName": "Jilin",
+      "type": "province",
+      "mapDrillDownMode": "prefecture",
+      "prefectureUnitIds": [
+        "220100",
+        "220200",
+        "220300",
+        "220400",
+        "220500",
+        "220600",
+        "220700",
+        "220800",
+        "222400"
+      ]
+    },
+    {
+      "id": "230000",
+      "code": "230000",
+      "zhName": "黑龙江省",
+      "enName": "Heilongjiang",
+      "type": "province",
+      "mapDrillDownMode": "prefecture",
+      "prefectureUnitIds": [
+        "230100",
+        "230200",
+        "230300",
+        "230400",
+        "230500",
+        "230600",
+        "230700",
+        "230800",
+        "230900",
+        "231000",
+        "231100",
+        "231200",
+        "232700"
+      ]
+    },
+    {
+      "id": "310000",
+      "code": "310000",
+      "zhName": "上海市",
+      "enName": "Shanghai",
+      "type": "municipality",
+      "mapDrillDownMode": "single-city",
+      "prefectureUnitIds": [
+        "310000"
+      ]
+    },
+    {
+      "id": "320000",
+      "code": "320000",
+      "zhName": "江苏省",
+      "enName": "Jiangsu",
+      "type": "province",
+      "mapDrillDownMode": "prefecture",
+      "prefectureUnitIds": [
+        "320100",
+        "320200",
+        "320300",
+        "320400",
+        "320500",
+        "320600",
+        "320700",
+        "320800",
+        "320900",
+        "321000",
+        "321100",
+        "321200",
+        "321300"
+      ]
+    },
+    {
+      "id": "330000",
+      "code": "330000",
+      "zhName": "浙江省",
+      "enName": "Zhejiang",
+      "type": "province",
+      "mapDrillDownMode": "prefecture",
+      "prefectureUnitIds": [
+        "330100",
+        "330200",
+        "330300",
+        "330400",
+        "330500",
+        "330600",
+        "330700",
+        "330800",
+        "330900",
+        "331000",
+        "331100"
+      ]
+    },
+    {
+      "id": "340000",
+      "code": "340000",
+      "zhName": "安徽省",
+      "enName": "Anhui",
+      "type": "province",
+      "mapDrillDownMode": "prefecture",
+      "prefectureUnitIds": [
+        "340100",
+        "340200",
+        "340300",
+        "340400",
+        "340500",
+        "340600",
+        "340700",
+        "340800",
+        "341000",
+        "341100",
+        "341200",
+        "341300",
+        "341500",
+        "341600",
+        "341700",
+        "341800"
+      ]
+    },
+    {
+      "id": "350000",
+      "code": "350000",
+      "zhName": "福建省",
+      "enName": "Fujian",
+      "type": "province",
+      "mapDrillDownMode": "prefecture",
+      "prefectureUnitIds": [
+        "350100",
+        "350200",
+        "350300",
+        "350400",
+        "350500",
+        "350600",
+        "350700",
+        "350800",
+        "350900"
+      ]
+    },
+    {
+      "id": "360000",
+      "code": "360000",
+      "zhName": "江西省",
+      "enName": "Jiangxi",
+      "type": "province",
+      "mapDrillDownMode": "prefecture",
+      "prefectureUnitIds": [
+        "360100",
+        "360200",
+        "360300",
+        "360400",
+        "360500",
+        "360600",
+        "360700",
+        "360800",
+        "360900",
+        "361000",
+        "361100"
+      ]
+    },
+    {
+      "id": "370000",
+      "code": "370000",
+      "zhName": "山东省",
+      "enName": "Shandong",
+      "type": "province",
+      "mapDrillDownMode": "prefecture",
+      "prefectureUnitIds": [
+        "370100",
+        "370200",
+        "370300",
+        "370400",
+        "370500",
+        "370600",
+        "370700",
+        "370800",
+        "370900",
+        "371000",
+        "371100",
+        "371300",
+        "371400",
+        "371500",
+        "371600",
+        "371700"
+      ]
+    },
+    {
+      "id": "410000",
+      "code": "410000",
+      "zhName": "河南省",
+      "enName": "Henan",
+      "type": "province",
+      "mapDrillDownMode": "prefecture",
+      "prefectureUnitIds": [
+        "410100",
+        "410200",
+        "410300",
+        "410400",
+        "410500",
+        "410600",
+        "410700",
+        "410800",
+        "410900",
+        "411000",
+        "411100",
+        "411200",
+        "411300",
+        "411400",
+        "411500",
+        "411600",
+        "411700"
+      ]
+    },
+    {
+      "id": "420000",
+      "code": "420000",
+      "zhName": "湖北省",
+      "enName": "Hubei",
+      "type": "province",
+      "mapDrillDownMode": "prefecture",
+      "prefectureUnitIds": [
+        "420100",
+        "420200",
+        "420300",
+        "420500",
+        "420600",
+        "420700",
+        "420800",
+        "420900",
+        "421000",
+        "421100",
+        "421200",
+        "421300",
+        "422800"
+      ]
+    },
+    {
+      "id": "430000",
+      "code": "430000",
+      "zhName": "湖南省",
+      "enName": "Hunan",
+      "type": "province",
+      "mapDrillDownMode": "prefecture",
+      "prefectureUnitIds": [
+        "430100",
+        "430200",
+        "430300",
+        "430400",
+        "430500",
+        "430600",
+        "430700",
+        "430800",
+        "430900",
+        "431000",
+        "431100",
+        "431200",
+        "431300",
+        "433100"
+      ]
+    },
+    {
+      "id": "440000",
+      "code": "440000",
+      "zhName": "广东省",
+      "enName": "Guangdong",
+      "type": "province",
+      "mapDrillDownMode": "prefecture",
+      "prefectureUnitIds": [
+        "440100",
+        "440200",
+        "440300",
+        "440400",
+        "440500",
+        "440600",
+        "440700",
+        "440800",
+        "440900",
+        "441200",
+        "441300",
+        "441400",
+        "441500",
+        "441600",
+        "441700",
+        "441800",
+        "445100",
+        "445200",
+        "445300"
+      ]
+    },
+    {
+      "id": "450000",
+      "code": "450000",
+      "zhName": "广西壮族自治区",
+      "enName": "Guangxi",
+      "type": "autonomous-region",
+      "mapDrillDownMode": "prefecture",
+      "prefectureUnitIds": [
+        "450100",
+        "450200",
+        "450300",
+        "450400",
+        "450500",
+        "450600",
+        "450700",
+        "450800",
+        "450900",
+        "451000",
+        "451100",
+        "451200",
+        "451300",
+        "451400"
+      ]
+    },
+    {
+      "id": "460000",
+      "code": "460000",
+      "zhName": "海南省",
+      "enName": "Hainan",
+      "type": "province",
+      "mapDrillDownMode": "prefecture",
+      "prefectureUnitIds": [
+        "460100",
+        "460200",
+        "460300",
+        "460400"
+      ]
+    },
+    {
+      "id": "500000",
+      "code": "500000",
+      "zhName": "重庆市",
+      "enName": "Chongqing",
+      "type": "municipality",
+      "mapDrillDownMode": "single-city",
+      "prefectureUnitIds": [
+        "500000"
+      ]
+    },
+    {
+      "id": "510000",
+      "code": "510000",
+      "zhName": "四川省",
+      "enName": "Sichuan",
+      "type": "province",
+      "mapDrillDownMode": "prefecture",
+      "prefectureUnitIds": [
+        "510100",
+        "510300",
+        "510400",
+        "510500",
+        "510600",
+        "510700",
+        "510800",
+        "510900",
+        "511000",
+        "511100",
+        "511300",
+        "511400",
+        "511500",
+        "511600",
+        "511700",
+        "511800",
+        "511900",
+        "512000",
+        "513200",
+        "513300",
+        "513400"
+      ]
+    },
+    {
+      "id": "520000",
+      "code": "520000",
+      "zhName": "贵州省",
+      "enName": "Guizhou",
+      "type": "province",
+      "mapDrillDownMode": "prefecture",
+      "prefectureUnitIds": [
+        "520100",
+        "520200",
+        "520300",
+        "520400",
+        "520500",
+        "520600",
+        "522300",
+        "522600",
+        "522700"
+      ]
+    },
+    {
+      "id": "530000",
+      "code": "530000",
+      "zhName": "云南省",
+      "enName": "Yunnan",
+      "type": "province",
+      "mapDrillDownMode": "prefecture",
+      "prefectureUnitIds": [
+        "530100",
+        "530300",
+        "530400",
+        "530500",
+        "530600",
+        "530700",
+        "530800",
+        "530900",
+        "532300",
+        "532500",
+        "532600",
+        "532800",
+        "532900",
+        "533100",
+        "533300",
+        "533400"
+      ]
+    },
+    {
+      "id": "540000",
+      "code": "540000",
+      "zhName": "西藏自治区",
+      "enName": "Xizang",
+      "type": "autonomous-region",
+      "mapDrillDownMode": "prefecture",
+      "prefectureUnitIds": [
+        "540100",
+        "540200",
+        "540300",
+        "540400",
+        "540500",
+        "540600",
+        "542500"
+      ]
+    },
+    {
+      "id": "610000",
+      "code": "610000",
+      "zhName": "陕西省",
+      "enName": "Shaanxi",
+      "type": "province",
+      "mapDrillDownMode": "prefecture",
+      "prefectureUnitIds": [
+        "610100",
+        "610200",
+        "610300",
+        "610400",
+        "610500",
+        "610600",
+        "610700",
+        "610800",
+        "610900",
+        "611000"
+      ]
+    },
+    {
+      "id": "620000",
+      "code": "620000",
+      "zhName": "甘肃省",
+      "enName": "Gansu",
+      "type": "province",
+      "mapDrillDownMode": "prefecture",
+      "prefectureUnitIds": [
+        "620100",
+        "620300",
+        "620400",
+        "620500",
+        "620600",
+        "620700",
+        "620800",
+        "620900",
+        "621000",
+        "621100",
+        "621200",
+        "622900",
+        "623000"
+      ]
+    },
+    {
+      "id": "630000",
+      "code": "630000",
+      "zhName": "青海省",
+      "enName": "Qinghai",
+      "type": "province",
+      "mapDrillDownMode": "prefecture",
+      "prefectureUnitIds": [
+        "630100",
+        "630200",
+        "632200",
+        "632300",
+        "632500",
+        "632600",
+        "632700",
+        "632800"
+      ]
+    },
+    {
+      "id": "640000",
+      "code": "640000",
+      "zhName": "宁夏回族自治区",
+      "enName": "Ningxia",
+      "type": "autonomous-region",
+      "mapDrillDownMode": "prefecture",
+      "prefectureUnitIds": [
+        "640100",
+        "640200",
+        "640300",
+        "640400",
+        "640500"
+      ]
+    },
+    {
+      "id": "650000",
+      "code": "650000",
+      "zhName": "新疆维吾尔自治区",
+      "enName": "Xinjiang",
+      "type": "autonomous-region",
+      "mapDrillDownMode": "prefecture",
+      "prefectureUnitIds": [
+        "650100",
+        "650200",
+        "650400",
+        "650500",
+        "652300",
+        "652700",
+        "652800",
+        "652900",
+        "653000",
+        "653100",
+        "653200",
+        "654000",
+        "654200",
+        "654300"
+      ]
+    },
+    {
+      "id": "710000",
+      "code": "710000",
+      "zhName": "台湾省",
+      "enName": "Taiwan",
+      "type": "taiwan",
+      "mapDrillDownMode": "unavailable",
+      "prefectureUnitIds": []
+    },
+    {
+      "id": "810000",
+      "code": "810000",
+      "zhName": "香港特别行政区",
+      "enName": "Xianggang",
+      "type": "sar",
+      "mapDrillDownMode": "unavailable",
+      "prefectureUnitIds": []
+    },
+    {
+      "id": "820000",
+      "code": "820000",
+      "zhName": "澳门特别行政区",
+      "enName": "Aomen",
+      "type": "sar",
+      "mapDrillDownMode": "unavailable",
+      "prefectureUnitIds": []
+    }
+  ],
+  "prefectureUnits": [
+    {
+      "id": "110000",
+      "code": "110000",
+      "zhName": "北京市",
+      "enName": "Beijing",
+      "parentProvinceId": "110000",
+      "administrativeLevel": "prefecture",
+      "unitType": "municipality-equivalent"
+    },
+    {
+      "id": "120000",
+      "code": "120000",
+      "zhName": "天津市",
+      "enName": "Tianjin",
+      "parentProvinceId": "120000",
+      "administrativeLevel": "prefecture",
+      "unitType": "municipality-equivalent"
+    },
+    {
+      "id": "130100",
+      "code": "130100",
+      "zhName": "石家庄市",
+      "enName": "Shijiazhuang",
+      "parentProvinceId": "130000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "130200",
+      "code": "130200",
+      "zhName": "唐山市",
+      "enName": "Tangshan",
+      "parentProvinceId": "130000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "130300",
+      "code": "130300",
+      "zhName": "秦皇岛市",
+      "enName": "Qinhuangdao",
+      "parentProvinceId": "130000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "130400",
+      "code": "130400",
+      "zhName": "邯郸市",
+      "enName": "Handan",
+      "parentProvinceId": "130000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "130500",
+      "code": "130500",
+      "zhName": "邢台市",
+      "enName": "Xingtai",
+      "parentProvinceId": "130000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "130600",
+      "code": "130600",
+      "zhName": "保定市",
+      "enName": "Baoding",
+      "parentProvinceId": "130000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "130700",
+      "code": "130700",
+      "zhName": "张家口市",
+      "enName": "Zhangjiakou",
+      "parentProvinceId": "130000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "130800",
+      "code": "130800",
+      "zhName": "承德市",
+      "enName": "Chengde",
+      "parentProvinceId": "130000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "130900",
+      "code": "130900",
+      "zhName": "沧州市",
+      "enName": "Cangzhou",
+      "parentProvinceId": "130000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "131000",
+      "code": "131000",
+      "zhName": "廊坊市",
+      "enName": "Langfang",
+      "parentProvinceId": "130000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "131100",
+      "code": "131100",
+      "zhName": "衡水市",
+      "enName": "Hengshui",
+      "parentProvinceId": "130000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "140100",
+      "code": "140100",
+      "zhName": "太原市",
+      "enName": "Taiyuan",
+      "parentProvinceId": "140000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "140200",
+      "code": "140200",
+      "zhName": "大同市",
+      "enName": "Datong",
+      "parentProvinceId": "140000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "140300",
+      "code": "140300",
+      "zhName": "阳泉市",
+      "enName": "Yangquan",
+      "parentProvinceId": "140000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "140400",
+      "code": "140400",
+      "zhName": "长治市",
+      "enName": "Changzhi",
+      "parentProvinceId": "140000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "140500",
+      "code": "140500",
+      "zhName": "晋城市",
+      "enName": "Jincheng",
+      "parentProvinceId": "140000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "140600",
+      "code": "140600",
+      "zhName": "朔州市",
+      "enName": "Shuozhou",
+      "parentProvinceId": "140000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "140700",
+      "code": "140700",
+      "zhName": "晋中市",
+      "enName": "Jinzhong",
+      "parentProvinceId": "140000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "140800",
+      "code": "140800",
+      "zhName": "运城市",
+      "enName": "Yuncheng",
+      "parentProvinceId": "140000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "140900",
+      "code": "140900",
+      "zhName": "忻州市",
+      "enName": "Xinzhou",
+      "parentProvinceId": "140000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "141000",
+      "code": "141000",
+      "zhName": "临汾市",
+      "enName": "Linfen",
+      "parentProvinceId": "140000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "141100",
+      "code": "141100",
+      "zhName": "吕梁市",
+      "enName": "Lvliang",
+      "parentProvinceId": "140000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "150100",
+      "code": "150100",
+      "zhName": "呼和浩特市",
+      "enName": "Huhehaote",
+      "parentProvinceId": "150000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "150200",
+      "code": "150200",
+      "zhName": "包头市",
+      "enName": "Baotou",
+      "parentProvinceId": "150000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "150300",
+      "code": "150300",
+      "zhName": "乌海市",
+      "enName": "Wuhai",
+      "parentProvinceId": "150000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "150400",
+      "code": "150400",
+      "zhName": "赤峰市",
+      "enName": "Chifeng",
+      "parentProvinceId": "150000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "150500",
+      "code": "150500",
+      "zhName": "通辽市",
+      "enName": "Tongliao",
+      "parentProvinceId": "150000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "150600",
+      "code": "150600",
+      "zhName": "鄂尔多斯市",
+      "enName": "Eerduosi",
+      "parentProvinceId": "150000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "150700",
+      "code": "150700",
+      "zhName": "呼伦贝尔市",
+      "enName": "Hulunbeier",
+      "parentProvinceId": "150000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "150800",
+      "code": "150800",
+      "zhName": "巴彦淖尔市",
+      "enName": "Bayannaoer",
+      "parentProvinceId": "150000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "150900",
+      "code": "150900",
+      "zhName": "乌兰察布市",
+      "enName": "Wulanchabu",
+      "parentProvinceId": "150000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "152200",
+      "code": "152200",
+      "zhName": "兴安盟",
+      "enName": "Xing'an League",
+      "parentProvinceId": "150000",
+      "administrativeLevel": "prefecture",
+      "unitType": "league"
+    },
+    {
+      "id": "152500",
+      "code": "152500",
+      "zhName": "锡林郭勒盟",
+      "enName": "Xilingol League",
+      "parentProvinceId": "150000",
+      "administrativeLevel": "prefecture",
+      "unitType": "league"
+    },
+    {
+      "id": "152900",
+      "code": "152900",
+      "zhName": "阿拉善盟",
+      "enName": "Alxa League",
+      "parentProvinceId": "150000",
+      "administrativeLevel": "prefecture",
+      "unitType": "league"
+    },
+    {
+      "id": "210100",
+      "code": "210100",
+      "zhName": "沈阳市",
+      "enName": "Shenyang",
+      "parentProvinceId": "210000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "210200",
+      "code": "210200",
+      "zhName": "大连市",
+      "enName": "Dalian",
+      "parentProvinceId": "210000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "210300",
+      "code": "210300",
+      "zhName": "鞍山市",
+      "enName": "Anshan",
+      "parentProvinceId": "210000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "210400",
+      "code": "210400",
+      "zhName": "抚顺市",
+      "enName": "Fushun",
+      "parentProvinceId": "210000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "210500",
+      "code": "210500",
+      "zhName": "本溪市",
+      "enName": "Benxi",
+      "parentProvinceId": "210000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "210600",
+      "code": "210600",
+      "zhName": "丹东市",
+      "enName": "Dandong",
+      "parentProvinceId": "210000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "210700",
+      "code": "210700",
+      "zhName": "锦州市",
+      "enName": "Jinzhou",
+      "parentProvinceId": "210000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "210800",
+      "code": "210800",
+      "zhName": "营口市",
+      "enName": "Yingkou",
+      "parentProvinceId": "210000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "210900",
+      "code": "210900",
+      "zhName": "阜新市",
+      "enName": "Fuxin",
+      "parentProvinceId": "210000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "211000",
+      "code": "211000",
+      "zhName": "辽阳市",
+      "enName": "Liaoyang",
+      "parentProvinceId": "210000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "211100",
+      "code": "211100",
+      "zhName": "盘锦市",
+      "enName": "Panjin",
+      "parentProvinceId": "210000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "211200",
+      "code": "211200",
+      "zhName": "铁岭市",
+      "enName": "Tieling",
+      "parentProvinceId": "210000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "211300",
+      "code": "211300",
+      "zhName": "朝阳市",
+      "enName": "Chaoyang",
+      "parentProvinceId": "210000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "211400",
+      "code": "211400",
+      "zhName": "葫芦岛市",
+      "enName": "Huludao",
+      "parentProvinceId": "210000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "220100",
+      "code": "220100",
+      "zhName": "长春市",
+      "enName": "Changchun",
+      "parentProvinceId": "220000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "220200",
+      "code": "220200",
+      "zhName": "吉林市",
+      "enName": "Jilin",
+      "parentProvinceId": "220000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "220300",
+      "code": "220300",
+      "zhName": "四平市",
+      "enName": "Siping",
+      "parentProvinceId": "220000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "220400",
+      "code": "220400",
+      "zhName": "辽源市",
+      "enName": "Liaoyuan",
+      "parentProvinceId": "220000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "220500",
+      "code": "220500",
+      "zhName": "通化市",
+      "enName": "Tonghua",
+      "parentProvinceId": "220000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "220600",
+      "code": "220600",
+      "zhName": "白山市",
+      "enName": "Baishan",
+      "parentProvinceId": "220000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "220700",
+      "code": "220700",
+      "zhName": "松原市",
+      "enName": "Songyuan",
+      "parentProvinceId": "220000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "220800",
+      "code": "220800",
+      "zhName": "白城市",
+      "enName": "Baicheng",
+      "parentProvinceId": "220000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "222400",
+      "code": "222400",
+      "zhName": "延边朝鲜族自治州",
+      "enName": "Yanbian Korean Autonomous Prefecture",
+      "parentProvinceId": "220000",
+      "administrativeLevel": "prefecture",
+      "unitType": "autonomous-prefecture"
+    },
+    {
+      "id": "230100",
+      "code": "230100",
+      "zhName": "哈尔滨市",
+      "enName": "Haerbin",
+      "parentProvinceId": "230000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "230200",
+      "code": "230200",
+      "zhName": "齐齐哈尔市",
+      "enName": "Qiqihaer",
+      "parentProvinceId": "230000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "230300",
+      "code": "230300",
+      "zhName": "鸡西市",
+      "enName": "Jixi",
+      "parentProvinceId": "230000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "230400",
+      "code": "230400",
+      "zhName": "鹤岗市",
+      "enName": "Hegang",
+      "parentProvinceId": "230000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "230500",
+      "code": "230500",
+      "zhName": "双鸭山市",
+      "enName": "Shuangyashan",
+      "parentProvinceId": "230000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "230600",
+      "code": "230600",
+      "zhName": "大庆市",
+      "enName": "Daqing",
+      "parentProvinceId": "230000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "230700",
+      "code": "230700",
+      "zhName": "伊春市",
+      "enName": "Yichun",
+      "parentProvinceId": "230000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "230800",
+      "code": "230800",
+      "zhName": "佳木斯市",
+      "enName": "Jiamusi",
+      "parentProvinceId": "230000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "230900",
+      "code": "230900",
+      "zhName": "七台河市",
+      "enName": "Qitaihe",
+      "parentProvinceId": "230000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "231000",
+      "code": "231000",
+      "zhName": "牡丹江市",
+      "enName": "Mudanjiang",
+      "parentProvinceId": "230000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "231100",
+      "code": "231100",
+      "zhName": "黑河市",
+      "enName": "Heihe",
+      "parentProvinceId": "230000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "231200",
+      "code": "231200",
+      "zhName": "绥化市",
+      "enName": "Suihua",
+      "parentProvinceId": "230000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "232700",
+      "code": "232700",
+      "zhName": "大兴安岭地区",
+      "enName": "Daxing'anling Prefecture",
+      "parentProvinceId": "230000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture"
+    },
+    {
+      "id": "310000",
+      "code": "310000",
+      "zhName": "上海市",
+      "enName": "Shanghai",
+      "parentProvinceId": "310000",
+      "administrativeLevel": "prefecture",
+      "unitType": "municipality-equivalent"
+    },
+    {
+      "id": "320100",
+      "code": "320100",
+      "zhName": "南京市",
+      "enName": "Nanjing",
+      "parentProvinceId": "320000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "320200",
+      "code": "320200",
+      "zhName": "无锡市",
+      "enName": "Wuxi",
+      "parentProvinceId": "320000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "320300",
+      "code": "320300",
+      "zhName": "徐州市",
+      "enName": "Xuzhou",
+      "parentProvinceId": "320000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "320400",
+      "code": "320400",
+      "zhName": "常州市",
+      "enName": "Changzhou",
+      "parentProvinceId": "320000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "320500",
+      "code": "320500",
+      "zhName": "苏州市",
+      "enName": "Suzhou",
+      "parentProvinceId": "320000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "320600",
+      "code": "320600",
+      "zhName": "南通市",
+      "enName": "Nantong",
+      "parentProvinceId": "320000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "320700",
+      "code": "320700",
+      "zhName": "连云港市",
+      "enName": "Lianyungang",
+      "parentProvinceId": "320000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "320800",
+      "code": "320800",
+      "zhName": "淮安市",
+      "enName": "Huaian",
+      "parentProvinceId": "320000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "320900",
+      "code": "320900",
+      "zhName": "盐城市",
+      "enName": "Yancheng",
+      "parentProvinceId": "320000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "321000",
+      "code": "321000",
+      "zhName": "扬州市",
+      "enName": "Yangzhou",
+      "parentProvinceId": "320000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "321100",
+      "code": "321100",
+      "zhName": "镇江市",
+      "enName": "Zhenjiang",
+      "parentProvinceId": "320000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "321200",
+      "code": "321200",
+      "zhName": "泰州市",
+      "enName": "Taizhou",
+      "parentProvinceId": "320000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "321300",
+      "code": "321300",
+      "zhName": "宿迁市",
+      "enName": "Suqian",
+      "parentProvinceId": "320000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "330100",
+      "code": "330100",
+      "zhName": "杭州市",
+      "enName": "Hangzhou",
+      "parentProvinceId": "330000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "330200",
+      "code": "330200",
+      "zhName": "宁波市",
+      "enName": "Ningbo",
+      "parentProvinceId": "330000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "330300",
+      "code": "330300",
+      "zhName": "温州市",
+      "enName": "Wenzhou",
+      "parentProvinceId": "330000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "330400",
+      "code": "330400",
+      "zhName": "嘉兴市",
+      "enName": "Jiaxing",
+      "parentProvinceId": "330000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "330500",
+      "code": "330500",
+      "zhName": "湖州市",
+      "enName": "Huzhou",
+      "parentProvinceId": "330000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "330600",
+      "code": "330600",
+      "zhName": "绍兴市",
+      "enName": "Shaoxing",
+      "parentProvinceId": "330000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "330700",
+      "code": "330700",
+      "zhName": "金华市",
+      "enName": "Jinhua",
+      "parentProvinceId": "330000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "330800",
+      "code": "330800",
+      "zhName": "衢州市",
+      "enName": "Quzhou",
+      "parentProvinceId": "330000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "330900",
+      "code": "330900",
+      "zhName": "舟山市",
+      "enName": "Zhoushan",
+      "parentProvinceId": "330000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "331000",
+      "code": "331000",
+      "zhName": "台州市",
+      "enName": "Taizhou",
+      "parentProvinceId": "330000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "331100",
+      "code": "331100",
+      "zhName": "丽水市",
+      "enName": "Lishui",
+      "parentProvinceId": "330000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "340100",
+      "code": "340100",
+      "zhName": "合肥市",
+      "enName": "Hefei",
+      "parentProvinceId": "340000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "340200",
+      "code": "340200",
+      "zhName": "芜湖市",
+      "enName": "Wuhu",
+      "parentProvinceId": "340000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "340300",
+      "code": "340300",
+      "zhName": "蚌埠市",
+      "enName": "Bengbu",
+      "parentProvinceId": "340000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "340400",
+      "code": "340400",
+      "zhName": "淮南市",
+      "enName": "Huainan",
+      "parentProvinceId": "340000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "340500",
+      "code": "340500",
+      "zhName": "马鞍山市",
+      "enName": "Maanshan",
+      "parentProvinceId": "340000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "340600",
+      "code": "340600",
+      "zhName": "淮北市",
+      "enName": "Huaibei",
+      "parentProvinceId": "340000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "340700",
+      "code": "340700",
+      "zhName": "铜陵市",
+      "enName": "Tongling",
+      "parentProvinceId": "340000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "340800",
+      "code": "340800",
+      "zhName": "安庆市",
+      "enName": "Anqing",
+      "parentProvinceId": "340000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "341000",
+      "code": "341000",
+      "zhName": "黄山市",
+      "enName": "Huangshan",
+      "parentProvinceId": "340000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "341100",
+      "code": "341100",
+      "zhName": "滁州市",
+      "enName": "Chuzhou",
+      "parentProvinceId": "340000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "341200",
+      "code": "341200",
+      "zhName": "阜阳市",
+      "enName": "Fuyang",
+      "parentProvinceId": "340000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "341300",
+      "code": "341300",
+      "zhName": "宿州市",
+      "enName": "Suzhou",
+      "parentProvinceId": "340000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "341500",
+      "code": "341500",
+      "zhName": "六安市",
+      "enName": "Liuan",
+      "parentProvinceId": "340000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "341600",
+      "code": "341600",
+      "zhName": "亳州市",
+      "enName": "Bozhou",
+      "parentProvinceId": "340000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "341700",
+      "code": "341700",
+      "zhName": "池州市",
+      "enName": "Chizhou",
+      "parentProvinceId": "340000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "341800",
+      "code": "341800",
+      "zhName": "宣城市",
+      "enName": "Xuancheng",
+      "parentProvinceId": "340000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "350100",
+      "code": "350100",
+      "zhName": "福州市",
+      "enName": "Fuzhou",
+      "parentProvinceId": "350000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "350200",
+      "code": "350200",
+      "zhName": "厦门市",
+      "enName": "Xiamen",
+      "parentProvinceId": "350000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "350300",
+      "code": "350300",
+      "zhName": "莆田市",
+      "enName": "Putian",
+      "parentProvinceId": "350000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "350400",
+      "code": "350400",
+      "zhName": "三明市",
+      "enName": "Sanming",
+      "parentProvinceId": "350000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "350500",
+      "code": "350500",
+      "zhName": "泉州市",
+      "enName": "Quanzhou",
+      "parentProvinceId": "350000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "350600",
+      "code": "350600",
+      "zhName": "漳州市",
+      "enName": "Zhangzhou",
+      "parentProvinceId": "350000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "350700",
+      "code": "350700",
+      "zhName": "南平市",
+      "enName": "Nanping",
+      "parentProvinceId": "350000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "350800",
+      "code": "350800",
+      "zhName": "龙岩市",
+      "enName": "Longyan",
+      "parentProvinceId": "350000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "350900",
+      "code": "350900",
+      "zhName": "宁德市",
+      "enName": "Ningde",
+      "parentProvinceId": "350000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "360100",
+      "code": "360100",
+      "zhName": "南昌市",
+      "enName": "Nanchang",
+      "parentProvinceId": "360000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "360200",
+      "code": "360200",
+      "zhName": "景德镇市",
+      "enName": "Jingdezhen",
+      "parentProvinceId": "360000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "360300",
+      "code": "360300",
+      "zhName": "萍乡市",
+      "enName": "Pingxiang",
+      "parentProvinceId": "360000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "360400",
+      "code": "360400",
+      "zhName": "九江市",
+      "enName": "Jiujiang",
+      "parentProvinceId": "360000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "360500",
+      "code": "360500",
+      "zhName": "新余市",
+      "enName": "Xinyu",
+      "parentProvinceId": "360000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "360600",
+      "code": "360600",
+      "zhName": "鹰潭市",
+      "enName": "Yingtan",
+      "parentProvinceId": "360000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "360700",
+      "code": "360700",
+      "zhName": "赣州市",
+      "enName": "Ganzhou",
+      "parentProvinceId": "360000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "360800",
+      "code": "360800",
+      "zhName": "吉安市",
+      "enName": "Jian",
+      "parentProvinceId": "360000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "360900",
+      "code": "360900",
+      "zhName": "宜春市",
+      "enName": "Yichun",
+      "parentProvinceId": "360000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "361000",
+      "code": "361000",
+      "zhName": "抚州市",
+      "enName": "Fuzhou",
+      "parentProvinceId": "360000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "361100",
+      "code": "361100",
+      "zhName": "上饶市",
+      "enName": "Shangrao",
+      "parentProvinceId": "360000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "370100",
+      "code": "370100",
+      "zhName": "济南市",
+      "enName": "Jinan",
+      "parentProvinceId": "370000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "370200",
+      "code": "370200",
+      "zhName": "青岛市",
+      "enName": "Qingdao",
+      "parentProvinceId": "370000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "370300",
+      "code": "370300",
+      "zhName": "淄博市",
+      "enName": "Zibo",
+      "parentProvinceId": "370000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "370400",
+      "code": "370400",
+      "zhName": "枣庄市",
+      "enName": "Zaozhuang",
+      "parentProvinceId": "370000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "370500",
+      "code": "370500",
+      "zhName": "东营市",
+      "enName": "Dongying",
+      "parentProvinceId": "370000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "370600",
+      "code": "370600",
+      "zhName": "烟台市",
+      "enName": "Yantai",
+      "parentProvinceId": "370000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "370700",
+      "code": "370700",
+      "zhName": "潍坊市",
+      "enName": "Weifang",
+      "parentProvinceId": "370000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "370800",
+      "code": "370800",
+      "zhName": "济宁市",
+      "enName": "Jining",
+      "parentProvinceId": "370000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "370900",
+      "code": "370900",
+      "zhName": "泰安市",
+      "enName": "Taian",
+      "parentProvinceId": "370000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "371000",
+      "code": "371000",
+      "zhName": "威海市",
+      "enName": "Weihai",
+      "parentProvinceId": "370000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "371100",
+      "code": "371100",
+      "zhName": "日照市",
+      "enName": "Rizhao",
+      "parentProvinceId": "370000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "371300",
+      "code": "371300",
+      "zhName": "临沂市",
+      "enName": "Linyi",
+      "parentProvinceId": "370000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "371400",
+      "code": "371400",
+      "zhName": "德州市",
+      "enName": "Dezhou",
+      "parentProvinceId": "370000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "371500",
+      "code": "371500",
+      "zhName": "聊城市",
+      "enName": "Liaocheng",
+      "parentProvinceId": "370000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "371600",
+      "code": "371600",
+      "zhName": "滨州市",
+      "enName": "Binzhou",
+      "parentProvinceId": "370000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "371700",
+      "code": "371700",
+      "zhName": "菏泽市",
+      "enName": "Heze",
+      "parentProvinceId": "370000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "410100",
+      "code": "410100",
+      "zhName": "郑州市",
+      "enName": "Zhengzhou",
+      "parentProvinceId": "410000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "410200",
+      "code": "410200",
+      "zhName": "开封市",
+      "enName": "Kaifeng",
+      "parentProvinceId": "410000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "410300",
+      "code": "410300",
+      "zhName": "洛阳市",
+      "enName": "Luoyang",
+      "parentProvinceId": "410000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "410400",
+      "code": "410400",
+      "zhName": "平顶山市",
+      "enName": "Pingdingshan",
+      "parentProvinceId": "410000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "410500",
+      "code": "410500",
+      "zhName": "安阳市",
+      "enName": "Anyang",
+      "parentProvinceId": "410000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "410600",
+      "code": "410600",
+      "zhName": "鹤壁市",
+      "enName": "Hebi",
+      "parentProvinceId": "410000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "410700",
+      "code": "410700",
+      "zhName": "新乡市",
+      "enName": "Xinxiang",
+      "parentProvinceId": "410000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "410800",
+      "code": "410800",
+      "zhName": "焦作市",
+      "enName": "Jiaozuo",
+      "parentProvinceId": "410000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "410900",
+      "code": "410900",
+      "zhName": "濮阳市",
+      "enName": "Puyang",
+      "parentProvinceId": "410000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "411000",
+      "code": "411000",
+      "zhName": "许昌市",
+      "enName": "Xuchang",
+      "parentProvinceId": "410000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "411100",
+      "code": "411100",
+      "zhName": "漯河市",
+      "enName": "Luohe",
+      "parentProvinceId": "410000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "411200",
+      "code": "411200",
+      "zhName": "三门峡市",
+      "enName": "Sanmenxia",
+      "parentProvinceId": "410000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "411300",
+      "code": "411300",
+      "zhName": "南阳市",
+      "enName": "Nanyang",
+      "parentProvinceId": "410000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "411400",
+      "code": "411400",
+      "zhName": "商丘市",
+      "enName": "Shangqiu",
+      "parentProvinceId": "410000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "411500",
+      "code": "411500",
+      "zhName": "信阳市",
+      "enName": "Xinyang",
+      "parentProvinceId": "410000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "411600",
+      "code": "411600",
+      "zhName": "周口市",
+      "enName": "Zhoukou",
+      "parentProvinceId": "410000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "411700",
+      "code": "411700",
+      "zhName": "驻马店市",
+      "enName": "Zhumadian",
+      "parentProvinceId": "410000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "420100",
+      "code": "420100",
+      "zhName": "武汉市",
+      "enName": "Wuhan",
+      "parentProvinceId": "420000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "420200",
+      "code": "420200",
+      "zhName": "黄石市",
+      "enName": "Huangshi",
+      "parentProvinceId": "420000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "420300",
+      "code": "420300",
+      "zhName": "十堰市",
+      "enName": "Shiyan",
+      "parentProvinceId": "420000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "420500",
+      "code": "420500",
+      "zhName": "宜昌市",
+      "enName": "Yichang",
+      "parentProvinceId": "420000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "420600",
+      "code": "420600",
+      "zhName": "襄阳市",
+      "enName": "Xiangyang",
+      "parentProvinceId": "420000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "420700",
+      "code": "420700",
+      "zhName": "鄂州市",
+      "enName": "Ezhou",
+      "parentProvinceId": "420000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "420800",
+      "code": "420800",
+      "zhName": "荆门市",
+      "enName": "Jingmen",
+      "parentProvinceId": "420000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "420900",
+      "code": "420900",
+      "zhName": "孝感市",
+      "enName": "Xiaogan",
+      "parentProvinceId": "420000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "421000",
+      "code": "421000",
+      "zhName": "荆州市",
+      "enName": "Jingzhou",
+      "parentProvinceId": "420000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "421100",
+      "code": "421100",
+      "zhName": "黄冈市",
+      "enName": "Huanggang",
+      "parentProvinceId": "420000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "421200",
+      "code": "421200",
+      "zhName": "咸宁市",
+      "enName": "Xianning",
+      "parentProvinceId": "420000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "421300",
+      "code": "421300",
+      "zhName": "随州市",
+      "enName": "Suizhou",
+      "parentProvinceId": "420000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "422800",
+      "code": "422800",
+      "zhName": "恩施土家族苗族自治州",
+      "enName": "Enshi Tujia and Miao Autonomous Prefecture",
+      "parentProvinceId": "420000",
+      "administrativeLevel": "prefecture",
+      "unitType": "autonomous-prefecture"
+    },
+    {
+      "id": "430100",
+      "code": "430100",
+      "zhName": "长沙市",
+      "enName": "Changsha",
+      "parentProvinceId": "430000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "430200",
+      "code": "430200",
+      "zhName": "株洲市",
+      "enName": "Zhuzhou",
+      "parentProvinceId": "430000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "430300",
+      "code": "430300",
+      "zhName": "湘潭市",
+      "enName": "Xiangtan",
+      "parentProvinceId": "430000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "430400",
+      "code": "430400",
+      "zhName": "衡阳市",
+      "enName": "Hengyang",
+      "parentProvinceId": "430000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "430500",
+      "code": "430500",
+      "zhName": "邵阳市",
+      "enName": "Shaoyang",
+      "parentProvinceId": "430000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "430600",
+      "code": "430600",
+      "zhName": "岳阳市",
+      "enName": "Yueyang",
+      "parentProvinceId": "430000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "430700",
+      "code": "430700",
+      "zhName": "常德市",
+      "enName": "Changde",
+      "parentProvinceId": "430000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "430800",
+      "code": "430800",
+      "zhName": "张家界市",
+      "enName": "Zhangjiajie",
+      "parentProvinceId": "430000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "430900",
+      "code": "430900",
+      "zhName": "益阳市",
+      "enName": "Yiyang",
+      "parentProvinceId": "430000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "431000",
+      "code": "431000",
+      "zhName": "郴州市",
+      "enName": "Chenzhou",
+      "parentProvinceId": "430000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "431100",
+      "code": "431100",
+      "zhName": "永州市",
+      "enName": "Yongzhou",
+      "parentProvinceId": "430000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "431200",
+      "code": "431200",
+      "zhName": "怀化市",
+      "enName": "Huaihua",
+      "parentProvinceId": "430000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "431300",
+      "code": "431300",
+      "zhName": "娄底市",
+      "enName": "Loudi",
+      "parentProvinceId": "430000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "433100",
+      "code": "433100",
+      "zhName": "湘西土家族苗族自治州",
+      "enName": "Xiangxi Tujia and Miao Autonomous Prefecture",
+      "parentProvinceId": "430000",
+      "administrativeLevel": "prefecture",
+      "unitType": "autonomous-prefecture"
+    },
+    {
+      "id": "440100",
+      "code": "440100",
+      "zhName": "广州市",
+      "enName": "Guangzhou",
+      "parentProvinceId": "440000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "440200",
+      "code": "440200",
+      "zhName": "韶关市",
+      "enName": "Shaoguan",
+      "parentProvinceId": "440000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "440300",
+      "code": "440300",
+      "zhName": "深圳市",
+      "enName": "Shenzhen",
+      "parentProvinceId": "440000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "440400",
+      "code": "440400",
+      "zhName": "珠海市",
+      "enName": "Zhuhai",
+      "parentProvinceId": "440000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "440500",
+      "code": "440500",
+      "zhName": "汕头市",
+      "enName": "Shantou",
+      "parentProvinceId": "440000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "440600",
+      "code": "440600",
+      "zhName": "佛山市",
+      "enName": "Foshan",
+      "parentProvinceId": "440000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "440700",
+      "code": "440700",
+      "zhName": "江门市",
+      "enName": "Jiangmen",
+      "parentProvinceId": "440000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "440800",
+      "code": "440800",
+      "zhName": "湛江市",
+      "enName": "Zhanjiang",
+      "parentProvinceId": "440000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "440900",
+      "code": "440900",
+      "zhName": "茂名市",
+      "enName": "Maoming",
+      "parentProvinceId": "440000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "441200",
+      "code": "441200",
+      "zhName": "肇庆市",
+      "enName": "Zhaoqing",
+      "parentProvinceId": "440000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "441300",
+      "code": "441300",
+      "zhName": "惠州市",
+      "enName": "Huizhou",
+      "parentProvinceId": "440000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "441400",
+      "code": "441400",
+      "zhName": "梅州市",
+      "enName": "Meizhou",
+      "parentProvinceId": "440000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "441500",
+      "code": "441500",
+      "zhName": "汕尾市",
+      "enName": "Shanwei",
+      "parentProvinceId": "440000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "441600",
+      "code": "441600",
+      "zhName": "河源市",
+      "enName": "Heyuan",
+      "parentProvinceId": "440000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "441700",
+      "code": "441700",
+      "zhName": "阳江市",
+      "enName": "Yangjiang",
+      "parentProvinceId": "440000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "441800",
+      "code": "441800",
+      "zhName": "清远市",
+      "enName": "Qingyuan",
+      "parentProvinceId": "440000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "445100",
+      "code": "445100",
+      "zhName": "潮州市",
+      "enName": "Chaozhou",
+      "parentProvinceId": "440000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "445200",
+      "code": "445200",
+      "zhName": "揭阳市",
+      "enName": "Jieyang",
+      "parentProvinceId": "440000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "445300",
+      "code": "445300",
+      "zhName": "云浮市",
+      "enName": "Yunfu",
+      "parentProvinceId": "440000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "450100",
+      "code": "450100",
+      "zhName": "南宁市",
+      "enName": "Nanning",
+      "parentProvinceId": "450000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "450200",
+      "code": "450200",
+      "zhName": "柳州市",
+      "enName": "Liuzhou",
+      "parentProvinceId": "450000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "450300",
+      "code": "450300",
+      "zhName": "桂林市",
+      "enName": "Guilin",
+      "parentProvinceId": "450000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "450400",
+      "code": "450400",
+      "zhName": "梧州市",
+      "enName": "Wuzhou",
+      "parentProvinceId": "450000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "450500",
+      "code": "450500",
+      "zhName": "北海市",
+      "enName": "Beihai",
+      "parentProvinceId": "450000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "450600",
+      "code": "450600",
+      "zhName": "防城港市",
+      "enName": "Fangchenggang",
+      "parentProvinceId": "450000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "450700",
+      "code": "450700",
+      "zhName": "钦州市",
+      "enName": "Qinzhou",
+      "parentProvinceId": "450000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "450800",
+      "code": "450800",
+      "zhName": "贵港市",
+      "enName": "Guigang",
+      "parentProvinceId": "450000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "450900",
+      "code": "450900",
+      "zhName": "玉林市",
+      "enName": "Yulin",
+      "parentProvinceId": "450000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "451000",
+      "code": "451000",
+      "zhName": "百色市",
+      "enName": "Baise",
+      "parentProvinceId": "450000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "451100",
+      "code": "451100",
+      "zhName": "贺州市",
+      "enName": "Hezhou",
+      "parentProvinceId": "450000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "451200",
+      "code": "451200",
+      "zhName": "河池市",
+      "enName": "Hechi",
+      "parentProvinceId": "450000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "451300",
+      "code": "451300",
+      "zhName": "来宾市",
+      "enName": "Laibin",
+      "parentProvinceId": "450000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "451400",
+      "code": "451400",
+      "zhName": "崇左市",
+      "enName": "Chongzuo",
+      "parentProvinceId": "450000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "460100",
+      "code": "460100",
+      "zhName": "海口市",
+      "enName": "Haikou",
+      "parentProvinceId": "460000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "460200",
+      "code": "460200",
+      "zhName": "三亚市",
+      "enName": "Sanya",
+      "parentProvinceId": "460000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "460300",
+      "code": "460300",
+      "zhName": "三沙市",
+      "enName": "Sansha",
+      "parentProvinceId": "460000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "460400",
+      "code": "460400",
+      "zhName": "儋州市",
+      "enName": "Danzhou",
+      "parentProvinceId": "460000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "500000",
+      "code": "500000",
+      "zhName": "重庆市",
+      "enName": "Chongqing",
+      "parentProvinceId": "500000",
+      "administrativeLevel": "prefecture",
+      "unitType": "municipality-equivalent"
+    },
+    {
+      "id": "510100",
+      "code": "510100",
+      "zhName": "成都市",
+      "enName": "Chengdu",
+      "parentProvinceId": "510000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "510300",
+      "code": "510300",
+      "zhName": "自贡市",
+      "enName": "Zigong",
+      "parentProvinceId": "510000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "510400",
+      "code": "510400",
+      "zhName": "攀枝花市",
+      "enName": "Panzhihua",
+      "parentProvinceId": "510000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "510500",
+      "code": "510500",
+      "zhName": "泸州市",
+      "enName": "Luzhou",
+      "parentProvinceId": "510000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "510600",
+      "code": "510600",
+      "zhName": "德阳市",
+      "enName": "Deyang",
+      "parentProvinceId": "510000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "510700",
+      "code": "510700",
+      "zhName": "绵阳市",
+      "enName": "Mianyang",
+      "parentProvinceId": "510000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "510800",
+      "code": "510800",
+      "zhName": "广元市",
+      "enName": "Guangyuan",
+      "parentProvinceId": "510000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "510900",
+      "code": "510900",
+      "zhName": "遂宁市",
+      "enName": "Suining",
+      "parentProvinceId": "510000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "511000",
+      "code": "511000",
+      "zhName": "内江市",
+      "enName": "Neijiang",
+      "parentProvinceId": "510000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "511100",
+      "code": "511100",
+      "zhName": "乐山市",
+      "enName": "Leshan",
+      "parentProvinceId": "510000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "511300",
+      "code": "511300",
+      "zhName": "南充市",
+      "enName": "Nanchong",
+      "parentProvinceId": "510000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "511400",
+      "code": "511400",
+      "zhName": "眉山市",
+      "enName": "Meishan",
+      "parentProvinceId": "510000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "511500",
+      "code": "511500",
+      "zhName": "宜宾市",
+      "enName": "Yibin",
+      "parentProvinceId": "510000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "511600",
+      "code": "511600",
+      "zhName": "广安市",
+      "enName": "Guangan",
+      "parentProvinceId": "510000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "511700",
+      "code": "511700",
+      "zhName": "达州市",
+      "enName": "Dazhou",
+      "parentProvinceId": "510000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "511800",
+      "code": "511800",
+      "zhName": "雅安市",
+      "enName": "Yaan",
+      "parentProvinceId": "510000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "511900",
+      "code": "511900",
+      "zhName": "巴中市",
+      "enName": "Bazhong",
+      "parentProvinceId": "510000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "512000",
+      "code": "512000",
+      "zhName": "资阳市",
+      "enName": "Ziyang",
+      "parentProvinceId": "510000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "513200",
+      "code": "513200",
+      "zhName": "阿坝藏族羌族自治州",
+      "enName": "Aba Tibetan and Qiang Autonomous Prefecture",
+      "parentProvinceId": "510000",
+      "administrativeLevel": "prefecture",
+      "unitType": "autonomous-prefecture"
+    },
+    {
+      "id": "513300",
+      "code": "513300",
+      "zhName": "甘孜藏族自治州",
+      "enName": "Ganzi Tibetan Autonomous Prefecture",
+      "parentProvinceId": "510000",
+      "administrativeLevel": "prefecture",
+      "unitType": "autonomous-prefecture"
+    },
+    {
+      "id": "513400",
+      "code": "513400",
+      "zhName": "凉山彝族自治州",
+      "enName": "Liangshan Yi Autonomous Prefecture",
+      "parentProvinceId": "510000",
+      "administrativeLevel": "prefecture",
+      "unitType": "autonomous-prefecture"
+    },
+    {
+      "id": "520100",
+      "code": "520100",
+      "zhName": "贵阳市",
+      "enName": "Guiyang",
+      "parentProvinceId": "520000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "520200",
+      "code": "520200",
+      "zhName": "六盘水市",
+      "enName": "Liupanshui",
+      "parentProvinceId": "520000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "520300",
+      "code": "520300",
+      "zhName": "遵义市",
+      "enName": "Zunyi",
+      "parentProvinceId": "520000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "520400",
+      "code": "520400",
+      "zhName": "安顺市",
+      "enName": "Anshun",
+      "parentProvinceId": "520000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "520500",
+      "code": "520500",
+      "zhName": "毕节市",
+      "enName": "Bijie",
+      "parentProvinceId": "520000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "520600",
+      "code": "520600",
+      "zhName": "铜仁市",
+      "enName": "Tongren",
+      "parentProvinceId": "520000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "522300",
+      "code": "522300",
+      "zhName": "黔西南布依族苗族自治州",
+      "enName": "Qianxinan Buyi and Miao Autonomous Prefecture",
+      "parentProvinceId": "520000",
+      "administrativeLevel": "prefecture",
+      "unitType": "autonomous-prefecture"
+    },
+    {
+      "id": "522600",
+      "code": "522600",
+      "zhName": "黔东南苗族侗族自治州",
+      "enName": "Qiandongnan Miao and Dong Autonomous Prefecture",
+      "parentProvinceId": "520000",
+      "administrativeLevel": "prefecture",
+      "unitType": "autonomous-prefecture"
+    },
+    {
+      "id": "522700",
+      "code": "522700",
+      "zhName": "黔南布依族苗族自治州",
+      "enName": "Qiannan Buyi and Miao Autonomous Prefecture",
+      "parentProvinceId": "520000",
+      "administrativeLevel": "prefecture",
+      "unitType": "autonomous-prefecture"
+    },
+    {
+      "id": "530100",
+      "code": "530100",
+      "zhName": "昆明市",
+      "enName": "Kunming",
+      "parentProvinceId": "530000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "530300",
+      "code": "530300",
+      "zhName": "曲靖市",
+      "enName": "Qujing",
+      "parentProvinceId": "530000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "530400",
+      "code": "530400",
+      "zhName": "玉溪市",
+      "enName": "Yuxi",
+      "parentProvinceId": "530000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "530500",
+      "code": "530500",
+      "zhName": "保山市",
+      "enName": "Baoshan",
+      "parentProvinceId": "530000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "530600",
+      "code": "530600",
+      "zhName": "昭通市",
+      "enName": "Zhaotong",
+      "parentProvinceId": "530000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "530700",
+      "code": "530700",
+      "zhName": "丽江市",
+      "enName": "Lijiang",
+      "parentProvinceId": "530000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "530800",
+      "code": "530800",
+      "zhName": "普洱市",
+      "enName": "Puer",
+      "parentProvinceId": "530000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "530900",
+      "code": "530900",
+      "zhName": "临沧市",
+      "enName": "Lincang",
+      "parentProvinceId": "530000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "532300",
+      "code": "532300",
+      "zhName": "楚雄彝族自治州",
+      "enName": "Chuxiong Yi Autonomous Prefecture",
+      "parentProvinceId": "530000",
+      "administrativeLevel": "prefecture",
+      "unitType": "autonomous-prefecture"
+    },
+    {
+      "id": "532500",
+      "code": "532500",
+      "zhName": "红河哈尼族彝族自治州",
+      "enName": "Honghe Hani and Yi Autonomous Prefecture",
+      "parentProvinceId": "530000",
+      "administrativeLevel": "prefecture",
+      "unitType": "autonomous-prefecture"
+    },
+    {
+      "id": "532600",
+      "code": "532600",
+      "zhName": "文山壮族苗族自治州",
+      "enName": "Wenshan Zhuang and Miao Autonomous Prefecture",
+      "parentProvinceId": "530000",
+      "administrativeLevel": "prefecture",
+      "unitType": "autonomous-prefecture"
+    },
+    {
+      "id": "532800",
+      "code": "532800",
+      "zhName": "西双版纳傣族自治州",
+      "enName": "Xishuangbanna Dai Autonomous Prefecture",
+      "parentProvinceId": "530000",
+      "administrativeLevel": "prefecture",
+      "unitType": "autonomous-prefecture"
+    },
+    {
+      "id": "532900",
+      "code": "532900",
+      "zhName": "大理白族自治州",
+      "enName": "Dali Bai Autonomous Prefecture",
+      "parentProvinceId": "530000",
+      "administrativeLevel": "prefecture",
+      "unitType": "autonomous-prefecture"
+    },
+    {
+      "id": "533100",
+      "code": "533100",
+      "zhName": "德宏傣族景颇族自治州",
+      "enName": "Dehong Dai and Jingpo Autonomous Prefecture",
+      "parentProvinceId": "530000",
+      "administrativeLevel": "prefecture",
+      "unitType": "autonomous-prefecture"
+    },
+    {
+      "id": "533300",
+      "code": "533300",
+      "zhName": "怒江傈僳族自治州",
+      "enName": "Nujiang Lisu Autonomous Prefecture",
+      "parentProvinceId": "530000",
+      "administrativeLevel": "prefecture",
+      "unitType": "autonomous-prefecture"
+    },
+    {
+      "id": "533400",
+      "code": "533400",
+      "zhName": "迪庆藏族自治州",
+      "enName": "Diqing Tibetan Autonomous Prefecture",
+      "parentProvinceId": "530000",
+      "administrativeLevel": "prefecture",
+      "unitType": "autonomous-prefecture"
+    },
+    {
+      "id": "540100",
+      "code": "540100",
+      "zhName": "拉萨市",
+      "enName": "Lasa",
+      "parentProvinceId": "540000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "540200",
+      "code": "540200",
+      "zhName": "日喀则市",
+      "enName": "Rikaze",
+      "parentProvinceId": "540000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "540300",
+      "code": "540300",
+      "zhName": "昌都市",
+      "enName": "Changdu",
+      "parentProvinceId": "540000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "540400",
+      "code": "540400",
+      "zhName": "林芝市",
+      "enName": "Linzhi",
+      "parentProvinceId": "540000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "540500",
+      "code": "540500",
+      "zhName": "山南市",
+      "enName": "Shannan",
+      "parentProvinceId": "540000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "540600",
+      "code": "540600",
+      "zhName": "那曲市",
+      "enName": "Naqu",
+      "parentProvinceId": "540000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "542500",
+      "code": "542500",
+      "zhName": "阿里地区",
+      "enName": "Ngari Prefecture",
+      "parentProvinceId": "540000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture"
+    },
+    {
+      "id": "610100",
+      "code": "610100",
+      "zhName": "西安市",
+      "enName": "Xian",
+      "parentProvinceId": "610000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "610200",
+      "code": "610200",
+      "zhName": "铜川市",
+      "enName": "Tongchuan",
+      "parentProvinceId": "610000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "610300",
+      "code": "610300",
+      "zhName": "宝鸡市",
+      "enName": "Baoji",
+      "parentProvinceId": "610000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "610400",
+      "code": "610400",
+      "zhName": "咸阳市",
+      "enName": "Xianyang",
+      "parentProvinceId": "610000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "610500",
+      "code": "610500",
+      "zhName": "渭南市",
+      "enName": "Weinan",
+      "parentProvinceId": "610000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "610600",
+      "code": "610600",
+      "zhName": "延安市",
+      "enName": "Yanan",
+      "parentProvinceId": "610000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "610700",
+      "code": "610700",
+      "zhName": "汉中市",
+      "enName": "Hanzhong",
+      "parentProvinceId": "610000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "610800",
+      "code": "610800",
+      "zhName": "榆林市",
+      "enName": "Yulin",
+      "parentProvinceId": "610000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "610900",
+      "code": "610900",
+      "zhName": "安康市",
+      "enName": "Ankang",
+      "parentProvinceId": "610000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "611000",
+      "code": "611000",
+      "zhName": "商洛市",
+      "enName": "Shangluo",
+      "parentProvinceId": "610000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "620100",
+      "code": "620100",
+      "zhName": "兰州市",
+      "enName": "Lanzhou",
+      "parentProvinceId": "620000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "620300",
+      "code": "620300",
+      "zhName": "金昌市",
+      "enName": "Jinchang",
+      "parentProvinceId": "620000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "620400",
+      "code": "620400",
+      "zhName": "白银市",
+      "enName": "Baiyin",
+      "parentProvinceId": "620000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "620500",
+      "code": "620500",
+      "zhName": "天水市",
+      "enName": "Tianshui",
+      "parentProvinceId": "620000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "620600",
+      "code": "620600",
+      "zhName": "武威市",
+      "enName": "Wuwei",
+      "parentProvinceId": "620000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "620700",
+      "code": "620700",
+      "zhName": "张掖市",
+      "enName": "Zhangye",
+      "parentProvinceId": "620000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "620800",
+      "code": "620800",
+      "zhName": "平凉市",
+      "enName": "Pingliang",
+      "parentProvinceId": "620000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "620900",
+      "code": "620900",
+      "zhName": "酒泉市",
+      "enName": "Jiuquan",
+      "parentProvinceId": "620000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "621000",
+      "code": "621000",
+      "zhName": "庆阳市",
+      "enName": "Qingyang",
+      "parentProvinceId": "620000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "621100",
+      "code": "621100",
+      "zhName": "定西市",
+      "enName": "Dingxi",
+      "parentProvinceId": "620000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "621200",
+      "code": "621200",
+      "zhName": "陇南市",
+      "enName": "Longnan",
+      "parentProvinceId": "620000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "622900",
+      "code": "622900",
+      "zhName": "临夏回族自治州",
+      "enName": "Linxia Hui Autonomous Prefecture",
+      "parentProvinceId": "620000",
+      "administrativeLevel": "prefecture",
+      "unitType": "autonomous-prefecture"
+    },
+    {
+      "id": "623000",
+      "code": "623000",
+      "zhName": "甘南藏族自治州",
+      "enName": "Gannan Tibetan Autonomous Prefecture",
+      "parentProvinceId": "620000",
+      "administrativeLevel": "prefecture",
+      "unitType": "autonomous-prefecture"
+    },
+    {
+      "id": "630100",
+      "code": "630100",
+      "zhName": "西宁市",
+      "enName": "Xining",
+      "parentProvinceId": "630000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "630200",
+      "code": "630200",
+      "zhName": "海东市",
+      "enName": "Haidong",
+      "parentProvinceId": "630000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "632200",
+      "code": "632200",
+      "zhName": "海北藏族自治州",
+      "enName": "Haibei Tibetan Autonomous Prefecture",
+      "parentProvinceId": "630000",
+      "administrativeLevel": "prefecture",
+      "unitType": "autonomous-prefecture"
+    },
+    {
+      "id": "632300",
+      "code": "632300",
+      "zhName": "黄南藏族自治州",
+      "enName": "Huangnan Tibetan Autonomous Prefecture",
+      "parentProvinceId": "630000",
+      "administrativeLevel": "prefecture",
+      "unitType": "autonomous-prefecture"
+    },
+    {
+      "id": "632500",
+      "code": "632500",
+      "zhName": "海南藏族自治州",
+      "enName": "Hainan Tibetan Autonomous Prefecture",
+      "parentProvinceId": "630000",
+      "administrativeLevel": "prefecture",
+      "unitType": "autonomous-prefecture"
+    },
+    {
+      "id": "632600",
+      "code": "632600",
+      "zhName": "果洛藏族自治州",
+      "enName": "Golog Tibetan Autonomous Prefecture",
+      "parentProvinceId": "630000",
+      "administrativeLevel": "prefecture",
+      "unitType": "autonomous-prefecture"
+    },
+    {
+      "id": "632700",
+      "code": "632700",
+      "zhName": "玉树藏族自治州",
+      "enName": "Yushu Tibetan Autonomous Prefecture",
+      "parentProvinceId": "630000",
+      "administrativeLevel": "prefecture",
+      "unitType": "autonomous-prefecture"
+    },
+    {
+      "id": "632800",
+      "code": "632800",
+      "zhName": "海西蒙古族藏族自治州",
+      "enName": "Haixi Mongol and Tibetan Autonomous Prefecture",
+      "parentProvinceId": "630000",
+      "administrativeLevel": "prefecture",
+      "unitType": "autonomous-prefecture"
+    },
+    {
+      "id": "640100",
+      "code": "640100",
+      "zhName": "银川市",
+      "enName": "Yinchuan",
+      "parentProvinceId": "640000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "640200",
+      "code": "640200",
+      "zhName": "石嘴山市",
+      "enName": "Shizuishan",
+      "parentProvinceId": "640000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "640300",
+      "code": "640300",
+      "zhName": "吴忠市",
+      "enName": "Wuzhong",
+      "parentProvinceId": "640000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "640400",
+      "code": "640400",
+      "zhName": "固原市",
+      "enName": "Guyuan",
+      "parentProvinceId": "640000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "640500",
+      "code": "640500",
+      "zhName": "中卫市",
+      "enName": "Zhongwei",
+      "parentProvinceId": "640000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "650100",
+      "code": "650100",
+      "zhName": "乌鲁木齐市",
+      "enName": "Wulumuqi",
+      "parentProvinceId": "650000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "650200",
+      "code": "650200",
+      "zhName": "克拉玛依市",
+      "enName": "Kelamayi",
+      "parentProvinceId": "650000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "650400",
+      "code": "650400",
+      "zhName": "吐鲁番市",
+      "enName": "Tulufan",
+      "parentProvinceId": "650000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "650500",
+      "code": "650500",
+      "zhName": "哈密市",
+      "enName": "Hami",
+      "parentProvinceId": "650000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "652300",
+      "code": "652300",
+      "zhName": "昌吉回族自治州",
+      "enName": "Changji Hui Autonomous Prefecture",
+      "parentProvinceId": "650000",
+      "administrativeLevel": "prefecture",
+      "unitType": "autonomous-prefecture"
+    },
+    {
+      "id": "652700",
+      "code": "652700",
+      "zhName": "博尔塔拉蒙古自治州",
+      "enName": "Bortala Mongol Autonomous Prefecture",
+      "parentProvinceId": "650000",
+      "administrativeLevel": "prefecture",
+      "unitType": "autonomous-prefecture"
+    },
+    {
+      "id": "652800",
+      "code": "652800",
+      "zhName": "巴音郭楞蒙古自治州",
+      "enName": "Bayingolin Mongol Autonomous Prefecture",
+      "parentProvinceId": "650000",
+      "administrativeLevel": "prefecture",
+      "unitType": "autonomous-prefecture"
+    },
+    {
+      "id": "652900",
+      "code": "652900",
+      "zhName": "阿克苏地区",
+      "enName": "Aksu Prefecture",
+      "parentProvinceId": "650000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture"
+    },
+    {
+      "id": "653000",
+      "code": "653000",
+      "zhName": "克孜勒苏柯尔克孜自治州",
+      "enName": "Kizilsu Kyrgyz Autonomous Prefecture",
+      "parentProvinceId": "650000",
+      "administrativeLevel": "prefecture",
+      "unitType": "autonomous-prefecture"
+    },
+    {
+      "id": "653100",
+      "code": "653100",
+      "zhName": "喀什地区",
+      "enName": "Kashgar Prefecture",
+      "parentProvinceId": "650000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture"
+    },
+    {
+      "id": "653200",
+      "code": "653200",
+      "zhName": "和田地区",
+      "enName": "Hotan Prefecture",
+      "parentProvinceId": "650000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture"
+    },
+    {
+      "id": "654000",
+      "code": "654000",
+      "zhName": "伊犁哈萨克自治州",
+      "enName": "Ili Kazakh Autonomous Prefecture",
+      "parentProvinceId": "650000",
+      "administrativeLevel": "prefecture",
+      "unitType": "autonomous-prefecture"
+    },
+    {
+      "id": "654200",
+      "code": "654200",
+      "zhName": "塔城地区",
+      "enName": "Tacheng Prefecture",
+      "parentProvinceId": "650000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture"
+    },
+    {
+      "id": "654300",
+      "code": "654300",
+      "zhName": "阿勒泰地区",
+      "enName": "Altay Prefecture",
+      "parentProvinceId": "650000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture"
+    }
+  ]
+}

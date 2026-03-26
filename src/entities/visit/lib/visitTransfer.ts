@@ -1,4 +1,5 @@
 import type { ExperienceLevel } from "../../region/model/types";
+import { isCanonicalCityId } from "../../../data/adminDivisions";
 import type { GeoMemoExportPayload, VisitEntry, VisitsState, VisitedCityMap } from "../model/types";
 
 const DEFAULT_EXPERIENCE_LEVEL: ExperienceLevel = "short";
@@ -17,6 +18,10 @@ function normalizeVisitedCities(input: unknown): VisitedCityMap {
   const next: VisitedCityMap = {};
 
   for (const [cityId, value] of Object.entries(input as Record<string, unknown>)) {
+    if (!isCanonicalCityId(cityId)) {
+      continue;
+    }
+
     if (value === true) {
       next[cityId] = {
         experienceLevel: DEFAULT_EXPERIENCE_LEVEL,
@@ -55,7 +60,7 @@ function normalizeHistory(input: unknown) {
     const visitedAt = "visitedAt" in item ? item.visitedAt : null;
     const experienceLevel = "experienceLevel" in item ? item.experienceLevel : DEFAULT_EXPERIENCE_LEVEL;
 
-    if (typeof cityId === "string" && typeof visitedAt === "string") {
+    if (typeof cityId === "string" && typeof visitedAt === "string" && isCanonicalCityId(cityId)) {
       return [{ cityId, visitedAt, experienceLevel: normalizeExperienceLevel(experienceLevel) }];
     }
 

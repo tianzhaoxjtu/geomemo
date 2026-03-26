@@ -7,8 +7,8 @@ GeoMemo is a local-first React application for tracking places visited in China 
 The current production-facing implementation includes:
 
 - national China map with province boundaries
-- province drill-down into city-level administrative regions when available
-- visit tracking for cities and province-wide bulk actions
+- province drill-down into second-level administrative regions when available
+- visit tracking for second-level units and province-wide bulk actions
 - travel experience levels for visited places
 - live statistics derived from one shared store
 - bilingual UI in Simplified Chinese and English
@@ -39,6 +39,8 @@ src/
 ├── app/
 │   ├── App.tsx
 │   └── styles/
+├── data/
+│   └── adminDivisions/
 ├── entities/
 │   ├── region/
 │   │   ├── data/
@@ -67,14 +69,29 @@ src/
 
 ## Layer Responsibilities
 
+### `data/adminDivisions`
+
+This layer owns the canonical logical administrative standard used throughout the app:
+
+- 34 province-level administrative units
+- 334 second-level administrative units
+- explicit province → prefecture mapping
+- province type and map drill-down metadata
+
+Files of interest:
+
+- [china-admin-divisions.json](/Users/tianzhaoxjtu/Code/GitHub/geomemo/src/data/adminDivisions/china-admin-divisions.json)
+- [index.ts](/Users/tianzhaoxjtu/Code/GitHub/geomemo/src/data/adminDivisions/index.ts)
+- [types.ts](/Users/tianzhaoxjtu/Code/GitHub/geomemo/src/data/adminDivisions/types.ts)
+
 ### `entities/region`
 
 This layer owns reference data and region identity:
 
-- province and city metadata
+- province and second-level metadata normalized from the canonical admin dataset
 - localized region naming helpers
 - lookup and index helpers such as `getProvinceById`, `getCityById`, and `getProvinceCities`
-- vendored metadata generated from the GeoJSON snapshot
+- the bridge between logical administrative data and UI-facing region models
 
 Files of interest:
 
@@ -134,7 +151,7 @@ Files of interest:
 
 This layer owns visit-facing UI and composition hooks:
 
-- context panel for province/city selection
+- context panel for province/second-level selection
 - visit actions and experience level selection
 - language switcher
 - import/export UI
@@ -185,6 +202,8 @@ Files of interest:
 export type RegionLevel = "country" | "province" | "city";
 export type VisitVisualState = "unvisited" | "partial" | "visited";
 export type ExperienceLevel = "long" | "medium" | "short";
+export type ProvinceType = "province" | "municipality" | "autonomous-region" | "sar" | "taiwan";
+export type ProvinceMapDrillDownMode = "prefecture" | "single-city" | "unavailable";
 
 export interface City {
   id: string;
@@ -193,6 +212,7 @@ export interface City {
   fullname: string;
   englishName: string;
   provinceId: string;
+  administrativeLevel: "prefecture";
 }
 
 export interface Province {
@@ -202,9 +222,20 @@ export interface Province {
   englishName: string;
   code: string;
   filename: string;
+  type: ProvinceType;
+  mapDrillDownMode: ProvinceMapDrillDownMode;
   cityIds: string[];
 }
 ```
+
+### Administrative Counting Rules
+
+- Province totals always use the 34 province-level units from `src/data/adminDivisions/china-admin-divisions.json`.
+- Second-level totals always use the 334 canonical units from the same dataset.
+- The second-level layer includes prefecture-level cities, autonomous prefectures, leagues, and prefectures, plus one municipality-equivalent record for each direct-controlled municipality.
+- The national/root China node is never included in province metrics.
+- County-level cities, districts, counties, and other lower-level units are excluded from statistics.
+- Province coverage is derived from second-level visit entries: a province counts as visited once any canonical unit in it is visited.
 
 ### Visit Model
 
@@ -303,15 +334,15 @@ The main store API currently includes:
 
 ## Map Data Handling
 
-GeoMemo uses vendored authoritative GeoJSON data stored locally under:
+GeoMemo separates logical administrative data from geographic rendering data.
+
+Logical source of truth:
+
+- [china-admin-divisions.json](/Users/tianzhaoxjtu/Code/GitHub/geomemo/src/data/adminDivisions/china-admin-divisions.json)
+
+Geographic rendering data:
 
 - `/Users/tianzhaoxjtu/Code/GitHub/geomemo/public/geojson/china`
-
-Supporting metadata is stored under:
-
-- [china-meta.json](/Users/tianzhaoxjtu/Code/GitHub/geomemo/src/entities/region/data/china-meta.json)
-- [china-regions.json](/Users/tianzhaoxjtu/Code/GitHub/geomemo/src/entities/region/data/china-regions.json)
-- [china-source.json](/Users/tianzhaoxjtu/Code/GitHub/geomemo/src/entities/region/data/china-source.json)
 
 The runtime does not depend on an external map API. ECharts loads local GeoJSON assets and registers them before rendering.
 
@@ -320,14 +351,33 @@ The runtime does not depend on an external map API. ECharts loads local GeoJSON 
 Current interaction behavior:
 
 - At country level, clicking a province enters that province without mutating visit state.
-- At province level, clicking a city selects it and opens the experience-level chooser.
+- At province level, clicking a second-level unit selects it and opens the experience-level chooser.
+- Direct-controlled municipalities map district geometry back to one canonical municipality-equivalent record so they still fit the shared second-level interaction model.
+- Taiwan, Hong Kong, and Macau remain in the 34-province layer but currently expose no editable second-level travel units in the chosen logical standard.
 - The province map stays visible while `level = "city"`. City level is a selected-detail state, not a separate map screen.
 - Breadcrumbs provide upward navigation.
-- Missing city-level geometry is handled gracefully with an empty-state message.
+- Missing second-level geometry is handled gracefully with an empty-state message.
+
+## Validation and Audit
+
+Run the administrative dataset validator with:
+
+```bash
+npm run validate:admin
+```
+
+The validator checks:
+
+- province count equals 34
+- second-level unit count equals 334
+- every second-level unit belongs to exactly one valid province
+- duplicate ids and duplicate province names
+- exclusion of the root China node from province totals
+- province → second-level mapping consistency
 
 ## Experience Level Model
 
-Each visited city stores an `experienceLevel`:
+Each visited second-level unit stores an `experienceLevel`:
 
 - `long`: more than 6 months
 - `medium`: 1 to 6 months
@@ -336,18 +386,18 @@ Each visited city stores an `experienceLevel`:
 The UI supports:
 
 - choosing an experience level from the side panel or inline map popover
-- creating or updating a selected city visit with one explicit level selection
-- clearing a selected city back to unvisited
-- updating all cities in the active province in one action
+- creating or updating a selected unit visit with one explicit level selection
+- clearing a selected unit back to unvisited
+- updating all mapped second-level units in the active province in one action
 
-Province-level experience display is derived from visited city entries rather than persisted as a separate province record.
+Province-level experience display is derived from visited second-level entries rather than persisted as a separate province record.
 
 ## Statistics Model
 
 Derived statistics include:
 
-- visited cities
-- city completion percentage
+- visited second-level units
+- second-level completion percentage
 - visited provinces
 - province completion percentage
 - experience level distribution for long, medium, and short stays
@@ -358,7 +408,7 @@ The left column below the map shows the national experience distribution.
 
 Province coverage metrics are derived using the rule:
 
-- a province counts as visited once any city in that province has a saved visit entry
+- a province counts as visited once any second-level unit in that province has a saved visit entry
 
 The map still distinguishes `partial` versus fully visited provinces visually.
 
@@ -418,7 +468,7 @@ Behavior:
 The current structure is ready for:
 
 - backend sync and user accounts
-- richer trip metadata per city
+- richer trip metadata per second-level unit
 - province-level notes or summaries
 - AI-generated travel summaries or recommendations
 - additional locales

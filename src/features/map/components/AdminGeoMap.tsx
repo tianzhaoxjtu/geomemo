@@ -26,6 +26,7 @@ type GeoJsonCollection = {
 interface AdminGeoMapProps {
   mapCode: string;
   activeCode: string | null;
+  isRegionActive?: (regionCode: string) => boolean;
   getVisualState: (regionCode: string) => VisitVisualState;
   getExperienceLevel: (regionCode: string) => ExperienceLevel | null;
   onRegionClick: (regionCode: string) => void;
@@ -35,6 +36,7 @@ interface AdminGeoMapProps {
 export function AdminGeoMap({
   mapCode,
   activeCode,
+  isRegionActive,
   getVisualState,
   getExperienceLevel,
   onRegionClick,
@@ -128,7 +130,7 @@ export function AdminGeoMap({
       const pinyin = String(feature.properties?.pinyin ?? "");
       const visualState = getVisualState(code);
       const experienceLevel = getExperienceLevel(code);
-      const isActive = activeCode === code;
+      const isActive = isRegionActive ? isRegionActive(code) : activeCode === code;
       const displayName = locale === "zh-CN" ? fullName : toEnglishName(pinyin || name);
 
       return {
@@ -190,7 +192,7 @@ export function AdminGeoMap({
         },
       ],
     } as EChartsOption;
-  }, [activeCode, geoJson, getExperienceLevel, getVisualState, locale, mapCode]);
+  }, [activeCode, geoJson, getExperienceLevel, getVisualState, isRegionActive, locale, mapCode]);
 
   useEffect(() => {
     if (!containerRef.current || !geoJson) {

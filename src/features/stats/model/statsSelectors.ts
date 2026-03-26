@@ -103,8 +103,12 @@ export function getExperienceBreakdown(visitedCities: VisitedCityMap | undefined
     short: 0,
   };
 
-  for (const entry of Object.values(safeVisitedCities)) {
-    counts[entry.experienceLevel] += 1;
+  for (const city of regionIndex.cities) {
+    const entry = safeVisitedCities[city.id];
+
+    if (entry) {
+      counts[entry.experienceLevel] += 1;
+    }
   }
 
   const total = Object.values(counts).reduce((sum, value) => sum + value, 0);

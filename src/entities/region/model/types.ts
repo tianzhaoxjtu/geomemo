@@ -2,6 +2,15 @@ export type RegionLevel = "country" | "province" | "city";
 
 export type VisitVisualState = "unvisited" | "partial" | "visited";
 export type ExperienceLevel = "long" | "medium" | "short";
+export type ProvinceType = "province" | "municipality" | "autonomous-region" | "sar" | "taiwan";
+export type ProvinceMapDrillDownMode = "prefecture" | "single-city" | "unavailable";
+export type AdministrativeLevel = "prefecture";
+export type PrefectureUnitType =
+  | "prefecture-city"
+  | "autonomous-prefecture"
+  | "league"
+  | "prefecture"
+  | "municipality-equivalent";
 
 export interface City {
   id: string;
@@ -10,6 +19,8 @@ export interface City {
   fullname: string;
   englishName: string;
   provinceId: string;
+  administrativeLevel: AdministrativeLevel;
+  prefectureUnitType: PrefectureUnitType;
 }
 
 export interface Province {
@@ -19,6 +30,8 @@ export interface Province {
   englishName: string;
   code: string;
   filename: string;
+  type: ProvinceType;
+  mapDrillDownMode: ProvinceMapDrillDownMode;
   cityIds: string[];
 }
 

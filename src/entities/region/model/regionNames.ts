@@ -2,7 +2,7 @@ import { getCityById, getProvinceById } from "./regionIndex";
 import type { City, Province } from "./types";
 import type { Locale } from "../../../shared/i18n/types";
 
-function titleCasePinyin(value: string) {
+function titleCaseWords(value: string) {
   return value
     .split(/[\s-]+/)
     .filter(Boolean)
@@ -18,7 +18,7 @@ export function localizeRegionName(
     return null;
   }
 
-  return locale === "zh-CN" ? region.fullname : titleCasePinyin(region.englishName);
+  return locale === "zh-CN" ? region.fullname : titleCaseWords(region.englishName);
 }
 
 export function getLocalizedProvinceName(provinceId: string | null, locale: Locale) {

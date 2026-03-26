@@ -2,13 +2,19 @@
 
 ## Project Overview
 
-GeoMemo is a frontend application for tracking places visited in China on top of authoritative administrative boundary data. It supports province drill-down, city-level visit tracking, experience levels, bilingual UI, live statistics, and local persistence.
+GeoMemo is a frontend application for tracking places visited in China on top of authoritative administrative boundary data. It supports province drill-down, second-level administrative-unit tracking, experience levels, bilingual UI, live statistics, and local persistence.
+
+Administrative standard:
+
+- 34 province-level administrative units
+- 334 second-level administrative units
+- the root China view is not counted as a province
 
 ### Key features
 
-- authoritative China province and city boundary rendering with ECharts
+- authoritative China province and second-level boundary rendering with ECharts where geometry is available
 - click-based drill-down from country to province
-- explicit experience-level marking for cities and province-wide bulk actions
+- explicit experience-level marking for second-level units and province-wide bulk actions
 - travel experience levels: long, medium, short
 - live progress metrics and experience distribution
 - Simplified Chinese and English UI
@@ -26,6 +32,7 @@ GeoMemo is a frontend application for tracking places visited in China on top of
 
 ```bash
 npm install
+npm run validate:admin
 ```
 
 ### Start the development server
@@ -102,8 +109,8 @@ The application depends on local GeoJSON assets under `public/geojson/china`, so
 ### Mark visited places
 
 - On the country map, clicking a province enters the province view without changing visit data.
-- Inside a province, clicking a city selects it and opens an inline experience chooser.
-- In the right-side panel, selecting an experience level marks or updates the selected city.
+- Inside a province, clicking a second-level unit selects it and opens an inline experience chooser.
+- In the right-side panel, selecting an experience level marks or updates the selected unit.
 - You can also apply the current level to the active province or clear the active province.
 
 ### Set experience levels
@@ -112,15 +119,15 @@ The application depends on local GeoJSON assets under `public/geojson/china`, so
   - `Long stay`
   - `Short stay`
   - `Travel`
-- If the selected city is already marked, choosing a level updates it.
-- If the city is unvisited, choosing a level creates the visit entry immediately.
+- If the selected unit is already marked, choosing a level updates it.
+- If the unit is unvisited, choosing a level creates the visit entry immediately.
 - Clearing is a separate explicit action.
 
 ### View statistics
 
 - The header shows four national metrics:
-  - visited cities
-  - city coverage
+  - visited prefecture-level units
+  - prefecture coverage
   - visited provinces
   - province coverage
 - The area below the map shows the experience level distribution.
@@ -156,7 +163,7 @@ Main store key:
 Stored data includes:
 
 - current navigation state
-- visited city records
+- visited second-level unit records
 - visit history
 - draft experience level
 
@@ -173,11 +180,14 @@ Stored locale values:
 
 Older saved data that used a boolean city-visit map is normalized automatically into the current structured visit format.
 
+Legacy ids outside the canonical second-level dataset are filtered out during normalization and import so statistics stay auditable.
+
 ## Project Structure
 
 ```text
 src/
 ├── app/        # app bootstrap and global styling
+├── data/       # canonical province + second-level admin dataset
 ├── entities/   # domain models and static reference data
 ├── features/   # map, stats, and visit-oriented UI/features
 ├── pages/      # page-level layout and composition
@@ -188,6 +198,8 @@ src/
 
 - `src/shared/store/geoMemoStore.ts`
   - Zustand store and persistence
+- `src/data/adminDivisions/`
+  - canonical logical administrative dataset and validation types
 - `src/features/visit/hooks/useGeoMemoViewModel.ts`
   - page-facing composition hook
 - `src/features/stats/model/statsSelectors.ts`
@@ -199,13 +211,23 @@ src/
 - `src/shared/i18n/`
   - locale state and translation resources
 
+### Dataset validation
+
+Run:
+
+```bash
+npm run validate:admin
+```
+
+This checks the current province + second-level standard, unit ownership, duplicate ids, and province → unit mapping consistency.
+
 ## Future Extensibility
 
 The current structure is ready to grow toward:
 
 - backend synchronization and user accounts
 - cloud backups
-- per-city notes, photos, and trip metadata
+- per-unit notes, photos, and trip metadata
 - richer analytics
 - AI-generated travel summaries or recommendations
 - additional languages

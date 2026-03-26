@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
+import { isCanonicalCityId, isCanonicalProvinceId } from "../../data/adminDivisions";
 import { getCityById, getProvinceCities } from "../../entities/region/model/regionIndex";
 import type { ExperienceLevel } from "../../entities/region/model/types";
 import { parseVisitImport } from "../../entities/visit/lib/visitTransfer";
@@ -111,6 +112,23 @@ function clearProvinceVisits(visits: VisitsState, provinceId: string): VisitsSta
   };
 }
 
+function normalizeHistoryEntries(state: any) {
+  return Array.isArray(state?.visits?.history)
+    ? state.visits.history
+        .map((entry: any) => ({
+          cityId: entry.cityId,
+          visitedAt: entry.visitedAt,
+          experienceLevel:
+            entry.experienceLevel === "long" ||
+            entry.experienceLevel === "medium" ||
+            entry.experienceLevel === "short"
+              ? entry.experienceLevel
+              : "short",
+        }))
+        .filter((entry: { cityId: string; visitedAt: string }) => isCanonicalCityId(entry.cityId))
+    : [];
+}
+
 function normalizePersistedState(state: any): Pick<GeoMemoState, "navigation" | "visits" | "ui"> {
   // Accept both the current structured payload and the older boolean visit map so
   // existing users do not lose data after schema changes.
@@ -118,6 +136,10 @@ function normalizePersistedState(state: any): Pick<GeoMemoState, "navigation" | 
   const visitedCities: VisitedCityMap = {};
 
   for (const [cityId, value] of Object.entries(visitedCitiesSource as Record<string, any>)) {
+    if (!isCanonicalCityId(cityId)) {
+      continue;
+    }
+
     if (value === true) {
       visitedCities[cityId] = createVisitEntry("short");
     } else if (value && typeof value === "object") {
@@ -141,24 +163,18 @@ function normalizePersistedState(state: any): Pick<GeoMemoState, "navigation" | 
           ? state.navigation.level
           : initialState.navigation.level,
       activeProvinceId:
-        typeof state?.navigation?.activeProvinceId === "string"
+        typeof state?.navigation?.activeProvinceId === "string" &&
+        isCanonicalProvinceId(state.navigation.activeProvinceId)
           ? state.navigation.activeProvinceId
           : null,
       activeCityId:
-        typeof state?.navigation?.activeCityId === "string" ? state.navigation.activeCityId : null,
+        typeof state?.navigation?.activeCityId === "string" && isCanonicalCityId(state.navigation.activeCityId)
+          ? state.navigation.activeCityId
+          : null,
     },
     visits: {
       visitedCities,
-      history: Array.isArray(state?.visits?.history)
-        ? state.visits.history.map((entry: any) => ({
-            cityId: entry.cityId,
-            visitedAt: entry.visitedAt,
-            experienceLevel:
-              entry.experienceLevel === "long" || entry.experienceLevel === "medium" || entry.experienceLevel === "short"
-                ? entry.experienceLevel
-                : "short",
-          }))
-        : [],
+      history: normalizeHistoryEntries(state),
     },
     ui: {
       ...initialState.ui,

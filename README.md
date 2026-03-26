@@ -2,11 +2,29 @@
 
 GeoMemo is a React + TypeScript + Vite application for tracking places visited in China with authoritative administrative boundaries, drill-down map interaction, explicit experience-level marking, bilingual UI, and local-first persistence.
 
+## Administrative Standard
+
+GeoMemo uses a repository-owned logical administrative dataset as its single source of truth for province and second-level administrative statistics:
+
+- 34 province-level administrative units
+- 334 second-level administrative units
+- the national/root China node is not counted as a province
+
+The dataset lives in:
+
+- `src/data/adminDivisions/china-admin-divisions.json`
+
+Validate it with:
+
+```bash
+npm run validate:admin
+```
+
 ## Features
 
 - authoritative China map rendered from vendored GeoJSON data
-- province drill-down into city-level administrative regions
-- city-level visit tracking with province-wide bulk actions
+- province drill-down into second-level administrative units aligned to the canonical admin dataset
+- prefecture-level unit visit tracking with province-wide bulk actions
 - experience levels for visited places: long, medium, short
 - live national and province-level statistics
 - Simplified Chinese and English UI
@@ -16,10 +34,10 @@ GeoMemo is a React + TypeScript + Vite application for tracking places visited i
 ## Interaction Model
 
 - Clicking a province on the national map enters that province without mutating visit data.
-- Clicking a city selects it and opens an inline experience-level chooser.
-- Selecting `long`, `medium`, or `short` marks or updates the city immediately.
-- Clearing a city or province is an explicit action.
-- Province coverage metrics are derived from city-level data: a province counts as visited once any city in it has a saved experience level.
+- Clicking a second-level unit selects it and opens an inline experience-level chooser.
+- Selecting `long`, `medium`, or `short` marks or updates the selected unit immediately.
+- Clearing a unit or province is an explicit action.
+- Province coverage metrics are derived from second-level records: a province counts as visited once any mapped unit in it has a saved experience level.
 
 ## Tech Stack
 
@@ -42,6 +60,7 @@ Then open the local Vite URL shown in the terminal, usually `http://localhost:51
 ## Build
 
 ```bash
+npm run validate:admin
 npm run build
 npm run preview
 ```
@@ -103,5 +122,6 @@ https://your-project-name.vercel.app
 ## Notes
 
 - GeoJSON assets are vendored locally under `public/geojson/china`.
+- Logical province/second-level metadata is vendored under `src/data/adminDivisions`.
 - Locale preference and visit data are persisted in `localStorage`.
 - The codebase is structured to support future backend sync, richer trip metadata, and AI-assisted features.

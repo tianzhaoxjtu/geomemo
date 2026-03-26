@@ -6,24 +6,39 @@ This document describes the current implemented behavior of GeoMemo. It is inten
 
 ## Product Summary
 
-GeoMemo is a bilingual, local-first travel tracker for China. It uses authoritative administrative boundary data, lets users drill down into provinces, assign experience levels to visited cities, and view live progress metrics derived from a single city-level visit model.
+GeoMemo is a bilingual, local-first travel tracker for China. It uses authoritative administrative boundary data, lets users drill down into provinces, assign experience levels to visited second-level administrative units, and view live progress metrics derived from one shared lower-level visit model.
+
+## Administrative Standard
+
+The implemented logical admin standard is:
+
+- 34 province-level administrative units
+- 334 second-level administrative units
+- the national/root China node is not counted as a province
+
+Additional rules:
+
+- province-level metrics use only those 34 province-level units
+- second-level metrics use the full canonical second-level dataset
+- county-level cities, districts, and counties are excluded from statistics
+- province coverage is derived from second-level records
 
 ## Current Feature Set
 
 ### Map and navigation
 
 - national China map with province boundaries
-- province drill-down into city-level administrative regions when geometry is available
-- breadcrumb navigation from country to province to selected city context
+- province drill-down into second-level administrative regions when geometry is available
+- breadcrumb navigation from country to province to selected region context
 - lightweight inline map interactions
 
 ### Visit tracking
 
-- explicit city marking with one experience level:
+- explicit second-level unit marking with one experience level:
   - `long`
   - `medium`
   - `short`
-- explicit clear action to return a city to unvisited
+- explicit clear action to return a selected unit to unvisited
 - province-wide bulk apply for the current experience level
 - province-level clear action
 - context-aware reset action
@@ -32,8 +47,8 @@ GeoMemo is a bilingual, local-first travel tracker for China. It uses authoritat
 
 - national header metrics
 - experience level distribution below the map
-- province coverage derived from city-level records
-- map coloring driven by derived city/province state
+- province coverage derived from second-level records
+- map coloring driven by derived unit/province state
 
 ### Persistence and portability
 
@@ -111,37 +126,39 @@ Right column:
 ### Country map behavior
 
 - the map renders provinces
-- province fill is derived from saved city visit records
+- province fill is derived from saved second-level visit records
 - clicking a province enters the province view only
-- entering a province does not mutate city visit state
+- entering a province does not mutate second-level visit state
 
 Province visual-state rules:
 
-- `unvisited`: no visited cities in the province
-- `partial`: some visited cities but not all
-- `visited`: all cities in the province have saved visit entries
+- `unvisited`: no visited units in the province
+- `partial`: some visited units but not all
+- `visited`: all mapped units in the province have saved visit entries
 
 Province coverage metrics use a different rule:
 
-- a province is counted as covered once one or more cities in that province are visited
+- a province is counted as covered once one or more mapped second-level units in that province are visited
 
 ### Province map behavior
 
-- the map renders city-level administrative regions for the active province when geometry exists
-- clicking a city selects it
-- selecting a city opens an inline experience chooser in the map area
-- choosing `long`, `medium`, or `short` marks or updates the selected city immediately
-- clearing a city is a separate explicit action
+- the map renders second-level administrative regions for the active province when geometry exists
+- direct-controlled municipalities map district geometry back to one canonical municipality-equivalent record
+- Taiwan, Hong Kong, and Macau remain in the province layer but do not expose editable second-level travel units in the chosen logical standard
+- clicking a unit selects it
+- selecting a unit opens an inline experience chooser in the map area
+- choosing `long`, `medium`, or `short` marks or updates the selected unit immediately
+- clearing a unit is a separate explicit action
 
 ### Side-panel behavior
 
 The right-side panel mirrors the same source of truth:
 
-- the region panel shows city status within the active province
-- visited cities display their current experience level label
+- the region panel shows second-level unit status within the active province
+- visited units display their current experience level label
 - the action panel lets the user:
-  - set the selected city’s experience level
-  - clear the selected city
+  - set the selected unit’s experience level
+  - clear the selected unit
   - apply the current level to the whole active province
   - clear the active province
 
@@ -150,7 +167,7 @@ The right-side panel mirrors the same source of truth:
 The reset action is scope-aware:
 
 - at national level, it clears all visits
-- inside a province, it clears only cities within the active province
+- inside a province, it clears only mapped second-level units within the active province
 
 ## Data Model
 
@@ -192,9 +209,9 @@ The canonical visit state is:
 visits.visitedCities
 ```
 
-This city-level map drives:
+This second-level visit map drives:
 
-- city status
+- unit status
 - province coverage metrics
 - province visual state
 - national totals
@@ -208,8 +225,8 @@ No separate persisted province visit flag exists.
 
 Current selectors compute:
 
-- city visited state
-- city experience level
+- unit visited state
+- unit experience level
 - province visited count
 - province visual state
 - province coverage state
@@ -249,15 +266,17 @@ HomePage
 
 ## Map Data Specification
 
-### Source
+### Logical admin dataset
+
+The application uses a curated logical administrative dataset stored in:
+
+- `/Users/tianzhaoxjtu/Code/GitHub/geomemo/src/data/adminDivisions/china-admin-divisions.json`
+
+### Geographic rendering source
 
 The application uses vendored China administrative GeoJSON data stored in:
 
 - `/Users/tianzhaoxjtu/Code/GitHub/geomemo/public/geojson/china`
-
-Supporting metadata is tracked in:
-
-- [china-source.json](/Users/tianzhaoxjtu/Code/GitHub/geomemo/src/entities/region/data/china-source.json)
 
 ### Rendering
 
@@ -267,7 +286,17 @@ Supporting metadata is tracked in:
 
 ### Missing data handling
 
-If city-level geometry is missing for a province, the UI shows an empty state instead of failing.
+If second-level geometry is missing for a province, the UI shows an empty state instead of failing.
+
+### Validation
+
+Run:
+
+```bash
+npm run validate:admin
+```
+
+This verifies the province + second-level standard and the internal province → unit mapping.
 
 ## Persistence Specification
 
@@ -311,8 +340,8 @@ Import accepts:
 
 ## Guarantees Future Changes Should Preserve
 
-- map, panel, and statistics must continue to read from the same city-level visit data
-- province-level coverage must remain derived from city-level records
+- map, panel, and statistics must continue to read from the same second-level visit data
+- province-level coverage must remain derived from second-level records
 - entering a province must not mutate visit state
 - experience-level marking remains explicit, not binary toggle-based
 - i18n text stays externalized

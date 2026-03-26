@@ -1,67 +1,47 @@
-import regionData from "./china-regions.json";
+import {
+  adminDivisionPrefectureUnits,
+  adminDivisionPrefectureUnitsByProvinceId,
+  adminDivisionProvinces,
+} from "../../../data/adminDivisions";
 import type { City, Province } from "../model/types";
-
-type RegionDataFile = {
-  provinces: Array<{
-    code: string;
-    name: string;
-    fullname: string;
-    pinyin: string;
-    filename: string;
-  }>;
-  citiesByProvince: Record<
-    string,
-    Array<{
-      code: string;
-      name: string;
-      fullname: string;
-      pinyin: string;
-      filename: string;
-      level: number;
-      center: [number, number] | null;
-    }>
-  >;
-};
-
-const typedRegionData = regionData as unknown as RegionDataFile;
-const rawProvinces = typedRegionData.provinces.filter(
-  (province) =>
-    typeof province.code === "string" &&
-    province.code.length > 0 &&
-    typeof province.filename === "string" &&
-    province.filename.length > 0,
-);
-
-export const provinces: Province[] = rawProvinces.map((province) => ({
-  id: province.code,
+// The logical region model is normalized from the curated 34 / 293 admin dataset.
+// GeoJSON geometry remains a separate concern under public/geojson/china.
+export const provinces: Province[] = adminDivisionProvinces.map((province) => ({
+  id: province.id,
   code: province.code,
-  name: province.name,
-  fullname: province.fullname,
-  englishName: province.pinyin,
-  filename: province.filename,
-  cityIds: (typedRegionData.citiesByProvince[province.code] ?? []).map((city) => city.code),
+  name: province.zhName,
+  fullname: province.zhName,
+  englishName: province.enName,
+  filename: province.code,
+  type: province.type,
+  mapDrillDownMode: province.mapDrillDownMode,
+  cityIds: province.prefectureUnitIds,
 }));
 
-const validProvinceIds = new Set(provinces.map((province) => province.id));
-
-export const cities: City[] = Object.entries(typedRegionData.citiesByProvince).flatMap(
-  ([provinceId, provinceCities]) =>
-    validProvinceIds.has(provinceId)
-      ? provinceCities.map((city) => ({
-          id: city.code,
-          code: city.code,
-          name: city.name,
-          fullname: city.fullname,
-          englishName: city.pinyin,
-          provinceId,
-        }))
-      : [],
-);
+export const cities: City[] = adminDivisionPrefectureUnits.map((unit) => ({
+  id: unit.id,
+  code: unit.code,
+  name: unit.zhName,
+  fullname: unit.zhName,
+  englishName: unit.enName,
+  provinceId: unit.parentProvinceId,
+  administrativeLevel: unit.administrativeLevel,
+  prefectureUnitType: unit.unitType,
+}));
 
 export const citiesByProvinceId = Object.fromEntries(
   provinces.map((province) => [
     province.id,
-    cities.filter((city) => city.provinceId === province.id),
+    (adminDivisionPrefectureUnitsByProvinceId[province.id] ?? []).map((unit) => ({
+      id: unit.id,
+      code: unit.code,
+      name: unit.zhName,
+      fullname: unit.zhName,
+      englishName: unit.enName,
+      provinceId: unit.parentProvinceId,
+      administrativeLevel: unit.administrativeLevel,
+      prefectureUnitType: unit.unitType,
+    })),
   ]),
 ) as Record<string, City[]>;
 
