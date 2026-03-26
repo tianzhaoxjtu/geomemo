@@ -2,11 +2,7 @@ import { useMemo } from "react";
 import type { ExperienceLevel } from "../../../entities/region/model/types";
 import { getCityById, getProvinceById } from "../../../entities/region/model/regionIndex";
 import { getLocalizedCityName, getLocalizedProvinceName } from "../../../entities/region/model/regionNames";
-import {
-  getCountryStats,
-  getProvinceExperienceLevel,
-  getProvinceStats,
-} from "../../stats/model/statsSelectors";
+import { getCountryStats } from "../../stats/model/statsSelectors";
 import { useGeoMemoStore } from "../../../shared/store/geoMemoStore";
 import { useI18n } from "../../../shared/i18n/I18nProvider";
 
@@ -34,7 +30,6 @@ export function useGeoMemoViewModel() {
     const activeCityExperienceLevel = activeCity
       ? visitedCities[activeCity.id]?.experienceLevel ?? null
       : null;
-    const provinceStats = activeProvince ? getProvinceStats(activeProvince.id, visitedCities) : null;
     const currentExperienceLevel: ExperienceLevel =
       activeCityExperienceLevel ?? ui.draftExperienceLevel;
 
@@ -49,7 +44,7 @@ export function useGeoMemoViewModel() {
 
     const handleProvinceMapClick = (provinceId: string) => {
       // Entering a province should never mutate child visit data. The province view must
-      // reflect only the user's previously saved city records.
+      // reflect only the user's previously saved second-level records.
       enterProvince(provinceId);
     };
 
@@ -76,7 +71,6 @@ export function useGeoMemoViewModel() {
       activeProvinceName: getLocalizedProvinceName(navigation.activeProvinceId, locale),
       activeCityName: getLocalizedCityName(navigation.activeCityId, locale),
       countryStats: getCountryStats(visitedCities),
-      provinceStats,
       cityVisited: activeCity ? Boolean(visitedCities[activeCity.id]) : false,
       currentExperienceLevel,
       handleExperienceLevelChange,

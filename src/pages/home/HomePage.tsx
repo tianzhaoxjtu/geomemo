@@ -93,13 +93,13 @@ export function HomePage() {
               activeCityId={activeCityId}
               visitedCities={visitedCities}
               onBack={enterCountry}
-              onCityClick={handleCityMapClick}
+              onRegionSelect={handleCityMapClick}
               overlay={
                 <div className="flex flex-col items-end gap-3">
                   <MapResetButton onReset={resetCurrentScope} />
                   {activeCityId && activeCityName ? (
                     <MapExperiencePopover
-                      cityName={activeCityName}
+                      regionName={activeCityName}
                       currentExperienceLevel={currentExperienceLevel}
                       isVisited={cityVisited}
                       onSelectLevel={handleExperienceLevelChange}
@@ -131,11 +131,11 @@ export function HomePage() {
           />
           <VisitActionCard
             hasProvince={Boolean(activeProvinceId)}
-            cityName={activeCityName}
-            isCityVisited={cityVisited}
+            regionName={activeCityName}
+            isRegionVisited={cityVisited}
             currentExperienceLevel={currentExperienceLevel}
             onExperienceLevelChange={handleExperienceLevelChange}
-            onClearCity={() => {
+            onClearRegion={() => {
               if (activeCityId) {
                 clearCityVisited(activeCityId);
               }

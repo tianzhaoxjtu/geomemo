@@ -93,6 +93,11 @@ This layer owns reference data and region identity:
 - lookup and index helpers such as `getProvinceById`, `getCityById`, and `getProvinceCities`
 - the bridge between logical administrative data and UI-facing region models
 
+Internal naming note:
+
+- The codebase retains `City`, `getCityById`, and `visitedCities` as compatibility-friendly internal names.
+- Those names now refer to the app's canonical second-level administrative units rather than only prefecture-level cities.
+
 Files of interest:
 
 - [regionIndex.ts](/Users/tianzhaoxjtu/Code/GitHub/geomemo/src/entities/region/model/regionIndex.ts)

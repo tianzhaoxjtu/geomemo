@@ -240,7 +240,7 @@ export const useGeoMemoStore = create<GeoMemoStore>()(
       markProvinceVisited: (provinceId, experienceLevel) =>
         set((state) => {
           // Province-level marking is implemented as an explicit bulk operation that
-          // writes city visit records. There is no separate persisted province flag.
+          // writes second-level visit records. There is no separate persisted province flag.
           const level = experienceLevel ?? state.ui.draftExperienceLevel;
           const next = { ...state.visits.visitedCities };
           const history = [...state.visits.history];

@@ -10,7 +10,7 @@ interface ProvinceMapViewProps {
   activeCityId: string | null;
   visitedCities: VisitedCityMap;
   onBack: () => void;
-  onCityClick: (cityId: string) => void;
+  onRegionSelect: (regionId: string) => void;
   overlay?: ReactNode;
 }
 
@@ -19,7 +19,7 @@ export function ProvinceMapView({
   activeCityId,
   visitedCities,
   onBack,
-  onCityClick,
+  onRegionSelect,
   overlay,
 }: ProvinceMapViewProps) {
   const { t } = useI18n();
@@ -30,7 +30,7 @@ export function ProvinceMapView({
   const isGeometryUnavailable = province?.mapDrillDownMode === "unavailable";
 
   // Municipalities render district geometry, but the logical dataset intentionally
-  // treats them as one city-equivalent prefecture record under the 293-city standard.
+  // treats them as one municipality-equivalent second-level record.
   const resolveLogicalCityId = (regionCode: string) => canonicalSingleCityId ?? regionCode;
   const getCityVisualState = (regionCode: string) =>
     visitedCities[resolveLogicalCityId(regionCode)] ? "visited" : "unvisited";
@@ -40,7 +40,7 @@ export function ProvinceMapView({
     const logicalCityId = resolveLogicalCityId(regionCode);
 
     if (logicalCityId) {
-      onCityClick(logicalCityId);
+      onRegionSelect(logicalCityId);
     }
   };
 

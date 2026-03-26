@@ -27,7 +27,7 @@ export const en: TranslationDictionary = {
   "legend.partial": "Partially visited",
   "legend.unvisited": "Unvisited",
   "stats.section": "Statistics",
-  "stats.description": "Progress updates instantly as you mark cities and provinces.",
+  "stats.description": "Progress updates instantly as you mark prefecture-level units and provinces.",
   "stats.experienceBreakdown": "Experience breakdown",
   "stats.experienceBreakdownDescription": "Visited places by length of stay",
   "stats.nationalTitle": "National Statistics",

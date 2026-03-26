@@ -13,6 +13,9 @@ export type PrefectureUnitType =
   | "municipality-equivalent";
 
 export interface City {
+  // `City` is retained as a compatibility-friendly internal name for the app's
+  // second-level travel units. The canonical dataset may include prefecture-level
+  // cities, autonomous prefectures, leagues, prefectures, or municipality equivalents.
   id: string;
   code: string;
   name: string;

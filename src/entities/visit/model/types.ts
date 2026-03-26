@@ -6,6 +6,8 @@ export interface VisitEntry {
   updatedAt?: string;
 }
 
+// `VisitedCityMap` is kept for persistence and migration stability. Each key now
+// represents one canonical second-level administrative unit in the admin dataset.
 export type VisitedCityMap = Record<string, VisitEntry>;
 
 export interface VisitRecord {

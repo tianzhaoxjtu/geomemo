@@ -4,7 +4,8 @@ import {
   adminDivisionProvinces,
 } from "../../../data/adminDivisions";
 import type { City, Province } from "../model/types";
-// The logical region model is normalized from the curated 34 / 293 admin dataset.
+// The logical region model is normalized from the canonical province + second-level
+// admin dataset and then adapted to the app's existing region interfaces.
 // GeoJSON geometry remains a separate concern under public/geojson/china.
 export const provinces: Province[] = adminDivisionProvinces.map((province) => ({
   id: province.id,

@@ -2,7 +2,7 @@ import type { ExperienceLevel } from "../../../entities/region/model/types";
 import { useI18n } from "../../../shared/i18n/I18nProvider";
 
 interface MapExperiencePopoverProps {
-  cityName: string;
+  regionName: string;
   currentExperienceLevel: ExperienceLevel;
   isVisited: boolean;
   onSelectLevel: (experienceLevel: ExperienceLevel) => void;
@@ -10,7 +10,7 @@ interface MapExperiencePopoverProps {
 }
 
 export function MapExperiencePopover({
-  cityName,
+  regionName,
   currentExperienceLevel,
   isVisited,
   onSelectLevel,
@@ -24,7 +24,7 @@ export function MapExperiencePopover({
       <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-slate-400">
         {t("map.quickMark")}
       </p>
-      <p className="mt-2 text-sm font-semibold text-slate-900">{cityName}</p>
+      <p className="mt-2 text-sm font-semibold text-slate-900">{regionName}</p>
       <p className="mt-1 text-xs leading-5 text-slate-500">{t("map.quickMarkDescription")}</p>
       <div className="mt-3 grid grid-cols-3 gap-2">
         {levels.map((level) => (
