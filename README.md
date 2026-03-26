@@ -10,26 +10,6 @@ GeoMemo is a polished, local-first web application for exploring China's adminis
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white)
 ![ECharts](https://img.shields.io/badge/Apache_ECharts-Map-DA2C43?style=flat-square)
 
-## Live Demo
-
-Try GeoMemo online:
-
-**[Open the live demo](https://your-project-name.vercel.app)**
-
-Replace the placeholder URL above with your deployed production URL.
-
-## Preview
-
-> Replace these placeholders with real screenshots when ready.
-
-| Main map overview | Province drill-down |
-| --- | --- |
-| ![China map overview placeholder](https://placehold.co/1200x760/EFF4F8/223347?text=China+Map+Overview) | ![Province drill-down placeholder](https://placehold.co/1200x760/F4F7FA/223347?text=Province+Drill-Down) |
-
-| Marking interaction | Statistics and side panel |
-| --- | --- |
-| ![Marking interaction placeholder](https://placehold.co/1200x760/F8F5EF/223347?text=Experience-Level+Marking) | ![Statistics panel placeholder](https://placehold.co/1200x760/F2F5F9/223347?text=Statistics+and+Records+Panel) |
-
 ## Features
 
 - Interactive China map with province drill-down and second-level administrative unit exploration
