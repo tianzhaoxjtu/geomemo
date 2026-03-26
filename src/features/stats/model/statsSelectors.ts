@@ -32,6 +32,12 @@ export function getProvinceVisitedCount(provinceId: string, visitedCities: Visit
   return getProvinceCities(provinceId).filter((city) => isCityVisited(city.id, visitedCities)).length;
 }
 
+// Province-level metrics use "any visited city" as the coverage rule. This keeps
+// province counts and percentages derived from the same city-level source of truth.
+export function isProvinceVisited(provinceId: string, visitedCities: VisitedCityMap | undefined | null) {
+  return getProvinceVisitedCount(provinceId, visitedCities) > 0;
+}
+
 export function getProvinceVisualState(
   provinceId: string,
   visitedCities: VisitedCityMap | undefined | null,
@@ -52,7 +58,7 @@ export function getProvinceVisualState(
 
 export function getVisitedProvinceCount(visitedCities: VisitedCityMap | undefined | null) {
   return regionIndex.provinces.filter(
-    (province) => getProvinceVisualState(province.id, visitedCities) === "visited",
+    (province) => isProvinceVisited(province.id, visitedCities),
   ).length;
 }
 
@@ -141,9 +147,8 @@ export function getProvinceStats(
     visitedCities: visitedCityCount,
     cityVisitPercentage: toPercent(visitedCityCount, provinceCities.length),
     totalProvinces: 1,
-    visitedProvinces: getProvinceVisualState(provinceId, safeVisitedCities) === "visited" ? 1 : 0,
-    provinceVisitPercentage:
-      getProvinceVisualState(provinceId, safeVisitedCities) === "visited" ? 100 : 0,
+    visitedProvinces: isProvinceVisited(provinceId, safeVisitedCities) ? 1 : 0,
+    provinceVisitPercentage: isProvinceVisited(provinceId, safeVisitedCities) ? 100 : 0,
     experienceBreakdown: getExperienceBreakdown(
       Object.fromEntries(
         provinceCities

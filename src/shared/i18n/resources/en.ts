@@ -30,7 +30,7 @@ export const en: TranslationDictionary = {
   "stats.provinceTitle": "{name} Statistics",
   "stats.visitedCities": "Visited cities",
   "stats.cityCoverage": "City coverage",
-  "stats.visitedProvinces": "Completed provinces",
+  "stats.visitedProvinces": "Visited provinces",
   "stats.provinceCoverage": "Province coverage",
   "stats.live": "Live",
   "stats.heroEyebrow": "National statistics",
