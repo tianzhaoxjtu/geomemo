@@ -12,7 +12,7 @@ The current production-facing implementation includes:
 - travel experience levels for visited places
 - live statistics derived from one shared store
 - bilingual UI in Simplified Chinese and English
-- local persistence and JSON import/export
+- local persistence, JSON import/export, and map-image export
 
 ## Technology Stack
 
@@ -135,6 +135,7 @@ Files of interest:
 - [AdminGeoMap.tsx](/Users/tianzhaoxjtu/Code/GitHub/geomemo/src/features/map/components/AdminGeoMap.tsx)
 - [ChinaMapView.tsx](/Users/tianzhaoxjtu/Code/GitHub/geomemo/src/features/map/components/ChinaMapView.tsx)
 - [ProvinceMapView.tsx](/Users/tianzhaoxjtu/Code/GitHub/geomemo/src/features/map/components/ProvinceMapView.tsx)
+- [Legend.tsx](/Users/tianzhaoxjtu/Code/GitHub/geomemo/src/features/map/components/Legend.tsx)
 - [mapTheme.ts](/Users/tianzhaoxjtu/Code/GitHub/geomemo/src/features/map/lib/mapTheme.ts)
 
 ### `features/stats`
@@ -165,6 +166,7 @@ This layer owns visit-facing UI and composition hooks:
 Files of interest:
 
 - [useGeoMemoViewModel.ts](/Users/tianzhaoxjtu/Code/GitHub/geomemo/src/features/visit/hooks/useGeoMemoViewModel.ts)
+- [useVisitDataTransfer.ts](/Users/tianzhaoxjtu/Code/GitHub/geomemo/src/features/visit/hooks/useVisitDataTransfer.ts)
 - [VisitActionCard.tsx](/Users/tianzhaoxjtu/Code/GitHub/geomemo/src/features/visit/components/VisitActionCard.tsx)
 - [RegionInfoPanel.tsx](/Users/tianzhaoxjtu/Code/GitHub/geomemo/src/features/visit/components/RegionInfoPanel.tsx)
 - [DataTransferCard.tsx](/Users/tianzhaoxjtu/Code/GitHub/geomemo/src/features/visit/components/DataTransferCard.tsx)
@@ -362,6 +364,8 @@ Current interaction behavior:
 - The province map stays visible while `level = "city"`. City level is a selected-detail state, not a separate map screen.
 - Breadcrumbs provide upward navigation.
 - Missing second-level geometry is handled gracefully with an empty-state message.
+- The national overview starts from a mainland-focused viewport and keeps the South China Sea geometry accessible only through manual zoom or pan.
+- The legend is embedded inside the map card as a lightweight overlay instead of consuming a separate page row.
 
 ## Validation and Audit
 
@@ -409,7 +413,7 @@ Derived statistics include:
 
 The top header uses the national metrics.
 
-The left column below the map shows the national experience distribution.
+The right rail beside the map shows the national experience distribution and the transfer tools.
 
 Province coverage metrics are derived using the rule:
 
@@ -427,9 +431,12 @@ The current `HomePage` layout is:
    - language switcher
    - national metrics
 2. Breadcrumb row
-3. Main two-column layout
-   - left: map card, reset overlay action, legend, experience breakdown
-   - right: region info panel, visit action panel, import/export panel
+3. Middle two-column layout
+   - left: map card with embedded legend, reset overlay action, and inline map experience popover
+   - right: experience breakdown panel and import/export panel
+4. Lower record-management section
+   - region info panel
+   - visit action panel
 
 The reset action is rendered as a lightweight overlay button inside the map container.
 
@@ -445,7 +452,7 @@ The high-level flow is:
 
 ## Import and Export
 
-Visit data can be exported and re-imported as JSON.
+Visit data can be exported and re-imported as JSON. The currently mounted map can also be exported as a PNG or JPEG image through the live ECharts renderer, which preserves the active viewport and applied visit styling.
 
 The import/export contract is versioned in the visit transfer utilities. Current exports include:
 

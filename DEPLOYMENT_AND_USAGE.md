@@ -19,6 +19,7 @@ Administrative standard:
 - live progress metrics and experience distribution
 - Simplified Chinese and English UI
 - JSON import and export
+- PNG/JPEG export for the active map viewport
 - local-first persistence with `localStorage`
 
 ## Local Development
@@ -130,7 +131,7 @@ The application depends on local GeoJSON assets under `public/geojson/china`, so
   - prefecture coverage
   - visited provinces
   - province coverage
-- The area below the map shows the experience level distribution.
+- The right rail beside the map shows the experience level distribution.
 
 ### Switch language
 
@@ -140,9 +141,10 @@ The application depends on local GeoJSON assets under `public/geojson/china`, so
 
 ### Import and export data
 
-- Use the import/export panel in the right sidebar.
+- Use the import/export panel in the right rail beside the map.
 - `Export JSON` downloads the current visit data.
 - `Import JSON` restores visit data from a compatible file.
+- `Export map image` downloads the active map as PNG or JPEG, including the current zoom, pan, and visit styling.
 
 ### Reset records
 

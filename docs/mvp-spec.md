@@ -46,7 +46,7 @@ Additional rules:
 ### Statistics
 
 - national header metrics
-- experience level distribution below the map
+- experience level distribution beside the map
 - province coverage derived from second-level records
 - map coloring driven by derived unit/province state
 
@@ -55,6 +55,7 @@ Additional rules:
 - Zustand store persisted in `localStorage`
 - locale persisted separately
 - JSON import/export for visit records
+- PNG/JPEG export for the active map viewport
 - backward compatibility for older boolean visit data
 
 ### Internationalization
@@ -85,20 +86,23 @@ Displays the current navigation path:
 
 ### Main content
 
-Large screens use a two-column layout.
+Large screens use a map-first layout with a lighter right rail.
 
-Left column:
+Middle two-column row:
 
-- country or province map
-- map reset control overlay
-- legend
-- experience level distribution
+- left:
+  - country or province map
+  - embedded legend overlay
+  - map reset control overlay
+  - inline experience popover for the selected unit
+- right:
+  - experience level distribution
+  - import/export panel
 
-Right column:
+Lower records section:
 
 - region context panel
 - travel record action panel
-- import/export panel
 
 ## Current Interaction Flow
 
@@ -232,7 +236,6 @@ Current selectors compute:
 - province coverage state
 - province dominant experience level
 - national stats
-- province stats
 - experience level distribution
 
 ### View-model boundary
@@ -252,16 +255,18 @@ HomePage
 │   ├── LanguageSwitcher
 │   └── HeroMetricsPanel
 ├── BreadcrumbNav
-├── Left column
-│   ├── ChinaMapView or ProvinceMapView
-│   ├── MapResetButton
-│   ├── MapExperiencePopover
-│   ├── Legend
-│   └── ExperienceBreakdownPanel
-└── Right column
+├── Middle row
+│   ├── Left map column
+│   │   ├── ChinaMapView or ProvinceMapView
+│   │   ├── MapResetButton
+│   │   ├── MapExperiencePopover
+│   │   └── Legend (embedded overlay)
+│   └── Right rail
+│       ├── ExperienceBreakdownPanel
+│       └── DataTransferCard
+└── Lower records section
     ├── RegionInfoPanel
-    ├── VisitActionCard
-    └── DataTransferCard
+    └── VisitActionCard
 ```
 
 ## Map Data Specification
@@ -283,6 +288,8 @@ The application uses vendored China administrative GeoJSON data stored in:
 - ECharts renders the geographic layers
 - local GeoJSON files are registered before rendering
 - the runtime does not depend on a remote map API
+- the overview map starts from a mainland-focused viewport
+- the South China Sea geometry remains in the dataset but is excluded from the default visible focus
 
 ### Missing data handling
 
