@@ -16,6 +16,7 @@ interface GeoMemoActions {
   setProvinceExperienceLevel: (provinceId: string, experienceLevel: ExperienceLevel) => void;
   markProvinceVisited: (provinceId: string) => void;
   clearProvinceVisited: (provinceId: string) => void;
+  resetCurrentScope: () => void;
   resetAllVisits: () => void;
   importVisits: (raw: string) => void;
   clearImportError: () => void;
@@ -73,6 +74,19 @@ function recordVisit(
   }
 
   return history.filter((entry) => entry.cityId !== cityId);
+}
+
+function clearProvinceVisits(visits: VisitsState, provinceId: string): VisitsState {
+  const nextVisitedCities = { ...visits.visitedCities };
+
+  for (const city of getProvinceCities(provinceId)) {
+    delete nextVisitedCities[city.id];
+  }
+
+  return {
+    visitedCities: nextVisitedCities,
+    history: visits.history.filter((entry) => getCityById(entry.cityId)?.provinceId !== provinceId),
+  };
 }
 
 function normalizePersistedState(state: any): Pick<GeoMemoState, "navigation" | "visits" | "ui"> {
@@ -276,19 +290,23 @@ export const useGeoMemoStore = create<GeoMemoStore>()(
         }),
       clearProvinceVisited: (provinceId) =>
         set((state) => {
-          const next = { ...state.visits.visitedCities };
+          return {
+            visits: clearProvinceVisits(state.visits, provinceId),
+          };
+        }),
+      resetCurrentScope: () =>
+        set((state) => {
+          const provinceId = state.navigation.activeProvinceId;
 
-          for (const city of getProvinceCities(provinceId)) {
-            delete next[city.id];
+          if (!provinceId) {
+            return {
+              navigation: initialState.navigation,
+              visits: initialState.visits,
+            };
           }
 
           return {
-            visits: {
-              visitedCities: next,
-              history: state.visits.history.filter(
-                (entry) => getCityById(entry.cityId)?.provinceId !== provinceId,
-              ),
-            },
+            visits: clearProvinceVisits(state.visits, provinceId),
           };
         }),
       resetAllVisits: () =>

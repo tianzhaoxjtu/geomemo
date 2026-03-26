@@ -24,7 +24,7 @@ export function HomePage() {
     toggleCityVisited,
     markProvinceVisited,
     clearProvinceVisited,
-    resetAllVisits,
+    resetCurrentScope,
     activeProvinceName,
     activeCityName,
     countryStats,
@@ -94,14 +94,14 @@ export function HomePage() {
               visitedCities={visitedCities}
               onBack={enterCountry}
               onCityClick={handleCityMapClick}
-              overlay={<MapResetButton onReset={resetAllVisits} />}
+              overlay={<MapResetButton onReset={resetCurrentScope} />}
             />
           ) : (
             <ChinaMapView
               activeProvinceId={activeProvinceId}
               visitedCities={visitedCities}
               onProvinceClick={handleProvinceMapClick}
-              overlay={<MapResetButton onReset={resetAllVisits} />}
+              overlay={<MapResetButton onReset={resetCurrentScope} />}
             />
           )}
           <Legend />

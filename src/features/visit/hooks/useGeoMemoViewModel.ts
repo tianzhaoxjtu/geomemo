@@ -6,7 +6,6 @@ import {
   getCountryStats,
   getProvinceExperienceLevel,
   getProvinceStats,
-  getProvinceVisualState,
 } from "../../stats/model/statsSelectors";
 import { useGeoMemoStore } from "../../../shared/store/geoMemoStore";
 import { useI18n } from "../../../shared/i18n/I18nProvider";
@@ -25,6 +24,7 @@ export function useGeoMemoViewModel() {
   const setProvinceExperienceLevel = useGeoMemoStore((store) => store.setProvinceExperienceLevel);
   const markProvinceVisited = useGeoMemoStore((store) => store.markProvinceVisited);
   const clearProvinceVisited = useGeoMemoStore((store) => store.clearProvinceVisited);
+  const resetCurrentScope = useGeoMemoStore((store) => store.resetCurrentScope);
   const resetAllVisits = useGeoMemoStore((store) => store.resetAllVisits);
 
   return useMemo(() => {
@@ -58,14 +58,8 @@ export function useGeoMemoViewModel() {
     };
 
     const handleProvinceMapClick = (provinceId: string) => {
-      const currentState = getProvinceVisualState(provinceId, visitedCities);
-
-      if (currentState === "visited") {
-        clearProvinceVisited(provinceId);
-      } else {
-        markProvinceVisited(provinceId);
-      }
-
+      // Entering a province should never mutate child visit data. The province view must
+      // reflect only the user's previously saved city records.
       enterProvince(provinceId);
     };
 
@@ -87,6 +81,7 @@ export function useGeoMemoViewModel() {
       toggleCityVisited,
       markProvinceVisited,
       clearProvinceVisited,
+      resetCurrentScope,
       resetAllVisits,
       activeProvinceName: getLocalizedProvinceName(navigation.activeProvinceId, locale),
       activeCityName: getLocalizedCityName(navigation.activeCityId, locale),
@@ -111,6 +106,7 @@ export function useGeoMemoViewModel() {
     setProvinceExperienceLevel,
     markProvinceVisited,
     clearProvinceVisited,
+    resetCurrentScope,
     resetAllVisits,
     locale,
   ]);
