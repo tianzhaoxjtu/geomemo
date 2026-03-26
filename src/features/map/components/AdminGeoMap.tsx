@@ -76,6 +76,8 @@ export function AdminGeoMap({
     };
   }, [mapCode, t]);
 
+  // The vendored GeoJSON dataset ships pinyin for English display. We title-case it
+  // locally so runtime rendering does not depend on a separate translation table.
   const toEnglishName = (value: string) =>
     value
       .split(/[\s-]+/)
@@ -103,6 +105,8 @@ export function AdminGeoMap({
       return null;
     }
 
+    // Register a unique map name per code so country and province drill-down states can
+    // coexist without leaking configuration between renders.
     const mapName = `geomemo-${mapCode}`;
     echarts.registerMap(mapName, geoJson as never);
 

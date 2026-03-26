@@ -290,7 +290,6 @@ The main store API currently includes:
 - `enterCountry()`
 - `enterProvince(provinceId)`
 - `selectCity(cityId)`
-- `clearSelectedCity()`
 - `toggleCityVisited(cityId)`
 - `setDraftExperienceLevel(level)`
 - `setCityExperienceLevel(cityId, level)`
@@ -366,7 +365,7 @@ The current `HomePage` layout is:
    - national metrics
 2. Breadcrumb row
 3. Main two-column layout
-   - left: map card, legend, experience breakdown
+   - left: map card, reset overlay action, legend, experience breakdown
    - right: region info panel, visit action panel, import/export panel
 
 The reset action is rendered as a lightweight overlay button inside the map container.

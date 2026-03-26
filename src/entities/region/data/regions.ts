@@ -47,6 +47,13 @@ export const cities: City[] = Object.entries(typedRegionData.citiesByProvince).f
     })),
 );
 
+export const citiesByProvinceId = Object.fromEntries(
+  provinces.map((province) => [
+    province.id,
+    cities.filter((city) => city.provinceId === province.id),
+  ]),
+) as Record<string, City[]>;
+
 export const provincesById = Object.fromEntries(
   provinces.map((province) => [province.id, province]),
 ) as Record<string, Province>;
@@ -57,5 +64,5 @@ export const citiesById = Object.fromEntries(cities.map((city) => [city.id, city
 >;
 
 export function getProvinceCities(provinceId: string) {
-  return cities.filter((city) => city.provinceId === provinceId);
+  return citiesByProvinceId[provinceId] ?? [];
 }

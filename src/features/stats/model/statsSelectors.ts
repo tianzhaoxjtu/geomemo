@@ -2,8 +2,9 @@ import { regionIndex, getProvinceCities } from "../../../entities/region/model/r
 import type { ExperienceLevel, RegionStats, VisitVisualState } from "../../../entities/region/model/types";
 import type { VisitedCityMap } from "../../../entities/visit/model/types";
 
-function ensureVisitedCities(visitedCityIds: VisitedCityMap | undefined | null): VisitedCityMap {
-  return visitedCityIds ?? {};
+// Keep selectors resilient during persisted-state hydration and legacy-data migration.
+function ensureVisitedCities(visitedCities: VisitedCityMap | undefined | null): VisitedCityMap {
+  return visitedCities ?? {};
 }
 
 function toPercent(visited: number, total: number) {
@@ -14,29 +15,29 @@ function toPercent(visited: number, total: number) {
   return Math.round((visited / total) * 100);
 }
 
-export function isCityVisited(cityId: string, visitedCityIds: VisitedCityMap | undefined | null) {
-  const safeVisitedCityIds = ensureVisitedCities(visitedCityIds);
-  return Boolean(safeVisitedCityIds[cityId]);
+export function isCityVisited(cityId: string, visitedCities: VisitedCityMap | undefined | null) {
+  const safeVisitedCities = ensureVisitedCities(visitedCities);
+  return Boolean(safeVisitedCities[cityId]);
 }
 
 export function getCityExperienceLevel(
   cityId: string,
-  visitedCityIds: VisitedCityMap | undefined | null,
+  visitedCities: VisitedCityMap | undefined | null,
 ): ExperienceLevel | null {
-  const safeVisitedCityIds = ensureVisitedCities(visitedCityIds);
-  return safeVisitedCityIds[cityId]?.experienceLevel ?? null;
+  const safeVisitedCities = ensureVisitedCities(visitedCities);
+  return safeVisitedCities[cityId]?.experienceLevel ?? null;
 }
 
-export function getProvinceVisitedCount(provinceId: string, visitedCityIds: VisitedCityMap | undefined | null) {
-  return getProvinceCities(provinceId).filter((city) => isCityVisited(city.id, visitedCityIds)).length;
+export function getProvinceVisitedCount(provinceId: string, visitedCities: VisitedCityMap | undefined | null) {
+  return getProvinceCities(provinceId).filter((city) => isCityVisited(city.id, visitedCities)).length;
 }
 
 export function getProvinceVisualState(
   provinceId: string,
-  visitedCityIds: VisitedCityMap | undefined | null,
+  visitedCities: VisitedCityMap | undefined | null,
 ): VisitVisualState {
   const provinceCities = getProvinceCities(provinceId);
-  const visitedCount = getProvinceVisitedCount(provinceId, visitedCityIds);
+  const visitedCount = getProvinceVisitedCount(provinceId, visitedCities);
 
   if (visitedCount === 0) {
     return "unvisited";
@@ -49,15 +50,15 @@ export function getProvinceVisualState(
   return "partial";
 }
 
-export function getVisitedProvinceCount(visitedCityIds: VisitedCityMap | undefined | null) {
+export function getVisitedProvinceCount(visitedCities: VisitedCityMap | undefined | null) {
   return regionIndex.provinces.filter(
-    (province) => getProvinceVisualState(province.id, visitedCityIds) === "visited",
+    (province) => getProvinceVisualState(province.id, visitedCities) === "visited",
   ).length;
 }
 
 export function getProvinceExperienceLevel(
   provinceId: string,
-  visitedCityIds: VisitedCityMap | undefined | null,
+  visitedCities: VisitedCityMap | undefined | null,
 ): ExperienceLevel | null {
   const counts: Record<ExperienceLevel, number> = {
     long: 0,
@@ -66,7 +67,7 @@ export function getProvinceExperienceLevel(
   };
 
   for (const city of getProvinceCities(provinceId)) {
-    const level = getCityExperienceLevel(city.id, visitedCityIds);
+    const level = getCityExperienceLevel(city.id, visitedCities);
 
     if (level) {
       counts[level] += 1;
@@ -88,15 +89,15 @@ export function getProvinceExperienceLevel(
   return "short";
 }
 
-export function getExperienceBreakdown(visitedCityIds: VisitedCityMap | undefined | null) {
-  const safeVisitedCityIds = ensureVisitedCities(visitedCityIds);
+export function getExperienceBreakdown(visitedCities: VisitedCityMap | undefined | null) {
+  const safeVisitedCities = ensureVisitedCities(visitedCities);
   const counts: Record<ExperienceLevel, number> = {
     long: 0,
     medium: 0,
     short: 0,
   };
 
-  for (const entry of Object.values(safeVisitedCityIds)) {
+  for (const entry of Object.values(safeVisitedCities)) {
     counts[entry.experienceLevel] += 1;
   }
 
@@ -109,45 +110,45 @@ export function getExperienceBreakdown(visitedCityIds: VisitedCityMap | undefine
   };
 }
 
-export function getCountryStats(visitedCityIds: VisitedCityMap | undefined | null): RegionStats {
-  const safeVisitedCityIds = ensureVisitedCities(visitedCityIds);
-  const visitedCities = regionIndex.cities.filter((city) => isCityVisited(city.id, safeVisitedCityIds)).length;
+export function getCountryStats(visitedCities: VisitedCityMap | undefined | null): RegionStats {
+  const safeVisitedCities = ensureVisitedCities(visitedCities);
+  const visitedCityCount = regionIndex.cities.filter((city) => isCityVisited(city.id, safeVisitedCities)).length;
   const totalCities = regionIndex.cities.length;
-  const visitedProvinces = getVisitedProvinceCount(safeVisitedCityIds);
+  const visitedProvinces = getVisitedProvinceCount(safeVisitedCities);
   const totalProvinces = regionIndex.provinces.length;
 
   return {
     totalCities,
-    visitedCities,
-    cityVisitPercentage: toPercent(visitedCities, totalCities),
+    visitedCities: visitedCityCount,
+    cityVisitPercentage: toPercent(visitedCityCount, totalCities),
     totalProvinces,
     visitedProvinces,
     provinceVisitPercentage: toPercent(visitedProvinces, totalProvinces),
-    experienceBreakdown: getExperienceBreakdown(safeVisitedCityIds),
+    experienceBreakdown: getExperienceBreakdown(safeVisitedCities),
   };
 }
 
 export function getProvinceStats(
   provinceId: string,
-  visitedCityIds: VisitedCityMap | undefined | null,
+  visitedCities: VisitedCityMap | undefined | null,
 ): RegionStats {
-  const safeVisitedCityIds = ensureVisitedCities(visitedCityIds);
+  const safeVisitedCities = ensureVisitedCities(visitedCities);
   const provinceCities = getProvinceCities(provinceId);
-  const visitedCities = provinceCities.filter((city) => isCityVisited(city.id, safeVisitedCityIds)).length;
+  const visitedCityCount = provinceCities.filter((city) => isCityVisited(city.id, safeVisitedCities)).length;
 
   return {
     totalCities: provinceCities.length,
-    visitedCities,
-    cityVisitPercentage: toPercent(visitedCities, provinceCities.length),
+    visitedCities: visitedCityCount,
+    cityVisitPercentage: toPercent(visitedCityCount, provinceCities.length),
     totalProvinces: 1,
-    visitedProvinces: getProvinceVisualState(provinceId, safeVisitedCityIds) === "visited" ? 1 : 0,
+    visitedProvinces: getProvinceVisualState(provinceId, safeVisitedCities) === "visited" ? 1 : 0,
     provinceVisitPercentage:
-      getProvinceVisualState(provinceId, safeVisitedCityIds) === "visited" ? 100 : 0,
+      getProvinceVisualState(provinceId, safeVisitedCities) === "visited" ? 100 : 0,
     experienceBreakdown: getExperienceBreakdown(
       Object.fromEntries(
         provinceCities
-          .filter((city) => safeVisitedCityIds[city.id])
-          .map((city) => [city.id, safeVisitedCityIds[city.id]]),
+          .filter((city) => safeVisitedCities[city.id])
+          .map((city) => [city.id, safeVisitedCities[city.id]]),
       ),
     ),
   };

@@ -9,8 +9,7 @@ import {
 } from "react";
 import { messages } from "./resources";
 import type { Locale } from "./types";
-
-const STORAGE_KEY = "geomemo-locale";
+import { LOCALE_STORAGE_KEY } from "../lib/storage";
 const DEFAULT_LOCALE: Locale = "zh-CN";
 
 interface I18nContextValue {
@@ -35,7 +34,7 @@ export function I18nProvider({ children }: PropsWithChildren) {
       return DEFAULT_LOCALE;
     }
 
-    const saved = window.localStorage.getItem(STORAGE_KEY);
+    const saved = window.localStorage.getItem(LOCALE_STORAGE_KEY);
     return saved === "en" || saved === "zh-CN" ? saved : DEFAULT_LOCALE;
   });
 
@@ -44,7 +43,7 @@ export function I18nProvider({ children }: PropsWithChildren) {
       return;
     }
 
-    window.localStorage.setItem(STORAGE_KEY, locale);
+    window.localStorage.setItem(LOCALE_STORAGE_KEY, locale);
     document.documentElement.lang = locale;
   }, [locale]);
 

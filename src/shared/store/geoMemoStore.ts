@@ -10,7 +10,6 @@ interface GeoMemoActions {
   enterCountry: () => void;
   enterProvince: (provinceId: string) => void;
   selectCity: (cityId: string) => void;
-  clearSelectedCity: () => void;
   toggleCityVisited: (cityId: string) => void;
   setDraftExperienceLevel: (experienceLevel: ExperienceLevel) => void;
   setCityExperienceLevel: (cityId: string, experienceLevel: ExperienceLevel) => void;
@@ -77,6 +76,8 @@ function recordVisit(
 }
 
 function normalizePersistedState(state: any): Pick<GeoMemoState, "navigation" | "visits" | "ui"> {
+  // Accept both the current structured payload and the older boolean visit map so
+  // existing users do not lose data after schema changes.
   const visitedCitiesSource = state?.visits?.visitedCities ?? state?.visits?.visitedCityIds ?? {};
   const visitedCities: VisitedCityMap = {};
 
@@ -163,14 +164,6 @@ export const useGeoMemoStore = create<GeoMemoStore>()(
             level: "city",
             activeCityId: cityId,
             activeProvinceId: getCityById(cityId)?.provinceId ?? null,
-          },
-        })),
-      clearSelectedCity: () =>
-        set((state) => ({
-          navigation: {
-            ...state.navigation,
-            level: state.navigation.activeProvinceId ? "province" : "country",
-            activeCityId: null,
           },
         })),
       setDraftExperienceLevel: (experienceLevel) =>

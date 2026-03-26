@@ -1,12 +1,11 @@
 import { useEffect } from "react";
-import type { ExperienceLevel } from "../../entities/region/model/types";
 import { BreadcrumbNav } from "../../features/map/components/BreadcrumbNav";
 import { ChinaMapView } from "../../features/map/components/ChinaMapView";
 import { Legend } from "../../features/map/components/Legend";
+import { MapResetButton } from "../../features/map/components/MapResetButton";
 import { ProvinceMapView } from "../../features/map/components/ProvinceMapView";
 import { ExperienceBreakdownPanel } from "../../features/stats/components/ExperienceBreakdownPanel";
 import { HeroMetricsPanel } from "../../features/stats/components/HeroMetricsPanel";
-import { getProvinceVisualState } from "../../features/stats/model/statsSelectors";
 import { DataTransferCard } from "../../features/visit/components/DataTransferCard";
 import { LanguageSwitcher } from "../../features/visit/components/LanguageSwitcher";
 import { RegionInfoPanel } from "../../features/visit/components/RegionInfoPanel";
@@ -19,14 +18,10 @@ export function HomePage() {
   const {
     navigation,
     visits,
-    ui,
     enterCountry,
     enterProvince,
     selectCity,
     toggleCityVisited,
-    setDraftExperienceLevel,
-    setCityExperienceLevel,
-    setProvinceExperienceLevel,
     markProvinceVisited,
     clearProvinceVisited,
     resetAllVisits,
@@ -35,8 +30,10 @@ export function HomePage() {
     countryStats,
     provinceStats,
     cityVisited,
-    activeCityExperienceLevel,
-    activeProvinceExperienceLevel,
+    currentExperienceLevel,
+    handleExperienceLevelChange,
+    handleProvinceMapClick,
+    handleCityMapClick,
   } = useGeoMemoViewModel();
   const { downloadExport, importFile, importError, lastImportedAt, clearImportError } =
     useVisitDataTransfer();
@@ -47,67 +44,6 @@ export function HomePage() {
   useEffect(() => {
     document.title = `${t("app.name")} · ${t("app.title")}`;
   }, [t]);
-
-  const currentExperienceLevel: ExperienceLevel =
-    activeCityExperienceLevel ??
-    activeProvinceExperienceLevel ??
-    ui.draftExperienceLevel;
-
-  const handleExperienceLevelChange = (experienceLevel: ExperienceLevel) => {
-    if (activeCityId && visitedCities[activeCityId]) {
-      setCityExperienceLevel(activeCityId, experienceLevel);
-      return;
-    }
-
-    if (activeProvinceId && provinceStats && provinceStats.visitedCities > 0) {
-      setProvinceExperienceLevel(activeProvinceId, experienceLevel);
-      return;
-    }
-
-    setDraftExperienceLevel(experienceLevel);
-  };
-
-  const handleProvinceMapClick = (provinceId: string) => {
-    const currentState = getProvinceVisualState(provinceId, visitedCities);
-
-    if (currentState === "visited") {
-      clearProvinceVisited(provinceId);
-    } else {
-      markProvinceVisited(provinceId);
-    }
-
-    enterProvince(provinceId);
-  };
-
-  const handleCityMapClick = (cityId: string) => {
-    selectCity(cityId);
-    toggleCityVisited(cityId);
-  };
-
-  const resetButton = (
-    <button
-      className="inline-flex items-center gap-2 rounded-full border border-white/75 bg-white/85 px-3.5 py-2 text-xs font-medium text-slate-700 shadow-[0_16px_30px_-18px_rgba(15,23,42,0.45)] backdrop-blur transition hover:-translate-y-0.5 hover:bg-white"
-      onClick={resetAllVisits}
-    >
-      <svg className="h-3.5 w-3.5 text-slate-500" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-        <path
-          d="M5.5 5.5A6 6 0 1 1 4 10"
-          stroke="currentColor"
-          strokeWidth="1.6"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-        <path
-          d="M5.5 2.75V5.5h2.75"
-          stroke="currentColor"
-          strokeWidth="1.6"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-      </svg>
-      {t("header.resetVisits")}
-    </button>
-  );
 
   return (
     <main className="mx-auto min-h-screen max-w-[1440px] px-4 py-6 sm:px-6 lg:px-8">
@@ -158,14 +94,14 @@ export function HomePage() {
               visitedCities={visitedCities}
               onBack={enterCountry}
               onCityClick={handleCityMapClick}
-              overlay={resetButton}
+              overlay={<MapResetButton onReset={resetAllVisits} />}
             />
           ) : (
             <ChinaMapView
               activeProvinceId={activeProvinceId}
               visitedCities={visitedCities}
               onProvinceClick={handleProvinceMapClick}
-              overlay={resetButton}
+              overlay={<MapResetButton onReset={resetAllVisits} />}
             />
           )}
           <Legend />

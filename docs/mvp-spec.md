@@ -214,6 +214,7 @@ HomePage
 ├── BreadcrumbNav
 ├── Left column
 │   ├── ChinaMapView or ProvinceMapView
+│   ├── MapResetButton
 │   ├── Legend
 │   └── ExperienceBreakdownPanel
 └── Right column

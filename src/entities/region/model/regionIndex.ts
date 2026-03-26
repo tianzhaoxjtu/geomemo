@@ -1,9 +1,17 @@
-import { cities, citiesById, getProvinceCities, provinces, provincesById } from "../data/regions";
+import {
+  cities,
+  citiesById,
+  citiesByProvinceId,
+  getProvinceCities,
+  provinces,
+  provincesById,
+} from "../data/regions";
 import type { City, Province, RegionCollection } from "./types";
 
 export interface RegionIndex extends RegionCollection {
   provincesById: Record<string, Province>;
   citiesById: Record<string, City>;
+  citiesByProvinceId: Record<string, City[]>;
 }
 
 export const regionIndex: RegionIndex = {
@@ -11,6 +19,7 @@ export const regionIndex: RegionIndex = {
   cities,
   provincesById,
   citiesById,
+  citiesByProvinceId,
 };
 
 export function getProvinceById(provinceId: string | null) {
