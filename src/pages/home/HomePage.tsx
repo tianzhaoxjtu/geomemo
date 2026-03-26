@@ -43,8 +43,11 @@ export function HomePage() {
 
   return (
     <main className="mx-auto min-h-screen max-w-[1440px] px-4 py-6 sm:px-6 lg:px-8">
-      <header className="surface-card fade-in-up mb-8 overflow-hidden px-6 py-7 lg:px-8">
+      <header className="surface-card fade-in-up mb-8 overflow-hidden px-6 py-6 lg:px-8 lg:py-7">
         <div className="pointer-events-none absolute inset-x-0 top-0 h-28 bg-gradient-to-r from-sky-200/30 via-white/0 to-amber-200/25" />
+        <div className="relative mb-6 flex justify-end">
+          <LanguageSwitcher />
+        </div>
         <div className="relative flex flex-col gap-8 xl:flex-row xl:items-end xl:justify-between">
           <div className="max-w-3xl">
             <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-slate-400">
@@ -76,7 +79,6 @@ export function HomePage() {
           </div>
         </div>
         <div className="relative mt-6 flex flex-wrap items-center gap-3">
-          <LanguageSwitcher />
           <button
             className="glass-button"
             onClick={() => {

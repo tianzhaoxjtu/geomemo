@@ -7,17 +7,17 @@ export function LanguageSwitcher() {
   const { locale, setLocale, t } = useI18n();
 
   return (
-    <div className="flex items-center gap-2 rounded-full border border-white/70 bg-white/70 p-1 backdrop-blur">
-      <span className="px-3 text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">
+    <div className="inline-flex items-center gap-1 rounded-full bg-white/50 p-1 shadow-sm ring-1 ring-white/55 backdrop-blur-md">
+      <span className="px-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-400">
         {t("language.label")}
       </span>
       {locales.map((value) => (
         <button
           key={value}
-          className={`rounded-full px-3 py-1.5 text-sm font-medium transition-all ${
+          className={`rounded-full px-2.5 py-1 text-[11px] font-medium transition-all ${
             locale === value
-              ? "bg-slate-950 text-white shadow-lg shadow-slate-900/10"
-              : "text-slate-600 hover:bg-white"
+              ? "bg-white/90 text-slate-700 shadow-sm"
+              : "text-slate-400 hover:bg-white/60 hover:text-slate-600"
           }`}
           onClick={() => setLocale(value)}
         >
