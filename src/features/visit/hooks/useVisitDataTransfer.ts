@@ -53,6 +53,8 @@ export function useVisitDataTransfer() {
       format: MapImageFormat,
       pixelRatio = 2,
     ) => {
+      // The map export is delegated to the active ECharts instance so the downloaded
+      // image matches the live viewport, styling, and visit state instead of the page UI.
       const dataUrl = exporter?.({
         type: format,
         pixelRatio,

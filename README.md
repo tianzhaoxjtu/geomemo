@@ -41,6 +41,7 @@ Replace the placeholder URL above with your deployed production URL.
 - Bilingual UI with Simplified Chinese and English
 - Local-first persistence with `localStorage`
 - JSON import and export for record backup and migration
+- Export the current map view as a PNG or JPEG image
 - Clean, Apple-inspired visual design with map-first interaction
 
 ## Built With
@@ -141,7 +142,7 @@ npm run preview
 ### Track progress
 
 - Watch province-level and lower-level completion update in real time
-- Review experience distribution in the statistics section
+- Review experience distribution beside the map
 
 ### Change language
 
@@ -152,6 +153,7 @@ npm run preview
 
 - Export records to JSON for backup
 - Import compatible JSON files to restore or migrate your data
+- Export the active map view as a PNG or JPEG image with the current zoom, pan, and markings
 
 ### Reset records
 
@@ -185,6 +187,10 @@ Why this approach:
 Dataset location:
 
 - `src/data/adminDivisions/china-admin-divisions.json`
+- GeoJSON rendering assets live under `public/geojson/china`
+- fetch metadata for vendored geometry is stored in:
+  - `src/entities/region/data/china-meta.json`
+  - `src/entities/region/data/china-source.json`
 
 Validation:
 
@@ -197,6 +203,12 @@ The validator checks:
 - duplicate ids and names
 - parent/child mapping consistency
 - exclusion of the root China node from province metrics
+
+Map rendering notes:
+
+- the overview map starts with a mainland-focused viewport
+- the South China Sea geometry remains in the dataset but is not part of the default visible focus
+- the legend is embedded inside the map card instead of rendered as a separate row
 
 ## Deployment
 

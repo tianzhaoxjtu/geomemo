@@ -127,6 +127,8 @@ export function HomePage() {
             )}
           </div>
           <div className="space-y-4 xl:flex xl:h-full xl:flex-col">
+            {/* The right rail intentionally groups the lightweight summary and transfer
+                tools beside the map, while the heavier record-management panels stay below. */}
             <ExperienceBreakdownPanel stats={countryStats} />
             <DataTransferCard
               importError={importError}
