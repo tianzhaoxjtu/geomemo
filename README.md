@@ -1,127 +1,234 @@
 # GeoMemo
 
-GeoMemo is a React + TypeScript + Vite application for tracking places visited in China with authoritative administrative boundaries, drill-down map interaction, explicit experience-level marking, bilingual UI, and local-first persistence.
+> An elegant travel map for recording where you've been across China.
 
-## Administrative Standard
+GeoMemo is a polished, local-first web application for exploring China's administrative map, marking visited places with meaningful travel experience levels, and viewing your progress through a premium, map-first interface.
 
-GeoMemo uses a repository-owned logical administrative dataset as its single source of truth for province and second-level administrative statistics:
+![Vite](https://img.shields.io/badge/Vite-6-646CFF?style=flat-square&logo=vite&logoColor=white)
+![React](https://img.shields.io/badge/React-18-149ECA?style=flat-square&logo=react&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?style=flat-square&logo=typescript&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white)
+![ECharts](https://img.shields.io/badge/Apache_ECharts-Map-DA2C43?style=flat-square)
 
-- 34 province-level administrative units
-- 334 second-level administrative units
-- the national/root China node is not counted as a province
+## Live Demo
 
-The dataset lives in:
+Try GeoMemo online:
 
-- `src/data/adminDivisions/china-admin-divisions.json`
+**[Open the live demo](https://your-project-name.vercel.app)**
 
-Validate it with:
+Replace the placeholder URL above with your deployed production URL.
 
-```bash
-npm run validate:admin
-```
+## Preview
+
+> Replace these placeholders with real screenshots when ready.
+
+| Main map overview | Province drill-down |
+| --- | --- |
+| ![China map overview placeholder](https://placehold.co/1200x760/EFF4F8/223347?text=China+Map+Overview) | ![Province drill-down placeholder](https://placehold.co/1200x760/F4F7FA/223347?text=Province+Drill-Down) |
+
+| Marking interaction | Statistics and side panel |
+| --- | --- |
+| ![Marking interaction placeholder](https://placehold.co/1200x760/F8F5EF/223347?text=Experience-Level+Marking) | ![Statistics panel placeholder](https://placehold.co/1200x760/F2F5F9/223347?text=Statistics+and+Records+Panel) |
 
 ## Features
 
-- authoritative China map rendered from vendored GeoJSON data
-- province drill-down into second-level administrative units aligned to the canonical admin dataset
-- prefecture-level unit visit tracking with province-wide bulk actions
-- experience levels for visited places: long, medium, short
-- live national and province-level statistics
-- Simplified Chinese and English UI
-- JSON import/export for visit records
-- persisted state with `localStorage`
+- Interactive China map with province drill-down and second-level administrative unit exploration
+- Experience-based travel records:
+  - `Long-term stay`
+  - `Short-term stay`
+  - `Travel`
+- Real-time completion statistics for province-level and lower-level coverage
+- Bilingual UI with Simplified Chinese and English
+- Local-first persistence with `localStorage`
+- JSON import and export for record backup and migration
+- Clean, Apple-inspired visual design with map-first interaction
 
-## Interaction Model
+## Built With
 
-- Clicking a province on the national map enters that province without mutating visit data.
-- Clicking a second-level unit selects it and opens an inline experience-level chooser.
-- Selecting `long`, `medium`, or `short` marks or updates the selected unit immediately.
-- Clearing a unit or province is an explicit action.
-- Province coverage metrics are derived from second-level records: a province counts as visited once any mapped unit in it has a saved experience level.
-
-## Tech Stack
-
-- React 18
+- React
 - TypeScript
 - Vite
 - Tailwind CSS
 - Zustand
 - Apache ECharts
+- Vendored GeoJSON administrative boundary data
 
-## Run Locally
+## Project Structure
+
+GeoMemo is organized around a clean separation between data, state, rendering, and UI:
+
+```text
+src/
+├── app/                    # app bootstrap and global styling
+├── data/adminDivisions/    # canonical administrative hierarchy dataset
+├── entities/               # domain models and reference data adapters
+├── features/
+│   ├── map/                # map rendering, drill-down, legend, interactions
+│   ├── stats/              # derived statistics and metric presentation
+│   └── visit/              # record panels, import/export, page hooks
+├── pages/                  # page-level layout composition
+└── shared/                 # store, i18n, shared UI primitives, utilities
+```
+
+Core modules:
+
+- `map`: ECharts-based rendering, province drill-down, viewport behavior
+- `state`: Zustand store, persistence, import/export normalization
+- `data`: province and second-level administrative hierarchy
+- `stats`: coverage, completion, and experience-level aggregation
+- `ui`: panels, controls, layout, language switching
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js 18+
+- npm 9+
+
+### Install
 
 ```bash
 npm install
+```
+
+### Start development
+
+```bash
 npm run dev
 ```
 
-Then open the local Vite URL shown in the terminal, usually `http://localhost:5173`.
+Open the local Vite URL shown in the terminal, typically:
 
-## Build
+```text
+http://localhost:5173
+```
+
+### Validate administrative data
 
 ```bash
 npm run validate:admin
+```
+
+### Build for production
+
+```bash
 npm run build
+```
+
+### Preview the production build
+
+```bash
 npm run preview
 ```
 
+## Usage
+
+### Explore the map
+
+- Start on the national China overview
+- Click a province to drill into its second-level administrative regions
+- Use the breadcrumb to return to the national view
+
+### Record your travel
+
+- Click a lower-level region on the map or in the side panel
+- Choose an experience level:
+  - `Long-term stay`
+  - `Short-term stay`
+  - `Travel`
+- Update or clear records at any time
+
+### Track progress
+
+- Watch province-level and lower-level completion update in real time
+- Review experience distribution in the statistics section
+
+### Change language
+
+- Switch instantly between Simplified Chinese and English
+- Your language preference is remembered locally
+
+### Move your data
+
+- Export records to JSON for backup
+- Import compatible JSON files to restore or migrate your data
+
+### Reset records
+
+- Reset all records from the national view
+- Reset only the active province when working inside a province
+
+## Data & Design Notes
+
+GeoMemo is built on a repository-owned administrative dataset that is designed to be explicit, auditable, and maintainable.
+
+Current standard:
+
+- 34 province-level administrative units
+- 334 second-level administrative units
+- The national/root China view is not counted as a province
+
+The second-level layer includes:
+
+- prefecture-level cities
+- autonomous prefectures
+- leagues
+- prefectures / regions
+- municipality-equivalent records for the four direct-controlled municipalities
+
+Why this approach:
+
+- It avoids the incomplete “293 prefecture-level cities only” model
+- It reflects the broader real administrative hierarchy more accurately
+- It keeps statistics, drill-down logic, side-panel records, and persistence aligned to one dataset
+
+Dataset location:
+
+- `src/data/adminDivisions/china-admin-divisions.json`
+
+Validation:
+
+- `npm run validate:admin`
+
+The validator checks:
+
+- province totals
+- second-level totals
+- duplicate ids and names
+- parent/child mapping consistency
+- exclusion of the root China node from province metrics
+
 ## Deployment
 
-### Recommended Platform
+GeoMemo is a frontend-only Vite application and is a good fit for static hosting platforms such as:
 
-Vercel is the recommended hosting platform for this project because GeoMemo is a frontend-only Vite application with static assets and no backend runtime requirements.
+- Vercel
+- Netlify
+- Cloudflare Pages
 
-Why Vercel fits well:
+Recommended Vercel settings:
 
-- native support for Vite projects
-- simple GitHub-based deployment flow
-- automatic production and preview deployments
-- reliable static asset hosting for the vendored GeoJSON files under `public/`
-
-### Live Demo URL
-
-Add your production URL here after deployment, for example:
-
-```text
-https://your-project-name.vercel.app
-```
-
-### How to Deploy Your Own Version
-
-1. Push the latest code to your GitHub repository.
-2. Go to [Vercel](https://vercel.com/).
-3. Sign in with GitHub.
-4. Click `Add New...` → `Project`.
-5. Import the GeoMemo repository.
-6. Use these project settings:
-   - Framework Preset: `Vite`
-   - Build Command: `npm run build`
-   - Output Directory: `dist`
-7. Click `Deploy`.
-8. After deployment finishes, Vercel will provide a public URL such as:
-   - `https://your-project-name.vercel.app`
-
-### Environment Notes
-
-- No environment variables are required for the current implementation.
-- The app is fully local-first and stores user data in `localStorage`.
-- The vendored GeoJSON files are served as static assets from `public/geojson/china`.
-
-### Routing Notes
-
-- The current app does not use path-based client-side routing, so no special SPA rewrite rule is required.
-- Refreshing the deployed app at its root URL works normally.
-- If route-based navigation is added later, configure your host with an SPA fallback to `index.html`.
+- Framework Preset: `Vite`
+- Build Command: `npm run build`
+- Output Directory: `dist`
 
 ## Documentation
 
-- Architecture: [docs/architecture.md](./docs/architecture.md)
-- Current product spec: [docs/mvp-spec.md](./docs/mvp-spec.md)
-- Deployment and usage guide: [DEPLOYMENT_AND_USAGE.md](./DEPLOYMENT_AND_USAGE.md)
+- [Architecture](./docs/architecture.md)
+- [Current Product Spec](./docs/mvp-spec.md)
+- [Deployment and Usage Guide](./DEPLOYMENT_AND_USAGE.md)
+
+## Future Improvements
+
+- travel timeline and time-based progress views
+- route and journey visualization
+- AI-generated travel insights and summaries
+- richer metadata such as notes, photos, and tags
+- optional backend sync and multi-device support
+- smarter map lazy-loading and bundle optimization
 
 ## Notes
 
-- GeoJSON assets are vendored locally under `public/geojson/china`.
-- Logical province/second-level metadata is vendored under `src/data/adminDivisions`.
-- Locale preference and visit data are persisted in `localStorage`.
-- The codebase is structured to support future backend sync, richer trip metadata, and AI-assisted features.
+- GeoJSON assets are vendored locally under `public/geojson/china`
+- Visit data and locale preferences are stored in `localStorage`
+- The project is structured to support long-term product evolution, not just a demo build
