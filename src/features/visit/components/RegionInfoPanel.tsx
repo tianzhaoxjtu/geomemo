@@ -43,13 +43,14 @@ export function RegionInfoPanel({
             })
           : t("visit.chooseCity")
       }
+      className="flex h-full flex-col"
     >
       <div className="mb-4 flex items-center gap-2">
         <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-600">
           {t("visit.citiesInView", { count: regionList.length })}
         </span>
       </div>
-      <div className="mt-4 space-y-2">
+      <div className="mt-4 flex-1 space-y-2 overflow-y-auto pr-1">
         {regionList.map((region) => {
           const isActive = region.id === activeCityId;
           const visitEntry = visitedCities[region.id];

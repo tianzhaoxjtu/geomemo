@@ -17,6 +17,7 @@ interface ChinaMapViewProps {
   onProvinceClick: (provinceId: string) => void;
   overlay?: ReactNode;
   onExportReady?: (exporter: MapImageExporter | null) => void;
+  fullViewport?: boolean;
 }
 
 export function ChinaMapView({
@@ -25,6 +26,7 @@ export function ChinaMapView({
   onProvinceClick,
   overlay,
   onExportReady,
+  fullViewport = false,
 }: ChinaMapViewProps) {
   const { t } = useI18n();
   const initialView = useMemo(
@@ -44,9 +46,13 @@ export function ChinaMapView({
       title={t("map.countryTitle")}
       description={t("map.countryDescription")}
       aside={<span className="rounded-full bg-slate-950 px-3 py-1.5 text-xs font-medium text-white">{t("map.badge")}</span>}
-      className="fade-in-up flex h-full flex-col overflow-hidden"
+      className={`fade-in-up flex h-full flex-col overflow-hidden ${fullViewport ? "min-h-[100svh]" : ""}`.trim()}
     >
-      <div className="relative flex-1 rounded-[28px] bg-[radial-gradient(circle_at_top,_rgba(37,99,235,0.10),_transparent_42%),linear-gradient(180deg,_#fcfdff,_#f5f8fc)] p-3 min-h-[520px] xl:min-h-0">
+      <div
+        className={`relative flex-1 rounded-[28px] bg-[radial-gradient(circle_at_top,_rgba(37,99,235,0.10),_transparent_42%),linear-gradient(180deg,_#fcfdff,_#f5f8fc)] p-3 ${
+          fullViewport ? "min-h-[calc(100svh-9rem)]" : "min-h-[520px]"
+        }`.trim()}
+      >
         {overlay ? <div className="absolute right-4 top-4 z-10">{overlay}</div> : null}
         <div className="absolute bottom-4 left-4 z-10">
           <Legend />
@@ -61,7 +67,7 @@ export function ChinaMapView({
           onRegionClick={onProvinceClick}
           emptyMessage={t("map.emptyCountry")}
           onExportReady={onExportReady}
-          className="h-full min-h-[496px] xl:min-h-0"
+          className={`h-full ${fullViewport ? "min-h-[calc(100svh-10.5rem)]" : "min-h-[496px]"}`.trim()}
         />
       </div>
     </SurfaceCard>

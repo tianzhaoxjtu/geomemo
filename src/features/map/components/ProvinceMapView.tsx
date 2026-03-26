@@ -66,7 +66,7 @@ export function ProvinceMapView({
       }
       className="fade-in-up flex h-full flex-col overflow-hidden"
     >
-      <div className="relative flex-1 rounded-[28px] bg-[radial-gradient(circle_at_top_left,_rgba(14,165,233,0.10),_transparent_30%),linear-gradient(180deg,_#fcfdff,_#f5f8fc)] p-3 min-h-[520px] xl:min-h-0">
+      <div className="relative flex-1 rounded-[28px] bg-[radial-gradient(circle_at_top_left,_rgba(14,165,233,0.10),_transparent_30%),linear-gradient(180deg,_#fcfdff,_#f5f8fc)] p-3 min-h-[520px]">
         {overlay ? <div className="absolute right-4 top-4 z-10">{overlay}</div> : null}
         <div className="absolute bottom-4 left-4 z-10">
           <Legend />
@@ -84,7 +84,7 @@ export function ProvinceMapView({
               : t("map.emptyProvinceWithMetadata")
           }
           onExportReady={onExportReady}
-          className="h-full min-h-[496px] xl:min-h-0"
+          className="h-full min-h-[496px]"
         />
       </div>
     </SurfaceCard>

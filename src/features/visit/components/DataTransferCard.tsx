@@ -11,6 +11,8 @@ interface DataTransferCardProps {
   canExportMapImage: boolean;
   onImport: (file: File) => Promise<void>;
   onDismissError: () => void;
+  layout?: "vertical" | "horizontal";
+  className?: string;
 }
 
 export function DataTransferCard({
@@ -21,9 +23,12 @@ export function DataTransferCard({
   canExportMapImage,
   onImport,
   onDismissError,
+  layout = "vertical",
+  className = "",
 }: DataTransferCardProps) {
   const inputRef = useRef<HTMLInputElement | null>(null);
   const { locale, t } = useI18n();
+  const isHorizontal = layout === "horizontal";
   const [imageFormat, setImageFormat] = useState<MapImageFormat>("png");
   const [imageScale, setImageScale] = useState("2");
 
@@ -32,22 +37,31 @@ export function DataTransferCard({
       eyebrow={t("data.section")}
       title={t("data.title")}
       description={t("data.description")}
-      className="p-4"
+      className={`p-4 ${className}`.trim()}
     >
-      <div className="space-y-3">
-        <div className="grid grid-cols-2 gap-3">
-          <button
-            className="rounded-full bg-white/70 px-3 py-2 text-xs font-medium text-slate-600 ring-1 ring-white/60 transition-all hover:bg-white hover:text-slate-800"
-            onClick={onExport}
-          >
-            {t("data.export")}
-          </button>
-          <button
-            className="rounded-full bg-white/70 px-3 py-2 text-xs font-medium text-slate-600 ring-1 ring-white/60 transition-all hover:bg-white hover:text-slate-800"
-            onClick={() => inputRef.current?.click()}
-          >
-            {t("data.import")}
-          </button>
+      <div className={isHorizontal ? "grid gap-4 xl:grid-cols-[minmax(0,1.05fr)_minmax(260px,0.95fr)] xl:items-center" : "space-y-3"}>
+        <div className="space-y-3">
+          <div className="grid grid-cols-2 gap-3">
+            <button
+              className="rounded-full bg-white/70 px-3 py-2 text-xs font-medium text-slate-600 ring-1 ring-white/60 transition-all hover:bg-white hover:text-slate-800"
+              onClick={onExport}
+            >
+              {t("data.export")}
+            </button>
+            <button
+              className="rounded-full bg-white/70 px-3 py-2 text-xs font-medium text-slate-600 ring-1 ring-white/60 transition-all hover:bg-white hover:text-slate-800"
+              onClick={() => inputRef.current?.click()}
+            >
+              {t("data.import")}
+            </button>
+          </div>
+          {!isHorizontal && lastImportedAt ? (
+            <p className="text-xs text-slate-500">
+              {t("data.lastImport", {
+                time: new Date(lastImportedAt).toLocaleString(locale === "en" ? "en-US" : "zh-CN"),
+              })}
+            </p>
+          ) : null}
         </div>
         <div className="rounded-[22px] border border-white/70 bg-slate-50/85 p-3">
           <div>
@@ -105,15 +119,12 @@ export function DataTransferCard({
             }
           }}
         />
-        {lastImportedAt ? (
-          <p className="text-xs text-slate-500">
-            {t("data.lastImport", {
-              time: new Date(lastImportedAt).toLocaleString(locale === "en" ? "en-US" : "zh-CN"),
-            })}
-          </p>
-        ) : null}
         {importError ? (
-          <div className="rounded-[18px] border border-rose-200 bg-rose-50 px-3 py-2 text-xs text-rose-700">
+          <div
+            className={`rounded-[18px] border border-rose-200 bg-rose-50 px-3 py-2 text-xs text-rose-700 ${
+              isHorizontal ? "xl:col-span-2" : ""
+            }`.trim()}
+          >
             <div className="flex items-start justify-between gap-3">
               <span>{t(importError)}</span>
               <button className="font-medium text-rose-900" onClick={onDismissError}>

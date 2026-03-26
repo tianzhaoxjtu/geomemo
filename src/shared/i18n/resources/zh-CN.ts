@@ -59,7 +59,7 @@ export const zhCN: TranslationDictionary = {
   "visit.statusUnvisited": "未访问",
   "data.section": "数据",
   "data.title": "导入 / 导出",
-  "data.description": "迁移或备份你的旅行记录。",
+  "data.description": "导入或导出你的旅行记录。",
   "data.export": "导出 JSON",
   "data.import": "导入 JSON",
   "data.exportMapTitle": "导出当前地图",

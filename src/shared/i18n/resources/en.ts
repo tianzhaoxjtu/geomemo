@@ -59,7 +59,7 @@ export const en: TranslationDictionary = {
   "visit.statusUnvisited": "Unvisited",
   "data.section": "Data",
   "data.title": "Import / Export",
-  "data.description": "Move or back up your travel record.",
+  "data.description": "Import or export your travel records.",
   "data.export": "Export JSON",
   "data.import": "Import JSON",
   "data.exportMapTitle": "Export current map",

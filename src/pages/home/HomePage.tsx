@@ -10,7 +10,6 @@ import { HeroMetricsPanel } from "../../features/stats/components/HeroMetricsPan
 import { DataTransferCard } from "../../features/visit/components/DataTransferCard";
 import { LanguageSwitcher } from "../../features/visit/components/LanguageSwitcher";
 import { RegionInfoPanel } from "../../features/visit/components/RegionInfoPanel";
-import { VisitActionCard } from "../../features/visit/components/VisitActionCard";
 import { useGeoMemoViewModel } from "../../features/visit/hooks/useGeoMemoViewModel";
 import { useVisitDataTransfer } from "../../features/visit/hooks/useVisitDataTransfer";
 import { useI18n } from "../../shared/i18n/I18nProvider";
@@ -24,8 +23,6 @@ export function HomePage() {
     enterProvince,
     selectCity,
     clearCityVisited,
-    markProvinceVisited,
-    clearProvinceVisited,
     resetCurrentScope,
     activeProvinceName,
     activeCityName,
@@ -91,7 +88,11 @@ export function HomePage() {
       </div>
 
       <section className="space-y-6">
-        <div className="grid gap-4 xl:grid-cols-[minmax(0,1.75fr)_360px] xl:items-stretch">
+        <div
+          className={`grid gap-4 xl:items-stretch ${
+            activeProvinceId ? "xl:grid-cols-[minmax(0,1.75fr)_360px]" : "grid-cols-1"
+          }`}
+        >
           <div className="xl:h-full">
             {activeProvinceId ? (
               <ProvinceMapView
@@ -123,57 +124,35 @@ export function HomePage() {
                 onProvinceClick={handleProvinceMapClick}
                 onExportReady={setMapImageExporter}
                 overlay={<MapResetButton onReset={resetCurrentScope} />}
+                fullViewport
               />
             )}
           </div>
-          <div className="space-y-4 xl:flex xl:h-full xl:flex-col">
-            {/* The right rail intentionally groups the lightweight summary and transfer
-                tools beside the map, while the heavier record-management panels stay below. */}
-            <ExperienceBreakdownPanel stats={countryStats} />
-            <DataTransferCard
-              importError={importError}
-              lastImportedAt={lastImportedAt}
-              onExport={downloadExport}
-              onExportMapImage={handleMapImageExport}
-              canExportMapImage={Boolean(mapImageExporter)}
-              onImport={importFile}
-              onDismissError={clearImportError}
-            />
-          </div>
+          {activeProvinceId ? (
+            <div className="xl:flex xl:h-full xl:flex-col">
+              <RegionInfoPanel
+                level={level}
+                activeProvinceId={activeProvinceId}
+                activeCityId={activeCityId}
+                visitedCities={visitedCities}
+                onSelectCity={selectCity}
+              />
+            </div>
+          ) : null}
         </div>
 
-        <div className="grid gap-4 lg:grid-cols-[minmax(0,1.05fr)_minmax(320px,0.95fr)]">
-          <RegionInfoPanel
-            level={level}
-            activeProvinceId={activeProvinceId}
-            activeCityId={activeCityId}
-            visitedCities={visitedCities}
-            onSelectCity={selectCity}
-          />
-        </div>
-
-        <div className="grid gap-4 lg:grid-cols-[minmax(0,1.05fr)_minmax(320px,0.95fr)]">
-          <VisitActionCard
-            hasProvince={Boolean(activeProvinceId)}
-            regionName={activeCityName}
-            isRegionVisited={cityVisited}
-            currentExperienceLevel={currentExperienceLevel}
-            onExperienceLevelChange={handleExperienceLevelChange}
-            onClearRegion={() => {
-              if (activeCityId) {
-                clearCityVisited(activeCityId);
-              }
-            }}
-            onMarkProvince={(experienceLevel) => {
-              if (activeProvinceId) {
-                markProvinceVisited(activeProvinceId, experienceLevel);
-              }
-            }}
-            onClearProvince={() => {
-              if (activeProvinceId) {
-                clearProvinceVisited(activeProvinceId);
-              }
-            }}
+        <div className="grid gap-4 lg:grid-cols-2 lg:items-stretch">
+          <ExperienceBreakdownPanel stats={countryStats} layout="horizontal" className="h-full" />
+          <DataTransferCard
+            importError={importError}
+            lastImportedAt={lastImportedAt}
+            onExport={downloadExport}
+            onExportMapImage={handleMapImageExport}
+            canExportMapImage={Boolean(mapImageExporter)}
+            onImport={importFile}
+            onDismissError={clearImportError}
+            layout="horizontal"
+            className="h-full"
           />
         </div>
       </section>
