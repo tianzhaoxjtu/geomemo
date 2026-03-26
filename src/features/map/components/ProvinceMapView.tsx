@@ -4,6 +4,8 @@ import type { VisitedCityMap } from "../../../entities/visit/model/types";
 import { useI18n } from "../../../shared/i18n/I18nProvider";
 import { SurfaceCard } from "../../../shared/ui/SurfaceCard";
 import { AdminGeoMap } from "./AdminGeoMap";
+import { Legend } from "./Legend";
+import type { MapImageExporter } from "../model/export";
 
 interface ProvinceMapViewProps {
   provinceId: string;
@@ -12,6 +14,7 @@ interface ProvinceMapViewProps {
   onBack: () => void;
   onRegionSelect: (regionId: string) => void;
   overlay?: ReactNode;
+  onExportReady?: (exporter: MapImageExporter | null) => void;
 }
 
 export function ProvinceMapView({
@@ -21,6 +24,7 @@ export function ProvinceMapView({
   onBack,
   onRegionSelect,
   overlay,
+  onExportReady,
 }: ProvinceMapViewProps) {
   const { t } = useI18n();
   const province = getProvinceById(provinceId);
@@ -60,10 +64,13 @@ export function ProvinceMapView({
           {t("map.backToChina")}
         </button>
       }
-      className="fade-in-up overflow-hidden"
+      className="fade-in-up flex h-full flex-col overflow-hidden"
     >
-      <div className="relative rounded-[28px] bg-[radial-gradient(circle_at_top_left,_rgba(14,165,233,0.10),_transparent_30%),linear-gradient(180deg,_#fcfdff,_#f5f8fc)] p-3">
+      <div className="relative flex-1 rounded-[28px] bg-[radial-gradient(circle_at_top_left,_rgba(14,165,233,0.10),_transparent_30%),linear-gradient(180deg,_#fcfdff,_#f5f8fc)] p-3 min-h-[520px] xl:min-h-0">
         {overlay ? <div className="absolute right-4 top-4 z-10">{overlay}</div> : null}
+        <div className="absolute bottom-4 left-4 z-10">
+          <Legend />
+        </div>
         <AdminGeoMap
           mapCode={provinceId}
           activeCode={activeCityId}
@@ -76,6 +83,8 @@ export function ProvinceMapView({
               ? t("map.emptyProvince")
               : t("map.emptyProvinceWithMetadata")
           }
+          onExportReady={onExportReady}
+          className="h-full min-h-[496px] xl:min-h-0"
         />
       </div>
     </SurfaceCard>

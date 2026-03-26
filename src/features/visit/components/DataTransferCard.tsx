@@ -1,4 +1,5 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
+import type { MapImageFormat } from "../../map/model/export";
 import { useI18n } from "../../../shared/i18n/I18nProvider";
 import { SurfaceCard } from "../../../shared/ui/SurfaceCard";
 
@@ -6,6 +7,8 @@ interface DataTransferCardProps {
   importError: string | null;
   lastImportedAt: string | null;
   onExport: () => void;
+  onExportMapImage: (format: MapImageFormat, pixelRatio: number) => void;
+  canExportMapImage: boolean;
   onImport: (file: File) => Promise<void>;
   onDismissError: () => void;
 }
@@ -14,11 +17,15 @@ export function DataTransferCard({
   importError,
   lastImportedAt,
   onExport,
+  onExportMapImage,
+  canExportMapImage,
   onImport,
   onDismissError,
 }: DataTransferCardProps) {
   const inputRef = useRef<HTMLInputElement | null>(null);
   const { locale, t } = useI18n();
+  const [imageFormat, setImageFormat] = useState<MapImageFormat>("png");
+  const [imageScale, setImageScale] = useState("2");
 
   return (
     <SurfaceCard
@@ -40,6 +47,48 @@ export function DataTransferCard({
             onClick={() => inputRef.current?.click()}
           >
             {t("data.import")}
+          </button>
+        </div>
+        <div className="rounded-[22px] border border-white/70 bg-slate-50/85 p-3">
+          <div>
+            <p className="text-sm font-medium text-slate-800">{t("data.exportMapTitle")}</p>
+            <p className="mt-1 text-xs leading-5 text-slate-500">{t("data.exportMapDescription")}</p>
+          </div>
+          <div className="mt-3 grid gap-2 sm:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
+            <label className="space-y-1">
+              <span className="text-[11px] font-medium uppercase tracking-[0.16em] text-slate-400">
+                {t("data.imageFormat")}
+              </span>
+              <select
+                className="w-full rounded-[16px] border border-white/80 bg-white px-3 py-2 text-sm text-slate-700 shadow-sm outline-none transition focus:border-slate-300"
+                value={imageFormat}
+                onChange={(event) => setImageFormat(event.target.value as MapImageFormat)}
+              >
+                <option value="png">{t("data.format.png")}</option>
+                <option value="jpeg">{t("data.format.jpeg")}</option>
+              </select>
+            </label>
+            <label className="space-y-1">
+              <span className="text-[11px] font-medium uppercase tracking-[0.16em] text-slate-400">
+                {t("data.imageScale")}
+              </span>
+              <select
+                className="w-full rounded-[16px] border border-white/80 bg-white px-3 py-2 text-sm text-slate-700 shadow-sm outline-none transition focus:border-slate-300"
+                value={imageScale}
+                onChange={(event) => setImageScale(event.target.value)}
+              >
+                <option value="1">{t("data.scale.standard")}</option>
+                <option value="2">{t("data.scale.high")}</option>
+                <option value="3">{t("data.scale.ultra")}</option>
+              </select>
+            </label>
+          </div>
+          <button
+            className="mt-3 w-full rounded-full bg-slate-950 px-3 py-2.5 text-sm font-medium text-white shadow-sm transition hover:bg-slate-800 disabled:cursor-not-allowed disabled:bg-slate-300"
+            onClick={() => onExportMapImage(imageFormat, Number(imageScale))}
+            disabled={!canExportMapImage}
+          >
+            {t("data.exportMap")}
           </button>
         </div>
         <input

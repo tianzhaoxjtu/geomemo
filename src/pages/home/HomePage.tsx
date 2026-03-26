@@ -1,10 +1,10 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { BreadcrumbNav } from "../../features/map/components/BreadcrumbNav";
 import { ChinaMapView } from "../../features/map/components/ChinaMapView";
 import { MapExperiencePopover } from "../../features/map/components/MapExperiencePopover";
-import { Legend } from "../../features/map/components/Legend";
 import { MapResetButton } from "../../features/map/components/MapResetButton";
 import { ProvinceMapView } from "../../features/map/components/ProvinceMapView";
+import type { MapImageExporter, MapImageFormat } from "../../features/map/model/export";
 import { ExperienceBreakdownPanel } from "../../features/stats/components/ExperienceBreakdownPanel";
 import { HeroMetricsPanel } from "../../features/stats/components/HeroMetricsPanel";
 import { DataTransferCard } from "../../features/visit/components/DataTransferCard";
@@ -16,6 +16,7 @@ import { useVisitDataTransfer } from "../../features/visit/hooks/useVisitDataTra
 import { useI18n } from "../../shared/i18n/I18nProvider";
 
 export function HomePage() {
+  const [mapImageExporter, setMapImageExporter] = useState<MapImageExporter | null>(null);
   const {
     navigation,
     visits,
@@ -35,7 +36,7 @@ export function HomePage() {
     handleProvinceMapClick,
     handleCityMapClick,
   } = useGeoMemoViewModel();
-  const { downloadExport, importFile, importError, lastImportedAt, clearImportError } =
+  const { downloadExport, downloadMapImage, importFile, importError, lastImportedAt, clearImportError } =
     useVisitDataTransfer();
   const { t } = useI18n();
   const { level, activeProvinceId, activeCityId } = navigation;
@@ -44,6 +45,10 @@ export function HomePage() {
   useEffect(() => {
     document.title = `${t("app.name")} · ${t("app.title")}`;
   }, [t]);
+
+  const handleMapImageExport = (format: MapImageFormat, pixelRatio: number) => {
+    downloadMapImage(mapImageExporter, format, pixelRatio);
+  };
 
   return (
     <main className="mx-auto min-h-screen max-w-[1440px] px-4 py-6 sm:px-6 lg:px-8">
@@ -86,8 +91,8 @@ export function HomePage() {
       </div>
 
       <section className="space-y-6">
-        <div className="grid gap-4 xl:grid-cols-[minmax(0,1.75fr)_360px] xl:items-start">
-          <div className="space-y-4">
+        <div className="grid gap-4 xl:grid-cols-[minmax(0,1.75fr)_360px] xl:items-stretch">
+          <div className="xl:h-full">
             {activeProvinceId ? (
               <ProvinceMapView
                 provinceId={activeProvinceId}
@@ -95,6 +100,7 @@ export function HomePage() {
                 visitedCities={visitedCities}
                 onBack={enterCountry}
                 onRegionSelect={handleCityMapClick}
+                onExportReady={setMapImageExporter}
                 overlay={
                   <div className="flex flex-col items-end gap-3">
                     <MapResetButton onReset={resetCurrentScope} />
@@ -115,17 +121,19 @@ export function HomePage() {
                 activeProvinceId={activeProvinceId}
                 visitedCities={visitedCities}
                 onProvinceClick={handleProvinceMapClick}
+                onExportReady={setMapImageExporter}
                 overlay={<MapResetButton onReset={resetCurrentScope} />}
               />
             )}
-            <Legend />
           </div>
-          <div className="space-y-4 xl:sticky xl:top-6">
+          <div className="space-y-4 xl:flex xl:h-full xl:flex-col">
             <ExperienceBreakdownPanel stats={countryStats} />
             <DataTransferCard
               importError={importError}
               lastImportedAt={lastImportedAt}
               onExport={downloadExport}
+              onExportMapImage={handleMapImageExport}
+              canExportMapImage={Boolean(mapImageExporter)}
               onImport={importFile}
               onDismissError={clearImportError}
             />

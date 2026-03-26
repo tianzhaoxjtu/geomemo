@@ -8,12 +8,15 @@ import {
   getProvinceVisualState,
 } from "../../stats/model/statsSelectors";
 import { AdminGeoMap } from "./AdminGeoMap";
+import { Legend } from "./Legend";
+import type { MapImageExporter } from "../model/export";
 
 interface ChinaMapViewProps {
   activeProvinceId: string | null;
   visitedCities: VisitedCityMap;
   onProvinceClick: (provinceId: string) => void;
   overlay?: ReactNode;
+  onExportReady?: (exporter: MapImageExporter | null) => void;
 }
 
 export function ChinaMapView({
@@ -21,14 +24,16 @@ export function ChinaMapView({
   visitedCities,
   onProvinceClick,
   overlay,
+  onExportReady,
 }: ChinaMapViewProps) {
   const { t } = useI18n();
   const initialView = useMemo(
     () => ({
-      // Keep the full geometry available, but start the overview on the main landmass
-      // so mainland China, Hong Kong, Macao, and Taiwan occupy the useful viewport.
-      center: [104.2, 35.2] as [number, number],
-      zoom: 1.26,
+      // Keep the full geometry available, but bias the initial overview toward the
+      // mainland so the larger canvas emphasizes China, Hong Kong, Macao, and Taiwan
+      // before the user intentionally zooms out toward the South China Sea inset.
+      center: [104.6, 35.4] as [number, number],
+      zoom: 1.32,
     }),
     [],
   );
@@ -39,10 +44,13 @@ export function ChinaMapView({
       title={t("map.countryTitle")}
       description={t("map.countryDescription")}
       aside={<span className="rounded-full bg-slate-950 px-3 py-1.5 text-xs font-medium text-white">{t("map.badge")}</span>}
-      className="fade-in-up overflow-hidden"
+      className="fade-in-up flex h-full flex-col overflow-hidden"
     >
-      <div className="relative rounded-[28px] bg-[radial-gradient(circle_at_top,_rgba(37,99,235,0.10),_transparent_42%),linear-gradient(180deg,_#fcfdff,_#f5f8fc)] p-3">
+      <div className="relative flex-1 rounded-[28px] bg-[radial-gradient(circle_at_top,_rgba(37,99,235,0.10),_transparent_42%),linear-gradient(180deg,_#fcfdff,_#f5f8fc)] p-3 min-h-[520px] xl:min-h-0">
         {overlay ? <div className="absolute right-4 top-4 z-10">{overlay}</div> : null}
+        <div className="absolute bottom-4 left-4 z-10">
+          <Legend />
+        </div>
         <AdminGeoMap
           mapCode="100000"
           activeCode={activeProvinceId}
@@ -52,6 +60,8 @@ export function ChinaMapView({
           getCoverageRatio={(regionCode) => getProvinceCoverageRatio(regionCode, visitedCities)}
           onRegionClick={onProvinceClick}
           emptyMessage={t("map.emptyCountry")}
+          onExportReady={onExportReady}
+          className="h-full min-h-[496px] xl:min-h-0"
         />
       </div>
     </SurfaceCard>

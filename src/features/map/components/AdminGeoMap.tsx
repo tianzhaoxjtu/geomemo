@@ -7,6 +7,7 @@ import type { EChartsOption } from "echarts";
 import { useI18n } from "../../../shared/i18n/I18nProvider";
 import type { ExperienceLevel, VisitVisualState } from "../../../entities/region/model/types";
 import { getRegionFill, getRegionHoverFill, getRegionStroke } from "../lib/mapTheme";
+import type { MapImageExportOptions, MapImageExporter } from "../model/export";
 
 echarts.use([MapChart, TooltipComponent, CanvasRenderer]);
 
@@ -36,6 +37,8 @@ interface AdminGeoMapProps {
   getCoverageRatio?: (regionCode: string) => number;
   onRegionClick: (regionCode: string) => void;
   emptyMessage: string;
+  onExportReady?: (exporter: MapImageExporter | null) => void;
+  className?: string;
 }
 
 export function AdminGeoMap({
@@ -48,15 +51,19 @@ export function AdminGeoMap({
   getCoverageRatio,
   onRegionClick,
   emptyMessage,
+  onExportReady,
+  className = "min-h-[460px] h-full",
 }: AdminGeoMapProps) {
   const { locale, t } = useI18n();
   const containerRef = useRef<HTMLDivElement | null>(null);
   const chartRef = useRef<echarts.EChartsType | null>(null);
   const featureLookupRef = useRef<Map<string, string>>(new Map());
   const onRegionClickRef = useRef(onRegionClick);
+  const onExportReadyRef = useRef(onExportReady);
   const viewStateRef = useRef<{ zoom?: number; center?: number[] }>({});
   const [geoJson, setGeoJson] = useState<GeoJsonCollection | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [containerSize, setContainerSize] = useState({ width: 0, height: 0 });
   const initialCenterX = initialView?.center?.[0];
   const initialCenterY = initialView?.center?.[1];
 
@@ -65,11 +72,37 @@ export function AdminGeoMap({
   }, [onRegionClick]);
 
   useEffect(() => {
-    viewStateRef.current = {
-      zoom: initialView?.zoom,
-      center: initialView?.center,
+    onExportReadyRef.current = onExportReady;
+  }, [onExportReady]);
+
+  useEffect(() => {
+    viewStateRef.current = {};
+  }, [mapCode]);
+
+  useEffect(() => {
+    if (!containerRef.current) {
+      return;
+    }
+
+    const observer = new ResizeObserver((entries) => {
+      const entry = entries[0];
+
+      if (!entry) {
+        return;
+      }
+
+      setContainerSize({
+        width: entry.contentRect.width,
+        height: entry.contentRect.height,
+      });
+    });
+
+    observer.observe(containerRef.current);
+
+    return () => {
+      observer.disconnect();
     };
-  }, [initialCenterX, initialCenterY, initialView?.zoom, mapCode]);
+  }, [geoJson, mapCode]);
 
   useEffect(() => {
     let cancelled = false;
@@ -129,6 +162,19 @@ export function AdminGeoMap({
     featureLookupRef.current = featureLookup;
   }, [featureLookup]);
 
+  const adaptiveOverviewZoom = useMemo(() => {
+    const baseZoom = initialView?.zoom ?? 1.26;
+
+    if (mapCode !== "100000") {
+      return baseZoom;
+    }
+
+    const widthBoost = Math.max(0, Math.min(0.22, (containerSize.width - 720) / 1400));
+    const heightBoost = Math.max(0, Math.min(0.1, (containerSize.height - 520) / 900));
+
+    return Number((baseZoom + widthBoost + heightBoost).toFixed(2));
+  }, [containerSize.height, containerSize.width, initialView?.zoom, mapCode]);
+
   const option = useMemo<EChartsOption | null>(() => {
     if (!geoJson) {
       return null;
@@ -182,8 +228,8 @@ export function AdminGeoMap({
           type: "map",
           map: mapName,
           roam: true,
-          zoom: viewStateRef.current.zoom ?? 1.05,
-          center: viewStateRef.current.center,
+          zoom: viewStateRef.current.zoom ?? adaptiveOverviewZoom,
+          center: viewStateRef.current.center ?? initialView?.center,
           scaleLimit: {
             min: 1,
             max: 8,
@@ -215,7 +261,7 @@ export function AdminGeoMap({
         },
       ],
     } as EChartsOption;
-  }, [activeCode, geoJson, getCoverageRatio, getExperienceLevel, getVisualState, initialCenterX, initialCenterY, initialView?.zoom, isRegionActive, locale, mapCode]);
+  }, [activeCode, adaptiveOverviewZoom, geoJson, getCoverageRatio, getExperienceLevel, getVisualState, initialCenterX, initialCenterY, initialView?.center, initialView?.zoom, isRegionActive, locale, mapCode]);
 
   useEffect(() => {
     if (!containerRef.current || !geoJson) {
@@ -224,6 +270,17 @@ export function AdminGeoMap({
 
     const chart = echarts.init(containerRef.current);
     chartRef.current = chart;
+    onExportReadyRef.current?.((options?: MapImageExportOptions) => {
+      if (!chartRef.current) {
+        return null;
+      }
+
+      return chartRef.current.getDataURL({
+        type: options?.type ?? "png",
+        pixelRatio: options?.pixelRatio ?? 2,
+        backgroundColor: options?.backgroundColor ?? "#f8fafc",
+      });
+    });
 
     const clickHandler = (params: any) => {
       const code =
@@ -255,6 +312,7 @@ export function AdminGeoMap({
       chart.off("georoam", georoamHandler);
       chart.dispose();
       chartRef.current = null;
+      onExportReadyRef.current?.(null);
       viewStateRef.current = {};
     };
   }, [geoJson, mapCode]);
@@ -272,7 +330,7 @@ export function AdminGeoMap({
 
   if (error) {
     return (
-      <div className="flex h-[460px] items-center justify-center rounded-[28px] border border-dashed border-slate-200 bg-slate-50 px-6 text-center text-sm text-slate-500">
+      <div className={`flex items-center justify-center rounded-[28px] border border-dashed border-slate-200 bg-slate-50 px-6 text-center text-sm text-slate-500 ${className}`.trim()}>
         {error}
       </div>
     );
@@ -280,7 +338,7 @@ export function AdminGeoMap({
 
   if (!geoJson) {
     return (
-      <div className="flex h-[460px] items-center justify-center rounded-[28px] border border-dashed border-slate-200 bg-slate-50 px-6 text-center text-sm text-slate-500">
+      <div className={`flex items-center justify-center rounded-[28px] border border-dashed border-slate-200 bg-slate-50 px-6 text-center text-sm text-slate-500 ${className}`.trim()}>
         {t("map.loading")}
       </div>
     );
@@ -288,11 +346,11 @@ export function AdminGeoMap({
 
   if ((geoJson.features ?? []).length === 0) {
     return (
-      <div className="flex h-[460px] items-center justify-center rounded-[28px] border border-dashed border-slate-200 bg-slate-50 px-6 text-center text-sm text-slate-500">
+      <div className={`flex items-center justify-center rounded-[28px] border border-dashed border-slate-200 bg-slate-50 px-6 text-center text-sm text-slate-500 ${className}`.trim()}>
         {emptyMessage}
       </div>
     );
   }
 
-  return <div ref={containerRef} className="h-[460px] w-full" />;
+  return <div ref={containerRef} className={`w-full ${className}`.trim()} />;
 }
