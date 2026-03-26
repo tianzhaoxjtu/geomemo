@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { BreadcrumbNav } from "../../features/map/components/BreadcrumbNav";
 import { ChinaMapView } from "../../features/map/components/ChinaMapView";
+import { MapExperiencePopover } from "../../features/map/components/MapExperiencePopover";
 import { Legend } from "../../features/map/components/Legend";
 import { MapResetButton } from "../../features/map/components/MapResetButton";
 import { ProvinceMapView } from "../../features/map/components/ProvinceMapView";
@@ -21,14 +22,13 @@ export function HomePage() {
     enterCountry,
     enterProvince,
     selectCity,
-    toggleCityVisited,
+    clearCityVisited,
     markProvinceVisited,
     clearProvinceVisited,
     resetCurrentScope,
     activeProvinceName,
     activeCityName,
     countryStats,
-    provinceStats,
     cityVisited,
     currentExperienceLevel,
     handleExperienceLevelChange,
@@ -94,7 +94,20 @@ export function HomePage() {
               visitedCities={visitedCities}
               onBack={enterCountry}
               onCityClick={handleCityMapClick}
-              overlay={<MapResetButton onReset={resetCurrentScope} />}
+              overlay={
+                <div className="flex flex-col items-end gap-3">
+                  <MapResetButton onReset={resetCurrentScope} />
+                  {activeCityId && activeCityName ? (
+                    <MapExperiencePopover
+                      cityName={activeCityName}
+                      currentExperienceLevel={currentExperienceLevel}
+                      isVisited={cityVisited}
+                      onSelectLevel={handleExperienceLevelChange}
+                      onClear={() => clearCityVisited(activeCityId)}
+                    />
+                  ) : null}
+                </div>
+              }
             />
           ) : (
             <ChinaMapView
@@ -122,14 +135,14 @@ export function HomePage() {
             isCityVisited={cityVisited}
             currentExperienceLevel={currentExperienceLevel}
             onExperienceLevelChange={handleExperienceLevelChange}
-            onToggleCity={() => {
+            onClearCity={() => {
               if (activeCityId) {
-                toggleCityVisited(activeCityId);
+                clearCityVisited(activeCityId);
               }
             }}
-            onMarkProvince={() => {
+            onMarkProvince={(experienceLevel) => {
               if (activeProvinceId) {
-                markProvinceVisited(activeProvinceId);
+                markProvinceVisited(activeProvinceId, experienceLevel);
               }
             }}
             onClearProvince={() => {

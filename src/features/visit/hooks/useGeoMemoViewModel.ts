@@ -18,10 +18,9 @@ export function useGeoMemoViewModel() {
   const enterCountry = useGeoMemoStore((store) => store.enterCountry);
   const enterProvince = useGeoMemoStore((store) => store.enterProvince);
   const selectCity = useGeoMemoStore((store) => store.selectCity);
-  const toggleCityVisited = useGeoMemoStore((store) => store.toggleCityVisited);
+  const markCityVisited = useGeoMemoStore((store) => store.markCityVisited);
+  const clearCityVisited = useGeoMemoStore((store) => store.clearCityVisited);
   const setDraftExperienceLevel = useGeoMemoStore((store) => store.setDraftExperienceLevel);
-  const setCityExperienceLevel = useGeoMemoStore((store) => store.setCityExperienceLevel);
-  const setProvinceExperienceLevel = useGeoMemoStore((store) => store.setProvinceExperienceLevel);
   const markProvinceVisited = useGeoMemoStore((store) => store.markProvinceVisited);
   const clearProvinceVisited = useGeoMemoStore((store) => store.clearProvinceVisited);
   const resetCurrentScope = useGeoMemoStore((store) => store.resetCurrentScope);
@@ -36,25 +35,17 @@ export function useGeoMemoViewModel() {
     const activeCityExperienceLevel = activeCity
       ? visitedCities[activeCity.id]?.experienceLevel ?? null
       : null;
-    const activeProvinceExperienceLevel = activeProvince
-      ? getProvinceExperienceLevel(activeProvince.id, visitedCities)
-      : null;
     const provinceStats = activeProvince ? getProvinceStats(activeProvince.id, visitedCities) : null;
     const currentExperienceLevel: ExperienceLevel =
-      activeCityExperienceLevel ?? activeProvinceExperienceLevel ?? ui.draftExperienceLevel;
+      activeCityExperienceLevel ?? ui.draftExperienceLevel;
 
     const handleExperienceLevelChange = (experienceLevel: ExperienceLevel) => {
-      if (navigation.activeCityId && visitedCities[navigation.activeCityId]) {
-        setCityExperienceLevel(navigation.activeCityId, experienceLevel);
-        return;
-      }
-
-      if (navigation.activeProvinceId && provinceStats && provinceStats.visitedCities > 0) {
-        setProvinceExperienceLevel(navigation.activeProvinceId, experienceLevel);
-        return;
-      }
-
       setDraftExperienceLevel(experienceLevel);
+
+      if (navigation.activeCityId) {
+        markCityVisited(navigation.activeCityId, experienceLevel);
+        return;
+      }
     };
 
     const handleProvinceMapClick = (provinceId: string) => {
@@ -65,7 +56,6 @@ export function useGeoMemoViewModel() {
 
     const handleCityMapClick = (cityId: string) => {
       selectCity(cityId);
-      toggleCityVisited(cityId);
     };
 
     return {
@@ -78,7 +68,9 @@ export function useGeoMemoViewModel() {
       enterCountry,
       enterProvince,
       selectCity,
-      toggleCityVisited,
+      markCityVisited,
+      clearCityVisited,
+      setDraftExperienceLevel,
       markProvinceVisited,
       clearProvinceVisited,
       resetCurrentScope,
@@ -92,6 +84,10 @@ export function useGeoMemoViewModel() {
       handleExperienceLevelChange,
       handleProvinceMapClick,
       handleCityMapClick,
+      activeCityExperienceLevel,
+      activeProvinceExperienceLevel: activeProvince
+        ? getProvinceExperienceLevel(activeProvince.id, visitedCities)
+        : null,
     };
   }, [
     navigation,
@@ -100,10 +96,9 @@ export function useGeoMemoViewModel() {
     enterCountry,
     enterProvince,
     selectCity,
-    toggleCityVisited,
+    markCityVisited,
+    clearCityVisited,
     setDraftExperienceLevel,
-    setCityExperienceLevel,
-    setProvinceExperienceLevel,
     markProvinceVisited,
     clearProvinceVisited,
     resetCurrentScope,

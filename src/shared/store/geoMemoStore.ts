@@ -10,11 +10,10 @@ interface GeoMemoActions {
   enterCountry: () => void;
   enterProvince: (provinceId: string) => void;
   selectCity: (cityId: string) => void;
-  toggleCityVisited: (cityId: string) => void;
+  markCityVisited: (cityId: string, experienceLevel: ExperienceLevel) => void;
+  clearCityVisited: (cityId: string) => void;
   setDraftExperienceLevel: (experienceLevel: ExperienceLevel) => void;
-  setCityExperienceLevel: (cityId: string, experienceLevel: ExperienceLevel) => void;
-  setProvinceExperienceLevel: (provinceId: string, experienceLevel: ExperienceLevel) => void;
-  markProvinceVisited: (provinceId: string) => void;
+  markProvinceVisited: (provinceId: string, experienceLevel?: ExperienceLevel) => void;
   clearProvinceVisited: (provinceId: string) => void;
   resetCurrentScope: () => void;
   resetAllVisits: () => void;
@@ -51,18 +50,6 @@ function createVisitEntry(experienceLevel: ExperienceLevel, previous?: VisitEntr
   };
 }
 
-function toggleMapEntry(map: VisitedCityMap, cityId: string, experienceLevel: ExperienceLevel) {
-  const next = { ...map };
-
-  if (next[cityId]) {
-    delete next[cityId];
-  } else {
-    next[cityId] = createVisitEntry(experienceLevel);
-  }
-
-  return next;
-}
-
 function recordVisit(
   history: VisitsState["history"],
   cityId: string,
@@ -74,6 +61,41 @@ function recordVisit(
   }
 
   return history.filter((entry) => entry.cityId !== cityId);
+}
+
+function upsertVisit(
+  visits: VisitsState,
+  cityId: string,
+  experienceLevel: ExperienceLevel,
+): VisitsState {
+  const alreadyVisited = Boolean(visits.visitedCities[cityId]);
+  const current = visits.visitedCities[cityId];
+
+  return {
+    visitedCities: {
+      ...visits.visitedCities,
+      [cityId]: createVisitEntry(experienceLevel, current),
+    },
+    history: alreadyVisited
+      ? visits.history.map((entry) =>
+          entry.cityId === cityId ? { ...entry, experienceLevel } : entry,
+        )
+      : recordVisit(visits.history, cityId, false, experienceLevel),
+  };
+}
+
+function clearCityVisit(visits: VisitsState, cityId: string): VisitsState {
+  if (!visits.visitedCities[cityId]) {
+    return visits;
+  }
+
+  const nextVisitedCities = { ...visits.visitedCities };
+  delete nextVisitedCities[cityId];
+
+  return {
+    visitedCities: nextVisitedCities,
+    history: visits.history.filter((entry) => entry.cityId !== cityId),
+  };
 }
 
 function clearProvinceVisits(visits: VisitsState, provinceId: string): VisitsState {
@@ -180,6 +202,18 @@ export const useGeoMemoStore = create<GeoMemoStore>()(
             activeProvinceId: getCityById(cityId)?.provinceId ?? null,
           },
         })),
+      markCityVisited: (cityId, experienceLevel) =>
+        set((state) => ({
+          visits: upsertVisit(state.visits, cityId, experienceLevel),
+          ui: {
+            ...state.ui,
+            draftExperienceLevel: experienceLevel,
+          },
+        })),
+      clearCityVisited: (cityId) =>
+        set((state) => ({
+          visits: clearCityVisit(state.visits, cityId),
+        })),
       setDraftExperienceLevel: (experienceLevel) =>
         set((state) => ({
           ui: {
@@ -187,97 +221,29 @@ export const useGeoMemoStore = create<GeoMemoStore>()(
             draftExperienceLevel: experienceLevel,
           },
         })),
-      toggleCityVisited: (cityId) =>
-        set((state) => ({
-          visits: {
-            visitedCities: toggleMapEntry(
-              state.visits.visitedCities,
-              cityId,
-              state.ui.draftExperienceLevel,
-            ),
-            history: recordVisit(
-              state.visits.history,
-              cityId,
-              Boolean(state.visits.visitedCities[cityId]),
-              state.ui.draftExperienceLevel,
-            ),
-          },
-        })),
-      setCityExperienceLevel: (cityId, experienceLevel) =>
+      markProvinceVisited: (provinceId, experienceLevel) =>
         set((state) => {
-          const current = state.visits.visitedCities[cityId];
-
-          if (!current) {
-            return {
-              ui: {
-                ...state.ui,
-                draftExperienceLevel: experienceLevel,
-              },
-            };
-          }
-
-          return {
-            visits: {
-              visitedCities: {
-                ...state.visits.visitedCities,
-                [cityId]: createVisitEntry(experienceLevel, current),
-              },
-              history: state.visits.history.map((entry) =>
-                entry.cityId === cityId ? { ...entry, experienceLevel } : entry,
-              ),
-            },
-            ui: {
-              ...state.ui,
-              draftExperienceLevel: experienceLevel,
-            },
-          };
-        }),
-      setProvinceExperienceLevel: (provinceId, experienceLevel) =>
-        set((state) => {
-          const next = { ...state.visits.visitedCities };
-          let changed = false;
-
-          for (const city of getProvinceCities(provinceId)) {
-            const current = next[city.id];
-
-            if (current) {
-              next[city.id] = createVisitEntry(experienceLevel, current);
-              changed = true;
-            }
-          }
-
-          return {
-            visits: {
-              visitedCities: next,
-              history: changed
-                ? state.visits.history.map((entry) =>
-                    getCityById(entry.cityId)?.provinceId === provinceId
-                      ? { ...entry, experienceLevel }
-                      : entry,
-                  )
-                : state.visits.history,
-            },
-            ui: {
-              ...state.ui,
-              draftExperienceLevel: experienceLevel,
-            },
-          };
-        }),
-      markProvinceVisited: (provinceId) =>
-        set((state) => {
+          const level = experienceLevel ?? state.ui.draftExperienceLevel;
           const next = { ...state.visits.visitedCities };
           const history = [...state.visits.history];
 
           for (const city of getProvinceCities(provinceId)) {
             if (!next[city.id]) {
-              next[city.id] = createVisitEntry(state.ui.draftExperienceLevel);
+              next[city.id] = createVisitEntry(level);
               history.push({
                 cityId: city.id,
                 visitedAt: new Date().toISOString(),
-                experienceLevel: state.ui.draftExperienceLevel,
+                experienceLevel: level,
               });
             } else {
-              next[city.id] = createVisitEntry(state.ui.draftExperienceLevel, next[city.id]);
+              next[city.id] = createVisitEntry(level, next[city.id]);
+              const historyIndex = history.findIndex((entry) => entry.cityId === city.id);
+              if (historyIndex >= 0) {
+                history[historyIndex] = {
+                  ...history[historyIndex],
+                  experienceLevel: level,
+                };
+              }
             }
           }
 
@@ -285,6 +251,10 @@ export const useGeoMemoStore = create<GeoMemoStore>()(
             visits: {
               visitedCities: next,
               history,
+            },
+            ui: {
+              ...state.ui,
+              draftExperienceLevel: level,
             },
           };
         }),

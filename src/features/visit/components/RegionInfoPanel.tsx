@@ -52,7 +52,9 @@ export function RegionInfoPanel({
       <div className="mt-4 space-y-2">
         {cityList.map((city) => {
           const isActive = city.id === activeCityId;
-          const visited = Boolean(visitedCities[city.id]);
+          const visitEntry = visitedCities[city.id];
+          const visited = Boolean(visitEntry);
+          const experienceLabel = visitEntry ? t(`visit.experience.${visitEntry.experienceLevel}`) : null;
 
           return (
             <button
@@ -74,7 +76,7 @@ export function RegionInfoPanel({
                       : "bg-slate-200 text-slate-500"
                 }`}
               >
-                {visited ? t("visit.statusVisited") : t("visit.statusUnvisited")}
+                {visited ? experienceLabel : t("visit.statusUnvisited")}
               </span>
             </button>
           );
