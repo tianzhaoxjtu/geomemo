@@ -46,6 +46,54 @@ npm run build
 npm run preview
 ```
 
+## Deployment
+
+### Recommended Platform
+
+Vercel is the recommended hosting platform for this project because GeoMemo is a frontend-only Vite application with static assets and no backend runtime requirements.
+
+Why Vercel fits well:
+
+- native support for Vite projects
+- simple GitHub-based deployment flow
+- automatic production and preview deployments
+- reliable static asset hosting for the vendored GeoJSON files under `public/`
+
+### Live Demo URL
+
+Add your production URL here after deployment, for example:
+
+```text
+https://your-project-name.vercel.app
+```
+
+### How to Deploy Your Own Version
+
+1. Push the latest code to your GitHub repository.
+2. Go to [Vercel](https://vercel.com/).
+3. Sign in with GitHub.
+4. Click `Add New...` → `Project`.
+5. Import the GeoMemo repository.
+6. Use these project settings:
+   - Framework Preset: `Vite`
+   - Build Command: `npm run build`
+   - Output Directory: `dist`
+7. Click `Deploy`.
+8. After deployment finishes, Vercel will provide a public URL such as:
+   - `https://your-project-name.vercel.app`
+
+### Environment Notes
+
+- No environment variables are required for the current implementation.
+- The app is fully local-first and stores user data in `localStorage`.
+- The vendored GeoJSON files are served as static assets from `public/geojson/china`.
+
+### Routing Notes
+
+- The current app does not use path-based client-side routing, so no special SPA rewrite rule is required.
+- Refreshing the deployed app at its root URL works normally.
+- If route-based navigation is added later, configure your host with an SPA fallback to `index.html`.
+
 ## Documentation
 
 - Architecture: [docs/architecture.md](./docs/architecture.md)
