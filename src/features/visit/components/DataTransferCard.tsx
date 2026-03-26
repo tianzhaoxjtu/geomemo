@@ -25,13 +25,20 @@ export function DataTransferCard({
       eyebrow={t("data.section")}
       title={t("data.title")}
       description={t("data.description")}
+      className="p-4"
     >
       <div className="space-y-3">
         <div className="grid grid-cols-2 gap-3">
-          <button className="glass-button rounded-[22px]" onClick={onExport}>
+          <button
+            className="rounded-full bg-white/70 px-3 py-2 text-xs font-medium text-slate-600 ring-1 ring-white/60 transition-all hover:bg-white hover:text-slate-800"
+            onClick={onExport}
+          >
             {t("data.export")}
           </button>
-          <button className="glass-button rounded-[22px]" onClick={() => inputRef.current?.click()}>
+          <button
+            className="rounded-full bg-white/70 px-3 py-2 text-xs font-medium text-slate-600 ring-1 ring-white/60 transition-all hover:bg-white hover:text-slate-800"
+            onClick={() => inputRef.current?.click()}
+          >
             {t("data.import")}
           </button>
         </div>
@@ -50,14 +57,14 @@ export function DataTransferCard({
           }}
         />
         {lastImportedAt ? (
-          <p className="text-sm text-slate-500">
+          <p className="text-xs text-slate-500">
             {t("data.lastImport", {
               time: new Date(lastImportedAt).toLocaleString(locale === "en" ? "en-US" : "zh-CN"),
             })}
           </p>
         ) : null}
         {importError ? (
-          <div className="rounded-[22px] border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-700">
+          <div className="rounded-[18px] border border-rose-200 bg-rose-50 px-3 py-2 text-xs text-rose-700">
             <div className="flex items-start justify-between gap-3">
               <span>{t(importError)}</span>
               <button className="font-medium text-rose-900" onClick={onDismissError}>

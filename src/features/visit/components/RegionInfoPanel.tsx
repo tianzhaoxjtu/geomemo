@@ -21,17 +21,7 @@ export function RegionInfoPanel({
   const { locale, t } = useI18n();
 
   if (!activeProvinceId) {
-    return (
-      <SurfaceCard
-        eyebrow={t("visit.context")}
-        title={t("visit.nationalTitle")}
-        description={t("visit.nationalDescription")}
-      >
-        <p className="text-sm leading-6 text-slate-600">
-          {t("visit.nationalBody")}
-        </p>
-      </SurfaceCard>
-    );
+    return null;
   }
 
   const province = getProvinceById(activeProvinceId);
