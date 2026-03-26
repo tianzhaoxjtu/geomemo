@@ -85,43 +85,54 @@ export function HomePage() {
         />
       </div>
 
-      <section className="grid gap-6 xl:grid-cols-[minmax(0,1.7fr)_390px]">
-        <div className="space-y-4">
-          {activeProvinceId ? (
-            <ProvinceMapView
-              provinceId={activeProvinceId}
-              activeCityId={activeCityId}
-              visitedCities={visitedCities}
-              onBack={enterCountry}
-              onRegionSelect={handleCityMapClick}
-              overlay={
-                <div className="flex flex-col items-end gap-3">
-                  <MapResetButton onReset={resetCurrentScope} />
-                  {activeCityId && activeCityName ? (
-                    <MapExperiencePopover
-                      regionName={activeCityName}
-                      currentExperienceLevel={currentExperienceLevel}
-                      isVisited={cityVisited}
-                      onSelectLevel={handleExperienceLevelChange}
-                      onClear={() => clearCityVisited(activeCityId)}
-                    />
-                  ) : null}
-                </div>
-              }
+      <section className="space-y-6">
+        <div className="grid gap-4 xl:grid-cols-[minmax(0,1.75fr)_360px] xl:items-start">
+          <div className="space-y-4">
+            {activeProvinceId ? (
+              <ProvinceMapView
+                provinceId={activeProvinceId}
+                activeCityId={activeCityId}
+                visitedCities={visitedCities}
+                onBack={enterCountry}
+                onRegionSelect={handleCityMapClick}
+                overlay={
+                  <div className="flex flex-col items-end gap-3">
+                    <MapResetButton onReset={resetCurrentScope} />
+                    {activeCityId && activeCityName ? (
+                      <MapExperiencePopover
+                        regionName={activeCityName}
+                        currentExperienceLevel={currentExperienceLevel}
+                        isVisited={cityVisited}
+                        onSelectLevel={handleExperienceLevelChange}
+                        onClear={() => clearCityVisited(activeCityId)}
+                      />
+                    ) : null}
+                  </div>
+                }
+              />
+            ) : (
+              <ChinaMapView
+                activeProvinceId={activeProvinceId}
+                visitedCities={visitedCities}
+                onProvinceClick={handleProvinceMapClick}
+                overlay={<MapResetButton onReset={resetCurrentScope} />}
+              />
+            )}
+            <Legend />
+          </div>
+          <div className="space-y-4 xl:sticky xl:top-6">
+            <ExperienceBreakdownPanel stats={countryStats} />
+            <DataTransferCard
+              importError={importError}
+              lastImportedAt={lastImportedAt}
+              onExport={downloadExport}
+              onImport={importFile}
+              onDismissError={clearImportError}
             />
-          ) : (
-            <ChinaMapView
-              activeProvinceId={activeProvinceId}
-              visitedCities={visitedCities}
-              onProvinceClick={handleProvinceMapClick}
-              overlay={<MapResetButton onReset={resetCurrentScope} />}
-            />
-          )}
-          <Legend />
-          <ExperienceBreakdownPanel stats={countryStats} />
+          </div>
         </div>
 
-        <aside className="space-y-4 xl:sticky xl:top-6 xl:self-start">
+        <div className="grid gap-4 lg:grid-cols-[minmax(0,1.05fr)_minmax(320px,0.95fr)]">
           <RegionInfoPanel
             level={level}
             activeProvinceId={activeProvinceId}
@@ -129,6 +140,9 @@ export function HomePage() {
             visitedCities={visitedCities}
             onSelectCity={selectCity}
           />
+        </div>
+
+        <div className="grid gap-4 lg:grid-cols-[minmax(0,1.05fr)_minmax(320px,0.95fr)]">
           <VisitActionCard
             hasProvince={Boolean(activeProvinceId)}
             regionName={activeCityName}
@@ -151,14 +165,7 @@ export function HomePage() {
               }
             }}
           />
-          <DataTransferCard
-            importError={importError}
-            lastImportedAt={lastImportedAt}
-            onExport={downloadExport}
-            onImport={importFile}
-            onDismissError={clearImportError}
-          />
-        </aside>
+        </div>
       </section>
     </main>
   );

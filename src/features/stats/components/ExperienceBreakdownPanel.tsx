@@ -15,7 +15,7 @@ export function ExperienceBreakdownPanel({ stats }: ExperienceBreakdownPanelProp
       title={t("stats.experienceBreakdown")}
       description={t("stats.experienceBreakdownDescription")}
     >
-      <div className="grid gap-3 sm:grid-cols-3">
+      <div className="space-y-3">
         <BreakdownPill
           label={t("visit.experience.long")}
           value={`${stats.experienceBreakdown.long.count}`}
@@ -51,15 +51,18 @@ function BreakdownPill({
   tone: string;
 }) {
   return (
-    <div className="rounded-[22px] border border-white/80 bg-gradient-to-b from-white to-slate-50 px-4 py-4 shadow-sm">
-      <div className="flex items-center justify-between gap-3">
+    <div className="rounded-[24px] border border-white/80 bg-gradient-to-b from-white/95 to-slate-50 px-4 py-4 shadow-sm shadow-slate-900/5">
+      <div className="flex items-start justify-between gap-4">
         <div className="flex items-center gap-2">
           <span className={`h-2.5 w-2.5 rounded-full ${tone}`} />
-          <span className="text-xs font-medium text-slate-600">{label}</span>
+          <span className="text-xs font-medium tracking-[0.01em] text-slate-500">{label}</span>
         </div>
-        <span className="text-xs text-slate-400">{percentage}%</span>
+        <span className="text-xs font-medium text-slate-400">{percentage}%</span>
       </div>
-      <p className="mt-3 text-3xl font-semibold tracking-[-0.04em] text-slate-950">{value}</p>
+      <div className="mt-3 flex items-end justify-between gap-4">
+        <p className="text-3xl font-semibold tracking-[-0.05em] text-slate-950">{value}</p>
+        <div className="h-px flex-1 self-center rounded-full bg-slate-200/80" />
+      </div>
     </div>
   );
 }
