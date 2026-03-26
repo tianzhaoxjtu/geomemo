@@ -8,7 +8,7 @@ GeoMemo is a frontend application for tracking places visited in China on top of
 
 - authoritative China province and city boundary rendering with ECharts
 - click-based drill-down from country to province
-- visited and unvisited tracking for cities and provinces
+- explicit experience-level marking for cities and province-wide bulk actions
 - travel experience levels: long, medium, short
 - live progress metrics and experience distribution
 - Simplified Chinese and English UI
@@ -101,26 +101,27 @@ The application depends on local GeoJSON assets under `public/geojson/china`, so
 
 ### Mark visited places
 
-- On the country map, clicking a province toggles the province-wide visited state and opens that province.
-- Inside a province, clicking a city selects it and toggles visited or unvisited immediately.
-- In the right-side panel, you can also mark or clear the active province.
+- On the country map, clicking a province enters the province view without changing visit data.
+- Inside a province, clicking a city selects it and opens an inline experience chooser.
+- In the right-side panel, selecting an experience level marks or updates the selected city.
+- You can also apply the current level to the active province or clear the active province.
 
 ### Set experience levels
 
-- In the right-side visit action panel, choose:
+- In the inline map chooser or the right-side visit action panel, choose:
   - `Long stay`
   - `Short stay`
   - `Travel`
-- If the selected city is already visited, changing the level updates that city.
-- If no visited city is selected but the active province contains visited cities, the level change updates visited cities in that province.
-- Otherwise, the selected level becomes the default for the next new visit action.
+- If the selected city is already marked, choosing a level updates it.
+- If the city is unvisited, choosing a level creates the visit entry immediately.
+- Clearing is a separate explicit action.
 
 ### View statistics
 
 - The header shows four national metrics:
   - visited cities
   - city coverage
-  - completed provinces
+  - visited provinces
   - province coverage
 - The area below the map shows the experience level distribution.
 
@@ -139,7 +140,8 @@ The application depends on local GeoJSON assets under `public/geojson/china`, so
 ### Reset records
 
 - Use the reset button in the top-right corner inside the map card.
-- This clears all visit records and returns the app to the default navigation state.
+- At national level it clears all visit records.
+- Inside a province it clears only the current province.
 
 ## Data Persistence
 

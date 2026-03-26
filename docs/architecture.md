@@ -252,6 +252,7 @@ GeoMemo stores visited state only in `visits.visitedCities`.
 Everything else is derived from that:
 
 - province visual state
+- province coverage metrics
 - country totals
 - province totals
 - experience level breakdowns
@@ -290,12 +291,12 @@ The main store API currently includes:
 - `enterCountry()`
 - `enterProvince(provinceId)`
 - `selectCity(cityId)`
-- `toggleCityVisited(cityId)`
+- `markCityVisited(cityId, level)`
+- `clearCityVisited(cityId)`
 - `setDraftExperienceLevel(level)`
-- `setCityExperienceLevel(cityId, level)`
-- `setProvinceExperienceLevel(provinceId, level)`
-- `markProvinceVisited(provinceId)`
+- `markProvinceVisited(provinceId, level?)`
 - `clearProvinceVisited(provinceId)`
+- `resetCurrentScope()`
 - `resetAllVisits()`
 - `importVisits(raw)`
 - `clearImportError()`
@@ -318,8 +319,8 @@ The runtime does not depend on an external map API. ECharts loads local GeoJSON 
 
 Current interaction behavior:
 
-- At country level, clicking a province toggles the province’s visited state and then enters that province.
-- At province level, clicking a city selects it and toggles its visited state.
+- At country level, clicking a province enters that province without mutating visit state.
+- At province level, clicking a city selects it and opens the experience-level chooser.
 - The province map stays visible while `level = "city"`. City level is a selected-detail state, not a separate map screen.
 - Breadcrumbs provide upward navigation.
 - Missing city-level geometry is handled gracefully with an empty-state message.
@@ -334,9 +335,10 @@ Each visited city stores an `experienceLevel`:
 
 The UI supports:
 
-- choosing a draft experience level before marking a place visited
-- updating a selected visited city later
-- updating all visited cities in the active province in one action
+- choosing an experience level from the side panel or inline map popover
+- creating or updating a selected city visit with one explicit level selection
+- clearing a selected city back to unvisited
+- updating all cities in the active province in one action
 
 Province-level experience display is derived from visited city entries rather than persisted as a separate province record.
 
@@ -346,13 +348,19 @@ Derived statistics include:
 
 - visited cities
 - city completion percentage
-- completed provinces
+- visited provinces
 - province completion percentage
 - experience level distribution for long, medium, and short stays
 
 The top header uses the national metrics.
 
 The left column below the map shows the national experience distribution.
+
+Province coverage metrics are derived using the rule:
+
+- a province counts as visited once any city in that province has a saved visit entry
+
+The map still distinguishes `partial` versus fully visited provinces visually.
 
 ## Current UI Structure
 

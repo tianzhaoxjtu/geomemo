@@ -24,7 +24,6 @@ export function useGeoMemoViewModel() {
   const markProvinceVisited = useGeoMemoStore((store) => store.markProvinceVisited);
   const clearProvinceVisited = useGeoMemoStore((store) => store.clearProvinceVisited);
   const resetCurrentScope = useGeoMemoStore((store) => store.resetCurrentScope);
-  const resetAllVisits = useGeoMemoStore((store) => store.resetAllVisits);
 
   return useMemo(() => {
     // This hook is the composition boundary between normalized store state and the
@@ -74,7 +73,6 @@ export function useGeoMemoViewModel() {
       markProvinceVisited,
       clearProvinceVisited,
       resetCurrentScope,
-      resetAllVisits,
       activeProvinceName: getLocalizedProvinceName(navigation.activeProvinceId, locale),
       activeCityName: getLocalizedCityName(navigation.activeCityId, locale),
       countryStats: getCountryStats(visitedCities),
@@ -85,9 +83,6 @@ export function useGeoMemoViewModel() {
       handleProvinceMapClick,
       handleCityMapClick,
       activeCityExperienceLevel,
-      activeProvinceExperienceLevel: activeProvince
-        ? getProvinceExperienceLevel(activeProvince.id, visitedCities)
-        : null,
     };
   }, [
     navigation,
@@ -102,7 +97,6 @@ export function useGeoMemoViewModel() {
     markProvinceVisited,
     clearProvinceVisited,
     resetCurrentScope,
-    resetAllVisits,
     locale,
   ]);
 }

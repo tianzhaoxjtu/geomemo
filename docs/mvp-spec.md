@@ -2,73 +2,67 @@
 
 ## Purpose
 
-This document describes the current implemented behavior of GeoMemo. It is intended to serve as the working product spec for future development and should stay aligned with the codebase.
+This document describes the current implemented behavior of GeoMemo. It is intended to serve as the product-level source of truth for ongoing maintenance and future development.
 
 ## Product Summary
 
-GeoMemo is a bilingual, local-first travel tracker for China. It lets users explore authoritative administrative boundaries, mark places as visited, assign a travel experience level, and view derived progress statistics.
+GeoMemo is a bilingual, local-first travel tracker for China. It uses authoritative administrative boundary data, lets users drill down into provinces, assign experience levels to visited cities, and view live progress metrics derived from a single city-level visit model.
 
 ## Current Feature Set
 
-### Core map interaction
+### Map and navigation
 
-- country-level China map using province boundaries
-- province drill-down into city-level administrative regions when available
-- breadcrumb-based upward navigation
-- direct map interaction for visit updates
+- national China map with province boundaries
+- province drill-down into city-level administrative regions when geometry is available
+- breadcrumb navigation from country to province to selected city context
+- lightweight inline map interactions
 
 ### Visit tracking
 
-- toggle city visited/unvisited
-- toggle a whole province visited/unvisited from the country map
-- mark all cities in the active province visited
-- clear all visits in the active province
-- reset all records
-
-### Experience levels
-
-- each visited city stores one experience level
-- supported levels:
-  - `long`: more than 6 months
-  - `medium`: 1 to 6 months
-  - `short`: less than 1 month
-- users can change the level after the place is already marked visited
+- explicit city marking with one experience level:
+  - `long`
+  - `medium`
+  - `short`
+- explicit clear action to return a city to unvisited
+- province-wide bulk apply for the current experience level
+- province-level clear action
+- context-aware reset action
 
 ### Statistics
 
-- national metrics in the hero header
+- national header metrics
 - experience level distribution below the map
-- derived counts and percentages
+- province coverage derived from city-level records
+- map coloring driven by derived city/province state
 
-### Data portability
+### Persistence and portability
 
-- JSON export
-- JSON import
-- backward-compatible parsing for older saved data
+- Zustand store persisted in `localStorage`
+- locale persisted separately
+- JSON import/export for visit records
+- backward compatibility for older boolean visit data
 
 ### Internationalization
 
 - Simplified Chinese
 - English
-- Simplified Chinese as default
-- persisted locale selection
+- Simplified Chinese default
+- immediate runtime switching
 
 ## Current Page Layout
 
-### Header
+### Hero header
 
-The hero header contains:
+Contains:
 
 - app title
-- app subtitle
+- subtitle
 - language switcher
 - four national metrics
 
-The header background uses a subtle atmospheric treatment with gradients and soft blurred shapes.
+### Breadcrumb row
 
-### Breadcrumb
-
-A breadcrumb row sits below the header:
+Displays the current navigation path:
 
 - `China`
 - `China / Province`
@@ -76,21 +70,22 @@ A breadcrumb row sits below the header:
 
 ### Main content
 
-The page uses a two-column layout on large screens.
+Large screens use a two-column layout.
 
 Left column:
 
 - country or province map
-- map legend
+- map reset control overlay
+- legend
 - experience level distribution
 
 Right column:
 
 - region context panel
-- visit action panel
+- travel record action panel
 - import/export panel
 
-## Current Interaction Logic
+## Current Interaction Flow
 
 ### Initial state
 
@@ -115,94 +110,122 @@ Right column:
 
 ### Country map behavior
 
-- the country map renders provinces
-- each province fill is derived from visited city data
-- clicking a province:
-  - toggles province-level visited state
-  - enters the province drill-down view
+- the map renders provinces
+- province fill is derived from saved city visit records
+- clicking a province enters the province view only
+- entering a province does not mutate city visit state
 
-Province visual state rules:
+Province visual-state rules:
 
-- `unvisited`: zero visited cities
+- `unvisited`: no visited cities in the province
 - `partial`: some visited cities but not all
-- `visited`: all cities visited
+- `visited`: all cities in the province have saved visit entries
+
+Province coverage metrics use a different rule:
+
+- a province is counted as covered once one or more cities in that province are visited
 
 ### Province map behavior
 
-- the province map renders city-level administrative regions for the active province when geometry exists
-- clicking a city:
-  - selects the city
-  - toggles visited/unvisited immediately
-- the selected city is reflected in the side panel
+- the map renders city-level administrative regions for the active province when geometry exists
+- clicking a city selects it
+- selecting a city opens an inline experience chooser in the map area
+- choosing `long`, `medium`, or `short` marks or updates the selected city immediately
+- clearing a city is a separate explicit action
 
-### City selection behavior
+### Side-panel behavior
 
-`level = "city"` is a detail-selection state, not a separate map route. The province map remains visible while the side panel focuses on the selected city.
+The right-side panel mirrors the same source of truth:
 
-### Experience level behavior
-
-- the visit action panel exposes the three experience levels
-- if a selected city is already visited, changing the level updates that city
-- if an active province has visited cities and no visited city is selected, changing the level updates all visited cities in that province
-- otherwise, the selected level becomes the draft level used for the next visit action
+- the region panel shows city status within the active province
+- visited cities display their current experience level label
+- the action panel lets the user:
+  - set the selected city’s experience level
+  - clear the selected city
+  - apply the current level to the whole active province
+  - clear the active province
 
 ### Reset behavior
 
-- the reset action appears as an overlay button inside the map card
-- clicking it clears all visits and resets navigation
+The reset action is scope-aware:
+
+- at national level, it clears all visits
+- inside a province, it clears only cities within the active province
+
+## Data Model
+
+### Region model
+
+```ts
+type RegionLevel = "country" | "province" | "city";
+type VisitVisualState = "unvisited" | "partial" | "visited";
+type ExperienceLevel = "long" | "medium" | "short";
+```
+
+### Visit model
+
+```ts
+interface VisitEntry {
+  experienceLevel: ExperienceLevel;
+  visitedAt: string;
+  updatedAt?: string;
+}
+
+type VisitedCityMap = Record<string, VisitEntry>;
+
+interface VisitRecord {
+  cityId: string;
+  visitedAt: string;
+  experienceLevel: ExperienceLevel;
+}
+```
 
 ## State and Data Flow
 
-GeoMemo uses one shared Zustand store. All user-visible state changes flow through that store.
+GeoMemo uses a single shared Zustand store.
 
-### Single source of truth
+### Canonical source of truth
 
 The canonical visit state is:
 
 ```ts
-type VisitedCityMap = Record<string, VisitEntry>;
+visits.visitedCities
 ```
 
-Where:
+This city-level map drives:
 
-```ts
-interface VisitEntry {
-  experienceLevel: "long" | "medium" | "short";
-  visitedAt: string;
-  updatedAt?: string;
-}
-```
-
-Everything else is derived from this structure:
-
-- province completion state
-- country totals
-- province totals
-- map coloring
+- city status
+- province coverage metrics
+- province visual state
+- national totals
 - experience distribution
-- panel badges
+- map coloring
+- right-side panel badges
 
-### Derived selectors
+No separate persisted province visit flag exists.
+
+### Derived selector responsibilities
 
 Current selectors compute:
 
 - city visited state
 - city experience level
+- province visited count
 - province visual state
+- province coverage state
 - province dominant experience level
 - national stats
 - province stats
-- experience level breakdown
+- experience level distribution
 
-### View-model layer
+### View-model boundary
 
-`useGeoMemoViewModel` is the page composition boundary. It:
+`useGeoMemoViewModel` acts as the composition boundary between raw store state and the page:
 
-- reads store slices
-- applies region lookup helpers
-- applies localized name helpers
-- computes national and province stats
-- exposes stable values and callbacks to `HomePage`
+- reads navigation, visit, and UI state
+- localizes active region names
+- computes derived stats
+- exposes view-ready handlers for map and panel interactions
 
 ## Current Component Structure
 
@@ -215,6 +238,7 @@ HomePage
 ├── Left column
 │   ├── ChinaMapView or ProvinceMapView
 │   ├── MapResetButton
+│   ├── MapExperiencePopover
 │   ├── Legend
 │   └── ExperienceBreakdownPanel
 └── Right column
@@ -227,11 +251,11 @@ HomePage
 
 ### Source
 
-The application uses vendored China administrative GeoJSON data recorded in:
+The application uses vendored China administrative GeoJSON data stored in:
 
 - `/Users/tianzhaoxjtu/Code/GitHub/geomemo/public/geojson/china`
 
-The source snapshot metadata is tracked in:
+Supporting metadata is tracked in:
 
 - [china-source.json](/Users/tianzhaoxjtu/Code/GitHub/geomemo/src/entities/region/data/china-source.json)
 
@@ -239,33 +263,33 @@ The source snapshot metadata is tracked in:
 
 - ECharts renders the geographic layers
 - local GeoJSON files are registered before rendering
-- no runtime dependence on a remote map API
+- the runtime does not depend on a remote map API
 
 ### Missing data handling
 
-If city-level geometry is not available for a province, the province map renders a user-facing empty state instead of failing.
+If city-level geometry is missing for a province, the UI shows an empty state instead of failing.
 
 ## Persistence Specification
 
 ### Local storage
 
-The application persists its main store under:
+Main store key:
 
 - `geomemo-store-v1`
 
-The persisted payload currently includes:
+Locale key:
+
+- `geomemo-locale`
+
+Persisted data includes:
 
 - navigation
 - visits
 - `ui.draftExperienceLevel`
 
-The locale is stored separately under:
+### Compatibility behavior
 
-- `geomemo-locale`
-
-### Backward compatibility
-
-Older persisted or imported data using `visitedCityIds: Record<string, true>` is normalized into the current `visitedCities` model with the default experience level `short`.
+Older persisted or imported data using `visitedCityIds: Record<string, true>` is normalized into the current `visitedCities` structure with default level `short`.
 
 ## Import/Export Specification
 
@@ -279,26 +303,24 @@ interface GeoMemoExportPayload {
 }
 ```
 
-Import rules:
+Import accepts:
 
-- accepts current exports
-- accepts direct visit-state payloads
-- accepts the older boolean visit map shape
-- validates JSON structure before applying data
+- current exports
+- direct visit-state payloads
+- the older boolean visit map shape
 
-## UI Behavior Requirements for Future Changes
+## Guarantees Future Changes Should Preserve
 
-Future UI changes should preserve these guarantees:
+- map, panel, and statistics must continue to read from the same city-level visit data
+- province-level coverage must remain derived from city-level records
+- entering a province must not mutate visit state
+- experience-level marking remains explicit, not binary toggle-based
+- i18n text stays externalized
+- authoritative map data remains vendored and maintainable
 
-- map and side panel always reflect the same visit state
-- statistics are always derived, never manually duplicated
-- experience level state remains synchronized across map, panel, and stats
-- i18n text remains externalized
-- authoritative map data remains local and maintainable
+## Current Non-Goals
 
-## Non-Goals in the Current Version
-
-These are not implemented yet:
+These are not implemented in v1:
 
 - authentication
 - backend sync
