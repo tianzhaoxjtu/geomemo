@@ -1,50 +1,26 @@
 # GeoMemo
 
-GeoMemo is a React + TypeScript + Vite + Tailwind CSS app for tracking places visited in China.
+GeoMemo is a React + TypeScript + Vite application for tracking places visited in China with authoritative administrative boundaries, drill-down map interaction, experience levels, bilingual UI, and local-first persistence.
 
 ## Features
 
-- Stylized China overview map with province-level interaction
-- Province drill-down into city-level administrative regions
-- Mark city or whole province as visited or unvisited
-- Visual differentiation for visited, partially visited, and unvisited regions
-- Live statistics for counts and percentages
-- `localStorage` persistence via Zustand
-- JSON import and export for visited data
-- Bilingual UI with Simplified Chinese default and English switching
+- authoritative China map rendered from vendored GeoJSON data
+- province drill-down into city-level administrative regions
+- city-level visit tracking with province-wide bulk actions
+- experience levels for visited places: long, medium, short
+- live national and province-level statistics
+- Simplified Chinese and English UI
+- JSON import/export for visit records
+- persisted state with `localStorage`
 
 ## Tech Stack
 
-- React
+- React 18
 - TypeScript
 - Vite
 - Tailwind CSS
 - Zustand
-
-## Project Structure
-
-```text
-src/
-├── app/                 # app bootstrap and global styles
-├── entities/
-│   ├── region/          # region reference data and indexes
-│   └── visit/           # visit domain types and transfer utilities
-├── features/
-│   ├── map/             # interactive map UI
-│   ├── stats/           # selectors and stats presentation
-│   └── visit/           # visit-focused hooks and side-panel UI
-├── pages/               # page-level composition
-└── shared/              # store, shared UI primitives, utilities
-```
-
-## Architecture Highlights
-
-- Region data is static reference data and lives in `entities/region`.
-- Visit data has its own domain model in `entities/visit`, which prepares the app for backend sync later.
-- The store is structured into `navigation`, `visits`, and `ui` domains.
-- `useGeoMemoViewModel` keeps page components thin by combining store state with derived selectors.
-- Import and export are isolated behind `visitTransfer` utilities so the same contract can later support an API.
-- Translation resources are separated in `src/shared/i18n/resources`, and the selected language is persisted in `localStorage`.
+- Apache ECharts
 
 ## Run Locally
 
@@ -53,7 +29,7 @@ npm install
 npm run dev
 ```
 
-Then open the local Vite URL shown in the terminal.
+Then open the local Vite URL shown in the terminal, usually `http://localhost:5173`.
 
 ## Build
 
@@ -62,9 +38,14 @@ npm run build
 npm run preview
 ```
 
+## Documentation
+
+- Architecture: [docs/architecture.md](./docs/architecture.md)
+- Current product spec: [docs/mvp-spec.md](./docs/mvp-spec.md)
+- Deployment and usage guide: [DEPLOYMENT_AND_USAGE.md](./DEPLOYMENT_AND_USAGE.md)
+
 ## Notes
 
-- The current map uses vendored China GeoJSON files stored under `public/geojson/china`.
-- The dataset snapshot is fetched from GeoJSON.CN and versioned locally through `scripts/fetch-geojson.mjs`.
-- The data model and store are structured so future backend-driven region data can replace the local snapshot without a major rewrite.
-- More architecture details live in [`docs/architecture.md`](./docs/architecture.md) and [`docs/mvp-spec.md`](./docs/mvp-spec.md).
+- GeoJSON assets are vendored locally under `public/geojson/china`.
+- Locale preference and visit data are persisted in `localStorage`.
+- The codebase is structured to support future backend sync, richer trip metadata, and AI-assisted features.

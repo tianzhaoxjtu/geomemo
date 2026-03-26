@@ -1,551 +1,308 @@
-# GeoMemo Phase 1 MVP Technical Spec
+# GeoMemo Current Product Spec
 
-## Goal
+## Purpose
 
-Ship a polished single-page application that allows the user to:
+This document describes the current implemented behavior of GeoMemo. It is intended to serve as the working product spec for future development and should stay aligned with the codebase.
 
-- view a China map
-- drill down into a province
-- select a city
-- mark that city as visited
-- see province and country statistics update immediately
-- retain visit data in `localStorage`
+## Product Summary
 
-This phase should favor clean structure and reliable interaction over breadth of features.
+GeoMemo is a bilingual, local-first travel tracker for China. It lets users explore authoritative administrative boundaries, mark places as visited, assign a travel experience level, and view derived progress statistics.
 
-## Phase 1 Scope
+## Current Feature Set
 
-### Included
+### Core map interaction
 
-- Single-page app
-- China map at national level
-- Province-level map drill-down
-- City selection inside a province
-- Visited tracking at city level
-- Computed visual states for provinces
-- Country and province statistics
-- Breadcrumb navigation
-- Local persistence with `localStorage`
-- Premium Apple-inspired visual design
+- country-level China map using province boundaries
+- province drill-down into city-level administrative regions when available
+- breadcrumb-based upward navigation
+- direct map interaction for visit updates
 
-### Excluded
+### Visit tracking
 
-- authentication
-- backend sync
-- notes and photos
-- search
-- filters
-- deep-link routing
-- multiple visit categories
+- toggle city visited/unvisited
+- toggle a whole province visited/unvisited from the country map
+- mark all cities in the active province visited
+- clear all visits in the active province
+- reset all records
 
-## Page Layout
+### Experience levels
 
-Use one route: `HomePage`.
+- each visited city stores one experience level
+- supported levels:
+  - `long`: more than 6 months
+  - `medium`: 1 to 6 months
+  - `short`: less than 1 month
+- users can change the level after the place is already marked visited
 
-### Desktop Layout
+### Statistics
 
-- top header bar
-- large central map stage
-- right-side floating panel for details and statistics
-- compact legend overlay near the map
+- national metrics in the hero header
+- experience level distribution below the map
+- derived counts and percentages
 
-### Mobile Layout
+### Data portability
 
-- top header
-- map as the first block
-- bottom sheet or stacked card panel for context and actions
-- breadcrumb always visible above map or at top of detail panel
+- JSON export
+- JSON import
+- backward-compatible parsing for older saved data
 
-## Layout Zones
+### Internationalization
 
-### 1. HeaderBar
+- Simplified Chinese
+- English
+- Simplified Chinese as default
+- persisted locale selection
 
-Contains:
+## Current Page Layout
 
-- app name: `GeoMemo`
-- short subtitle
-- optional reset action
-- optional future settings trigger
+### Header
 
-### 2. MapWorkspace
+The hero header contains:
 
-Contains:
+- app title
+- app subtitle
+- language switcher
+- four national metrics
 
-- current map view
-- hover and selected state feedback
-- smooth level transitions
+The header background uses a subtle atmospheric treatment with gradients and soft blurred shapes.
 
-This is the visual focal point of the page.
+### Breadcrumb
 
-### 3. SidePanel
-
-Context-sensitive content:
-
-- country summary when level is `country`
-- province summary when level is `province`
-- city detail and visit action when level is `city`
-
-### 4. BreadcrumbNav
-
-Examples:
+A breadcrumb row sits below the header:
 
 - `China`
-- `China / Sichuan`
-- `China / Sichuan / Chengdu`
+- `China / Province`
+- `China / Province / City`
 
-The last item reflects the current navigation state.
+### Main content
 
-### 5. Legend
+The page uses a two-column layout on large screens.
 
-States:
+Left column:
 
-- `Visited`
-- `Partially visited`
-- `Unvisited`
+- country or province map
+- map legend
+- experience level distribution
 
-## Drill-Down Interaction Flow
+Right column:
 
-This flow should be consistent and deterministic.
+- region context panel
+- visit action panel
+- import/export panel
 
-### Initial State
+## Current Interaction Logic
+
+### Initial state
 
 ```ts
 {
-  level: "country",
-  activeProvinceId: null,
-  activeCityId: null
+  navigation: {
+    level: "country",
+    activeProvinceId: null,
+    activeCityId: null
+  },
+  visits: {
+    visitedCities: {},
+    history: []
+  },
+  ui: {
+    importError: null,
+    lastImportedAt: null,
+    draftExperienceLevel: "short"
+  }
 }
 ```
 
-### Country Level Behavior
+### Country map behavior
 
-Map displays provinces.
+- the country map renders provinces
+- each province fill is derived from visited city data
+- clicking a province:
+  - toggles province-level visited state
+  - enters the province drill-down view
 
-On province hover:
-
-- highlight province
-- optionally show tooltip with province name and completion
-
-On province click:
-
-- set `activeProvinceId`
-- clear `activeCityId`
-- set `level = "province"`
-- render selected province map
-- update breadcrumb
-- update side panel to province summary
-
-### Province Level Behavior
-
-Map displays cities for the active province.
-
-On city hover:
-
-- highlight city
-- optionally show tooltip with city name
-
-On city click:
-
-- set `activeCityId`
-- keep `activeProvinceId`
-- set `level = "city"`
-- update side panel to city detail
-
-### City Level Behavior
-
-For Phase 1, city level is a selected-detail state, not a separate geographic map screen.
-
-The province map remains visible while:
-
-- selected city is highlighted
-- side panel shows city name and visit action
-
-On toggle visited:
-
-- update city visit state
-- recompute province visual state
-- recompute country stats
-- persist state
-
-### Back Navigation
-
-From `city` to `province`:
-
-- click breadcrumb province
-- or close city detail state
-
-From `province` to `country`:
-
-- click breadcrumb `China`
-- or use back control
-
-## State Management
-
-Use Zustand with `persist`.
-
-### Source of Truth
-
-Visited state is stored only at the city level.
-
-Province status is derived from city completion:
+Province visual state rules:
 
 - `unvisited`: zero visited cities
+- `partial`: some visited cities but not all
 - `visited`: all cities visited
-- `partial`: some but not all cities visited
 
-### Persisted Data
+### Province map behavior
 
-- `visitedCityIds`
-- optionally navigation context
+- the province map renders city-level administrative regions for the active province when geometry exists
+- clicking a city:
+  - selects the city
+  - toggles visited/unvisited immediately
+- the selected city is reflected in the side panel
 
-### Transient Data
+### City selection behavior
 
-- hover state
-- tooltip state
-- transition state
-- temporary panel behavior
+`level = "city"` is a detail-selection state, not a separate map route. The province map remains visible while the side panel focuses on the selected city.
 
-## Store API
+### Experience level behavior
 
-The store should expose a small intent-based API.
+- the visit action panel exposes the three experience levels
+- if a selected city is already visited, changing the level updates that city
+- if an active province has visited cities and no visited city is selected, changing the level updates all visited cities in that province
+- otherwise, the selected level becomes the draft level used for the next visit action
+
+### Reset behavior
+
+- the reset action appears as an overlay button inside the map card
+- clicking it clears all visits and resets navigation
+
+## State and Data Flow
+
+GeoMemo uses one shared Zustand store. All user-visible state changes flow through that store.
+
+### Single source of truth
+
+The canonical visit state is:
 
 ```ts
-export type RegionLevel = "country" | "province" | "city";
-export type VisitVisualState = "unvisited" | "partial" | "visited";
-
-export interface City {
-  id: string;
-  code: string;
-  name: string;
-  provinceId: string;
-  centroid?: [number, number];
-}
-
-export interface Province {
-  id: string;
-  code: string;
-  name: string;
-  cityIds: string[];
-  centroid?: [number, number];
-}
-
-export interface ChinaRegionIndex {
-  provinces: Record<string, Province>;
-  cities: Record<string, City>;
-  provinceOrder: string[];
-}
-
-export interface VisitState {
-  visitedCityIds: Record<string, true>;
-}
-
-export interface NavigationState {
-  level: RegionLevel;
-  activeProvinceId: string | null;
-  activeCityId: string | null;
-}
-
-export interface UIState {
-  hoveredProvinceId: string | null;
-  hoveredCityId: string | null;
-  isSidePanelOpen: boolean;
-}
-
-export interface GeoMemoStoreState {
-  navigation: NavigationState;
-  visits: VisitState;
-  ui: UIState;
-}
-
-export interface GeoMemoStoreActions {
-  enterCountry: () => void;
-  enterProvince: (provinceId: string) => void;
-  selectCity: (cityId: string) => void;
-  clearSelectedCity: () => void;
-
-  toggleCityVisited: (cityId: string) => void;
-  markCityVisited: (cityId: string) => void;
-  markCityUnvisited: (cityId: string) => void;
-
-  markProvinceVisited: (provinceId: string) => void;
-  clearProvinceVisited: (provinceId: string) => void;
-
-  setHoveredProvince: (provinceId: string | null) => void;
-  setHoveredCity: (cityId: string | null) => void;
-
-  resetAllVisits: () => void;
-}
-
-export type GeoMemoStore = GeoMemoStoreState & GeoMemoStoreActions;
+type VisitedCityMap = Record<string, VisitEntry>;
 ```
 
-## Store Behavior Contract
-
-### `enterCountry()`
-
-- set `level = "country"`
-- set `activeProvinceId = null`
-- set `activeCityId = null`
-
-### `enterProvince(provinceId)`
-
-- set `level = "province"`
-- set `activeProvinceId = provinceId`
-- set `activeCityId = null`
-
-### `selectCity(cityId)`
-
-- derive province from city metadata
-- set `activeProvinceId = city.provinceId`
-- set `activeCityId = cityId`
-- set `level = "city"`
-
-### `clearSelectedCity()`
-
-- set `activeCityId = null`
-- if `activeProvinceId` exists, set `level = "province"`
-
-### `toggleCityVisited(cityId)`
-
-- if city is visited, remove it
-- otherwise mark it visited
-- recompute all selectors automatically from state
-
-### `markProvinceVisited(provinceId)`
-
-- mark all cities in the province as visited
-
-### `clearProvinceVisited(provinceId)`
-
-- clear all visited cities in the province
-
-## Selectors and Statistics Logic
-
-Selectors should be pure and independent from UI components.
-
-### Required Selectors
-
-- `isCityVisited(cityId, state)`
-- `getVisitedCityCount(state, regionIndex)`
-- `getTotalCityCount(regionIndex)`
-- `getProvinceVisitedCityCount(provinceId, state, regionIndex)`
-- `getProvinceVisualState(provinceId, state, regionIndex)`
-- `getVisitedProvinceCount(state, regionIndex)`
-- `getCountryStats(state, regionIndex)`
-- `getProvinceStats(provinceId, state, regionIndex)`
-
-### Statistics Output
+Where:
 
 ```ts
-export interface RegionStats {
-  totalCities: number;
-  visitedCities: number;
-  cityVisitPercentage: number;
-  totalProvinces?: number;
-  visitedProvinces?: number;
-  provinceVisitPercentage?: number;
+interface VisitEntry {
+  experienceLevel: "long" | "medium" | "short";
+  visitedAt: string;
+  updatedAt?: string;
 }
 ```
 
-## Map Module
+Everything else is derived from this structure:
 
-The map feature should be isolated behind a small adapter layer.
+- province completion state
+- country totals
+- province totals
+- map coloring
+- experience distribution
+- panel badges
 
-### Responsibilities
+### Derived selectors
 
-- register GeoJSON assets
-- render the active map
-- apply visited-state colors
-- map click events to domain ids
-- format map tooltips
+Current selectors compute:
 
-### Internal Parts
+- city visited state
+- city experience level
+- province visual state
+- province dominant experience level
+- national stats
+- province stats
+- experience level breakdown
 
-- `MapController`
-- `ChinaMapView`
-- `ProvinceMapView`
-- `echartsAdapter`
-- `mapRegistry`
-- `mapThemeAdapter`
-- `mapTooltipAdapter`
+### View-model layer
 
-### Input Contract
+`useGeoMemoViewModel` is the page composition boundary. It:
 
-The map should receive computed view models rather than raw store state where possible.
+- reads store slices
+- applies region lookup helpers
+- applies localized name helpers
+- computes national and province stats
+- exposes stable values and callbacks to `HomePage`
 
-```ts
-export interface MapRegionViewModel {
-  id: string;
-  name: string;
-  level: "province" | "city";
-  visualState: VisitVisualState;
-  isActive: boolean;
-  isHovered: boolean;
-  visitedCount?: number;
-  totalCount?: number;
-}
-```
-
-## UI Module
-
-### Core Components
-
-- `HeaderBar`
-- `BreadcrumbNav`
-- `StatsPanel`
-- `RegionInfoPanel`
-- `VisitActionCard`
-- `Legend`
-- `ProgressSummaryCard`
-- `GlassPanel`
-
-### Presentation Rules
-
-- components should remain mostly presentational
-- selectors should compute statistics and completion state
-- map styling should come from a theme adapter, not inline conditionals throughout the UI
-
-## Component Tree
+## Current Component Structure
 
 ```text
-App
-└── AppShell
-    └── HomePage
-        ├── HeaderBar
-        ├── BreadcrumbNav
-        ├── GeoMemoLayout
-        │   ├── MapWorkspace
-        │   │   └── MapController
-        │   │       ├── ChinaMapView
-        │   │       └── ProvinceMapView
-        │   └── SidePanel
-        │       ├── StatsPanel
-        │       ├── RegionInfoPanel
-        │       └── VisitActionCard
-        └── Legend
+HomePage
+├── Header
+│   ├── LanguageSwitcher
+│   └── HeroMetricsPanel
+├── BreadcrumbNav
+├── Left column
+│   ├── ChinaMapView or ProvinceMapView
+│   ├── Legend
+│   └── ExperienceBreakdownPanel
+└── Right column
+    ├── RegionInfoPanel
+    ├── VisitActionCard
+    └── DataTransferCard
 ```
 
-## File and Module Structure
+## Map Data Specification
 
-```text
-src/
-├── app/
-│   ├── App.tsx
-│   ├── main.tsx
-│   ├── providers/
-│   │   └── StoreProvider.tsx
-│   └── styles/
-│       ├── globals.css
-│       └── tokens.css
-├── pages/
-│   └── home/
-│       └── HomePage.tsx
-├── entities/
-│   └── region/
-│       ├── data/
-│       │   ├── provinces.ts
-│       │   ├── cities.ts
-│       │   └── geojson/
-│       ├── model/
-│       │   ├── types.ts
-│       │   ├── regionIndex.ts
-│       │   └── regionSelectors.ts
-│       └── lib/
-│           └── regionLookup.ts
-├── features/
-│   ├── map/
-│   │   ├── components/
-│   │   │   ├── MapController.tsx
-│   │   │   ├── ChinaMapView.tsx
-│   │   │   ├── ProvinceMapView.tsx
-│   │   │   └── BreadcrumbNav.tsx
-│   │   ├── lib/
-│   │   │   ├── echartsAdapter.ts
-│   │   │   ├── mapRegistry.ts
-│   │   │   ├── mapThemeAdapter.ts
-│   │   │   └── mapTooltipAdapter.ts
-│   │   └── model/
-│   │       └── mapViewModel.ts
-│   ├── visit/
-│   │   ├── components/
-│   │   │   ├── RegionInfoPanel.tsx
-│   │   │   └── VisitActionCard.tsx
-│   │   └── model/
-│   │       └── visitSelectors.ts
-│   └── stats/
-│       ├── components/
-│       │   ├── StatsPanel.tsx
-│       │   └── ProgressSummaryCard.tsx
-│       └── model/
-│           ├── statsSelectors.ts
-│           └── statsFormatters.ts
-├── shared/
-│   ├── store/
-│   │   ├── geoMemoStore.ts
-│   │   ├── persistence.ts
-│   │   └── slices/
-│   │       ├── navigationSlice.ts
-│   │       ├── visitSlice.ts
-│   │       └── uiSlice.ts
-│   ├── ui/
-│   │   ├── Card.tsx
-│   │   ├── GlassPanel.tsx
-│   │   ├── IconButton.tsx
-│   │   └── StatBadge.tsx
-│   └── lib/
-│       ├── constants.ts
-│       ├── percent.ts
-│       └── storageKeys.ts
-└── docs/
-    ├── architecture.md
-    └── mvp-spec.md
+### Source
+
+The application uses vendored China administrative GeoJSON data recorded in:
+
+- `/Users/tianzhaoxjtu/Code/GitHub/geomemo/public/geojson/china`
+
+The source snapshot metadata is tracked in:
+
+- [china-source.json](/Users/tianzhaoxjtu/Code/GitHub/geomemo/src/entities/region/data/china-source.json)
+
+### Rendering
+
+- ECharts renders the geographic layers
+- local GeoJSON files are registered before rendering
+- no runtime dependence on a remote map API
+
+### Missing data handling
+
+If city-level geometry is not available for a province, the province map renders a user-facing empty state instead of failing.
+
+## Persistence Specification
+
+### Local storage
+
+The application persists its main store under:
+
+- `geomemo-store-v1`
+
+The persisted payload currently includes:
+
+- navigation
+- visits
+- `ui.draftExperienceLevel`
+
+The locale is stored separately under:
+
+- `geomemo-locale`
+
+### Backward compatibility
+
+Older persisted or imported data using `visitedCityIds: Record<string, true>` is normalized into the current `visitedCities` model with the default experience level `short`.
+
+## Import/Export Specification
+
+Current export shape:
+
+```ts
+interface GeoMemoExportPayload {
+  version: 2;
+  exportedAt: string;
+  visits: VisitsState;
+}
 ```
 
-## Premium UI Direction
+Import rules:
 
-The MVP should feel calm, intentional, and premium.
+- accepts current exports
+- accepts direct visit-state payloads
+- accepts the older boolean visit map shape
+- validates JSON structure before applying data
 
-### Visual Style
+## UI Behavior Requirements for Future Changes
 
-- bright neutral surfaces
-- subtle gradients in the page background
-- translucent side panel
-- low-contrast borders
-- generous spacing
-- rounded card geometry
+Future UI changes should preserve these guarantees:
 
-### State Colors
+- map and side panel always reflect the same visit state
+- statistics are always derived, never manually duplicated
+- experience level state remains synchronized across map, panel, and stats
+- i18n text remains externalized
+- authoritative map data remains local and maintainable
 
-- visited: refined blue-green
-- partial: muted amber or sand
-- unvisited: soft neutral gray
+## Non-Goals in the Current Version
 
-### Motion
+These are not implemented yet:
 
-- map transitions: subtle and quick
-- panel transitions: fade and slide
-- selection states: restrained highlight, not loud animation
-
-## Acceptance Criteria
-
-Phase 1 is considered complete when:
-
-- the user can drill from China to a province
-- the user can select a city within that province
-- the user can mark the city as visited or unvisited
-- province coloring updates correctly
-- national statistics update immediately
-- data persists after reload
-- breadcrumb navigation works in both directions
-- the app remains usable on desktop and mobile
-
-## Recommended Implementation Order
-
-1. region data and types
-2. store and persistence
-3. selectors and statistics
-4. country map
-5. province map
-6. side panel and visit actions
-7. breadcrumb navigation
-8. motion and visual polish
+- authentication
+- backend sync
+- search
+- notes and photos
+- route-based deep linking
+- multi-user collaboration
+- AI-generated recommendations
