@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import { getProvinceCities } from "../../../entities/region/model/regionIndex";
 import type { VisitedCityMap } from "../../../entities/visit/model/types";
 import { useI18n } from "../../../shared/i18n/I18nProvider";
@@ -10,6 +11,7 @@ interface ProvinceMapViewProps {
   visitedCities: VisitedCityMap;
   onBack: () => void;
   onCityClick: (cityId: string) => void;
+  overlay?: ReactNode;
 }
 
 export function ProvinceMapView({
@@ -18,6 +20,7 @@ export function ProvinceMapView({
   visitedCities,
   onBack,
   onCityClick,
+  overlay,
 }: ProvinceMapViewProps) {
   const { t } = useI18n();
   const cities = getProvinceCities(provinceId);
@@ -34,7 +37,8 @@ export function ProvinceMapView({
       }
       className="fade-in-up overflow-hidden"
     >
-      <div className="rounded-[28px] bg-[radial-gradient(circle_at_top_left,_rgba(14,165,233,0.10),_transparent_30%),linear-gradient(180deg,_#fcfdff,_#f5f8fc)] p-3">
+      <div className="relative rounded-[28px] bg-[radial-gradient(circle_at_top_left,_rgba(14,165,233,0.10),_transparent_30%),linear-gradient(180deg,_#fcfdff,_#f5f8fc)] p-3">
+        {overlay ? <div className="absolute right-4 top-4 z-10">{overlay}</div> : null}
         <AdminGeoMap
           mapCode={provinceId}
           activeCode={activeCityId}

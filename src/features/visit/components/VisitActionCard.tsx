@@ -34,16 +34,11 @@ export function VisitActionCard({
     >
       <div className="mt-4 space-y-3">
         <div className="rounded-[22px] border border-white/70 bg-slate-50/90 p-3">
-          <div className="flex items-center justify-between gap-3">
+          <div>
             <div>
               <p className="text-sm font-medium text-slate-800">{t("visit.experienceLabel")}</p>
               <p className="mt-1 text-xs leading-5 text-slate-500">{t("visit.experienceHint")}</p>
             </div>
-            <span className="rounded-full bg-white px-3 py-1 text-xs font-medium text-slate-600 shadow-sm">
-              {t("visit.experience.selected", {
-                level: t(`visit.experience.${currentExperienceLevel}`),
-              })}
-            </span>
           </div>
           <div className="mt-3 grid grid-cols-3 gap-2">
             {levels.map((level) => (
