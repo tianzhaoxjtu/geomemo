@@ -24,8 +24,15 @@ type RegionDataFile = {
 };
 
 const typedRegionData = regionData as unknown as RegionDataFile;
+const rawProvinces = typedRegionData.provinces.filter(
+  (province) =>
+    typeof province.code === "string" &&
+    province.code.length > 0 &&
+    typeof province.filename === "string" &&
+    province.filename.length > 0,
+);
 
-export const provinces: Province[] = typedRegionData.provinces.map((province) => ({
+export const provinces: Province[] = rawProvinces.map((province) => ({
   id: province.code,
   code: province.code,
   name: province.name,
@@ -35,16 +42,20 @@ export const provinces: Province[] = typedRegionData.provinces.map((province) =>
   cityIds: (typedRegionData.citiesByProvince[province.code] ?? []).map((city) => city.code),
 }));
 
+const validProvinceIds = new Set(provinces.map((province) => province.id));
+
 export const cities: City[] = Object.entries(typedRegionData.citiesByProvince).flatMap(
   ([provinceId, provinceCities]) =>
-    provinceCities.map((city) => ({
-      id: city.code,
-      code: city.code,
-      name: city.name,
-      fullname: city.fullname,
-      englishName: city.pinyin,
-      provinceId,
-    })),
+    validProvinceIds.has(provinceId)
+      ? provinceCities.map((city) => ({
+          id: city.code,
+          code: city.code,
+          name: city.name,
+          fullname: city.fullname,
+          englishName: city.pinyin,
+          provinceId,
+        }))
+      : [],
 );
 
 export const citiesByProvinceId = Object.fromEntries(

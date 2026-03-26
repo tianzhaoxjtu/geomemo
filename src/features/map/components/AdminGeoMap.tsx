@@ -43,8 +43,15 @@ export function AdminGeoMap({
   const { locale, t } = useI18n();
   const containerRef = useRef<HTMLDivElement | null>(null);
   const chartRef = useRef<echarts.EChartsType | null>(null);
+  const featureLookupRef = useRef<Map<string, string>>(new Map());
+  const onRegionClickRef = useRef(onRegionClick);
+  const viewStateRef = useRef<{ zoom?: number; center?: number[] }>({});
   const [geoJson, setGeoJson] = useState<GeoJsonCollection | null>(null);
   const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    onRegionClickRef.current = onRegionClick;
+  }, [onRegionClick]);
 
   useEffect(() => {
     let cancelled = false;
@@ -100,6 +107,10 @@ export function AdminGeoMap({
     return lookup;
   }, [geoJson]);
 
+  useEffect(() => {
+    featureLookupRef.current = featureLookup;
+  }, [featureLookup]);
+
   const option = useMemo<EChartsOption | null>(() => {
     if (!geoJson) {
       return null;
@@ -109,6 +120,35 @@ export function AdminGeoMap({
     // coexist without leaking configuration between renders.
     const mapName = `geomemo-${mapCode}`;
     echarts.registerMap(mapName, geoJson as never);
+
+    const seriesData = (geoJson.features ?? []).map((feature) => {
+      const code = String(feature.properties?.code ?? "");
+      const name = String(feature.properties?.name ?? "");
+      const fullName = String(feature.properties?.fullname ?? name);
+      const pinyin = String(feature.properties?.pinyin ?? "");
+      const visualState = getVisualState(code);
+      const experienceLevel = getExperienceLevel(code);
+      const isActive = activeCode === code;
+      const displayName = locale === "zh-CN" ? fullName : toEnglishName(pinyin || name);
+
+      return {
+        name,
+        value: 1,
+        regionCode: code,
+        fullName,
+        displayName,
+        itemStyle: {
+          areaColor: getRegionFill(visualState, experienceLevel, isActive),
+          borderColor: getRegionStroke(isActive),
+          borderWidth: isActive ? 2 : 1,
+        },
+        emphasis: {
+          itemStyle: {
+            areaColor: getRegionHoverFill(visualState, experienceLevel),
+          },
+        },
+      };
+    });
 
     return {
       animationDuration: 350,
@@ -123,7 +163,8 @@ export function AdminGeoMap({
           type: "map",
           map: mapName,
           roam: true,
-          zoom: 1.05,
+          zoom: viewStateRef.current.zoom ?? 1.05,
+          center: viewStateRef.current.center,
           scaleLimit: {
             min: 1,
             max: 8,
@@ -145,67 +186,64 @@ export function AdminGeoMap({
             borderWidth: 1,
             areaColor: "#cbd5e1",
           },
-          data: (geoJson.features ?? []).map((feature) => {
-            const code = String(feature.properties?.code ?? "");
-            const name = String(feature.properties?.name ?? "");
-            const fullName = String(feature.properties?.fullname ?? name);
-            const pinyin = String(feature.properties?.pinyin ?? "");
-            const visualState = getVisualState(code);
-            const experienceLevel = getExperienceLevel(code);
-            const isActive = activeCode === code;
-            const displayName = locale === "zh-CN" ? fullName : toEnglishName(pinyin || name);
-
-            return {
-              name,
-              value: 1,
-              regionCode: code,
-              fullName,
-              displayName,
-              itemStyle: {
-                areaColor: getRegionFill(visualState, experienceLevel, isActive),
-                borderColor: getRegionStroke(isActive),
-                borderWidth: isActive ? 2 : 1,
-              },
-              emphasis: {
-                itemStyle: {
-                  areaColor: getRegionHoverFill(visualState, experienceLevel),
-                },
-              },
-            };
-          }),
+          data: seriesData,
         },
       ],
     } as EChartsOption;
   }, [activeCode, geoJson, getExperienceLevel, getVisualState, locale, mapCode]);
 
   useEffect(() => {
-    if (!containerRef.current || !option) {
+    if (!containerRef.current || !geoJson) {
       return;
     }
 
     const chart = echarts.init(containerRef.current);
     chartRef.current = chart;
-    chart.setOption(option);
 
     const clickHandler = (params: any) => {
-      const code = params?.data?.regionCode ?? (params?.name ? featureLookup.get(params.name) : null);
+      const code =
+        params?.data?.regionCode ??
+        (params?.name ? featureLookupRef.current.get(params.name) : null);
 
       if (code) {
-        onRegionClick(code);
+        onRegionClickRef.current(code);
       }
     };
 
+    const georoamHandler = () => {
+      const nextOption = chart.getOption();
+      const series = Array.isArray(nextOption.series) ? nextOption.series[0] : undefined;
+      viewStateRef.current = {
+        zoom: Array.isArray(series?.zoom) ? series.zoom[0] : series?.zoom,
+        center: Array.isArray(series?.center) ? series.center : undefined,
+      };
+    };
+
     chart.on("click", clickHandler);
+    chart.on("georoam", georoamHandler);
     const resizeHandler = () => chart.resize();
     window.addEventListener("resize", resizeHandler);
 
     return () => {
       window.removeEventListener("resize", resizeHandler);
       chart.off("click", clickHandler);
+      chart.off("georoam", georoamHandler);
       chart.dispose();
       chartRef.current = null;
+      viewStateRef.current = {};
     };
-  }, [featureLookup, onRegionClick, option]);
+  }, [geoJson, mapCode]);
+
+  useEffect(() => {
+    if (!chartRef.current || !option) {
+      return;
+    }
+
+    chartRef.current.setOption(option, {
+      notMerge: false,
+      lazyUpdate: true,
+    });
+  }, [option]);
 
   if (error) {
     return (
