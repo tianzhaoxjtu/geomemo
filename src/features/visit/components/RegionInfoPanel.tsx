@@ -1,4 +1,5 @@
 import { getProvinceCities, getProvinceById } from "../../../entities/region/model/regionIndex";
+import type { VisitedCityMap } from "../../../entities/visit/model/types";
 import { localizeRegionName } from "../../../entities/region/model/regionNames";
 import { useI18n } from "../../../shared/i18n/I18nProvider";
 import { SurfaceCard } from "../../../shared/ui/SurfaceCard";
@@ -7,7 +8,7 @@ interface RegionInfoPanelProps {
   level: "country" | "province" | "city";
   activeProvinceId: string | null;
   activeCityId: string | null;
-  visitedCityIds: Record<string, true>;
+  visitedCities: VisitedCityMap;
   onSelectCity: (cityId: string) => void;
 }
 
@@ -15,7 +16,7 @@ export function RegionInfoPanel({
   level,
   activeProvinceId,
   activeCityId,
-  visitedCityIds,
+  visitedCities,
   onSelectCity,
 }: RegionInfoPanelProps) {
   const { locale, t } = useI18n();
@@ -51,7 +52,7 @@ export function RegionInfoPanel({
       <div className="mt-4 space-y-2">
         {cityList.map((city) => {
           const isActive = city.id === activeCityId;
-          const visited = Boolean(visitedCityIds[city.id]);
+          const visited = Boolean(visitedCities[city.id]);
 
           return (
             <button

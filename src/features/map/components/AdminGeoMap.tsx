@@ -5,7 +5,7 @@ import { TooltipComponent } from "echarts/components";
 import { CanvasRenderer } from "echarts/renderers";
 import type { EChartsOption } from "echarts";
 import { useI18n } from "../../../shared/i18n/I18nProvider";
-import type { VisitVisualState } from "../../../entities/region/model/types";
+import type { ExperienceLevel, VisitVisualState } from "../../../entities/region/model/types";
 import { getRegionFill, getRegionHoverFill, getRegionStroke } from "../lib/mapTheme";
 
 echarts.use([MapChart, TooltipComponent, CanvasRenderer]);
@@ -27,6 +27,7 @@ interface AdminGeoMapProps {
   mapCode: string;
   activeCode: string | null;
   getVisualState: (regionCode: string) => VisitVisualState;
+  getExperienceLevel: (regionCode: string) => ExperienceLevel | null;
   onRegionClick: (regionCode: string) => void;
   emptyMessage: string;
 }
@@ -35,6 +36,7 @@ export function AdminGeoMap({
   mapCode,
   activeCode,
   getVisualState,
+  getExperienceLevel,
   onRegionClick,
   emptyMessage,
 }: AdminGeoMapProps) {
@@ -145,6 +147,7 @@ export function AdminGeoMap({
             const fullName = String(feature.properties?.fullname ?? name);
             const pinyin = String(feature.properties?.pinyin ?? "");
             const visualState = getVisualState(code);
+            const experienceLevel = getExperienceLevel(code);
             const isActive = activeCode === code;
             const displayName = locale === "zh-CN" ? fullName : toEnglishName(pinyin || name);
 
@@ -155,13 +158,13 @@ export function AdminGeoMap({
               fullName,
               displayName,
               itemStyle: {
-                areaColor: getRegionFill(visualState, isActive),
+                areaColor: getRegionFill(visualState, experienceLevel, isActive),
                 borderColor: getRegionStroke(isActive),
                 borderWidth: isActive ? 2 : 1,
               },
               emphasis: {
                 itemStyle: {
-                  areaColor: getRegionHoverFill(visualState),
+                  areaColor: getRegionHoverFill(visualState, experienceLevel),
                 },
               },
             };
@@ -169,7 +172,7 @@ export function AdminGeoMap({
         },
       ],
     } as EChartsOption;
-  }, [activeCode, geoJson, getVisualState, locale, mapCode]);
+  }, [activeCode, geoJson, getExperienceLevel, getVisualState, locale, mapCode]);
 
   useEffect(() => {
     if (!containerRef.current || !option) {

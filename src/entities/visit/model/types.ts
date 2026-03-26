@@ -1,14 +1,21 @@
-import type { RegionLevel } from "../../region/model/types";
+import type { ExperienceLevel, RegionLevel } from "../../region/model/types";
 
-export type VisitedCityMap = Record<string, true>;
+export interface VisitEntry {
+  experienceLevel: ExperienceLevel;
+  visitedAt: string;
+  updatedAt?: string;
+}
+
+export type VisitedCityMap = Record<string, VisitEntry>;
 
 export interface VisitRecord {
   cityId: string;
   visitedAt: string;
+  experienceLevel: ExperienceLevel;
 }
 
 export interface VisitsState {
-  visitedCityIds: VisitedCityMap;
+  visitedCities: VisitedCityMap;
   history: VisitRecord[];
 }
 
@@ -21,6 +28,7 @@ export interface NavigationState {
 export interface UIState {
   importError: string | null;
   lastImportedAt: string | null;
+  draftExperienceLevel: ExperienceLevel;
 }
 
 export interface GeoMemoState {
@@ -30,7 +38,7 @@ export interface GeoMemoState {
 }
 
 export interface GeoMemoExportPayload {
-  version: 1;
+  version: 2;
   exportedAt: string;
   visits: VisitsState;
 }

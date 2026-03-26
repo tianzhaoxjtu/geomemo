@@ -1,17 +1,18 @@
+import type { VisitedCityMap } from "../../../entities/visit/model/types";
 import { useI18n } from "../../../shared/i18n/I18nProvider";
 import { SurfaceCard } from "../../../shared/ui/SurfaceCard";
-import { getProvinceVisualState } from "../../stats/model/statsSelectors";
+import { getProvinceExperienceLevel, getProvinceVisualState } from "../../stats/model/statsSelectors";
 import { AdminGeoMap } from "./AdminGeoMap";
 
 interface ChinaMapViewProps {
   activeProvinceId: string | null;
-  visitedCityIds: Record<string, true>;
+  visitedCities: VisitedCityMap;
   onProvinceClick: (provinceId: string) => void;
 }
 
 export function ChinaMapView({
   activeProvinceId,
-  visitedCityIds,
+  visitedCities,
   onProvinceClick,
 }: ChinaMapViewProps) {
   const { t } = useI18n();
@@ -28,7 +29,8 @@ export function ChinaMapView({
         <AdminGeoMap
           mapCode="100000"
           activeCode={activeProvinceId}
-          getVisualState={(regionCode) => getProvinceVisualState(regionCode, visitedCityIds)}
+          getVisualState={(regionCode) => getProvinceVisualState(regionCode, visitedCities)}
+          getExperienceLevel={(regionCode) => getProvinceExperienceLevel(regionCode, visitedCities)}
           onRegionClick={onProvinceClick}
           emptyMessage={t("map.emptyCountry")}
         />

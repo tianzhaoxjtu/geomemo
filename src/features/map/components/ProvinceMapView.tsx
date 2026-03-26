@@ -1,4 +1,5 @@
 import { getProvinceCities } from "../../../entities/region/model/regionIndex";
+import type { VisitedCityMap } from "../../../entities/visit/model/types";
 import { useI18n } from "../../../shared/i18n/I18nProvider";
 import { SurfaceCard } from "../../../shared/ui/SurfaceCard";
 import { AdminGeoMap } from "./AdminGeoMap";
@@ -6,7 +7,7 @@ import { AdminGeoMap } from "./AdminGeoMap";
 interface ProvinceMapViewProps {
   provinceId: string;
   activeCityId: string | null;
-  visitedCityIds: Record<string, true>;
+  visitedCities: VisitedCityMap;
   onBack: () => void;
   onCityClick: (cityId: string) => void;
 }
@@ -14,7 +15,7 @@ interface ProvinceMapViewProps {
 export function ProvinceMapView({
   provinceId,
   activeCityId,
-  visitedCityIds,
+  visitedCities,
   onBack,
   onCityClick,
 }: ProvinceMapViewProps) {
@@ -37,7 +38,8 @@ export function ProvinceMapView({
         <AdminGeoMap
           mapCode={provinceId}
           activeCode={activeCityId}
-          getVisualState={(regionCode) => (visitedCityIds[regionCode] ? "visited" : "unvisited")}
+          getVisualState={(regionCode) => (visitedCities[regionCode] ? "visited" : "unvisited")}
+          getExperienceLevel={(regionCode) => visitedCities[regionCode]?.experienceLevel ?? null}
           onRegionClick={onCityClick}
           emptyMessage={
             cities.length > 0

@@ -1,6 +1,7 @@
 export type RegionLevel = "country" | "province" | "city";
 
 export type VisitVisualState = "unvisited" | "partial" | "visited";
+export type ExperienceLevel = "long" | "medium" | "short";
 
 export interface City {
   id: string;
@@ -28,6 +29,13 @@ export interface RegionStats {
   totalProvinces: number;
   visitedProvinces: number;
   provinceVisitPercentage: number;
+  experienceBreakdown: Record<
+    ExperienceLevel,
+    {
+      count: number;
+      percentage: number;
+    }
+  >;
 }
 
 export interface RegionCollection {

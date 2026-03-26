@@ -1,6 +1,15 @@
-import type { GeoMemoExportPayload, VisitsState, VisitedCityMap } from "../model/types";
+import type { ExperienceLevel } from "../../region/model/types";
+import type { GeoMemoExportPayload, VisitEntry, VisitsState, VisitedCityMap } from "../model/types";
 
-function normalizeVisitedCityIds(input: unknown): VisitedCityMap {
+const DEFAULT_EXPERIENCE_LEVEL: ExperienceLevel = "short";
+
+function normalizeExperienceLevel(value: unknown): ExperienceLevel {
+  return value === "long" || value === "medium" || value === "short"
+    ? value
+    : DEFAULT_EXPERIENCE_LEVEL;
+}
+
+function normalizeVisitedCities(input: unknown): VisitedCityMap {
   if (!input || typeof input !== "object") {
     return {};
   }
@@ -9,7 +18,23 @@ function normalizeVisitedCityIds(input: unknown): VisitedCityMap {
 
   for (const [cityId, value] of Object.entries(input as Record<string, unknown>)) {
     if (value === true) {
-      next[cityId] = true;
+      next[cityId] = {
+        experienceLevel: DEFAULT_EXPERIENCE_LEVEL,
+        visitedAt: new Date().toISOString(),
+      };
+      continue;
+    }
+
+    if (value && typeof value === "object") {
+      const entry = value as Partial<VisitEntry>;
+      const visitedAt =
+        typeof entry.visitedAt === "string" ? entry.visitedAt : new Date().toISOString();
+
+      next[cityId] = {
+        experienceLevel: normalizeExperienceLevel(entry.experienceLevel),
+        visitedAt,
+        updatedAt: typeof entry.updatedAt === "string" ? entry.updatedAt : undefined,
+      };
     }
   }
 
@@ -28,9 +53,10 @@ function normalizeHistory(input: unknown) {
 
     const cityId = "cityId" in item ? item.cityId : null;
     const visitedAt = "visitedAt" in item ? item.visitedAt : null;
+    const experienceLevel = "experienceLevel" in item ? item.experienceLevel : DEFAULT_EXPERIENCE_LEVEL;
 
     if (typeof cityId === "string" && typeof visitedAt === "string") {
-      return [{ cityId, visitedAt }];
+      return [{ cityId, visitedAt, experienceLevel: normalizeExperienceLevel(experienceLevel) }];
     }
 
     return [];
@@ -39,7 +65,7 @@ function normalizeHistory(input: unknown) {
 
 export function createExportPayload(visits: VisitsState): GeoMemoExportPayload {
   return {
-    version: 1,
+    version: 2,
     exportedAt: new Date().toISOString(),
     visits,
   };
@@ -72,8 +98,12 @@ export function parseVisitImport(raw: string): VisitsState {
   }
 
   return {
-    visitedCityIds: normalizeVisitedCityIds(
-      "visitedCityIds" in visits ? visits.visitedCityIds : undefined,
+    visitedCities: normalizeVisitedCities(
+      "visitedCities" in visits
+        ? visits.visitedCities
+        : "visitedCityIds" in visits
+          ? visits.visitedCityIds
+          : undefined,
     ),
     history: normalizeHistory("history" in visits ? visits.history : undefined),
   };

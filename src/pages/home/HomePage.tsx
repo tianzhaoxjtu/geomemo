@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import type { ExperienceLevel } from "../../entities/region/model/types";
 import { BreadcrumbNav } from "../../features/map/components/BreadcrumbNav";
 import { ChinaMapView } from "../../features/map/components/ChinaMapView";
 import { Legend } from "../../features/map/components/Legend";
@@ -18,11 +19,15 @@ export function HomePage() {
   const {
     navigation,
     visits,
+    ui,
     enterCountry,
     enterProvince,
     selectCity,
     clearSelectedCity,
     toggleCityVisited,
+    setDraftExperienceLevel,
+    setCityExperienceLevel,
+    setProvinceExperienceLevel,
     markProvinceVisited,
     clearProvinceVisited,
     resetAllVisits,
@@ -31,19 +36,40 @@ export function HomePage() {
     countryStats,
     provinceStats,
     cityVisited,
+    activeCityExperienceLevel,
+    activeProvinceExperienceLevel,
   } = useGeoMemoViewModel();
   const { downloadExport, importFile, importError, lastImportedAt, clearImportError } =
     useVisitDataTransfer();
   const { t } = useI18n();
   const { level, activeProvinceId, activeCityId } = navigation;
-  const { visitedCityIds } = visits;
+  const { visitedCities } = visits;
 
   useEffect(() => {
     document.title = `${t("app.name")} · ${t("app.title")}`;
   }, [t]);
 
+  const currentExperienceLevel: ExperienceLevel =
+    activeCityExperienceLevel ??
+    activeProvinceExperienceLevel ??
+    ui.draftExperienceLevel;
+
+  const handleExperienceLevelChange = (experienceLevel: ExperienceLevel) => {
+    if (activeCityId && visitedCities[activeCityId]) {
+      setCityExperienceLevel(activeCityId, experienceLevel);
+      return;
+    }
+
+    if (activeProvinceId && provinceStats && provinceStats.visitedCities > 0) {
+      setProvinceExperienceLevel(activeProvinceId, experienceLevel);
+      return;
+    }
+
+    setDraftExperienceLevel(experienceLevel);
+  };
+
   const handleProvinceMapClick = (provinceId: string) => {
-    const currentState = getProvinceVisualState(provinceId, visitedCityIds);
+    const currentState = getProvinceVisualState(provinceId, visitedCities);
 
     if (currentState === "visited") {
       clearProvinceVisited(provinceId);
@@ -118,14 +144,14 @@ export function HomePage() {
             <ProvinceMapView
               provinceId={activeProvinceId}
               activeCityId={activeCityId}
-              visitedCityIds={visitedCityIds}
+              visitedCities={visitedCities}
               onBack={enterCountry}
               onCityClick={handleCityMapClick}
             />
           ) : (
             <ChinaMapView
               activeProvinceId={activeProvinceId}
-              visitedCityIds={visitedCityIds}
+              visitedCities={visitedCities}
               onProvinceClick={handleProvinceMapClick}
             />
           )}
@@ -135,18 +161,22 @@ export function HomePage() {
         <aside className="space-y-4 xl:sticky xl:top-6 xl:self-start">
           {provinceStats ? (
             <StatsPanel title={t("stats.provinceTitle", { name: activeProvinceName ?? "" })} stats={provinceStats} />
-          ) : null}
+          ) : (
+            <StatsPanel title={t("stats.nationalTitle")} stats={countryStats} />
+          )}
           <RegionInfoPanel
             level={level}
             activeProvinceId={activeProvinceId}
             activeCityId={activeCityId}
-            visitedCityIds={visitedCityIds}
+            visitedCities={visitedCities}
             onSelectCity={selectCity}
           />
           <VisitActionCard
             hasProvince={Boolean(activeProvinceId)}
             cityName={activeCityName}
             isCityVisited={cityVisited}
+            currentExperienceLevel={currentExperienceLevel}
+            onExperienceLevelChange={handleExperienceLevelChange}
             onToggleCity={() => {
               if (activeCityId) {
                 toggleCityVisited(activeCityId);

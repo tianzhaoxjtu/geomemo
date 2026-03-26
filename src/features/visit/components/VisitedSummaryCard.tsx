@@ -1,20 +1,21 @@
+import type { VisitedCityMap } from "../../../entities/visit/model/types";
 import { regionIndex } from "../../../entities/region/model/regionIndex";
 import { localizeRegionName } from "../../../entities/region/model/regionNames";
 import { useI18n } from "../../../shared/i18n/I18nProvider";
 import { SurfaceCard } from "../../../shared/ui/SurfaceCard";
 
 interface VisitedSummaryCardProps {
-  visitedCityIds: Record<string, true>;
+  visitedCities: VisitedCityMap;
 }
 
-export function VisitedSummaryCard({ visitedCityIds }: VisitedSummaryCardProps) {
+export function VisitedSummaryCard({ visitedCities }: VisitedSummaryCardProps) {
   const { locale, t } = useI18n();
-  const visitedCities = Object.keys(visitedCityIds)
+  const visitedCityList = Object.keys(visitedCities)
     .map((cityId) => regionIndex.citiesById[cityId])
     .filter(Boolean);
   const visitedProvinceNames = Array.from(
     new Set(
-      visitedCities
+      visitedCityList
         .map((city) => localizeRegionName(regionIndex.provincesById[city.provinceId] ?? null, locale))
         .filter(Boolean),
     ),
@@ -51,8 +52,8 @@ export function VisitedSummaryCard({ visitedCityIds }: VisitedSummaryCardProps) 
         <div>
           <p className="mb-2 text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">{t("visit.summaryCities")}</p>
           <div className="flex flex-wrap gap-2">
-            {visitedCities.length > 0 ? (
-              visitedCities.slice(0, 8).map((city) => (
+            {visitedCityList.length > 0 ? (
+              visitedCityList.slice(0, 8).map((city) => (
                 <span
                   key={city.id}
                   className="rounded-full border border-slate-200 bg-white px-3 py-1.5 text-xs font-medium text-slate-700 shadow-sm"
