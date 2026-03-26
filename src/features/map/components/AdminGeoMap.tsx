@@ -27,6 +27,10 @@ interface AdminGeoMapProps {
   mapCode: string;
   activeCode: string | null;
   isRegionActive?: (regionCode: string) => boolean;
+  initialView?: {
+    zoom?: number;
+    center?: [number, number];
+  };
   getVisualState: (regionCode: string) => VisitVisualState;
   getExperienceLevel: (regionCode: string) => ExperienceLevel | null;
   onRegionClick: (regionCode: string) => void;
@@ -37,6 +41,7 @@ export function AdminGeoMap({
   mapCode,
   activeCode,
   isRegionActive,
+  initialView,
   getVisualState,
   getExperienceLevel,
   onRegionClick,
@@ -50,10 +55,19 @@ export function AdminGeoMap({
   const viewStateRef = useRef<{ zoom?: number; center?: number[] }>({});
   const [geoJson, setGeoJson] = useState<GeoJsonCollection | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const initialCenterX = initialView?.center?.[0];
+  const initialCenterY = initialView?.center?.[1];
 
   useEffect(() => {
     onRegionClickRef.current = onRegionClick;
   }, [onRegionClick]);
+
+  useEffect(() => {
+    viewStateRef.current = {
+      zoom: initialView?.zoom,
+      center: initialView?.center,
+    };
+  }, [initialCenterX, initialCenterY, initialView?.zoom, mapCode]);
 
   useEffect(() => {
     let cancelled = false;
@@ -173,26 +187,32 @@ export function AdminGeoMap({
           },
           label: {
             show: true,
-            color: "#f8fafc",
+            color: "#243446",
             fontSize: mapCode === "100000" ? 10 : 11,
+            textBorderColor: "rgba(248,250,252,0.8)",
+            textBorderWidth: 3,
+            textShadowColor: "rgba(255,255,255,0.15)",
+            textShadowBlur: 6,
             formatter: (params: any) => params?.data?.displayName ?? params?.name ?? "",
           },
           emphasis: {
             label: {
-              color: "#ffffff",
+              color: "#182536",
               fontWeight: "bold",
+              textBorderColor: "rgba(255,255,255,0.9)",
+              textBorderWidth: 3,
             },
           },
           itemStyle: {
-            borderColor: "#ffffff",
+            borderColor: "rgba(255,255,255,0.95)",
             borderWidth: 1,
-            areaColor: "#cbd5e1",
+            areaColor: "#d9e1e8",
           },
           data: seriesData,
         },
       ],
     } as EChartsOption;
-  }, [activeCode, geoJson, getExperienceLevel, getVisualState, isRegionActive, locale, mapCode]);
+  }, [activeCode, geoJson, getExperienceLevel, getVisualState, initialCenterX, initialCenterY, initialView?.zoom, isRegionActive, locale, mapCode]);
 
   useEffect(() => {
     if (!containerRef.current || !geoJson) {

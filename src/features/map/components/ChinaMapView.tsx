@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import { useMemo, type ReactNode } from "react";
 import type { VisitedCityMap } from "../../../entities/visit/model/types";
 import { useI18n } from "../../../shared/i18n/I18nProvider";
 import { SurfaceCard } from "../../../shared/ui/SurfaceCard";
@@ -19,6 +19,15 @@ export function ChinaMapView({
   overlay,
 }: ChinaMapViewProps) {
   const { t } = useI18n();
+  const initialView = useMemo(
+    () => ({
+      // Keep the full geometry available, but start the overview on the main landmass
+      // so mainland China, Hong Kong, Macao, and Taiwan occupy the useful viewport.
+      center: [104.2, 35.2] as [number, number],
+      zoom: 1.26,
+    }),
+    [],
+  );
 
   return (
     <SurfaceCard
@@ -33,6 +42,7 @@ export function ChinaMapView({
         <AdminGeoMap
           mapCode="100000"
           activeCode={activeProvinceId}
+          initialView={initialView}
           getVisualState={(regionCode) => getProvinceVisualState(regionCode, visitedCities)}
           getExperienceLevel={(regionCode) => getProvinceExperienceLevel(regionCode, visitedCities)}
           onRegionClick={onProvinceClick}

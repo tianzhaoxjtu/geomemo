@@ -7,9 +7,9 @@ export default {
         ink: "#112033",
         mist: "#eef3f8",
         line: "#d9e3ee",
-        visited: "#2563eb",
-        partial: "#f59e0b",
-        idle: "#cbd5e1"
+        visited: "#5d82a5",
+        partial: "#c8d7e4",
+        idle: "#d9e1e8"
       },
       boxShadow: {
         panel: "0 18px 40px rgba(17, 32, 51, 0.10)"
