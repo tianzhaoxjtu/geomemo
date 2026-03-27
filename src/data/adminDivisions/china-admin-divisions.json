@@ -1,7 +1,7 @@
 {
   "standard": {
     "provinceLevelUnitCount": 34,
-    "prefectureLevelUnitCount": 337,
+    "prefectureLevelUnitCount": 340,
     "excludesRootChinaNodeFromProvinceMetrics": true,
     "notes": [
       "The province layer contains 34 province-level administrative units.",
@@ -665,26 +665,32 @@
       "zhName": "台湾省",
       "enName": "Taiwan",
       "type": "taiwan",
-      "mapDrillDownMode": "unavailable",
-      "prefectureUnitIds": []
+      "mapDrillDownMode": "single-city",
+      "prefectureUnitIds": [
+        "710000"
+      ]
     },
     {
       "id": "810000",
       "code": "810000",
       "zhName": "香港特别行政区",
-      "enName": "Xianggang",
+      "enName": "Hong Kong",
       "type": "sar",
-      "mapDrillDownMode": "unavailable",
-      "prefectureUnitIds": []
+      "mapDrillDownMode": "single-city",
+      "prefectureUnitIds": [
+        "810000"
+      ]
     },
     {
       "id": "820000",
       "code": "820000",
       "zhName": "澳门特别行政区",
-      "enName": "Aomen",
+      "enName": "Macao",
       "type": "sar",
-      "mapDrillDownMode": "unavailable",
-      "prefectureUnitIds": []
+      "mapDrillDownMode": "single-city",
+      "prefectureUnitIds": [
+        "820000"
+      ]
     }
   ],
   "prefectureUnits": [
@@ -3720,6 +3726,33 @@
       "parentProvinceId": "650000",
       "administrativeLevel": "prefecture",
       "unitType": "prefecture"
+    },
+    {
+      "id": "710000",
+      "code": "710000",
+      "zhName": "台湾省",
+      "enName": "Taiwan",
+      "parentProvinceId": "710000",
+      "administrativeLevel": "prefecture",
+      "unitType": "municipality-equivalent"
+    },
+    {
+      "id": "810000",
+      "code": "810000",
+      "zhName": "香港特别行政区",
+      "enName": "Hong Kong",
+      "parentProvinceId": "810000",
+      "administrativeLevel": "prefecture",
+      "unitType": "municipality-equivalent"
+    },
+    {
+      "id": "820000",
+      "code": "820000",
+      "zhName": "澳门特别行政区",
+      "enName": "Macao",
+      "parentProvinceId": "820000",
+      "administrativeLevel": "prefecture",
+      "unitType": "municipality-equivalent"
     }
   ]
 }
