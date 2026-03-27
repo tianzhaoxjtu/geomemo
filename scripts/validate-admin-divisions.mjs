@@ -38,11 +38,11 @@ const provinceEnNames = provinces.map((province) => province.enName);
 const prefectureUnitIds = prefectureUnits.map((unit) => unit.id);
 
 assert(standard.provinceLevelUnitCount === 34, "Standard metadata must declare 34 province-level units.");
-assert(standard.prefectureLevelUnitCount === 334, "Standard metadata must declare 334 second-level units.");
+assert(standard.prefectureLevelUnitCount === 337, "Standard metadata must declare 337 second-level units.");
 assert(provinces.length === 34, `Province count must be 34, received ${provinces.length}.`);
 assert(
-  prefectureUnits.length === 334,
-  `Second-level unit count must be 334, received ${prefectureUnits.length}.`,
+  prefectureUnits.length === 337,
+  `Second-level unit count must be 337, received ${prefectureUnits.length}.`,
 );
 assert(!provinceIds.includes("100000"), "The national/root China node (100000) must not appear in province totals.");
 
@@ -80,8 +80,8 @@ for (const province of provinces) {
 }
 
 assert(
-  mappedPrefectureUnitIds.size === 334,
-  `Province-to-unit mapping must cover exactly 334 unique second-level units, received ${mappedPrefectureUnitIds.size}.`,
+  mappedPrefectureUnitIds.size === 337,
+  `Province-to-unit mapping must cover exactly 337 unique second-level units, received ${mappedPrefectureUnitIds.size}.`,
 );
 
 for (const prefectureUnit of prefectureUnits) {

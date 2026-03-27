@@ -1,7 +1,7 @@
 {
   "standard": {
     "provinceLevelUnitCount": 34,
-    "prefectureLevelUnitCount": 334,
+    "prefectureLevelUnitCount": 337,
     "excludesRootChinaNodeFromProvinceMetrics": true,
     "notes": [
       "The province layer contains 34 province-level administrative units.",
@@ -409,6 +409,8 @@
         "441600",
         "441700",
         "441800",
+        "441900",
+        "442000",
         "445100",
         "445200",
         "445300"
@@ -585,6 +587,7 @@
       "mapDrillDownMode": "prefecture",
       "prefectureUnitIds": [
         "620100",
+        "620200",
         "620300",
         "620400",
         "620500",
@@ -2567,6 +2570,24 @@
       "unitType": "prefecture-city"
     },
     {
+      "id": "441900",
+      "code": "441900",
+      "zhName": "东莞市",
+      "enName": "Dongguan",
+      "parentProvinceId": "440000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "442000",
+      "code": "442000",
+      "zhName": "中山市",
+      "enName": "Zhongshan",
+      "parentProvinceId": "440000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
       "id": "445100",
       "code": "445100",
       "zhName": "潮州市",
@@ -3336,6 +3357,15 @@
       "code": "620100",
       "zhName": "兰州市",
       "enName": "Lanzhou",
+      "parentProvinceId": "620000",
+      "administrativeLevel": "prefecture",
+      "unitType": "prefecture-city"
+    },
+    {
+      "id": "620200",
+      "code": "620200",
+      "zhName": "嘉峪关市",
+      "enName": "Jiayuguan",
       "parentProvinceId": "620000",
       "administrativeLevel": "prefecture",
       "unitType": "prefecture-city"
