@@ -43,8 +43,14 @@ export function HomePage() {
     document.title = `${t("app.name")} · ${t("app.title")}`;
   }, [t]);
 
+  const handleExportReady = (exporter: MapImageExporter | null) => {
+    // Map exporters are function values, so they must be wrapped before storing in
+    // React state; passing them directly would make setState treat them as updaters.
+    setMapImageExporter(() => exporter);
+  };
+
   const handleMapImageExport = (format: MapImageFormat, pixelRatio: number) => {
-    downloadMapImage(mapImageExporter, format, pixelRatio);
+    return downloadMapImage(mapImageExporter, format, pixelRatio);
   };
 
   return (
@@ -101,7 +107,7 @@ export function HomePage() {
                 visitedCities={visitedCities}
                 onBack={enterCountry}
                 onRegionSelect={handleCityMapClick}
-                onExportReady={setMapImageExporter}
+                onExportReady={handleExportReady}
                 overlay={
                   <div className="flex flex-col items-end gap-3">
                     <MapResetButton onReset={resetCurrentScope} />
@@ -122,7 +128,7 @@ export function HomePage() {
                 activeProvinceId={activeProvinceId}
                 visitedCities={visitedCities}
                 onProvinceClick={handleProvinceMapClick}
-                onExportReady={setMapImageExporter}
+                onExportReady={handleExportReady}
                 overlay={<MapResetButton onReset={resetCurrentScope} />}
                 fullViewport
               />

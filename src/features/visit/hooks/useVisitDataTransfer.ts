@@ -3,24 +3,38 @@ import { serializeVisitData } from "../../../entities/visit/lib/visitTransfer";
 import type { MapImageExporter, MapImageFormat } from "../../map/model/export";
 import { useGeoMemoStore } from "../../../shared/store/geoMemoStore";
 
+export interface MapImageExportResult {
+  ok: boolean;
+  errorKey?: string;
+}
+
 function downloadFile(filename: string, content: string) {
   const blob = new Blob([content], { type: "application/json" });
   const url = URL.createObjectURL(blob);
+
+  triggerDownload(filename, url, true);
+}
+
+function downloadDataUrl(filename: string, dataUrl: string) {
+  triggerDownload(filename, dataUrl, false);
+}
+
+function triggerDownload(filename: string, url: string, revokeAfterDownload: boolean) {
   const link = document.createElement("a");
 
   link.href = url;
   link.download = filename;
+  link.rel = "noopener";
+  link.style.display = "none";
+  document.body.appendChild(link);
   link.click();
+  document.body.removeChild(link);
 
-  URL.revokeObjectURL(url);
-}
-
-function downloadDataUrl(filename: string, dataUrl: string) {
-  const link = document.createElement("a");
-
-  link.href = dataUrl;
-  link.download = filename;
-  link.click();
+  if (revokeAfterDownload) {
+    window.setTimeout(() => {
+      URL.revokeObjectURL(url);
+    }, 0);
+  }
 }
 
 function createMapFilename(format: MapImageFormat) {
@@ -52,19 +66,53 @@ export function useVisitDataTransfer() {
       exporter: MapImageExporter | null,
       format: MapImageFormat,
       pixelRatio = 2,
-    ) => {
+    ): MapImageExportResult => {
       // The map export is delegated to the active ECharts instance so the downloaded
       // image matches the live viewport, styling, and visit state instead of the page UI.
-      const dataUrl = exporter?.({
-        type: format,
-        pixelRatio,
-      });
-
-      if (!dataUrl) {
-        return;
+      if (!exporter) {
+        return {
+          ok: false,
+          errorKey: "error.export.mapNotReady",
+        };
       }
 
-      downloadDataUrl(createMapFilename(format), dataUrl);
+      try {
+        if (typeof exporter !== "function") {
+          console.error("Map export failed: exporter is not a callable function.", exporter);
+          return {
+            ok: false,
+            errorKey: "error.export.mapUnavailable",
+          };
+        }
+
+        const dataUrl = exporter({
+          type: format,
+          pixelRatio,
+        });
+
+        if (!dataUrl) {
+          console.error("Map export failed: exporter returned an empty data URL.", {
+            format,
+            pixelRatio,
+          });
+          return {
+            ok: false,
+            errorKey: "error.export.mapUnavailable",
+          };
+        }
+
+        downloadDataUrl(createMapFilename(format), dataUrl);
+
+        return {
+          ok: true,
+        };
+      } catch (error) {
+        console.error("Map export failed while generating the image.", error);
+        return {
+          ok: false,
+          errorKey: "error.export.mapUnavailable",
+        };
+      }
     },
     importFile: async (file: File) => {
       const text = await file.text();

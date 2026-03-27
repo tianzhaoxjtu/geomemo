@@ -1,5 +1,6 @@
 import { useRef, useState } from "react";
 import type { MapImageFormat } from "../../map/model/export";
+import type { MapImageExportResult } from "../hooks/useVisitDataTransfer";
 import { useI18n } from "../../../shared/i18n/I18nProvider";
 import { SurfaceCard } from "../../../shared/ui/SurfaceCard";
 
@@ -7,7 +8,10 @@ interface DataTransferCardProps {
   importError: string | null;
   lastImportedAt: string | null;
   onExport: () => void;
-  onExportMapImage: (format: MapImageFormat, pixelRatio: number) => void;
+  onExportMapImage: (
+    format: MapImageFormat,
+    pixelRatio: number,
+  ) => MapImageExportResult | Promise<MapImageExportResult>;
   canExportMapImage: boolean;
   onImport: (file: File) => Promise<void>;
   onDismissError: () => void;
@@ -31,6 +35,27 @@ export function DataTransferCard({
   const isHorizontal = layout === "horizontal";
   const [imageFormat, setImageFormat] = useState<MapImageFormat>("png");
   const [imageScale, setImageScale] = useState("2");
+  const [exportMessage, setExportMessage] = useState<{
+    kind: "success" | "error";
+    key: string;
+  } | null>(null);
+
+  const handleMapExport = async () => {
+    const result = await onExportMapImage(imageFormat, Number(imageScale));
+
+    if (result.ok) {
+      setExportMessage({
+        kind: "success",
+        key: "data.exportMapSuccess",
+      });
+      return;
+    }
+
+    setExportMessage({
+      kind: "error",
+      key: result.errorKey ?? "error.export.mapUnavailable",
+    });
+  };
 
   return (
     <SurfaceCard
@@ -99,11 +124,20 @@ export function DataTransferCard({
           </div>
           <button
             className="mt-3 w-full rounded-full bg-slate-950 px-3 py-2.5 text-sm font-medium text-white shadow-sm transition hover:bg-slate-800 disabled:cursor-not-allowed disabled:bg-slate-300"
-            onClick={() => onExportMapImage(imageFormat, Number(imageScale))}
+            onClick={handleMapExport}
             disabled={!canExportMapImage}
           >
             {t("data.exportMap")}
           </button>
+          {exportMessage ? (
+            <p
+              className={`mt-2 text-xs ${
+                exportMessage.kind === "success" ? "text-emerald-600" : "text-rose-600"
+              }`}
+            >
+              {t(exportMessage.key)}
+            </p>
+          ) : null}
         </div>
         <input
           ref={inputRef}
