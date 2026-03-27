@@ -13,7 +13,7 @@ GeoMemo is a bilingual, local-first travel tracker for China. It uses authoritat
 The implemented logical admin standard is:
 
 - 34 province-level administrative units
-- 334 second-level administrative units
+- 340 second-level administrative units
 - the national/root China node is not counted as a province
 
 Additional rules:
@@ -46,9 +46,9 @@ Additional rules:
 ### Statistics
 
 - national header metrics
-- experience level distribution beside the map
+- experience level distribution in the bottom utility row
 - province coverage derived from second-level records
-- map coloring driven by derived unit/province state
+- map coloring driven by derived unit/province coverage
 
 ### Persistence and portability
 
@@ -86,23 +86,29 @@ Displays the current navigation path:
 
 ### Main content
 
-Large screens use a map-first layout with a lighter right rail.
+Large screens use a map-first layout that changes with the current navigation level.
 
-Middle two-column row:
+National view:
+
+- full-width, full-viewport China overview map
+- embedded legend overlay
+- map reset control overlay
+- no side panel beside the map
+
+Province view:
 
 - left:
-  - country or province map
+  - province map
   - embedded legend overlay
   - map reset control overlay
   - inline experience popover for the selected unit
 - right:
-  - experience level distribution
-  - import/export panel
+  - `Current Content` panel for the active province
 
-Lower records section:
+Bottom utility row:
 
-- region context panel
-- travel record action panel
+- `Experience Level Distribution`
+- `Import / Export Records`
 
 ## Current Interaction Flow
 
@@ -148,7 +154,7 @@ Province coverage metrics use a different rule:
 
 - the map renders second-level administrative regions for the active province when geometry exists
 - direct-controlled municipalities map district geometry back to one canonical municipality-equivalent record
-- Taiwan, Hong Kong, and Macau remain in the province layer but do not expose editable second-level travel units in the chosen logical standard
+- Hong Kong, Macao, and Taiwan use directly markable single-unit logical records, so clicking their geometry updates one canonical second-level record per region
 - clicking a unit selects it
 - selecting a unit opens an inline experience chooser in the map area
 - choosing `long`, `medium`, or `short` marks or updates the selected unit immediately
@@ -156,15 +162,12 @@ Province coverage metrics use a different rule:
 
 ### Side-panel behavior
 
-The right-side panel mirrors the same source of truth:
+The province-level `Current Content` panel mirrors the same source of truth:
 
-- the region panel shows second-level unit status within the active province
+- it appears only while a province is active
+- it shows second-level unit status within the active province
 - visited units display their current experience level label
-- the action panel lets the user:
-  - set the selected unit’s experience level
-  - clear the selected unit
-  - apply the current level to the whole active province
-  - clear the active province
+- selecting a listed unit keeps the province view active and synchronizes with the map selection
 
 ### Reset behavior
 
@@ -255,18 +258,16 @@ HomePage
 │   ├── LanguageSwitcher
 │   └── HeroMetricsPanel
 ├── BreadcrumbNav
-├── Middle row
-│   ├── Left map column
-│   │   ├── ChinaMapView or ProvinceMapView
-│   │   ├── MapResetButton
-│   │   ├── MapExperiencePopover
-│   │   └── Legend (embedded overlay)
-│   └── Right rail
-│       ├── ExperienceBreakdownPanel
-│       └── DataTransferCard
-└── Lower records section
-    ├── RegionInfoPanel
-    └── VisitActionCard
+├── Main map section
+│   ├── ChinaMapView or ProvinceMapView
+│   ├── MapResetButton
+│   ├── MapExperiencePopover
+│   └── Legend (embedded overlay)
+├── Province context rail
+│   └── RegionInfoPanel
+└── Bottom utility row
+    ├── ExperienceBreakdownPanel
+    └── DataTransferCard
 ```
 
 ## Map Data Specification

@@ -74,7 +74,7 @@ src/
 This layer owns the canonical logical administrative standard used throughout the app:
 
 - 34 province-level administrative units
-- 334 second-level administrative units
+- 340 second-level administrative units
 - explicit province → prefecture mapping
 - province type and map drill-down metadata
 
@@ -127,6 +127,7 @@ This layer owns the interactive geographic UI:
 - ECharts + GeoJSON integration
 - region fill and hover theming
 - legend and breadcrumb
+- live chart exporter handoff for PNG/JPEG map downloads
 
 It does not own persisted business state.
 
@@ -146,6 +147,7 @@ This layer owns derived statistics and stat presentation:
 - national and province counts
 - completion percentages
 - experience level breakdowns
+- province coverage-ratio derivation for coverage-based map coloring
 
 Files of interest:
 
@@ -158,7 +160,6 @@ Files of interest:
 This layer owns visit-facing UI and composition hooks:
 
 - context panel for province/second-level selection
-- visit actions and experience level selection
 - language switcher
 - import/export UI
 - page-facing hooks that combine store data with selectors
@@ -167,7 +168,6 @@ Files of interest:
 
 - [useGeoMemoViewModel.ts](/Users/tianzhaoxjtu/Code/GitHub/geomemo/src/features/visit/hooks/useGeoMemoViewModel.ts)
 - [useVisitDataTransfer.ts](/Users/tianzhaoxjtu/Code/GitHub/geomemo/src/features/visit/hooks/useVisitDataTransfer.ts)
-- [VisitActionCard.tsx](/Users/tianzhaoxjtu/Code/GitHub/geomemo/src/features/visit/components/VisitActionCard.tsx)
 - [RegionInfoPanel.tsx](/Users/tianzhaoxjtu/Code/GitHub/geomemo/src/features/visit/components/RegionInfoPanel.tsx)
 - [DataTransferCard.tsx](/Users/tianzhaoxjtu/Code/GitHub/geomemo/src/features/visit/components/DataTransferCard.tsx)
 
@@ -238,11 +238,12 @@ export interface Province {
 ### Administrative Counting Rules
 
 - Province totals always use the 34 province-level units from `src/data/adminDivisions/china-admin-divisions.json`.
-- Second-level totals always use the 334 canonical units from the same dataset.
+- Second-level totals always use the 340 canonical units from the same dataset.
 - The second-level layer includes prefecture-level cities, autonomous prefectures, leagues, and prefectures, plus one municipality-equivalent record for each direct-controlled municipality.
 - The national/root China node is never included in province metrics.
 - County-level cities, districts, counties, and other lower-level units are excluded from statistics.
 - Province coverage is derived from second-level visit entries: a province counts as visited once any canonical unit in it is visited.
+- Hong Kong, Macao, and Taiwan are represented by directly markable single-unit logical records in that same second-level dataset.
 
 ### Visit Model
 
@@ -360,12 +361,13 @@ Current interaction behavior:
 - At country level, clicking a province enters that province without mutating visit state.
 - At province level, clicking a second-level unit selects it and opens the experience-level chooser.
 - Direct-controlled municipalities map district geometry back to one canonical municipality-equivalent record so they still fit the shared second-level interaction model.
-- Taiwan, Hong Kong, and Macau remain in the 34-province layer but currently expose no editable second-level travel units in the chosen logical standard.
+- Hong Kong, Macao, and Taiwan use the same `single-city` logical drill-down mode, so clicking their map geometry updates one canonical directly markable record per region.
 - The province map stays visible while `level = "city"`. City level is a selected-detail state, not a separate map screen.
 - Breadcrumbs provide upward navigation.
 - Missing second-level geometry is handled gracefully with an empty-state message.
 - The national overview starts from a mainland-focused viewport and keeps the South China Sea geometry accessible only through manual zoom or pan.
 - The legend is embedded inside the map card as a lightweight overlay instead of consuming a separate page row.
+- The national China overview expands into a full-viewport map section; province view switches to a split layout with a context panel beside the map.
 
 ## Validation and Audit
 
@@ -378,7 +380,7 @@ npm run validate:admin
 The validator checks:
 
 - province count equals 34
-- second-level unit count equals 334
+- second-level unit count equals 340
 - every second-level unit belongs to exactly one valid province
 - duplicate ids and duplicate province names
 - exclusion of the root China node from province totals
@@ -413,7 +415,7 @@ Derived statistics include:
 
 The top header uses the national metrics.
 
-The right rail beside the map shows the national experience distribution and the transfer tools.
+The bottom utility row shows the national experience distribution and the transfer tools.
 
 Province coverage metrics are derived using the rule:
 

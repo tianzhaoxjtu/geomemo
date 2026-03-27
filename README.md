@@ -122,7 +122,7 @@ npm run preview
 ### Track progress
 
 - Watch province-level and lower-level completion update in real time
-- Review experience distribution beside the map
+- Review experience distribution in the bottom utility row
 
 ### Change language
 
@@ -147,7 +147,7 @@ GeoMemo is built on a repository-owned administrative dataset that is designed t
 Current standard:
 
 - 34 province-level administrative units
-- 334 second-level administrative units
+- 340 second-level administrative units
 - The national/root China view is not counted as a province
 
 The second-level layer includes:
@@ -157,6 +157,7 @@ The second-level layer includes:
 - leagues
 - prefectures / regions
 - municipality-equivalent records for the four direct-controlled municipalities
+- directly markable logical units for Hong Kong, Macao, and Taiwan
 
 Why this approach:
 
@@ -187,8 +188,10 @@ The validator checks:
 Map rendering notes:
 
 - the overview map starts with a mainland-focused viewport
+- in national view, the map expands into a full-viewport section for a more immersive overview
 - the South China Sea geometry remains in the dataset but is not part of the default visible focus
 - the legend is embedded inside the map card instead of rendered as a separate row
+- when drilling into a province, the layout switches to a split view with a province context panel beside the map
 
 ## Deployment
 

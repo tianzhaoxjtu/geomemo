@@ -7,7 +7,7 @@ GeoMemo is a frontend application for tracking places visited in China on top of
 Administrative standard:
 
 - 34 province-level administrative units
-- 334 second-level administrative units
+- 340 second-level administrative units
 - the root China view is not counted as a province
 
 ### Key features
@@ -103,7 +103,7 @@ The application depends on local GeoJSON assets under `public/geojson/china`, so
 
 ### Navigate the map
 
-- The default view is the China map.
+- The default view is the China map and fills a full-screen section.
 - Click a province to enter the province view.
 - Use the breadcrumb to return to China.
 
@@ -131,7 +131,7 @@ The application depends on local GeoJSON assets under `public/geojson/china`, so
   - prefecture coverage
   - visited provinces
   - province coverage
-- The right rail beside the map shows the experience level distribution.
+- The bottom utility row shows the experience level distribution and import/export tools.
 
 ### Switch language
 
@@ -141,7 +141,7 @@ The application depends on local GeoJSON assets under `public/geojson/china`, so
 
 ### Import and export data
 
-- Use the import/export panel in the right rail beside the map.
+- Use the import/export panel in the bottom utility row.
 - `Export JSON` downloads the current visit data.
 - `Import JSON` restores visit data from a compatible file.
 - `Export map image` downloads the active map as PNG or JPEG, including the current zoom, pan, and visit styling.
