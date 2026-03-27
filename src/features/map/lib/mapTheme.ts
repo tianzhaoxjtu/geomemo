@@ -51,10 +51,10 @@ export function getRegionFill(
   }
 
   const normalizedCoverage = Math.max(0, Math.min(coverageRatio, 1));
-  const easedCoverage = Math.pow(normalizedCoverage, 0.78);
-  const minBlend = visualState === "visited" ? 0.82 : 0.92;
-  const maxBlend = visualState === "visited" ? 0.12 : 0.36;
-  const blend = minBlend - (minBlend - maxBlend) * easedCoverage;
+  const easedCoverage = Math.pow(normalizedCoverage, 0.82);
+  const minBlend = 0.18;
+  const maxBlend = visualState === "visited" ? 0.92 : 0.82;
+  const blend = minBlend + (maxBlend - minBlend) * easedCoverage;
   const defaultColor = mixHex(baseUnvisited, palette.visited, blend);
 
   if (!isActive) {
@@ -80,8 +80,8 @@ export function getRegionHoverFill(
   }
 
   const normalizedCoverage = Math.max(0, Math.min(coverageRatio, 1));
-  const easedCoverage = Math.pow(normalizedCoverage, 0.78);
-  const blend = 0.72 - 0.44 * easedCoverage;
+  const easedCoverage = Math.pow(normalizedCoverage, 0.82);
+  const blend = 0.3 + 0.5 * easedCoverage;
 
   return mixHex(palette.hover, palette.visited, blend);
 }
